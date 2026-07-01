@@ -1,0 +1,109 @@
+%%%%%% ICML 2026 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage[capitalize,noabbrev]{cleveref}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{pifont}
+\usepackage{tcolorbox}
+\usepackage{threeparttable}
+\usepackage{xspace}
+\usepackage{wrapfig}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+
+% Pass url options before icml2026 (which loads url internally)
+\PassOptionsToPackage{hyphens}{url}
+
+% Conference format
+\usepackage[accepted]{icml2026}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+% Custom commands
+\newcommand{\sys}{\textsc{ReproBench}\xspace}
+\newcommand{\rrs}{\textsc{RRS}\xspace}
+\newcommand{\pipeline}{\textsc{IoT-Repro}\xspace}
+
+\newcommand{\roadblock}[1]{\textsc{R#1}\xspace}
+\newcommand{\fullsystem}{\textsc{FullSys}\xspace}
+\newcommand{\userspace}{\textsc{UserSp}\xspace}
+\newcommand{\firmae}{\textsc{FirmAE}\xspace}
+\newcommand{\firmwell}{\textsc{FIRMWELL}\xspace}
+\newcommand{\greenhouse}{\textsc{Greenhouse}\xspace}
+
+\newcommand{\tick}{\ding{51}}
+\newcommand{\cross}{\ding{55}}
+
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{darkgray}{RGB}{64,64,64}
+
+\begin{document}
+
+\twocolumn[
+\icmltitle{ReproBench: Can Large Language Models Reproduce IoT Vulnerabilities From a Single CVE Number?}
+
+\begin{icmlauthorlist}
+\icmlauthor{Anonymous Authors}{anon}
+\end{icmlauthorlist}
+
+\icmlaffiliation{anon}{Anonymous Institution}
+\icmlcorrespondingauthor{Anonymous}{anon@example.com}
+
+\icmlkeywords{LLM agents, IoT security, firmware rehosting, benchmark}
+
+\vskip 0.3in
+
+\begin{abstract}
+Internet-of-Things (IoT) vulnerabilities affect billions of deployed devices, yet reproducing them requires navigating a pipeline that existing benchmarks omit entirely: locating proprietary firmware, extracting filesystems from undocumented formats, rehosting cross-architecture binaries under emulation, and finally triggering the flaw.
+Prior agentic security benchmarks assume source code or pre-built executables are available---conditions that almost never hold for embedded firmware.
+We introduce \sys, a benchmark that evaluates LLM agents on IoT vulnerability reproduction starting from \emph{only} a CVE number, and the \rrs (Roadblock Resolution Score), a graded metric that credits agents for the specific pipeline roadblocks they overcome rather than collapsing performance into a single pass/fail outcome.
+\sys comprises 124 real-world IoT CVEs spanning 8 device families and 4 instruction-set architectures, each with deterministic, machine-checkable verification for 7 distinct roadblocks.
+Evaluating three frontier LLM agents over 372 runs, we surface a systematic \emph{rehosting gap}: although agents fingerprint and extract firmware competently, only 12.1\% of runs attempt full-system rehosting and essentially none succeed, with agents instead substituting host-native simulations that mimic the vulnerable code path without executing the real binary.
+The strongest agent reaches an \rrs of only 22.6/100, and resolution collapses from 89\% on fingerprinting roadblocks to under 1\% at the rehosting roadblock (\roadblock{5}).
+\sys isolates rehosting---not exploitation---as the dominant barrier to autonomous IoT security research and provides a diagnostic instrument to measure progress on it.
+\end{abstract}
+
+\vspace{2mm}
+]
+
+\printAffiliationsAndNotice{}
+
+\input{sections/100-intro}
+\input{sections/200-related}
+\input{sections/300-pipeline}
+\input{sections/400-benchmark}
+\input{sections/500-rrs}
+\input{sections/600-experiments}
+\input{sections/700-discussion}
+\input{sections/800-conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

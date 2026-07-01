@@ -1,0 +1,79 @@
+\section{Benchmark Design}
+\label{sec:benchmark}
+
+\sys is a corpus of IoT firmware-vulnerability tasks paired with deterministic, roadblock-graded verification. Every task starts from a real CVE affecting a commercially deployed device---no synthetic examples, no simplified CTF environments. Verification is fully automatic: each roadblock has a deterministic oracle (\cref{sec:verification-criteria}) and no LLM-as-judge appears in any score.
+
+\subsection{CVE Corpus}
+
+We built the corpus by intersecting vulnerability databases with firmware-availability checks. The starting pool was the National Vulnerability Database, filtered to CVEs affecting routers, IP cameras, smart-home hubs, NAS devices, and industrial controllers, with CVSS~v3 base score $\ge 7.0$ and a \texttt{CPE} entry pointing to a firmware image discoverable on either the vendor's site or archive.org. We cross-referenced these against vendor security advisories (Tenda, TP-Link, D-Link, Netgear, Hikvision) and Exploit-DB, retaining only CVEs for which we could independently reproduce the vulnerability in a controlled environment. Reproducing a single CVE for verification took 3--8 person-hours per task: determining the exact firmware version and build, confirming that the vulnerable binary and endpoint match the CVE description, and building the verification harness.
+
+This produced \textbf{124 CVEs} across 8 device families and 4 instruction-set architectures. \cref{tab:dataset} summarizes the distribution. Routers dominate (63\%) because they are the most heavily studied IoT attack surface, with published advisories and reproducible firmware archives. IP cameras (19\%) and smart-home devices (10\%) round out the consumer-IoT segment; the NAS and industrial slices are smaller because firmware availability drops sharply for enterprise and operational-technology devices. Architecturally, MIPS32 and ARM together account for 73\% of the corpus, reflecting the embedded-Linux ecosystem from which most IoT firmware is built. Buffer overflows (36\%) and command injection (26\%) are the most frequent vulnerability classes, consistent with the predominance of C/C++ in embedded networking daemons and the absence of modern exploit mitigations in many IoT build chains.
+
+\begin{table}[t]
+    \centering
+    \caption{Corpus composition across 124 CVEs.}
+    \label{tab:dataset}
+    \begin{tabular}{lrr}
+        \toprule
+        \textbf{Category} & \textbf{Count} & \textbf{\%} \\
+        \midrule
+        \multicolumn{3}{l}{\textbf{Device Type}} \\
+        Routers & 78 & 62.9\% \\
+        IP Cameras & 23 & 18.5\% \\
+        Smart Home & 12 & 9.7\% \\
+        NAS / Storage & 7 & 5.6\% \\
+        Industrial & 4 & 3.2\% \\
+        \midrule
+        \multicolumn{3}{l}{\textbf{Architecture}} \\
+        MIPS32 & 52 & 41.9\% \\
+        ARM & 38 & 30.6\% \\
+        AArch64 & 20 & 16.1\% \\
+        x86/x64 & 14 & 11.3\% \\
+        \midrule
+        \multicolumn{3}{l}{\textbf{Vulnerability Type}} \\
+        Buffer Overflow & 45 & 36.3\% \\
+        Command Injection & 32 & 25.8\% \\
+        Auth Bypass & 22 & 17.7\% \\
+        Format String & 15 & 12.1\% \\
+        Heap Overflow & 10 & 8.1\% \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Evaluation Protocol}
+\label{sec:eval-protocol}
+
+The evaluation places the agent in a clean Linux container with internet access, a bash shell, file read/write tools, web search, and web fetch. The agent receives a single CVE number as input---no firmware blob, no CVE description, no pre-installed firmware-analysis toolchain. The task is to reproduce the vulnerability following a structured two-step workflow:
+
+\begin{enumerate}[leftmargin=*,topsep=2pt,parsep=2pt]
+    \item \textbf{Plan.} Write a reproduction plan into a Markdown file documenting the intended approach: which firmware to acquire, how to extract it, how to identify the vulnerable binary, and how to trigger the vulnerability.
+    \item \textbf{Execute.} Carry out the plan, recording all reproduction steps and analysis results into a second Markdown file.
+\end{enumerate}
+
+Four rules constrain execution. \emph{Rule~1:} total cost must not exceed \$5. \emph{Rule~2:} all work must complete within 30 minutes. \emph{Rule~3:} the agent must not perform any action beyond those listed in the plan. \emph{Rule~4:} the agent uses a provided \texttt{sudo} password to install tools or create anything needed---no firmware-analysis toolchain is pre-installed; the agent must select and install its own tools (\texttt{binwalk}, QEMU, \firmae, etc.) via the package manager.
+
+This protocol mirrors what a security researcher does: plan the approach, execute it methodically, stay within resource limits, and install tools as needed. By withholding firmware and tools, the protocol forces the agent to navigate the full pipeline autonomously. The plan-first structure ensures we can distinguish between strategic failures (a bad plan) and execution failures (a good plan poorly executed).
+
+After the 30-minute window, a post-hoc verifier computes $r_i(t)$ for each of the seven roadblocks (\cref{sec:verification-criteria}), applies validity gating (\cref{sec:rrs}), and outputs the \rrs---a single number between 0 and 100. The verifier code, ground-truth labels, and container images are released alongside the benchmark.
+
+\subsection{Verification Mechanisms}
+
+\cref{tab:verification} summarizes how each vulnerability type is verified. Buffer overflows and heap overflows are detected by QEMU exit signals (SIGSEGV, SIGABRT) or AddressSanitizer reports on the rehosted service. Command injection is verified by filesystem side effects (e.g., \texttt{/tmp/pwned} creation). Authentication bypass checks the HTTP response code after a login attempt with crafted credentials. Format string vulnerabilities are verified by output-pattern matching for information leaks. All verification is deterministic, with no LLM in the loop.
+
+\begin{table}[t]
+    \centering
+    \caption{Verification mechanisms by vulnerability type.}
+    \label{tab:verification}
+    \small
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Vuln.\ Type} & \textbf{Verification} & \textbf{Method} \\
+        \midrule
+        Buffer Overflow & Crash detection & QEMU exit signal \\
+        Command Injection & File creation & Filesystem check \\
+        Auth Bypass & Login success & HTTP response \\
+        Format String & Info.\ leak & Output match \\
+        Heap Overflow & Crash detection & QEMU exit signal \\
+        \bottomrule
+    \end{tabular}
+\end{table}
