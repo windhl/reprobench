@@ -1,2 +1,2 @@
 # reprobench
-ReproBench: Can Large Language Models Reproduce IoT Vulnerabilities From a CVE Number
+ReproBench: Benchmarking LLM Agents on Vulnerability Reproduction From Scratch

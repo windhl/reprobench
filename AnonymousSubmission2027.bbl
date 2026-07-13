@@ -1,0 +1,99 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Chen et~al.(2016)Chen, Woo, Brumley, and Egele}]{firmadyne}
+Chen, D.~D.; Woo, M.; Brumley, D.; and Egele, M. 2016.
+\newblock Towards automated dynamic analysis for linux-based embedded firmware.
+\newblock In \emph{NDSS}, volume~1, 1--1.
+
+\bibitem[{Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan}]{swebench}
+Jimenez, C.~E.; Yang, J.; Wettig, A.; Yao, S.; Pei, K.; Press, O.; and
+  Narasimhan, K. 2024.
+\newblock Swe-bench: Can language models resolve real-world github issues?
+\newblock In \emph{International Conference on Learning Representations},
+  volume 2024, 54107--54157.
+
+\bibitem[{Kim et~al.(2020)Kim, Kim, Kim, Kim, Jang, and Kim}]{firmae}
+Kim, M.; Kim, D.; Kim, E.; Kim, S.; Jang, Y.; and Kim, Y. 2020.
+\newblock Firmae: Towards large-scale emulation of iot firmware for dynamic
+  analysis.
+\newblock In \emph{Proceedings of the 36th Annual Computer Security
+  Applications Conference}, 733--745.
+
+\bibitem[{Lee et~al.(2026)Lee, Zhang, Lu, and Zhang}]{secbench}
+Lee, H.; Zhang, Z.; Lu, H.; and Zhang, L. 2026.
+\newblock Sec-bench: Automated benchmarking of llm agents on real-world
+  software security tasks.
+\newblock \emph{Advances in Neural Information Processing Systems}, 38:
+  116342--116378.
+
+\bibitem[{Lee and Brumley(2026)}]{exploitbench}
+Lee, S.; and Brumley, D. 2026.
+\newblock ExploitBench: A Capability Ladder Benchmark for LLM Cybersecurity
+  Agents.
+\newblock \emph{arXiv preprint arXiv:2605.14153}.
+
+\bibitem[{Pu et~al.(2026)Pu, Li, Liang, Cox, Wu, Shehada, Srivastav, and
+  Qian}]{krepro}
+Pu, J.; Li, X.; Liang, Z.; Cox, J.; Wu, Y.; Shehada, K.; Srivastav, A.; and
+  Qian, Z. 2026.
+\newblock Patch-to-PoC: A Systematic Study of Agentic LLM Systems for Linux
+  Kernel N-Day Reproduction.
+\newblock \emph{arXiv preprint arXiv:2602.07287}.
+
+\bibitem[{Qin et~al.(2026)Qin, Zhang, Zheng, Liu, Zhang, Li, Zhang, Liu, and
+  Sun}]{firmwell}
+Qin, C.; Zhang, C.; Zheng, Y.; Liu, P.; Zhang, J.; Li, Y.; Zhang, W.; Liu, Y.;
+  and Sun, L. 2026.
+\newblock User-Space Dependency-Aware Rehosting for Linux-Based Firmware
+  Binaries.
+\newblock In \emph{NDSS}.
+
+\bibitem[{Tay et~al.(2023)Tay, Zeng, Vadayath, Raj, Dutcher, Reddy, Gibbs,
+  Basque, Dong, Smith et~al.}]{greenhouse}
+Tay, H.~J.; Zeng, K.; Vadayath, J.~M.; Raj, A.~S.; Dutcher, A.; Reddy, T.;
+  Gibbs, W.; Basque, Z.~L.; Dong, F.; Smith, Z.; et~al. 2023.
+\newblock Greenhouse:$\{$single-service$\}$ rehosting of $\{$linux-based$\}$
+  firmware binaries in $\{$user-space$\}$ emulation.
+\newblock In \emph{32nd USENIX Security Symposium (USENIX Security 23)},
+  5791--5808.
+
+\bibitem[{Wang et~al.(2026)Wang, Schiller, Li, Narayana, Nasr, Carlini, Qi,
+  Wallace, Bursztein, Invernizzi et~al.}]{exploitgym}
+Wang, Z.; Schiller, N.; Li, H.; Narayana, S.~S.; Nasr, M.; Carlini, N.; Qi, X.;
+  Wallace, E.; Bursztein, E.; Invernizzi, L.; et~al. 2026.
+\newblock ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real
+  Attacks?
+\newblock \emph{arXiv preprint arXiv:2605.11086}.
+
+\bibitem[{Wang et~al.(2025)Wang, Shi, He, Cai, Zhang, and Song}]{cybergym}
+Wang, Z.; Shi, T.; He, J.; Cai, M.; Zhang, J.; and Song, D. 2025.
+\newblock CyberGym: Evaluating AI Agents' Real-World Cybersecurity Capabilities
+  at Scale.
+\newblock \emph{arXiv preprint arXiv:2506.02548}.
+
+\bibitem[{Yang et~al.(2026)Yang, Lieret, Ma, Thakkar, Pedchenko, Sootla,
+  McMilin, Yin, Hou, Synnaeve et~al.}]{programbench}
+Yang, J.; Lieret, K.; Ma, J.; Thakkar, P.; Pedchenko, D.; Sootla, S.; McMilin,
+  E.; Yin, P.; Hou, R.; Synnaeve, G.; et~al. 2026.
+\newblock ProgramBench: Can Language Models Rebuild Programs From Scratch?
+\newblock \emph{arXiv preprint arXiv:2605.03546}.
+
+\bibitem[{Zhang et~al.(2026)Zhang, Ji, Menders, Dulepet, Qin, Wang, Wu, Liao,
+  Li, Hu et~al.}]{bountybench}
+Zhang, A.; Ji, J.; Menders, C.; Dulepet, R.; Qin, T.; Wang, R.; Wu, J.; Liao,
+  K.; Li, J.; Hu, J.; et~al. 2026.
+\newblock Bountybench: Dollar impact of ai agent attackers and defenders on
+  real-world cybersecurity systems.
+\newblock \emph{Advances in Neural Information Processing Systems}, 38.
+
+\bibitem[{Zhu et~al.(2025)Zhu, Kellermann, Bowman, Li, Gupta, Danda, Fang,
+  Jensen, Ihli, Benn et~al.}]{cvebench}
+Zhu, Y.; Kellermann, A.; Bowman, D.; Li, P.; Gupta, A.; Danda, A.; Fang, R.;
+  Jensen, C.; Ihli, E.; Benn, J.; et~al. 2025.
+\newblock CVE-bench: a benchmark for AI agents' ability to exploit real-world
+  web application vulnerabilities.
+\newblock \emph{arXiv preprint arXiv:2503.17332}.
+
+\end{thebibliography}

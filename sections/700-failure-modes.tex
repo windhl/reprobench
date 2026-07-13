@@ -1,0 +1,10 @@
+\section{Failure Modes}
+Our pilot scoring and trace inspection identify four failure families that the 450-run evaluation is designed to quantify.
+
+\textbf{Artifact failures.} Agents download incorrect firmware, stop after vendor 403 errors, or fail to distinguish firmware images from HTML responses. Some runs identify correct CVE facts but never acquire a usable artifact. Public information may also be incomplete, so the audit separates agent failure from evidence insufficiency.
+
+\textbf{Extraction and binary-analysis failures.} Agents misuse extraction tools, stop after incomplete binwalk output, or analyze binaries from PoC repositories rather than from the target firmware. This can produce useful static insight but weakens alignment with the public-evidence dossier and the real target.
+
+\textbf{The rehosting gap.} Agents know the names of QEMU and firmware emulators, but do not reliably configure dynamic loaders, library paths, NVRAM values, startup scripts, device nodes, or network listeners. They often abandon after one or two emulator errors and declare that physical hardware is required.
+
+\textbf{Simulation substitution.} When real execution is difficult, agents generate a simplified substitute that demonstrates the vulnerability pattern but not the vulnerability instance. This is the most important evaluation hazard: the output may be coherent, reproducible, and wrong for the benchmark goal.

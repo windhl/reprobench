@@ -1,0 +1,60 @@
+\section{Evaluation Results}
+\subsection{Overall Capability}
+Table~\ref{tab:model-results} shows the planned full-experiment reporting format with placeholder values to be replaced after completing all 450 scoring passes. The primary result table reports, for each model, the number of completed runs, average plan score, average task score, average overall score, median overall score, strict real-service success count, strict real-trigger success count, PoC-assisted trigger count, and simulation-substitution rate. We report both stage scores and strict binary counts. Stage scores capture partial progress, while strict counts require direct evidence of a reachable real firmware service and vulnerability-specific behavior.
+
+\begin{table*}[t]
+\centering
+\caption{PLACEHOLDER full-experiment model summary for 450 runs. Values are provisional layout placeholders and should be replaced with completed scoring results.}
+\label{tab:model-results}
+\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+Model & Runs & Plan & Task & Overall & R5 real & R6 real & Sim. sub. \\
+\midrule
+claude-sonnet-4-6 & 90 & 78.4 & 46.8 & 53.1 & 8 & 3 & 21.1\% \\
+deepseek-v4-flash-free & 90 & 62.7 & 34.5 & 40.1 & 4 & 1 & 36.7\% \\
+glm-5.2 & 90 & 41.3 & 19.8 & 24.1 & 1 & 0 & 44.4\% \\
+gpt-5.5 & 90 & 55.9 & 27.4 & 33.1 & 2 & 0 & 40.0\% \\
+mimo-v2.5-free & 90 & 66.5 & 38.2 & 43.9 & 5 & 2 & 31.1\% \\
+\midrule
+All & 450 & 60.9 & 33.3 & 38.8 & 20 & 6 & 34.7\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The expected interpretation of this table is not a leaderboard alone. If the final results follow the pilot pattern, stronger models will improve plan quality and early-stage progress but still show low strict R5/R6 counts. The gap between overall score and strict trigger count is central: it indicates that agents can produce partial evidence without completing real-target vulnerability reproduction.
+
+\subsection{Stage-Level Funnel}
+The central analysis is a stage funnel from R1 to R6. Table~\ref{tab:stage-placeholder} gives placeholder values for the full-run stage table. We expect early information gathering to be substantially stronger than artifact handling and rehosting, but the 450-run design lets us quantify where the curve drops for each model and vulnerability class. A model that reaches R4 but fails at R5 is different from a model that never acquires firmware; binary success would collapse both to failure.
+
+\begin{table}[t]
+\centering
+\caption{PLACEHOLDER stage-level averages over 450 runs.}
+\label{tab:stage-placeholder}
+\begin{tabular}{llr}
+\toprule
+Stage & Description & Avg. score \\
+\midrule
+R1 & Information gathering & 12.4 / 15 \\
+R2 & Firmware acquisition & 6.1 / 15 \\
+R3 & Firmware extraction & 5.4 / 15 \\
+R4 & Binary identification & 7.8 / 15 \\
+R5 & Service rehosting & 3.9 / 20 \\
+R6 & Vulnerability triggering & 2.6 / 20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Plan-Execution Gap}
+We compare plan score against task score for every run. This analysis separates agents that do not know the reproduction workflow from agents that know the workflow but cannot execute it. The fallback component is especially important: firmware reproduction is dominated by stale links, extraction errors, missing loaders, architecture mismatches, NVRAM initialization failures, and service startup errors. Weak fallback planning predicts premature abandonment and simulation substitution.
+
+\subsection{Vulnerability-Class Analysis}
+The balanced dataset enables class-level comparison. Buffer overflows typically require binary confirmation and crash evidence; command injections require service reachability and command side effects; authentication bypasses require stateful request comparisons and protected operation evidence. In the final tables, each class will contain 150 runs; placeholder aggregate overall scores are 40.2 for BOF, 42.6 for CMDI, and 33.5 for authentication bypass, with strict R6 counts of 2, 3, and 1 respectively. For every strict R6 success, we also mark whether the payload was copied or adapted from a public PoC, synthesized by the agent, or derived from static analysis during the run. This separates ``environment reconstruction plus script execution'' from cases where the agent contributes more of the triggering logic.
+
+\subsection{Failure Attribution}
+The final analysis assigns each failed or partial run a terminal failure mode. Categories include incorrect or missing CVE facts, firmware acquisition failure, extraction failure, binary mismatch, rehosting failure, no real trigger evidence, simulation substitution, public evidence insufficiency, safety refusal, infrastructure failure, and ambiguous acquisition. This attribution is important because not every failed run should be interpreted as the same model weakness: some failures reflect agent decisions, while others reflect missing public artifacts or environmental blockers. Ambiguous acquisition is used when post-hoc audit cannot confidently determine whether the agent failed to search well enough or whether the public link ecosystem was genuinely stale.
+
+\subsection{Reporting Metrics}
+We report both graded and strict metrics. Graded metrics include average plan score, task score, overall score, per-stage score, and per-dimension scores for correctness, fidelity, resilience, flexibility, and efficiency. Strict metrics count only runs with direct real-target evidence, such as a reachable firmware service for R5 or a vulnerability-specific trigger against that service for R6. We also report simulation-substitution rate, public-evidence-insufficiency rate, ambiguous-acquisition rate, and PoC-assisted strict-trigger rate. This separation prevents three common misreadings: treating a partial R6 score as a successful exploit, treating every failed run as a model-only failure, and treating public-PoC execution as equivalent to agent-derived vulnerability reproduction.
+
+The main tables therefore answer different questions. Model-level tables ask which agent produces more auditable progress. Stage-level funnels ask where the pipeline collapses. Class-level tables ask whether BOF, CMDI, and authentication bypass tasks stress different skills. Failure-attribution tables ask whether the terminal blocker is an agent decision, an artifact problem, a rehosting problem, a safety refusal, or insufficient public evidence. Together these metrics turn 450 mostly unsuccessful end-to-end attempts into a capability profile rather than a flat zero-success benchmark.

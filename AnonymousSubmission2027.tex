@@ -1,0 +1,44 @@
+\documentclass[letterpaper]{article}
+\usepackage[submission]{aaai2027}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\usepackage{natbib}
+\usepackage{caption}
+\frenchspacing
+\usepackage{booktabs}
+\usepackage{amsmath}
+\pdfinfo{/TemplateVersion (2027.1)}
+\setcounter{secnumdepth}{0}
+
+\newcommand{\sys}{\textsc{ReproBench}}
+\newcommand{\bof}{\textsc{BOF}}
+\newcommand{\cmdi}{\textsc{CMDI}}
+\newcommand{\auth}{\textsc{AuthBypass}}
+
+\title{ReproBench: Benchmarking LLM Agents on From-Scratch IoT Firmware Vulnerability Reproduction}
+\author{Anonymous Submission}
+\affiliations{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language model (LLM) agents are increasingly evaluated on cybersecurity tasks, yet most benchmarks begin after the target environment has already been prepared: the agent receives source code, a patch, a running service, a container, or an executable binary. This setting leaves open a central question for real-world vulnerability analysis: can an agent reconstruct the missing environment needed to reproduce a known vulnerability from scratch? We introduce \sys, a public-evidence-grounded benchmark for from-scratch reproduction attempts of IoT firmware vulnerabilities from only a CVE identifier. \sys{} contains 30 manually curated IoT CVEs, balanced across buffer overflows, command injections, and authentication bypasses. Each task is accompanied by a manually inspected public-evidence dossier built from CVE records, NVD entries, vendor advisories, public PoCs, exploit databases, blogs, and firmware references. Agents must traverse a six-stage vulnerability reproduction pipeline: information gathering, firmware acquisition, firmware extraction, binary identification, service rehosting, and vulnerability triggering. We propose an evidence-grounded, non-binary scoring framework that separately evaluates planning and execution and requires observable artifacts for every non-zero score. Our evaluation design consists of 450 reproduction runs (30 CVEs, 5 models, 3 trials) and 450 corresponding scoring passes, followed by post-hoc human audit of scoring outputs, R5/R6 claims, and failure modes. \sys{} measures whether agents can progressively perform vulnerability reproduction and produce auditable real-target evidence rather than merely final claims, exposing the gap between textual vulnerability understanding and grounded firmware execution.
+\end{abstract}
+
+\input{sections/100-introduction}
+\input{sections/200-motivation-and-task}
+\input{sections/300-benchmark-construction}
+\input{sections/400-evidence-grounded-scoring}
+\input{sections/500-experimental-design}
+\input{sections/600-evaluation-results}
+\input{sections/700-failure-modes}
+\input{sections/800-discussion}
+\input{sections/900-related-work}
+\input{sections/1000-conclusion}
+
+\bibliography{aaai2027}
+
+\end{document}

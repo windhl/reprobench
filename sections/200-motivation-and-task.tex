@@ -1,0 +1,20 @@
+\section{Motivation and Task}
+\subsection{Why From-Scratch Reproduction?}
+Existing cybersecurity benchmarks measure important abilities, but typically after major environmental work has been removed. CyberGym and SEC-bench provide source-level projects or benchmark-generated task environments~\cite{cybergym,secbench}; CVE-Bench focuses on web applications with prepared targets~\cite{cvebench}; ExploitGym and ExploitBench evaluate exploitation after a target is available~\cite{exploitgym,exploitbench}; K-Repro starts from kernel patch information and a buildable kernel setting~\cite{krepro}. These settings test valuable post-environment capabilities, but they do not answer whether agents can create the reproduction environment themselves.
+
+\sys{} asks that question directly. The input is a CVE identifier only. The goal is not a textual answer, nor a synthetic demonstration, but auditable evidence that the agent progressed toward reproducing the vulnerability on the real affected firmware service. This makes the task open-world, long-horizon, and artifact-grounded.
+
+\subsection{Why IoT Firmware?}
+IoT firmware vulnerabilities provide a compact stress test for many agent capabilities. The agent must retrieve and reconcile public information, verify product and version details, locate firmware images that may have moved or disappeared, distinguish real firmware from HTML error pages, unpack containers and filesystems, reason about non-x86 binaries, and use rehosting tools such as QEMU or firmware emulators. Each stage leaves artifacts that can be audited. This makes the domain suitable for fine-grained evaluation while remaining realistic for defensive tasks such as patch validation and regression testing.
+
+\subsection{Six-Stage Pipeline}
+\sys{} defines six dependent stages:
+\begin{enumerate}
+\item R1 \textbf{Information Gathering}: identify vendor, product, firmware version, vulnerability type, endpoint, and sources.
+\item R2 \textbf{Firmware Acquisition}: obtain the correct vulnerable firmware image.
+\item R3 \textbf{Firmware Extraction}: extract a usable filesystem or correctly diagnose encryption.
+\item R4 \textbf{Binary Identification}: identify architecture, vulnerable service binary, code path, and runtime dependencies.
+\item R5 \textbf{Service Rehosting}: launch the real firmware service and demonstrate reachability.
+\item R6 \textbf{Vulnerability Triggering}: execute a PoC against the real rehosted service and observe vulnerability-specific evidence.
+\end{enumerate}
+The dependency order is strict: R6 is valid only if the real service from R5 is reachable, and R5 is meaningful only after the correct firmware and binary have been identified. This dependency structure is essential for rejecting simulation substitution.
