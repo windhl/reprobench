@@ -1,15 +1,31 @@
 \section{Introduction}
-% 现有benchmark假设目标环境已准备好，真实漏洞复现从CVE起步更困难
-LLM agents now plan, call tools, write code, and operate in software repositories with increasing autonomy, producing benchmarks for software engineering and cybersecurity~\cite{swebench,programbench,cybergym,cvebench,secbench,bountybench,exploitgym,exploitbench,krepro}. A common assumption: the world has already been prepared for the agent. The agent receives a repository, patch, container, harness, or running service. Known-vulnerability reproduction in the wild begins in a less structured state: an analyst may start with only a CVE identifier and must discover the affected product, locate the correct artifact, recover a runnable environment, and validate vulnerability behavior against the real target. IoT firmware makes this gap especially sharp---firmware is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state, and reachable only after rehosting under emulation. Firmware reproduction is not merely exploit writing; it is an end-to-end artifact reconstruction and validation task.
+%% 现有benchmark假设目标环境已准备好，真实漏洞复现从CVE起步更困难
+LLM agents now plan, call tools, write code, and operate in software repositories with increasing autonomy, producing benchmarks for software engineering and cybersecurity~\cite{swebench,programbench,cybergym,cvebench,secbench,bountybench,exploitgym,exploitbench,krepro}. 
+%
+A common assumption: the world has already been prepared for the agent. 
+%
+The agent receives a repository, patch, container, harness, or running service. Known-vulnerability reproduction in the wild begins in a less structured state: an analyst may start with only a CVE identifier and must discover the affected product, locate the correct artifact, recover a runnable environment, and validate vulnerability behavior against the real target. 
+%
+IoT firmware makes this gap especially sharp---firmware is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state, and reachable only after rehosting under emulation. 
+%
+Firmware reproduction is not merely exploit writing; it is an end-to-end artifact reconstruction and validation task.
 
-% 引入\sys：从CVE ID出发评估完整artifact-to-execution pipeline
-We introduce \sys, a benchmark that evaluates whether LLM agents can move from a bare CVE identifier toward auditable evidence of IoT firmware vulnerability reproduction. \sys{} moves beyond prepared environments to evaluate the full artifact-to-execution pipeline, stressing capabilities that prepared-environment benchmarks hide: open-world information gathering, artifact provenance checking, cross-architecture binary analysis, long-horizon tool orchestration, and grounded validation. Each task is grounded in a manually inspected \emph{public-evidence dossier}: a reference packet of public vulnerability facts and expected evidence types. Agents receive only the CVE identifier, not the dossier.
+%% 引入ReproBench：从CVE ID出发评估完整artifact-to-execution pipeline
+We introduce \sys, a benchmark that evaluates whether LLM agents can move from a bare CVE identifier toward auditable evidence of IoT firmware vulnerability reproduction. 
+%
+\sys{} moves beyond prepared environments to evaluate the full artifact-to-execution pipeline, stressing capabilities that prepared-environment benchmarks hide: open-world information gathering, artifact provenance checking, cross-architecture binary analysis, long-horizon tool orchestration, and grounded validation. 
+%
+Each task is grounded in a manually inspected \emph{public-evidence dossier}: a reference packet of public vulnerability facts and expected evidence types. Agents receive only the CVE identifier, not the dossier.
 
-% 伪造复现容易，需要非二元评分+真实目标门控
-\sys{} also addresses a methodological problem: plausible-looking reproductions are easy to fabricate. When rehosting is difficult, agents produce substitutes such as Python mock servers or synthetic C programs that crash. \sys{} uses non-binary, evidence-grounded scoring across six stages with real-target gating for rehosting and triggering.
+% 伪造复现容易，需要非二元评分+真实目标门控, we should re-write it to make it more clear
+Our benchmark exposes a methodological problem, i.e., \textit{plausible-looking reproductions are easy to fabricate}. 
+%
+When rehosting is difficult, agents produce substitutes such as Python mock servers or synthetic C programs that crash. 
+%
+\sys{} uses non-binary, evidence-grounded scoring across six stages with real-target gating for rehosting and triggering.
 
 % 贡献
-Our contributions are:
+Our contributions are as follows:
 \begin{itemize}
 \item We formulate CVE-only vulnerability reproduction as a from-scratch, long-horizon LLM agent benchmark.
 \item We construct a 30-CVE public-evidence dataset balanced across buffer overflow, command injection, and authentication bypass.
