@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.18)  16 JUL 2026 18:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.18)  16 JUL 2026 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -517,21 +517,21 @@ LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{/usr/sh
 are/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}])
 (./sections/200-motivation-and-task.tex
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 2.
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
 \T1/ntxtlf/m/n/10 Existing cy-ber-se-cu-rity bench-marks mea-sure post-
  []
 
 
-Underfull \hbox (badness 3758) in paragraph at lines 4--5
-\T1/ntxtlf/m/n/10 environment ca-pa-bil-i-ties. Cy-ber-Gym and SEC-bench
+Underfull \hbox (badness 3646) in paragraph at lines 3--4
+\T1/ntxtlf/m/n/10 environment ca-pa-bil-i-ties: Cy-ber-Gym and SEC-bench
  []
 
-) (./sections/300-benchmark-construction.tex)
+) (./sections/300-benchmark-construction.tex
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 2.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 2.
+)
 (./sections/400-evidence-grounded-scoring.tex
 
 pdfTeX warning: pdflatex (file ./figures/framework.pdf): PDF inclusion: found P
@@ -577,21 +577,53 @@ Underfull \hbox (badness 6125) in paragraph at lines 29--30
  []
 
 
-Underfull \vbox (badness 4981) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
+[]\T1/ntxtlf/m/n/10 A no-table find-ing is that \T1/pcr/m/n/10 glm-5.2\T1/ntxtl
+f/m/n/10 , not
+ []
+
+
+Underfull \hbox (badness 4582) in paragraph at lines 32--33
+\T1/pcr/m/n/10 claude-sonnet-4-6 \T1/ntxtlf/m/n/10 or \T1/pcr/m/n/10 gpt-5.5\T1
+/ntxtlf/m/n/10 , achieves the
+ []
+
+
+Underfull \hbox (badness 2285) in paragraph at lines 32--33
+\T1/ntxtlf/m/n/10 a-nism: \T1/pcr/m/n/10 glm-5.2 \T1/ntxtlf/m/n/10 av-er-ages 7
+.7/15 on P2 (Firmware
+ []
+
+
+Underfull \hbox (badness 3302) in paragraph at lines 32--33
+\T1/ntxtlf/m/n/10 Ac-qui-si-tion), nearly dou-ble \T1/pcr/m/n/10 claude-sonnet-
+4-6\T1/ntxtlf/m/n/10 's
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 32--33
+\T1/ntxtlf/m/n/10 ac-qui-si-tion, fallback-driven re-cov-ery, and re-sis-tance 
+to
+ []
+
+
+Overfull \hbox (9.57568pt too wide) in paragraph at lines 47--60
+ [][] 
+ []
 
 <figures/pipeline.pdf, id=67, 240.75948pt x 268.91467pt>
 File: figures/pipeline.pdf Graphic file (type pdf)
 <use figures/pipeline.pdf>
-Package pdftex.def Info: figures/pipeline.pdf  used on input line 59.
+Package pdftex.def Info: figures/pipeline.pdf  used on input line 64.
 (pdftex.def)             Requested size: 239.39438pt x 267.39577pt.
- [4]
+[4]
 <figures/roadblock_heatmap.pdf, id=71, 402.01192pt x 176.54959pt>
 File: figures/roadblock_heatmap.pdf Graphic file (type pdf)
 <use figures/roadblock_heatmap.pdf>
-Package pdftex.def Info: figures/roadblock_heatmap.pdf  used on input line 85.
+Package pdftex.def Info: figures/roadblock_heatmap.pdf  used on input line 90.
 (pdftex.def)             Requested size: 239.39438pt x 105.13585pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1629) has occurred while \output is active []
 
  [5 <./figures/pipeline.pdf>]) (./sections/700-failure-modes.tex
 <figures/case_study.pdf, id=98, 337.10944pt x 345.08923pt>
@@ -603,9 +635,14 @@ Package pdftex.def Info: figures/case_study.pdf  used on input line 7.
 (./sections/800-discussion.tex
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/sc' will be
 (Font)              scaled to size 10.95pt on input line 2.
-) (./sections/900-related-work.tex [6 <./figures/roadblock_heatmap.pdf> <./figu
-res/case_study.pdf>])
-(./sections/1000-conclusion.tex) (./reprobench.bbl
+
+Underfull \hbox (badness 1127) in paragraph at lines 9--10
+\T1/ntxtlf/m/n/10 dependent ceiling---same-architecture (ARM64) de-vices
+ []
+
+[6 <./figures/roadblock_heatmap.pdf> <./figures/case_study.pdf>])
+(./sections/900-related-work.tex) (./sections/1000-conclusion.tex)
+(./reprobench.bbl
 Underfull \hbox (badness 1168) in paragraph at lines 63--67
 []\T1/ntxtlf/m/n/10 Wang, Z.; Shi, T.; He, J.; Cai, M.; Zhang, J.; and
  []
@@ -619,7 +656,7 @@ L3 programming layer <2020/03/25>
 Here is how much of TeX's memory you used:
  8125 strings out of 475589
  137834 string characters out of 5782860
- 1950975 words of memory out of 5000000
+ 1952975 words of memory out of 5000000
  30101 multiletter control sequences out of 15000+600000
  609653 words of font info for 68 fonts, out of 8000000 for 9000
  309 hyphenation exceptions out of 8191
@@ -637,7 +674,7 @@ b></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share
 -dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/newtx/ztmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/new
 tx/ztmri.pfb>
-Output written on reprobench.pdf (7 pages, 1257087 bytes).
+Output written on reprobench.pdf (7 pages, 1259076 bytes).
 PDF statistics:
  247 PDF objects out of 1000 (max. 8388607)
  155 compressed objects within 2 object streams

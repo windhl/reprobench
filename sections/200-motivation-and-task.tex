@@ -1,14 +1,5 @@
 \section{Motivation and Task}
-\subsection{Why From-Scratch Reproduction?}
-% 现有安全benchmark均在环境准备好后才开始评估
-Existing cybersecurity benchmarks measure post-environment capabilities. CyberGym and SEC-bench provide source-level projects~\cite{cybergym,secbench}; CVE-Bench provides prepared web targets~\cite{cvebench}; ExploitBench evaluates after a target is available~\cite{exploitbench}; K-Repro starts from kernel patch and buildable kernel~\cite{krepro}. None answer whether agents can create the reproduction environment themselves.
+% 现有benchmark均在环境准备好后才开始评估，\sys直接从CVE ID开始
+Existing cybersecurity benchmarks measure post-environment capabilities: CyberGym and SEC-bench provide source-level projects~\cite{cybergym,secbench}; CVE-Bench provides prepared web targets~\cite{cvebench}; ExploitBench evaluates after a target is available~\cite{exploitbench}; K-Repro starts from kernel patch~\cite{krepro}. None answer whether agents can create the reproduction environment themselves. \sys{} asks that question directly: the input is a CVE identifier only; the goal is auditable evidence of reproduction on the real affected firmware service. IoT firmware provides a compact stress test---the agent must retrieve public information, locate firmware that may have disappeared, distinguish real firmware from HTML errors, unpack vendor-specific formats, reason about non-x86 binaries, and use rehosting tools. Each stage leaves auditable artifacts.
 
-\sys{} asks that question directly: the input is a CVE identifier only; the goal is auditable evidence that the agent progressed toward reproducing the vulnerability on the real affected firmware service. This makes the task open-world, long-horizon, and artifact-grounded.
-
-\subsection{Why IoT Firmware?}
-% IoT固件复现压缩多种agent能力需求
-IoT firmware vulnerabilities provide a compact stress test: the agent must retrieve public information, verify version details, locate firmware that may have disappeared, distinguish real firmware from HTML errors, unpack vendor-specific formats, reason about non-x86 binaries, and use rehosting tools. Each stage leaves auditable artifacts, making the domain suitable for fine-grained evaluation.
-
-\subsection{Six-Stage Pipeline}
-% 六阶段依赖流水线，R5/R6严格依赖是拒绝模拟替代的关键
-\sys{} defines six dependent stages: R1 Information Gathering, R2 Firmware Acquisition, R3 Firmware Extraction, R4 Binary Identification, R5 Service Rehosting, and R6 Vulnerability Triggering. The dependency order is strict: R6 is valid only if the real service from R5 is reachable, and R5 is meaningful only after the correct firmware and binary have been identified. This structure is essential for rejecting simulation substitution.
+\sys{} defines six dependent stages: P1 Information Gathering, P2 Firmware Acquisition, P3 Firmware Extraction, P4 Binary Identification, P5 Service Rehosting, and P6 Vulnerability Triggering. The dependency order is strict: P6 is valid only if the real service from P5 is reachable, and P5 is meaningful only after the correct firmware and binary have been identified. This structure is essential for rejecting simulation substitution.
