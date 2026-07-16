@@ -1,34 +1,12 @@
 \section{Benchmark Construction}
 \subsection{Manual CVE Curation}
-We construct \sys{} through manual curation. Starting from public CVE databases, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories, the authors screen IoT-related vulnerabilities affecting routers, cameras, NAS devices, smart-home hubs, and other embedded firmware devices. A candidate is retained only if it satisfies four criteria: it affects an IoT or embedded firmware product; public references identify the affected product or firmware family; the vulnerability class can be assigned to one of our target categories; and there is enough public evidence to build a reference dossier for scoring.
-
-From the candidate pool, we manually select 30 representative CVEs. The final dataset is balanced by vulnerability class: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. We choose these classes because they are common in IoT firmware and require different validation signals: crashes or abnormal process exits for buffer overflows, command side effects for command injection, and unauthenticated success on protected operations for authentication bypass. The balanced design does not claim to mirror the natural IoT vulnerability distribution; instead, it creates a controlled benchmark for comparing agent capabilities across three reproduction modes.
+% 数据集构建：从公开来源筛选IoT CVE，四条准入标准
+We construct \sys{} through manual curation from public CVE databases, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories. A candidate is retained if it affects an IoT or embedded firmware product, public references identify the affected product or firmware family, the vulnerability class is assignable to our target categories, and there is enough public evidence to build a reference dossier. From the candidate pool, we select 30 CVEs balanced equally across three classes: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
 
 \subsection{Public-Evidence Dossiers}
-For each CVE, we construct a public-evidence dossier containing vendor and product information, affected firmware versions when available, vulnerability class, affected endpoint or parameter, public references, PoC descriptions when available, firmware acquisition hints, target binary names when known, architecture when available, and expected trigger evidence type. The dossier is used only for scoring; agents receive only the CVE identifier.
+% 公开证据档案：评分基准，agent只拿CVE ID
+For each CVE, we construct a public-evidence dossier containing vendor and product information, affected firmware versions, vulnerability class, affected endpoint, public references, PoC descriptions, firmware acquisition hints, target binary names, architecture, and expected trigger evidence type. The dossier is used only for scoring; agents receive only the CVE identifier. The dossier is not a claim that the authors have independently reproduced every CVE end to end. Rather, it defines the publicly documented facts and evidence requirements against which an agent's artifacts are audited.
 
-The dossier is not a claim that the authors have independently reproduced every CVE end to end. Rather, it defines the publicly documented facts and evidence requirements against which an agent's artifacts are audited. This distinction is important for IoT: firmware may disappear, vendor links may fail, and public PoCs may omit device state. \sys{} measures whether an agent can transform public evidence into auditable artifacts and real-target execution evidence, and it attributes failures to both agent behavior and external blockers such as unavailable firmware or insufficient public detail.
-
-\subsection{Evidence Scope and Completeness}
-The public-evidence dossier is organized around the six stages. R1 fields describe facts that can be checked from public records, including vendor, device family, firmware version, endpoint, parameter, and vulnerability class. R2--R4 fields describe artifact expectations, including firmware source hints, expected image names, archive mirrors when known, filesystem format, target binary names, and architecture evidence. R5--R6 fields do not provide an exploit oracle; instead, they specify what evidence would be acceptable if an agent reaches real execution, such as a reachable service banner, handler log, crash signal, command side effect, unauthorized configuration response, or reusable request trace.
-
-This staged dossier design lets us separate three cases that would otherwise be conflated. First, an agent can fail despite strong public evidence, which indicates an agent capability gap. Second, an agent can fail because public artifacts are stale or incomplete, which is recorded as evidence insufficiency or artifact unavailability rather than model-only failure. Third, an agent can generate a plausible report without grounding it in any dossier-supported artifact, which is recorded as simulation substitution or unsupported claim. The benchmark therefore evaluates both progress and epistemic grounding: the score rewards not only what the agent claims, but whether the claim is supported by the dossier and by the agent's own produced artifacts.
-
-Distinguishing agent search failure from public-evidence insufficiency is inherently imperfect at scale. We therefore use a conservative attribution rule. A run is labeled \emph{artifact unavailable} only when the dossier or post-hoc audit confirms that the referenced source is stale, access-controlled, removed, or returns a non-firmware response, and the agent attempted at least one reasonable acquisition path. A run is labeled \emph{agent acquisition failure} when the dossier contains an accessible source or enough public hints for acquisition but the trace shows no adequate search, wrong-model download, or premature abandonment. Borderline cases remain in an \emph{ambiguous evidence} bucket and are excluded from model-only failure counts. This does not make availability judgments perfect, but it prevents the benchmark from automatically blaming the model for every missing artifact.
-
-\begin{table}[t]
-\centering
-\caption{\sys dataset composition.}
-\label{tab:dataset}
-\begin{tabular}{lrr}
-\toprule
-Category & Count & Share \\
-\midrule
-Buffer overflow & 10 & 33.3\% \\
-Command injection & 10 & 33.3\% \\
-Authentication bypass & 10 & 33.3\% \\
-\midrule
-Total & 30 & 100\% \\
-\bottomrule
-\end{tabular}
-\end{table}
+\subsection{Evidence Scope and Attribution}
+% 档案按六阶段组织，区分三种失败：agent能力不足、公开证据不足、模拟替代
+The dossier is organized around the six stages. R1 fields describe checkable public facts; R2--R4 fields describe artifact expectations; R5--R6 fields specify acceptable evidence types for real execution (e.g., service banner, crash signal, command side effect) without providing an exploit oracle. This design separates three cases: agent capability gaps (fail despite strong evidence), evidence insufficiency (stale or missing public artifacts), and simulation substitution (plausible reports without dossier-supported artifacts). We use a conservative attribution rule: \emph{artifact unavailable} requires confirmed stale sources plus a reasonable acquisition attempt; \emph{agent acquisition failure} requires accessible sources but inadequate search; borderline cases are excluded from model-only failure counts.

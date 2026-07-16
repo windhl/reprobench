@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.18)  13 JUL 2026 10:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.6.18)  16 JUL 2026 18:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**AnonymousSubmission2027.tex
-(./AnonymousSubmission2027.tex
+**reprobench.tex
+(./reprobench.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -289,58 +289,9 @@ LaTeX Info: Redefining \Relbar on input line 971.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
-LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line
- 24.
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
 
-(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
-File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
-)
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 24.
-
-(./AnonymousSubmission2027.aux)
-\openout1 = `AnonymousSubmission2027.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count287
-\scratchdimen=\dimen187
-\scratchbox=\box54
-\nofMPsegments=\count288
-\nofMParguments=\count289
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count290
-\MPscratchDim=\dimen188
-\MPnumerator=\count291
-\makeMPintoPDFobject=\count292
-\everyMPtoPDFconversion=\toks25
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
-Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-))
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 
@@ -350,6 +301,18 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2023-09-14 v2.35 Module abspage for zref (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2023-09-14 v2.35 Module base for zref (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -357,152 +320,327 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count287
+Package zref Info: New property: abspage on input line 67.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip56
+\c@mdf@globalstyle@cnt=\count288
+\mdf@skipabove@length=\skip57
+\mdf@skipbelow@length=\skip58
+\mdf@leftmargin@length=\skip59
+\mdf@rightmargin@length=\skip60
+\mdf@innerleftmargin@length=\skip61
+\mdf@innerrightmargin@length=\skip62
+\mdf@innertopmargin@length=\skip63
+\mdf@innerbottommargin@length=\skip64
+\mdf@splittopskip@length=\skip65
+\mdf@splitbottomskip@length=\skip66
+\mdf@outermargin@length=\skip67
+\mdf@innermargin@length=\skip68
+\mdf@linewidth@length=\skip69
+\mdf@innerlinewidth@length=\skip70
+\mdf@middlelinewidth@length=\skip71
+\mdf@outerlinewidth@length=\skip72
+\mdf@roundcorner@length=\skip73
+\mdf@footenotedistance@length=\skip74
+\mdf@userdefinedwidth@length=\skip75
+\mdf@needspace@length=\skip76
+\mdf@frametitleaboveskip@length=\skip77
+\mdf@frametitlebelowskip@length=\skip78
+\mdf@frametitlerulewidth@length=\skip79
+\mdf@frametitleleftmargin@length=\skip80
+\mdf@frametitlerightmargin@length=\skip81
+\mdf@shadowsize@length=\skip82
+\mdf@extratopheight@length=\skip83
+\mdf@subtitleabovelinewidth@length=\skip84
+\mdf@subtitlebelowlinewidth@length=\skip85
+\mdf@subtitleaboveskip@length=\skip86
+\mdf@subtitlebelowskip@length=\skip87
+\mdf@subtitleinneraboveskip@length=\skip88
+\mdf@subtitleinnerbelowskip@length=\skip89
+\mdf@subsubtitleabovelinewidth@length=\skip90
+\mdf@subsubtitlebelowlinewidth@length=\skip91
+\mdf@subsubtitleaboveskip@length=\skip92
+\mdf@subsubtitlebelowskip@length=\skip93
+\mdf@subsubtitleinneraboveskip@length=\skip94
+\mdf@subsubtitleinnerbelowskip@length=\skip95
+
+(/usr/share/texlive/texmf-dist/tex/latex/mdframed/md-frame-0.mdf
+File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
+)
+\mdf@frametitlebox=\box54
+\mdf@footnotebox=\box55
+\mdf@splitbox@one=\box56
+\mdf@splitbox@two=\box57
+\mdf@splitbox@save=\box58
+\mdfsplitboxwidth=\skip96
+\mdfsplitboxtotalwidth=\skip97
+\mdfsplitboxheight=\skip98
+\mdfsplitboxdepth=\skip99
+\mdfsplitboxtotalheight=\skip100
+\mdfframetitleboxwidth=\skip101
+\mdfframetitleboxtotalwidth=\skip102
+\mdfframetitleboxheight=\skip103
+\mdfframetitleboxdepth=\skip104
+\mdfframetitleboxtotalheight=\skip105
+\mdffootnoteboxwidth=\skip106
+\mdffootnoteboxtotalwidth=\skip107
+\mdffootnoteboxheight=\skip108
+\mdffootnoteboxdepth=\skip109
+\mdffootnoteboxtotalheight=\skip110
+\mdftotallinewidth=\skip111
+\mdfboundingboxwidth=\skip112
+\mdfboundingboxtotalwidth=\skip113
+\mdfboundingboxheight=\skip114
+\mdfboundingboxdepth=\skip115
+\mdfboundingboxtotalheight=\skip116
+\mdf@freevspace@length=\skip117
+\mdf@horizontalwidthofbox@length=\skip118
+\mdf@verticalmarginwhole@length=\skip119
+\mdf@horizontalspaceofbox=\skip120
+\mdfsubtitleheight=\skip121
+\mdfsubsubtitleheight=\skip122
+\c@mdfcountframes=\count289
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count290
+\c@mdf@env@i=\count291
+\c@mdf@env@ii=\count292
+\c@mdf@zref@counter=\count293
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line
+ 26.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
+File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
+)
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 26.
+ (./reprobench.aux)
+\openout1 = `reprobench.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count294
+\scratchdimen=\dimen187
+\scratchbox=\box59
+\nofMPsegments=\count295
+\nofMParguments=\count296
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count297
+\MPscratchDim=\dimen188
+\MPnumerator=\count298
+\makeMPintoPDFobject=\count299
+\everyMPtoPDFconversion=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@mv@tabular=\count293
-\c@mv@boldtabular=\count294
+\c@mv@tabular=\count300
+\c@mv@boldtabular=\count301
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-\c@aaai@eqfn=\count295
-\c@aaai@corrfn=\count296
-\titlearea=\box55
+\c@aaai@eqfn=\count302
+\c@aaai@corrfn=\count303
+\titlearea=\box60
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 25.
+(Font)              scaled to size 14.4pt on input line 27.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 25.
+(Font)              scaled to size 14.4pt on input line 27.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 27.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 25.
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 25.
-\actualheight=\skip56
+(Font)              scaled to size 12.0pt on input line 27.
+\actualheight=\skip123
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 25.
+(Font)              scaled to size 9.0pt on input line 27.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 27.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 9.0pt on input line 28.
+(Font)              scaled to size 9.0pt on input line 37.
 
 (./sections/100-introduction.tex
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 6.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 8.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf
--dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
-
-
-
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+(Font)              scaled to size 10.0pt on input line 6.
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 16.
+e 14.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 16.
+(Font)              scaled to size 10.0pt on input line 14.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf
+-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
 
-Underfull \hbox (badness 1406) in paragraph at lines 17--18
-[]\T1/ntxtlf/m/n/10 We con-struct a man-u-ally cu-rated 30-CVE public-
- []
 
-) (./sections/200-motivation-and-task.tex
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{/usr/sh
+are/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}])
+(./sections/200-motivation-and-task.tex
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.95pt on input line 2.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 10.95pt on input line 2.
-)
-(./sections/300-benchmark-construction.tex [2{/usr/share/texmf/fonts/enc/dvips/
-tex-gyre/q-ts1.enc}]) (./sections/400-evidence-grounded-scoring.tex
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+\T1/ntxtlf/m/n/10 Existing cy-ber-se-cu-rity bench-marks mea-sure post-
+ []
+
+
+Underfull \hbox (badness 3758) in paragraph at lines 4--5
+\T1/ntxtlf/m/n/10 environment ca-pa-bil-i-ties. Cy-ber-Gym and SEC-bench
+ []
+
+) (./sections/300-benchmark-construction.tex)
+(./sections/400-evidence-grounded-scoring.tex
+
+pdfTeX warning: pdflatex (file ./figures/framework.pdf): PDF inclusion: found P
+DF version <1.7>, but at most version <1.5> allowed
+<figures/framework.pdf, id=11, 1171.49669pt x 557.20169pt>
+File: figures/framework.pdf Graphic file (type pdf)
+<use figures/framework.pdf>
+Package pdftex.def Info: figures/framework.pdf  used on input line 6.
+(pdftex.def)             Requested size: 430.00958pt x 204.52896pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 13.
+(Font)              scaled to size 7.0pt on input line 17.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.0pt on input line 13.
- [3])
-(./sections/500-experimental-design.tex
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 3.
+(Font)              scaled to size 5.0pt on input line 17.
+[2]) (./sections/500-experimental-design.tex
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 4.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-\T1/ntxtlf/m/n/10 We eval-u-ate five model con-fig-u-ra-tions over the
+Underfull \hbox (badness 1755) in paragraph at lines 4--5
+\T1/ntxtlf/m/n/10 We eval-u-ate five model con-fig-u-ra-tions over the 30-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-\T1/ntxtlf/m/n/10 30-CVE bench-mark with three in-de-pen-dent tri-
+Underfull \hbox (badness 3838) in paragraph at lines 4--5
+\T1/ntxtlf/m/n/10 CVE bench-mark with three in-de-pen-dent tri-als per
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-\T1/ntxtlf/m/n/10 als per CVE, for 450 re-pro-duc-tion runs. The
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-\T1/ntxtlf/m/n/10 eval-u-ated mod-els are \T1/pcr/m/n/10 claude-sonnet-4-6\T1/n
-txtlf/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 2012) in paragraph at lines 3--4
+Underfull \hbox (badness 2012) in paragraph at lines 4--5
 \T1/pcr/m/n/10 deepseek-v4-flash-free\T1/ntxtlf/m/n/10 , \T1/pcr/m/n/10 glm-5.2
 \T1/ntxtlf/m/n/10 , \T1/pcr/m/n/10 gpt-5.5\T1/ntxtlf/m/n/10 ,
  []
 
-[4{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-Overfull \hbox (2.29564pt too wide) in paragraph at lines 19--32
- [][] 
+[3{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./figures/framew
+ork.pdf>]) (./sections/600-evaluation-results.tex
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 9.0pt on input line 17.
+
+Underfull \hbox (badness 6125) in paragraph at lines 29--30
+[]\T1/ntxtlf/m/n/10 The four CVEs that achieve full or near-full
  []
 
-) (./sections/600-evaluation-results.tex [5]) (./sections/700-failure-modes.tex
-) (./sections/800-discussion.tex
+
+Underfull \vbox (badness 4981) has occurred while \output is active []
+
+<figures/pipeline.pdf, id=67, 240.75948pt x 268.91467pt>
+File: figures/pipeline.pdf Graphic file (type pdf)
+<use figures/pipeline.pdf>
+Package pdftex.def Info: figures/pipeline.pdf  used on input line 59.
+(pdftex.def)             Requested size: 239.39438pt x 267.39577pt.
+ [4]
+<figures/roadblock_heatmap.pdf, id=71, 402.01192pt x 176.54959pt>
+File: figures/roadblock_heatmap.pdf Graphic file (type pdf)
+<use figures/roadblock_heatmap.pdf>
+Package pdftex.def Info: figures/roadblock_heatmap.pdf  used on input line 85.
+(pdftex.def)             Requested size: 239.39438pt x 105.13585pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5 <./figures/pipeline.pdf>]) (./sections/700-failure-modes.tex
+<figures/case_study.pdf, id=98, 337.10944pt x 345.08923pt>
+File: figures/case_study.pdf Graphic file (type pdf)
+<use figures/case_study.pdf>
+Package pdftex.def Info: figures/case_study.pdf  used on input line 7.
+(pdftex.def)             Requested size: 227.42392pt x 232.8146pt.
+)
+(./sections/800-discussion.tex
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/sc' will be
 (Font)              scaled to size 10.95pt on input line 2.
- [6]) (./sections/900-related-work.tex)
-(./sections/1000-conclusion.tex) (./AnonymousSubmission2027.bbl [7]
-Underfull \hbox (badness 1168) in paragraph at lines 71--75
+) (./sections/900-related-work.tex [6 <./figures/roadblock_heatmap.pdf> <./figu
+res/case_study.pdf>])
+(./sections/1000-conclusion.tex) (./reprobench.bbl
+Underfull \hbox (badness 1168) in paragraph at lines 63--67
 []\T1/ntxtlf/m/n/10 Wang, Z.; Shi, T.; He, J.; Cai, M.; Zhang, J.; and
  []
 
-) [8
-
-] (./AnonymousSubmission2027.aux)
+) [7] (./reprobench.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7258 strings out of 475589
- 119992 string characters out of 5782860
- 1951975 words of memory out of 5000000
- 29258 multiletter control sequences out of 15000+600000
- 606162 words of font info for 65 fonts, out of 8000000 for 9000
+ 8125 strings out of 475589
+ 137834 string characters out of 5782860
+ 1950975 words of memory out of 5000000
+ 30101 multiletter control sequences out of 15000+600000
+ 609653 words of font info for 68 fonts, out of 8000000 for 9000
  309 hyphenation exceptions out of 8191
- 95i,8n,117p,1821b,349s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 95i,9n,117p,1875b,349s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf
-/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newt
-x/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on AnonymousSubmission2027.pdf (8 pages, 196314 bytes).
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/newtx/ztmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/new
+tx/ztmri.pfb>
+Output written on reprobench.pdf (7 pages, 1257087 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 247 PDF objects out of 1000 (max. 8388607)
+ 155 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

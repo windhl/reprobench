@@ -1,42 +1,22 @@
 \section{Experimental Design}
 \subsection{Agent Runs}
-We evaluate five model configurations over the 30-CVE benchmark with three independent trials per CVE, for 450 reproduction runs. The evaluated models are \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5-free}. Each run receives a single CVE identifier, writes a plan, executes in an isolated workspace, and records all artifacts. We preserve the plan, command traces, downloaded files, extracted filesystems, scripts, logs, reports, and any network or process evidence. Infrastructure failures and refusals are retained in the audit trail but interpreted separately from technical reproduction failures.
-
-This design deliberately allows public information use, including advisories and public PoCs. This choice weakens a purist interpretation of ``from scratch'' if it is read as inventing a PoC without prior examples. We use a different definition: from scratch means the agent receives no prepared target environment, firmware image, harness, or curated task brief beyond the CVE identifier. A public PoC may help with payload syntax, but using it is not itself success. Credit depends on whether the agent grounds that PoC in the correct firmware artifact and, for R6, sends it to a real rehosted service. We therefore report PoC-assisted success separately from non-PoC success. This mirrors real defensive reproduction, where public information is legitimate but does not replace target validation.
+% 实验配置：5模型×30 CVE×3次=450 runs
+We evaluate five model configurations over the 30-CVE benchmark with three independent trials per CVE, for 450 reproduction runs: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5-free}. Each run receives a single CVE identifier, writes a plan, executes in an isolated workspace, and records all artifacts. We preserve plans, command traces, downloaded files, extracted filesystems, scripts, logs, and reports. This design deliberately allows public information use, including advisories and public PoCs; ``from scratch'' means the agent receives no prepared target environment, firmware image, or harness beyond the CVE identifier. A public PoC may help with payload syntax, but using it is not itself success---credit depends on grounding it in the correct firmware artifact and sending it to a real rehosted service.
 
 \subsection{Scoring Runs}
-Every reproduction run is evaluated by the scoring skill, producing 450 JSON score files and 450 summaries. We then aggregate model-level, vulnerability-class-level, and stage-level statistics. The post-hoc human analysis serves three purposes: checking score-evidence consistency, adjudicating real-target claims, and assigning failure modes. Thus the final results combine scalable rubric-based scoring with human analysis of the artifacts most likely to affect conclusions.
+% 每个run由评分skill自动产出JSON+摘要
+Every run is evaluated by the scoring skill, producing 450 JSON score files and summaries. For each CVE--model pair, we report the best plan score and the best task score across three trials (may come from different runs), combined as $\text{Overall} = 0.2 \times \text{BestPlan} + 0.8 \times \text{BestTask}$. This reflects the practical question: given multiple attempts, can an agent reproduce a vulnerability at least once? We also report failure attribution based on all 450 runs.
 
-\subsection{Artifact Schema and Audit Trail}
-Each run is stored as an auditable record rather than as a single final answer. The record contains the initial prompt, the reproduction plan, command and reasoning traces, downloaded files, extraction outputs, scripts written by the agent, process logs, network requests, final reports, scoring JSON, and scoring summaries. This design is important because many invalid reproductions are only visible when the final report is compared with the workspace. For example, a report may claim that a router endpoint crashed, while the workspace shows that the endpoint belonged to a Python mock server created by the agent. Conversely, an agent may fail to produce a polished report but still leave useful evidence such as a correct firmware image, extracted root filesystem, or identified vulnerable binary.
-
-Table~\ref{tab:audit} summarizes how artifacts are used during scoring and human audit. The scoring skill first assigns stage-level credit using the rubric. Human auditors then inspect the evidence cited by the scorer, prioritizing cases that can change the main conclusions: non-zero R5/R6 scores, high overall scores, simulation-like workspaces, infrastructure failures, and representative failures from each vulnerability class. This audit does not add hidden credit for unobserved work; it only checks whether the evidence already present in the run supports the assigned score.
-
-\begin{table}[t]
-\centering
-\caption{Artifacts preserved for scoring and audit.}
-\label{tab:audit}
-\begin{tabular}{ll}
-\toprule
-Artifact & Main use \\
-\midrule
-Plan & Plan coverage, ordering, fallback \\
-Trace & Executed commands and retries \\
-Workspace & Firmware, rootfs, scripts, logs \\
-Reports & Agent claims and final rationale \\
-Network/process logs & R5 service evidence \\
-Crash/side effects & R6 trigger evidence \\
-Scoring JSON & Stage scores and citations \\
-\bottomrule
-\end{tabular}
-\end{table}
+\subsection{Audit Trail}
+% 每个run保存完整审计记录
+Each run is stored as an auditable record: prompt, plan, traces, downloaded files, extraction outputs, scripts, logs, reports, and scoring JSON. This design is important because invalid reproductions are only visible when the report is compared with the workspace---e.g., a report may claim a router endpoint crashed while the workspace shows a Python mock server. The scoring skill assigns stage-level credit; human auditors then validate evidence-citation consistency on a stratified sample.
 
 We ask six research questions:
 \begin{itemize}
-\item RQ1: How far can agents progress from a CVE ID toward IoT firmware vulnerability reproduction?
+\item RQ1: How far can agents progress from a CVE id toward reproduction?
 \item RQ2: Which stages account for most failures?
 \item RQ3: Does plan quality predict execution progress?
-\item RQ4: How often do agents produce plausible but invalid reproduction artifacts?
+\item RQ4: How often do agents produce plausible but invalid artifacts?
 \item RQ5: How do vulnerability classes and models affect progress?
 \item RQ6: Does evidence-grounded scoring reveal distinctions hidden by binary success?
 \end{itemize}

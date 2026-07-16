@@ -1,6 +1,9 @@
 \section{Related Work}
-Software and agent benchmarks such as SWE-bench and ProgramBench evaluate code repair or program reconstruction~\cite{swebench,programbench}. \sys{} shares ProgramBench's from-scratch philosophy but focuses on reconstructing vulnerability reproduction environments rather than rebuilding program behavior.
+% 软件工程benchmark对比
+Software and agent benchmarks such as SWE-bench and ProgramBench evaluate code repair or program reconstruction~\cite{swebench,programbench}. \sys{} shares ProgramBench's from-scratch philosophy but focuses on reconstructing vulnerability reproduction environments.
 
-Cybersecurity benchmarks evaluate web exploitation, CTF solving, vulnerability reproduction, patching, and exploit construction~\cite{cybergym,cvebench,secbench,bountybench,exploitgym,exploitbench,krepro}. These works provide important measurements of agent security capability, but most provide source code, patch context, a harness, an executable target, or a prepared service. \sys{} complements them by evaluating the artifact-to-execution pipeline that precedes exploitation in IoT firmware reproduction.
+% 安全benchmark对比
+Cybersecurity benchmarks evaluate web exploitation, CTF, vulnerability reproduction, patching, and exploit construction~\cite{cybergym,cvebench,secbench,bountybench,exploitgym,exploitbench,krepro}. Most provide source code, patch context, a harness, or a prepared service. \sys{} complements them by evaluating the artifact-to-execution pipeline that precedes exploitation in IoT firmware reproduction.
 
-Firmware rehosting tools such as Firmadyne, FirmAE, Greenhouse, and FIRMWELL automate parts of firmware emulation and dependency reconstruction~\cite{firmadyne,firmae,greenhouse,firmwell}. \sys{} does not replace these tools; it evaluates whether LLM agents can discover, install, configure, and recover from failures while using such tools in a from-scratch workflow.
+% 固件rehosting工具对比
+Firmware rehosting tools such as Firmadyne, FirmAE, and Greenhouse automate parts of emulation~\cite{firmadyne,firmae,greenhouse}. \sys{} does not replace these tools; it evaluates whether LLM agents can discover, install, configure, and recover from failures while using them in a from-scratch workflow.

@@ -1,0 +1,53 @@
+\documentclass[letterpaper]{article}
+\usepackage[submission]{aaai2027}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\usepackage{natbib}
+\usepackage{caption}
+\frenchspacing
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\pdfinfo{/TemplateVersion (2027.1)}
+\setcounter{secnumdepth}{0}
+
+\newcommand{\sys}{\textsc{ReproBench}}
+\newcommand{\bof}{\textsc{BOF}}
+\newcommand{\cmdi}{\textsc{CMDI}}
+\newcommand{\auth}{\textsc{AuthBypass}}
+
+\title{\Large{ReproBench: Benchmarking LLM Agents on CVE-only Vulnerability Reproduction}}
+\author{Anonymous Submission}
+\affiliations{}
+
+\begin{document}
+\maketitle
+
+% 针对安全任务，现有 Benchmark 都已提前准备好漏洞环境 -> 我们的目标：评估智能体能否从零开始、仅从CVE开始复现已知漏洞
+% 提出ReproBench: 基于公开证据的IoT漏洞从零复现评测基准
+%   漏洞数据集： 30个CVE = 10 bof + 10 cmdi + 10 ab
+%   groundtruth：公开证据档案，包括 CVE 记录、厂商安全公告、公开 PoC、安全博客等
+%   打分方法：将漏洞复现划分为六个阶段：漏洞信息收集、固件获取、固件提取、二进制文件识别、服务重新托管、漏洞触发，并从plan和task两方面打分，要求依据复现trace和产物作为支撑。
+% 实验： 450 次漏洞复现任务（30 个 CVE、5 个模型、3 次重复实验）以及对应的 450 次评分过程，通过事后人工审计验证评分结果、R5/R6 阶段的完成情况以及失败模式分析。
+% 最终目标：评估智能体能否逐步完成漏洞复现流程，并生成可审计的真实目标环境证据，评估智能体的从零开始复现漏洞能力。
+\begin{abstract}
+Large language model (LLM) agents are increasingly evaluated on cybersecurity tasks, yet most benchmarks begin after the target environment has already been prepared: the agent receives source code, a patch, a running service, a container, or an executable binary. This setting leaves open a central question for real-world vulnerability analysis: can an agent reconstruct the missing environment needed to reproduce a known vulnerability from scratch? We introduce \sys, a public-evidence-grounded benchmark for from-scratch reproduction attempts of IoT firmware vulnerabilities from only a CVE identifier. \sys{} contains 30 manually curated IoT CVEs, balanced across buffer overflows, command injections, and authentication bypasses. Each task is accompanied by a manually inspected public-evidence dossier built from CVE records, NVD entries, vendor advisories, public PoCs, exploit databases, blogs, and firmware references. Agents must traverse a six-stage vulnerability reproduction pipeline: information gathering, firmware acquisition, firmware extraction, binary identification, service rehosting, and vulnerability triggering. We propose an evidence-grounded, non-binary scoring framework that separately evaluates planning and execution and requires observable artifacts for every non-zero score. Our evaluation consists of 450 reproduction runs (30 CVEs, 5 models, 3 trials) scored under a best-of-three protocol. Results show that agents average 50.1/100 overall, but only 4.7\% of CVE--model pairs achieve real-target vulnerability triggering; 69.8\% of runs substitute simulated reproductions for real firmware execution. \sys{} exposes the gap between textual vulnerability understanding and grounded firmware execution, revealing that the rehosting stage is the primary bottleneck where agents lose real-target grounding.
+\end{abstract}
+
+\input{sections/100-introduction}
+\input{sections/200-motivation-and-task}
+\input{sections/300-benchmark-construction}
+\input{sections/400-evidence-grounded-scoring}
+\input{sections/500-experimental-design}
+\input{sections/600-evaluation-results}
+\input{sections/700-failure-modes}
+\input{sections/800-discussion}
+\input{sections/900-related-work}
+\input{sections/1000-conclusion}
+
+\bibliography{aaai2027}
+
+\end{document}

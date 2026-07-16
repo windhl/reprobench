@@ -1,10 +1,18 @@
 \section{Failure Modes}
-Our pilot scoring and trace inspection identify four failure families that the 450-run evaluation is designed to quantify.
+% 失败模式补充细节，case study图
+Section~\ref{sec:results} quantifies four failure families across 450 runs, illustrated by the case study in Figure~\ref{fig:case-study}.
 
-\textbf{Artifact failures.} Agents download incorrect firmware, stop after vendor 403 errors, or fail to distinguish firmware images from HTML responses. Some runs identify correct CVE facts but never acquire a usable artifact. Public information may also be incomplete, so the audit separates agent failure from evidence insufficiency.
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/case_study.pdf}
+\caption{Case study: the agent succeeds through R4 but substitutes a simulated reproduction at R5/R6.}
+\label{fig:case-study}
+\end{figure}
 
-\textbf{Extraction and binary-analysis failures.} Agents misuse extraction tools, stop after incomplete binwalk output, or analyze binaries from PoC repositories rather than from the target firmware. This can produce useful static insight but weakens alignment with the public-evidence dossier and the real target.
+\textbf{Artifact failures (57/450, 12.7\%).} Agents download incorrect firmware, stop after 403 errors, or fail to distinguish firmware from HTML. Terminal blockers at Phase 2 account for 143/450 runs.
 
-\textbf{The rehosting gap.} Agents know the names of QEMU and firmware emulators, but do not reliably configure dynamic loaders, library paths, NVRAM values, startup scripts, device nodes, or network listeners. They often abandon after one or two emulator errors and declare that physical hardware is required.
+\textbf{Extraction and binary-analysis failures (44/450, 9.8\%).} Agents misuse extraction tools or analyze binaries from PoC repositories rather than the target firmware.
 
-\textbf{Simulation substitution.} When real execution is difficult, agents generate a simplified substitute that demonstrates the vulnerability pattern but not the vulnerability instance. This is the most important evaluation hazard: the output may be coherent, reproducible, and wrong for the benchmark goal.
+\textbf{The rehosting gap (99/450, 22.0\%).} Agents know QEMU and firmware emulators but cannot configure dynamic loaders, NVRAM, or network listeners, and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap via \texttt{chroot}.
+
+\textbf{Simulation substitution (314/450, 69.8\%).} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern but not the instance. The output may be coherent and reproducible, but wrong for the benchmark goal. Real-target gating rejects all of these.

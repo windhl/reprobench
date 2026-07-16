@@ -1,4 +1,4 @@
-\begin{thebibliography}{13}
+\begin{thebibliography}{12}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Chen et~al.(2016)Chen, Woo, Brumley, and Egele}]{firmadyne}
@@ -41,14 +41,6 @@ Pu, J.; Li, X.; Liang, Z.; Cox, J.; Wu, Y.; Shehada, K.; Srivastav, A.; and
 \newblock Patch-to-PoC: A Systematic Study of Agentic LLM Systems for Linux
   Kernel N-Day Reproduction.
 \newblock \emph{arXiv preprint arXiv:2602.07287}.
-
-\bibitem[{Qin et~al.(2026)Qin, Zhang, Zheng, Liu, Zhang, Li, Zhang, Liu, and
-  Sun}]{firmwell}
-Qin, C.; Zhang, C.; Zheng, Y.; Liu, P.; Zhang, J.; Li, Y.; Zhang, W.; Liu, Y.;
-  and Sun, L. 2026.
-\newblock User-Space Dependency-Aware Rehosting for Linux-Based Firmware
-  Binaries.
-\newblock In \emph{NDSS}.
 
 \bibitem[{Tay et~al.(2023)Tay, Zeng, Vadayath, Raj, Dutcher, Reddy, Gibbs,
   Basque, Dong, Smith et~al.}]{greenhouse}
