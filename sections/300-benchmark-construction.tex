@@ -1,5 +1,5 @@
 \section{Benchmark Construction}
-\subsection{Manual CVE Curation}
+\subsection{Dataset Construction}
 % 数据集构建：从公开来源筛选IoT CVE，四条准入标准
 We construct \sys{} through manual curation from public CVE databases, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories. A candidate is retained if it affects an IoT or embedded firmware product, public references identify the affected product or firmware family, the vulnerability class is assignable to our target categories, and there is enough public evidence to build a reference dossier. From the candidate pool, we select 30 CVEs balanced equally across three classes: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
 
@@ -7,6 +7,50 @@ We construct \sys{} through manual curation from public CVE databases, vendor ad
 % 公开证据档案：评分基准，agent只拿CVE ID
 For each CVE, we construct a public-evidence dossier containing vendor and product information, affected firmware versions, vulnerability class, affected endpoint, public references, PoC descriptions, firmware acquisition hints, target binary names, architecture, and expected trigger evidence type. The dossier is used only for scoring; agents receive only the CVE identifier. The dossier is not a claim that the authors have independently reproduced every CVE end to end. Rather, it defines the publicly documented facts and evidence requirements against which an agent's artifacts are audited.
 
-\subsection{Evidence Scope and Attribution}
-% 档案按六阶段组织，区分三种失败：agent能力不足、公开证据不足、模拟替代
-The dossier is organized around the six stages. P1 fields describe checkable public facts; P2--P4 fields describe artifact expectations; P5--P6 fields specify acceptable evidence types for real execution (e.g., service banner, crash signal, command side effect) without providing an exploit oracle. This design separates three cases: agent capability gaps (fail despite strong evidence), evidence insufficiency (stale or missing public artifacts), and simulation substitution (plausible reports without dossier-supported artifacts). We use a conservative attribution rule: \emph{artifact unavailable} requires confirmed stale sources plus a reasonable acquisition attempt; \emph{agent acquisition failure} requires accessible sources but inadequate search; borderline cases are excluded from model-only failure counts.
+\section{Evidence-Grounded Scoring}
+\label{sec:scoring}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/framework.pdf}
+\caption{Scoring framework overview. Each run is scored across six phases using evidence checklists, with real-target gating at P5/P6.}
+\label{fig:framework}
+\end{figure*}
+
+\subsection{Plan Score}
+% Plan Score三组件归一化加权
+Before execution, the agent writes a reproduction plan. The plan score has three components, each normalized to 0--100: $\text{Plan} = 0.6 \times \text{Coverage} + 0.3 \times \text{Dependency} + 0.1 \times \text{Fallback}$. \emph{Coverage} evaluates whether the plan explicitly covers all six phases with the same weights as the task score. \emph{Dependency correctness} checks that the planned order respects P1$\rightarrow$P2$\rightarrow$P3$\rightarrow$P4$\rightarrow$P5$\rightarrow$P6, deducting 20 points per violation. \emph{Fallback planning} is scored on a quality scale from 0 (no fallback) to 100 (phase-specific contingencies with blocked phase, failure mode, and alternative action).
+
+\subsection{Task Score}
+% Task Score按六阶段checklist直评分
+The task score assigns 100 points across P1--P6: 15 points each for P1--P4 and 20 points each for P5--P6. Each phase is scored directly from its phase-specific evidence checklist; credit requires observable artifacts aligned with the public-evidence dossier. For example, P2 checks firmware acquisition, version verification (using version strings, metadata, checksum or hash), and source address verification; P5 checks environment setup, binary launch, dependency initialization, service reachability, and real-firmware-service confirmation. Plan consistency, recovery attempts, and efficiency are recorded in failure attribution but do not receive separate task score points.
+
+The overall score is $\text{Overall}=0.2\cdot\text{Plan}+0.8\cdot\text{Task}$. We weight execution more heavily because the benchmark measures whether an agent can realize a reproduction, not merely describe one.
+
+\subsection{Real-Target Gating}
+% P5/R6强制真实目标：不跑真实固件binary的模拟行为得0分
+P5 and P6 enforce real-target validity: the reproduction task requires running the real vulnerable binary from the extracted firmware. Any approach that does not run the real firmware binary---mock servers, harnesses transcribing vulnerable logic, host-native simulations, or static-only analysis---is considered simulated reproduction and receives 0 for P5 and P6. This is not a penalty; the simulation work simply has no value for real-target reproduction. If the agent attempted real rehosting before switching to simulation, the real attempt is scored on its progress and the simulation is ignored.
+
+\subsection{Scoring Skill and Audit}
+% 评分skill自动处理450 runs
+We use a rubric-constrained scoring skill to scale evaluation to 450 runs. The scorer receives the dossier, plan, trace, workspace, and reports for a single run, cites concrete evidence for every non-zero score, and outputs structured JSON. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
+
+\begin{table*}[t]
+\centering
+\caption{Comparison with representative agent and cybersecurity benchmarks. Prepared environments hide the artifact-to-execution pipeline measured by \sys.}
+\label{tab:compare}
+\small
+\begin{tabular}{llllll}
+\toprule
+Benchmark & Input & Prepared env. & Artifact acquisition & Rehosting & Non-binary scoring \\
+\midrule
+SWE-bench~\cite{swebench} & Repo + issue & Yes & No & No & Tests \\
+ProgramBench~\cite{programbench} & Binary + docs & Partial & No & No & Test pass rate \\
+CyberGym~\cite{cybergym} & Source/harness & Yes & No & No & Staged \\
+CVE-Bench~\cite{cvebench} & Web target & Yes & No & No & Binary \\
+ExploitBench~\cite{exploitbench} & Built target & Yes & No & No & Capability ladder \\
+K-Repro~\cite{krepro} & Patch context & Partial & Limited & Kernel & Mostly final trigger \\
+\sys & CVE ID & No & Yes & Yes & Stage score \\
+\bottomrule
+\end{tabular}
+\end{table*}
