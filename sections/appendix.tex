@@ -25,7 +25,9 @@ The scoring skill checks PoC construction, PoC execution against the real target
 \label{app:repro}
 
 We release the following artifacts in a public repository:
-\begin{itemize}[leftmargin=*,topsep=2pt,parsep=2pt]
+\begin{itemize}
+\setlength{\itemsep}{2pt}
+\setlength{\parsep}{2pt}
     \item The corpus manifest: 30 CVE identifiers with device model, firmware version, architecture, vulnerability type, and ground-truth dossier fields.
     \item Firmware references: vendor download URLs or archive.org snapshots for each CVE. We do not redistribute firmware images directly, as they are vendor-copyrighted.
     \item The scoring skill: rubric specification, JSON schema, and the summary generation script, runnable on any Linux container with standard tools.
