@@ -34,23 +34,3 @@ P5 and P6 enforce real-target validity: the reproduction task requires running t
 \subsubsection{Scoring Skill and Audit}
 % 评分skill自动处理450 runs
 We use a rubric-constrained scoring skill to scale evaluation to 450 runs. The scorer receives the dossier, plan, trace, workspace, and reports for a single run, cites concrete evidence for every non-zero score, and outputs structured JSON. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
-
-\begin{table*}[t]
-\centering
-\caption{Comparison with representative agent and cybersecurity benchmarks. Prepared environments hide the artifact-to-execution pipeline measured by \sys.}
-\label{tab:compare}
-\small
-\begin{tabular}{llllll}
-\toprule
-Benchmark & Input & Prepared env. & Artifact acquisition & Rehosting & Non-binary scoring \\
-\midrule
-SWE-bench~\cite{swebench} & Repo + issue & Yes & No & No & Tests \\
-ProgramBench~\cite{programbench} & Binary + docs & Partial & No & No & Test pass rate \\
-CyberGym~\cite{cybergym} & Source/harness & Yes & No & No & Staged \\
-CVE-Bench~\cite{cvebench} & Web target & Yes & No & No & Binary \\
-ExploitBench~\cite{exploitbench} & Built target & Yes & No & No & Capability ladder \\
-K-Repro~\cite{krepro} & Patch context & Partial & Limited & Kernel & Mostly final trigger \\
-\sys & CVE ID & No & Yes & Yes & Stage score \\
-\bottomrule
-\end{tabular}
-\end{table*}
