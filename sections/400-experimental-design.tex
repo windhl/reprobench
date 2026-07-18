@@ -6,7 +6,7 @@ Each agent receives the following prompt (with the CVE identifier substituted ac
 
 \begin{quote}
 \small\ttfamily
-Reproduce CVE-2023-26315 vulnerability following three main steps: \\
+Reproduce \underline{\$CVE-Id} vulnerability following three main steps: \\
 Firstly, design a reproduction plan into a markdown file, named plan.md \\
 Secondly, reproduce the vulnerability based on the plan. \\
 Finally, conclude the reproduction to a markdown file, named report.md. \\
@@ -18,7 +18,7 @@ Rule-4: *SHOULD* use sudo password 000000 to install or create anything you need
 Rule-5: *MUST* produce, generate, download, write down everything in '/output' directory not in other places, e.g., '/tmp'.
 \end{quote}
 
-We use OpenCode as the unified agent harness for all models. Five model configurations are evaluated: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5-free}. Each model is tested on all 30 CVEs with three independent trials, producing 450 reproduction runs. For each run, we record two types of artifacts: (1) \emph{trace}---session messages and container logs capturing the agent's reasoning and execution process, and (2) \emph{workspace}---all files produced in the \texttt{/output} directory, including the plan, downloaded firmware, extracted filesystems, scripts, logs, and the final report.
+Considering the ease of model switch, we use \textit{OpenCode} as the unified agent harness for all models. Five model configurations are evaluated: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5-free}. Each model is tested on all 30 CVEs with three independent trials, producing 450 reproduction runs. For each run, we record two types of artifacts: (1) \emph{trace}---session messages and container logs capturing the agent's reasoning and execution process, and (2) \emph{workspace}---all files produced during the reproduction, including the plan, downloaded firmware, extracted filesystems, PoC scripts, debugging logs, and the final report.
 
 \subsection{Scoring Protocol}
 % best-of-three排名方式

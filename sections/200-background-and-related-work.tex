@@ -1,28 +1,7 @@
 \section{Background and Pre-Environment}
 \label{sec:related}
 
-\begin{table*}[t]
-    \centering
-    \caption{Comparison with representative benchmarks. All existing work operates post-environment. \sys{} is the only benchmark where environment construction is the scored task itself (pre-environment), targeting IoT firmware.}
-    \label{tab:compare}
-    \small
-    \begin{tabular}{lclll}
-    \toprule
-    \textbf{Benchmark} & \textbf{From Scratch} & \textbf{Input} & \textbf{Task Type} & \textbf{Pre/Post-Env.} \\
-    \midrule
-    SWE-bench~\cite{swebench} & \textcolor{red}{\ding{55}} & Source Code & Issue Resolution & Post \\
-    ProgramBench~\cite{programbench} & \textcolor{green}{\ding{51}} & Binary Program & Program Rewrite & Post \\
-    CyberGym~\cite{cybergym} & \textcolor{red}{\ding{55}}  & Source code & Vulnerability Reproduction & Post \\
-    CVE-Bench~\cite{cvebench} & \textcolor{red}{\ding{55}}  & Source code & Vulnerability Exploitation & Post \\
-    ExploitBench~\cite{exploitbench} & \textcolor{red}{\ding{55}}  & Binary Program & Vulnerability Exploitation & Post \\
-    ExploitGym~\cite{exploitgym} & \textcolor{red}{\ding{55}}  & Binary Program & Vulnerability Exploitation & Post \\
-    K-Repro~\cite{krepro} & \textcolor{red}{\ding{55}}  & Source Code & Vulnerability Reproduction & Post \\
-    BountyBench~\cite{bountybench} & \textcolor{red}{\ding{55}}  & Source Code & Offense \& Defense & Post \\
-    SEC-Bench~\cite{secbench} & \textcolor{red}{\ding{55}}  & Source Code & PoC gen.\ \& Patching & Post \\ \hline
-    \textbf{\sys{} (Ours)} & \textcolor{green}{\textbf{\ding{51}}} & \textbf{CVE Identifier} & \textbf{Vulnerability Reproduction} & \textbf{Pre} \\
-    \bottomrule
-    \end{tabular}
-\end{table*}
+
 
 % 软件工程benchmark
 \subsection{Software Engineering Benchmarks}
