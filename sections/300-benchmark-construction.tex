@@ -1,5 +1,12 @@
 \section{Benchmark Construction}
 \subsection{Dataset Construction}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/framework.pdf}
+    \caption{Scoring framework overview. Each run is scored across six phases using evidence checklists, with real-target gating at P5/P6.}
+    \label{fig:framework}
+\end{figure*}
 % 数据集构建：从公开来源筛选IoT CVE，四条准入标准
 We construct \sys{} through manual curation from public CVE databases, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories. A candidate is retained if it affects an IoT or embedded firmware product, public references identify the affected product or firmware family, the vulnerability class is assignable to our target categories, and there is enough public evidence to build a reference dossier. From the candidate pool, we select 30 CVEs balanced equally across three classes: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
 
@@ -10,12 +17,7 @@ For each CVE, we construct a public-evidence dossier containing vendor and produ
 \subsection{Evidence-Grounded Scoring}
 \label{sec:scoring}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.95\textwidth]{figures/framework.pdf}
-\caption{Scoring framework overview. Each run is scored across six phases using evidence checklists, with real-target gating at P5/P6.}
-\label{fig:framework}
-\end{figure*}
+
 
 \subsubsection{Plan Score}
 % Plan Score三组件归一化加权

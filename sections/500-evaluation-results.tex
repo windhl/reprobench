@@ -59,12 +59,13 @@ P6 & Vulnerability triggering&  2.6 & 20 & 13.0\% \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/pipeline.pdf}
-\caption{The six-stage vulnerability reproduction pipeline. Agents receive a CVE number and must progress through each stage. The pipeline collapses at P5 (Service Rehosting), where cross-architecture emulation fails across nearly all runs.}
-\label{fig:pipeline}
-\end{figure}
+%%
+%%\begin{figure}[t]
+%%\centering
+%%\includegraphics[width=\columnwidth]{figures/pipeline.pdf}
+%%\caption{The six-stage vulnerability reproduction pipeline. Agents receive a CVE number and must progress through each stage. The pipeline collapses at P5 (Service Rehosting), where cross-architecture emulation fails across nearly all runs.}
+%%\label{fig:pipeline}
+%%\end{figure}
 
 % 失败模式四类：simulation主导，rehosting第二
 Across all 450 runs, four failure families account for the terminal blockers. \textbf{Simulation substitution} dominates at 314/450 runs (69.8\%): agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern without running the real firmware binary. \textbf{Rehosting gap} accounts for 99/450 runs (22.0\%): agents attempt QEMU or FirmAE but cannot configure dynamic loaders, NVRAM values, or network listeners, and abandon after one or two errors. \textbf{Artifact failures} (57/450, 12.7\%) and \textbf{extraction/binary-analysis failures} (44/450, 9.8\%) round out the taxonomy. Terminal blockers cluster at Phase 5 (246/450) and Phase 2 (143/450).

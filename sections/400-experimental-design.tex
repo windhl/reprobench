@@ -1,5 +1,8 @@
 \section{Experimental Design}
 \subsection{Agent Runs}
+
+
+
 % 实验配置：5模型×30 CVE×3次=450 runs
 We evaluate five model configurations over the 30-CVE benchmark with three independent trials per CVE, for 450 reproduction runs: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5-free}. Each run receives a single CVE identifier, writes a plan, executes in an isolated workspace with a budget of \$10 and a 24-hour time limit, and records all artifacts. We preserve plans, command traces, downloaded files, extracted filesystems, scripts, logs, and reports. This design deliberately allows public information use, including advisories and public PoCs; ``from scratch'' means the agent receives no prepared target environment, firmware image, or harness beyond the CVE identifier. A public PoC may help with payload syntax, but using it is not itself success---credit depends on grounding it in the correct firmware artifact and sending it to a real rehosted service.
 
@@ -11,7 +14,10 @@ Every run is evaluated by the scoring skill, producing 450 JSON score files and 
 % 每个run保存完整审计记录
 Each run is stored as an auditable record: prompt, plan, traces, downloaded files, extraction outputs, scripts, logs, reports, and scoring JSON. This design is important because invalid reproductions are only visible when the report is compared with the workspace---e.g., a report may claim a router endpoint crashed while the workspace shows a Python mock server. The scoring skill assigns stage-level credit; human auditors then validate evidence-citation consistency on a stratified sample.
 
-We ask six research questions:
+
+\subsection{Research Questions}
+
+We set six research questions to drive our evaluation:
 \begin{itemize}
 \item RQ1: How far can agents progress from a CVE id toward reproduction?
 \item RQ2: Which stages account for most failures?
