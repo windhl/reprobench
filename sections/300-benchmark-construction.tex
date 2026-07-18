@@ -1,38 +1,59 @@
-\section{Benchmark Construction}
-\subsection{Dataset Construction}
+\section{ReproBench}
+
+\subsection{Overview}
+% 整体流程概述
+Figure~\ref{fig:framework} illustrates the overall pipeline of \sys{}. We first collect IoT vulnerabilities from public sources and select 30 representative CVEs as the benchmark dataset (\S\ref{sec:dataset}). For each CVE, we build a public evidence collection as ground truth for scoring (\S\ref{sec:dossier}). The agent receives only a CVE identifier and a task prompt; no reproduction pipeline or phase structure is disclosed to the agent. After execution, an evidence-grounded scoring skill evaluates each run against the public evidence, producing an overall score and failure attribution (\S\ref{sec:scoring}).
 
 \begin{figure*}[t]
-    \centering
-    \includegraphics[width=0.95\textwidth]{figures/framework.pdf}
-    \caption{Scoring framework overview. Each run is scored across six phases using evidence checklists, with real-target gating at P5/P6.}
-    \label{fig:framework}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/framework.pdf}
+\caption{Overview of the \sys{} pipeline. CVEs are curated and paired with public evidence. Agents receive only a CVE identifier and must plan, execute, and report. The scoring skill evaluates each run against the public evidence.}
+\label{fig:framework}
 \end{figure*}
-% 数据集构建：从公开来源筛选IoT CVE，四条准入标准
-We construct \sys{} through manual curation from public CVE databases, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories. A candidate is retained if it affects an IoT or embedded firmware product, public references identify the affected product or firmware family, the vulnerability class is assignable to our target categories, and there is enough public evidence to build a reference dossier. From the candidate pool, we select 30 CVEs balanced equally across three classes: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
 
-\subsection{Public-Evidence Dossiers}
-% 公开证据档案：评分基准，agent只拿CVE ID
-For each CVE, we construct a public-evidence dossier containing vendor and product information, affected firmware versions, vulnerability class, affected endpoint, public references, PoC descriptions, firmware acquisition hints, target binary names, architecture, and expected trigger evidence type. The dossier is used only for scoring; agents receive only the CVE identifier. The dossier is not a claim that the authors have independently reproduced every CVE end to end. Rather, it defines the publicly documented facts and evidence requirements against which an agent's artifacts are audited.
+\subsection{Dataset Construction}
+\label{sec:dataset}
+% CVE收集与筛选
+We collect IoT firmware vulnerabilities from public CVE databases, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories, spanning vulnerabilities disclosed from 2020 to 2026. From this pool, we apply three filtering criteria: (1) \emph{firmware accessibility}---the affected firmware image must be obtainable from vendor sites, archive mirrors, or public dumps; (2) \emph{public-evidence richness}---sufficient public information (advisories, PoCs, blog posts) must exist to build a reference collection; and (3) \emph{vulnerability class}---the vulnerability must fall into one of our three target categories. From the filtered candidates, we select 30 representative CVEs balanced equally across three classes: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
+
+\subsection{Public Evidence Collection}
+\label{sec:dossier}
+% 公开证据：自动爬取30个CVE的公开信息作为ground truth
+For each CVE, we collect public evidence by automatically gathering and organizing publicly available information using a dedicated evidence-gathering skill. The collection contains vendor and product information, affected firmware versions, vulnerability class, affected endpoint, public references, PoC descriptions, firmware acquisition hints, target binary names, architecture, and expected trigger evidence type. This collection is used only as ground truth for scoring; agents receive only the CVE identifier and never see the public evidence. It is not a claim that the authors have independently reproduced every CVE end to end. Rather, it defines the publicly documented facts and evidence requirements against which an agent's artifacts are audited.
 
 \subsection{Evidence-Grounded Scoring}
 \label{sec:scoring}
+% 评分总述：六阶段定义 + Plan/Task双轨评分
+To enable fine-grained evaluation, the scoring skill decomposes the reproduction process into six phases (Table~\ref{tab:phases}). This decomposition is applied only during scoring; the agent is not informed of the phase structure and freely decides how to approach the task. Each phase is associated with specific checklist items that serve as the scoring granularity. The six phases are used in two complementary scores: the \emph{Plan Score} evaluates whether the agent's written plan covers these phases in correct order with fallback strategies, and the \emph{Task Score} evaluates whether the agent's execution actually achieved the goals of each phase with observable evidence. The overall score is $\text{Overall}=0.2\cdot\text{Plan}+0.8\cdot\text{Task}$, weighting execution more heavily because the benchmark measures whether an agent can realize a reproduction, not merely describe one.
 
-
+\begin{table}[t]
+\centering
+\caption{Six scoring phases. P1--P4 carry 15 points each; P5--P6 carry 20 points each. These weights apply to both Plan Score (Coverage) and Task Score.}
+\label{tab:phases}
+\renewcommand{\arraystretch}{1.15}
+\small
+\begin{tabular}{c l l}
+\toprule
+\textbf{Phase} & \textbf{Name} & \textbf{Key artifact} \\
+\midrule
+P1 & Information Gathering & CVE facts, version, endpoint \\
+P2 & Firmware Acquisition & Firmware image file \\
+P3 & Firmware Extraction & Extracted root filesystem \\
+P4 & Binary Identification & Vulnerable binary + analysis \\
+P5 & Service Rehosting & Running real firmware service \\
+P6 & Vulnerability Triggering & PoC + trigger evidence \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsubsection{Plan Score}
-% Plan Score三组件归一化加权
-Before execution, the agent writes a reproduction plan. The plan score has three components, each normalized to 0--100: $\text{Plan} = 0.6 \times \text{Coverage} + 0.3 \times \text{Dependency} + 0.1 \times \text{Fallback}$. \emph{Coverage} evaluates whether the plan explicitly covers all six phases with the same weights as the task score. \emph{Dependency correctness} checks that the planned order respects P1$\rightarrow$P2$\rightarrow$P3$\rightarrow$P4$\rightarrow$P5$\rightarrow$P6, deducting 20 points per violation. \emph{Fallback planning} is scored on a quality scale from 0 (no fallback) to 100 (phase-specific contingencies with blocked phase, failure mode, and alternative action).
+Before execution, the agent writes a reproduction plan (\texttt{plan.md}). The plan score has three components, each normalized to 0--100: $\text{Plan} = 0.6 \times \text{Coverage} + 0.3 \times \text{Dependency} + 0.1 \times \text{Fallback}$. \emph{Coverage} evaluates whether the plan explicitly covers all six phases, using the same phase weights as the task score (Table~\ref{tab:phases}). Each phase receives a quality multiplier: clearly planned (1.0), mentioned but vague (0.5), or missing (0). \emph{Dependency correctness} checks that the planned execution order respects P1$\rightarrow$P2$\rightarrow$P3$\rightarrow$P4$\rightarrow$P5$\rightarrow$P6, deducting 20 points per violation. \emph{Fallback planning} is scored on a quality scale from 0 (no fallback) to 100 (phase-specific contingencies identifying the blocked phase, failure mode, and alternative action).
 
 \subsubsection{Task Score}
-% Task Score按六阶段checklist直评分
-The task score assigns 100 points across P1--P6: 15 points each for P1--P4 and 20 points each for P5--P6. Each phase is scored directly from its phase-specific evidence checklist; credit requires observable artifacts aligned with the public-evidence dossier. For example, P2 checks firmware acquisition, version verification (using version strings, metadata, checksum or hash), and source address verification; P5 checks environment setup, binary launch, dependency initialization, service reachability, and real-firmware-service confirmation. Plan consistency, recovery attempts, and efficiency are recorded in failure attribution but do not receive separate task score points.
-
-The overall score is $\text{Overall}=0.2\cdot\text{Plan}+0.8\cdot\text{Task}$. We weight execution more heavily because the benchmark measures whether an agent can realize a reproduction, not merely describe one.
+The task score assigns 100 points across P1--P6: 15 points each for P1--P4 and 20 points each for P5--P6. Each phase is scored from its phase-specific checklist; for example, P2 checks firmware acquisition, version verification, and source address verification, while P5 checks environment setup, binary launch, dependency initialization, service reachability, and real-firmware-service confirmation. Credit for each checklist item requires observable artifacts in the workspace or trace that are aligned with the public evidence. Plan consistency, recovery attempts, and efficiency are recorded in failure attribution but do not receive separate task score points.
 
 \subsubsection{Real-Target Gating}
-% P5/R6强制真实目标：不跑真实固件binary的模拟行为得0分
-P5 and P6 enforce real-target validity: the reproduction task requires running the real vulnerable binary from the extracted firmware. Any approach that does not run the real firmware binary---mock servers, harnesses transcribing vulnerable logic, host-native simulations, or static-only analysis---is considered simulated reproduction and receives 0 for P5 and P6. This is not a penalty; the simulation work simply has no value for real-target reproduction. If the agent attempted real rehosting before switching to simulation, the real attempt is scored on its progress and the simulation is ignored.
+P5 and P6 enforce real-target validity: credit requires evidence that the real vulnerable binary from the extracted firmware was running and received requests. Any approach that does not run the real firmware binary---mock servers, harnesses transcribing vulnerable logic, host-native simulations, or static-only analysis---is considered simulated reproduction and receives 0 for P5 and P6. This is not a penalty; the simulation work simply has no value for real-target reproduction. If the agent attempted real rehosting before switching to simulation, the real attempt is scored on its progress and the simulation is ignored. This gating is essential because 69.8\% of runs in our evaluation produce simulated reproductions that would be indistinguishable from genuine reproduction without this check.
 
-\subsubsection{Scoring Skill and Audit}
-% 评分skill自动处理450 runs
-We use a rubric-constrained scoring skill to scale evaluation to 450 runs. The scorer receives the dossier, plan, trace, workspace, and reports for a single run, cites concrete evidence for every non-zero score, and outputs structured JSON. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
+\subsubsection{Scoring Skill}
+We implement a rubric-constrained scoring skill that evaluates each run by inspecting the trace and workspace against the public evidence. The scorer cites concrete evidence for every non-zero score and outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.

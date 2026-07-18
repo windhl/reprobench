@@ -28,7 +28,7 @@ We release the following artifacts in a public repository:
 \begin{itemize}
 \setlength{\itemsep}{2pt}
 \setlength{\parsep}{2pt}
-    \item The corpus manifest: 30 CVE identifiers with device model, firmware version, architecture, vulnerability type, and ground-truth dossier fields.
+    \item The corpus manifest: 30 CVE identifiers with device model, firmware version, architecture, vulnerability type, and public evidence fields.
     \item Firmware references: vendor download URLs or archive.org snapshots for each CVE. We do not redistribute firmware images directly, as they are vendor-copyrighted.
     \item The scoring skill: rubric specification, JSON schema, and the summary generation script, runnable on any Linux container with standard tools.
     \item The agent harness: system prompt, tool definitions, budget enforcement (\$10, 24-hour limit), and workspace configuration.
@@ -41,4 +41,4 @@ Every experiment is re-runnable by executing the harness against the container i
 
 \sys{} evaluates vulnerability reproduction for defensive purposes: patch validation, regression testing, and capability measurement. All 30 CVEs in the corpus are publicly disclosed and remediated; we do not include zero-day vulnerabilities. Every run executes inside an isolated, network-segmented Docker container with no access to external devices or production networks. If evaluation surfaces a previously unknown vulnerability---which has not occurred in our experiments---it will be reported to the vendor via coordinated disclosure before any public release.
 
-We release the scoring skill, ground-truth dossiers, and the agent harness configuration. We do not release weaponized exploit code for unpatched vulnerabilities, nor do we include any CVE for which a working exploit would create undue risk if reproduced. The dual-use nature of vulnerability reproduction is inherent to security research; we follow the norms established by prior benchmark releases~\cite{cybergyme2e,exploitgym}.
+We release the scoring skill, public evidence collections, and the agent harness configuration. We do not release weaponized exploit code for unpatched vulnerabilities, nor do we include any CVE for which a working exploit would create undue risk if reproduced. The dual-use nature of vulnerability reproduction is inherent to security research; we follow the norms established by prior benchmark releases~\cite{cybergyme2e,exploitgym}.

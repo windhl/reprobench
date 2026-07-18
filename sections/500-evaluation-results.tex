@@ -37,7 +37,7 @@ A notable finding is that \texttt{glm-5.2}, not \texttt{claude-sonnet-4-6} or \t
 
 \subsection{Where Does the Pipeline Collapse? (RQ2)}
 % RQ2: 阶段漏斗——P1-R4合理，R5骤降，terminal blocker主要在Phase 5
-Table~\ref{tab:stage-funnel} and Figure~\ref{fig:pipeline} show the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.8/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores (7.0--8.8/15), reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 2.7/20. P6 averages 2.6/20, with most points coming from PoC construction rather than real-target triggering.
+Table~\ref{tab:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.8/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores (7.0--8.8/15), reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 2.7/20. P6 averages 2.6/20, with most points coming from PoC construction rather than real-target triggering.
 
 \begin{table}[t]
 \centering
