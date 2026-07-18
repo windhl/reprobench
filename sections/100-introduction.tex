@@ -1,39 +1,62 @@
 \section{Introduction}
+
 %% 现有benchmark假设目标环境已准备好，真实漏洞复现从CVE起步更困难
-LLM agents now plan, call tools, write code, and operate in software repositories with increasing autonomy, producing many benchmarks for software engineering and cybersecurity~\cite{swebench,programbench,cybergym,cvebench,secbench,bountybench,exploitgym,exploitbench,krepro}. 
 %
-A common protocol is that the evaluated targets should already have a repository, patch, container, harness, or running service. 
+LLM agents now plan, call tools, write code, and operate inside software repositories with growing autonomy~\cite{swebench,programbench}. 
 %
-However, known-vulnerability reproduction, thought as a routine capability, in the wild usually begins in a less structured state.
+This shift has prompted a wave of benchmarks measuring agentic performance on software engineering and cybersecurity tasks, from issue resolution~\cite{swebench} and program rewriting~\cite{programbench} to vulnerability reproduction~\cite{cybergym,krepro}, exploitation~\cite{cvebench,exploitgym,exploitbench}, and offense--defense exercises~\cite{bountybench,secbench}. 
 %
-For example, a security analyst may start with only a CVE identifier and then discover the affected product, locate the correct artifact, recover a runnable environment, and validate vulnerability behavior against the real target, i.e., producing a Proof-of-Concept(PoC). 
+A common assumption underlies all of them: the target environment has already been prepared. 
 
 %
-In this work, we focus on the IoT firmware vulnerability reproduction which makes the gap especially sharp in nowadays.
+Specifically, the agent receives a repository, a patch, a sanitizer-instrumented binary, a running Docker, and then is scored on what it does \emph{after} that starting line. 
 %
-Specifically, one firmware is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state, and reachable only after \textit{rehosting}~\cite{greenhouse} under emulation. 
+In real-world vulnerability analysis, however, a typical investigation usually begins with a bare identifier---a CVE number, which is followed by identifying the affected product, locating the correct artifact, recovering a runnable environment, and validating the vulnerability by producing a proof-of-concept (PoC). 
 %
-As a result, firmware vulnerability reproduction can be defined as an end-to-end artifact reconstruction and validation task.
+We call the prepared setting \emph{post-environment} evaluation and the from-scratch setting \emph{pre-environment} evaluation. 
+%
+The gap between them is not cosmetic: it is the gap between grading an exploit and grading the ability to reach a target worth exploiting.
+
+
+We focus on a domain where this gap is especially sharp: IoT firmware vulnerability reproduction. 
+%
+A firmware image is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state and shared libraries, and reachable only after \textit{rehosting} under architecture-level emulation.
+%
+Unlike source-level targets, firmware cannot be rebuilt from a patch; the analyst must obtain the exact image, extract it from a vendor archive, identify the vulnerable binary among dozens of blobs, and rehost the service on a synthetic environment before any exploit can be triggered. 
+%
+This makes firmware reproduction an end-to-end artifact reconstruction and validation task, where failure can occur at every step and where a polished-looking PoC may never touch the real target. 
+%
+%The security stakes are concrete: IoT devices are deployed at billions of units %across homes, factories, and edge infrastructure, and the same opacity that %makes firmware hard to rehost also makes it a persistent reservoir of unpatched, %remotely exploitable bugs.
 
 %% 引入ReproBench：从CVE ID出发评估完整artifact-to-execution pipeline
-To address the problem, we introduce \sys, a benchmark that evaluates whether LLM agents can move from a bare CVE identifier toward auditable evidence of IoT firmware vulnerability reproduction. 
+To address this gap, we introduce \sys, a benchmark that evaluates whether LLM agents can move from a bare CVE identifier toward auditable evidence of IoT firmware vulnerability reproduction.
 %
-\sys{} moves beyond prepared environments to evaluate the full artifact-to-execution pipeline, stressing capabilities that existing benchmarks totally ignore, including open-world information gathering, artifact provenance checking, cross-architecture binary analysis, long-horizon tool orchestration, and grounded validation. 
+\sys{} deliberately withholds the prepared environment and scores the full artifact-to-execution pipeline. 
+%
+In doing so, it stresses capabilities that existing benchmarks do not exercise at all: open-world information gathering, artifact provenance checking, cross-architecture binary analysis, long-horizon tool orchestration, and grounded validation against the real target rather than against a surrogate of the agent's own construction.
 
 
-% 伪造复现容易，需要非二元评分+真实目标门控, we should re-write it to make it more clear
-%%Our benchmark exposes a methodological problem, i.e., \textit{plausible-looking reproductions are easy to fabricate}. 
-As one of our most important findings, \textit{emulating vulnerability, not emulating the environment} is a common failure behavior for most of current frontier models.
+Our evaluation exposes a failure behavior that, to our knowledge, has not been isolated in prior benchmarking: when rehosting becomes difficult, agents do not report failure---they \emph{substitute}. 
 %
-When rehosting is difficult, agents produce substitutes such as Python mock servers or synthetic C programs that crash. 
+They produce Python mock servers or synthetic C harnesses that crash in the expected way, and wrap them in coherent reports with valid exploit syntax and convincing crash traces. 
 %
-\sys{} uses non-binary, evidence-grounded scoring across six stages with real-target gating for rehosting and triggering.
+In short, the vulnerability is being emulated, but the environment is not. 
+%
+\sys{} addresses this with non-binary, evidence-grounded scoring across six dependent stages and explicit real-target gating at the rehosting and triggering stages, so that a simulated reproduction can be detected. 
+%
+%Across 450 runs, 69.8\% exhibit simulation substitution, while only 4.7\% of %CVE--model pairs achieve real-target vulnerability triggering---a distinction %that binary, post-environment scoring would erase entirely.
 
-% 贡献
+
 Our contributions are as follows:
 \begin{itemize}
-\item We formulate CVE-only vulnerability reproduction as a from-scratch, long-horizon LLM agent benchmark.
-\item We construct a 30-CVE public-evidence dataset balanced across buffer overflow, command injection, and authentication bypass.
-\item We propose an evidence-grounded scoring framework with real-target gating across six dependent stages.
-%%\item We evaluate 450 runs: agents average 50.1/100 overall, but only 4.7\% achieve real-target triggering; 69.8\% involve simulation substitution.
+
+\item We formulate \emph{CVE-only} vulnerability reproduction as a from-scratch, long-horizon LLM agent task, and introduce the pre/post-environment distinction that separates \sys{} from all prior cybersecurity benchmarks.
+
+\item We carefully construct, from official CVE database, a 30-CVE public-evidence dataset balanced across buffer overflow, command injection, and authentication bypass, reported between 2020 to 2026..
+
+\item We propose an evidence-grounded, non-binary scoring framework with real-target gating across six dependent stages, jointly measuring planning and execution, rejecting simulated reproductions.
+
+\item We evaluate 450 reproduction runs (30 CVEs, 5 models, 3 trials) and find a dominant, previously unreported failure mode---\emph{simulation substitution} (69.8\% of runs)---showing that real-target triggering remains near-insurmountable (4.7\%).
+
 \end{itemize}
+
