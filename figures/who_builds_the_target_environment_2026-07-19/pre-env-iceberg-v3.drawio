@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net" modified="2026-07-19T10:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="iceberg-v3" name="Pre-env Iceberg">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="fillColor=#F7FAFC;strokeColor=none;" vertex="1" parent="1"><mxGeometry width="1600" height="900" as="geometry"/></mxCell>
+        <mxCell id="title" value="&lt;b&gt;WHAT LIES BEFORE EXPLOITATION?&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=30;fontColor=#17324D;" vertex="1" parent="1"><mxGeometry x="70" y="25" width="800" height="42" as="geometry"/></mxCell>
+        <mxCell id="subtitle" value="Most benchmarks begin when the target is already runnable. ReproBench begins with only a vulnerability identifier." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=15;fontColor=#61717F;" vertex="1" parent="1"><mxGeometry x="72" y="67" width="1050" height="25" as="geometry"/></mxCell>
+
+        <!-- Sky and ocean -->
+        <mxCell id="sky" value="" style="rounded=1;arcSize=3;fillColor=#F4F8FC;strokeColor=#D5DEE6;" vertex="1" parent="1"><mxGeometry x="50" y="115" width="1500" height="255" as="geometry"/></mxCell>
+        <mxCell id="sea" value="" style="fillColor=#B8DDF4;gradientColor=#84BEE3;gradientDirection=south;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="50" y="370" width="1500" height="420" as="geometry"/></mxCell>
+
+        <!-- Iceberg -->
+        <mxCell id="tip" value="" style="triangle;direction=north;fillColor=#E7F6FD;gradientColor=#CBE9F7;gradientDirection=south;strokeColor=#87BFD9;strokeWidth=3;" vertex="1" parent="1"><mxGeometry x="610" y="155" width="420" height="215" as="geometry"/></mxCell>
+        <mxCell id="body" value="" style="shape=hexagon;perimeter=hexagonPerimeter2;fixedSize=1;direction=south;fillColor=#EAF8FE;gradientColor=#B8DDF0;gradientDirection=south;strokeColor=#70ADD0;strokeWidth=3;" vertex="1" parent="1"><mxGeometry x="300" y="345" width="950" height="430" as="geometry"/></mxCell>
+
+        <!-- Waterline over iceberg -->
+        <mxCell id="waterline" value="" style="fillColor=#2587C6;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="50" y="367" width="1500" height="7" as="geometry"/></mxCell>
+        <mxCell id="envBoundary" value="&lt;font style=&quot;font-size:11px;color:#9DE4BC&quot;&gt;&lt;b&gt;ENVIRONMENT-READY BOUNDARY&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;RUNNABLE TARGET EXISTS&lt;/b&gt;" style="rounded=1;arcSize=50;fillColor=#17324D;strokeColor=#17324D;fontColor=#FFFFFF;fontFamily=Helvetica;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="570" y="343" width="510" height="54" as="geometry"/></mxCell>
+
+        <!-- PRE/POST labels -->
+        <mxCell id="post" value="&lt;b&gt;POST-ENV&lt;/b&gt;" style="rounded=1;arcSize=50;fillColor=#FFE2E2;strokeColor=#D94747;fontColor=#B43838;fontFamily=Helvetica;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="92" y="165" width="220" height="42" as="geometry"/></mxCell>
+        <mxCell id="postDetail" value="Operate on a ready target" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#B43838;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="92" y="208" width="220" height="30" as="geometry"/></mxCell>
+        <mxCell id="pre" value="&lt;b&gt;PRE-ENV&lt;/b&gt;" style="rounded=1;arcSize=50;fillColor=#DDEBFF;strokeColor=#2F6FED;fontColor=#2F6FED;fontFamily=Helvetica;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="92" y="435" width="220" height="42" as="geometry"/></mxCell>
+        <mxCell id="preDetail" value="Recover a runnable target" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#244F9E;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="92" y="478" width="220" height="30" as="geometry"/></mxCell>
+
+        <!-- Exploitation tip -->
+        <mxCell id="exploit" value="&lt;font style=&quot;font-size:30px&quot;&gt;⚡&lt;/font&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;EXPLOIT / PoC&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Trigger vulnerability · Collect evidence&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#FFF0F0;strokeColor=#D94747;strokeWidth=3;fontColor=#B43838;fontFamily=Helvetica;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="705" y="218" width="242" height="95" as="geometry"/></mxCell>
+
+        <!-- Submerged lifecycle -->
+        <mxCell id="lifeArrow" value="" style="endArrow=block;endFill=1;startArrow=none;strokeColor=#2F6FED;strokeWidth=4;dashed=1;dashPattern=7 7;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="800" y="695" as="sourcePoint"/><mxPoint x="800" y="420" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="cve" value="&lt;b&gt;CVE-XXXX&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;bare identifier&lt;/font&gt;" style="rounded=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#2F6FED;strokeWidth=2;fontColor=#244F9E;fontFamily=Helvetica;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="690" y="672" width="220" height="55" as="geometry"/></mxCell>
+        <mxCell id="product" value="&lt;b&gt;Affected product &amp;amp; version&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;identify the real target&lt;/font&gt;" style="rounded=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#2F6FED;strokeWidth=2;fontColor=#17324D;fontFamily=Helvetica;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="650" y="590" width="300" height="55" as="geometry"/></mxCell>
+        <mxCell id="artifact" value="&lt;b&gt;Firmware / artifact&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;locate and acquire&lt;/font&gt;" style="rounded=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#2F6FED;strokeWidth=2;fontColor=#17324D;fontFamily=Helvetica;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="650" y="510" width="300" height="55" as="geometry"/></mxCell>
+        <mxCell id="components" value="&lt;b&gt;RootFS · binary · libraries · config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;extract, identify, and rehost&lt;/font&gt;" style="rounded=1;arcSize=15;fillColor=#FFFFFF;strokeColor=#2F6FED;strokeWidth=2;fontColor=#17324D;fontFamily=Helvetica;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="620" y="430" width="360" height="55" as="geometry"/></mxCell>
+
+        <!-- Start markers and callouts -->
+        <mxCell id="priorDot" value="" style="ellipse;fillColor=#6C7985;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="1083" y="358" width="24" height="24" as="geometry"/></mxCell>
+        <mxCell id="priorLine" value="" style="endArrow=none;startArrow=none;strokeColor=#6C7985;strokeWidth=3;orthogonalLoop=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1095" y="358" as="sourcePoint"/><mxPoint x="1168" y="280" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="priorCallout" value="&lt;b&gt;PRIOR BENCHMARKS START HERE&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Repository / binary / container is ready&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#EDF0F3;strokeColor=#8A97A3;strokeWidth=2;fontColor=#566471;fontFamily=Helvetica;fontSize=13;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="1168" y="247" width="310" height="66" as="geometry"/></mxCell>
+        <mxCell id="reproDot" value="" style="ellipse;fillColor=#2F6FED;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="1043" y="687" width="24" height="24" as="geometry"/></mxCell>
+        <mxCell id="reproLine" value="" style="endArrow=none;startArrow=none;strokeColor=#2F6FED;strokeWidth=3;orthogonalLoop=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1055" y="687" as="sourcePoint"/><mxPoint x="1168" y="616" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="reproCallout" value="&lt;b&gt;REPROBENCH STARTS HERE&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Only a CVE identifier is given&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#E5EFFF;strokeColor=#2F6FED;strokeWidth=2;fontColor=#244F9E;fontFamily=Helvetica;fontSize=13;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="1168" y="585" width="310" height="62" as="geometry"/></mxCell>
+
+        <!-- Scope brackets -->
+        <mxCell id="priorBracket" value="PRIOR SCOPE" style="shape=brace;direction=west;fillColor=none;strokeColor=#6C7985;strokeWidth=3;fontColor=#566471;fontFamily=Helvetica;fontSize=11;fontStyle=1;rotation=270;" vertex="1" parent="1"><mxGeometry x="1475" y="208" width="55" height="162" as="geometry"/></mxCell>
+        <mxCell id="reproBracket" value="REPROBENCH SCOPE" style="shape=brace;direction=west;fillColor=none;strokeColor=#2F6FED;strokeWidth=3;fontColor=#2F6FED;fontFamily=Helvetica;fontSize=11;fontStyle=1;rotation=270;" vertex="1" parent="1"><mxGeometry x="1525" y="208" width="55" height="519" as="geometry"/></mxCell>
+
+        <mxCell id="footer" value="&lt;b&gt;MOST BENCHMARKS EVALUATE THE TIP. REPROBENCH EVALUATES THE PATH THAT MAKES IT POSSIBLE.&lt;/b&gt;" style="rounded=1;arcSize=7;fillColor=#17324D;strokeColor=#17324D;fontColor=#FFFFFF;fontFamily=Helvetica;fontSize=16;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="175" y="818" width="1250" height="52" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

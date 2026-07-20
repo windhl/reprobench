@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="960" viewBox="0 0 1700 960">
+  <defs>
+    <marker id="arrNavy" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0 0L0 8L11 4Z" fill="#17324D"/></marker>
+    <marker id="arrBlue" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0 0L0 8L11 4Z" fill="#2F6FED"/></marker>
+    <marker id="arrRed" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0 0L0 8L11 4Z" fill="#D94747"/></marker>
+    <marker id="arrGreen" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0 0L0 8L11 4Z" fill="#21A35B"/></marker>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#17324D" flood-opacity=".17"/></filter>
+    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#CDD4DB" stroke-width="4"/></pattern>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif}.navy{fill:#17324D}.muted{fill:#65727E}.blue{fill:#2F6FED}.orange{fill:#E69F00}.green{fill:#167342}.red{fill:#A93232}.white{fill:#fff}.center{text-anchor:middle}.bold{font-weight:700}.caps{font-weight:800;letter-spacing:.7px}.tiny{font-size:11px}.small{font-size:13px}
+    </style>
+  </defs>
+
+  <rect width="1700" height="960" fill="#F7F9FC"/>
+  <text x="70" y="58" class="navy caps" font-size="31">WHO BUILDS THE TARGET ENVIRONMENT?</text>
+  <text x="72" y="87" class="muted" font-size="15">The environment can be a provided input — or an evaluated part of the cybersecurity task.</text>
+
+  <!-- TOP: GIVEN -->
+  <rect x="48" y="112" width="1604" height="330" rx="18" fill="#fff" stroke="#CAD3DC" stroke-width="2"/>
+  <circle cx="87" cy="151" r="19" fill="#6C7985"/><text x="87" y="158" class="white center bold" font-size="18">a</text>
+  <text x="122" y="158" class="navy bold" font-size="22">Existing benchmarks</text>
+  <rect x="1280" y="132" width="310" height="38" rx="19" fill="#EDF0F3" stroke="#A8B1BA"/>
+  <text x="1435" y="157" class="center caps" fill="#566471" font-size="12">ENVIRONMENT = PROVIDED INPUT</text>
+
+  <!-- off-stage area -->
+  <path d="M75 188H870V405H75Z" fill="#F0F2F4"/>
+  <path d="M75 188H870V405H75Z" fill="url(#hatch)" opacity=".22"/>
+  <path d="M75 188H870V405H75Z" fill="none" stroke="#A5AFB8" stroke-width="2" stroke-dasharray="9 7"/>
+  <rect x="96" y="202" width="360" height="31" rx="15" fill="#E1E5E9"/>
+  <text x="276" y="223" class="center caps" fill="#65727E" font-size="12">HUMAN SETUP · OUTSIDE EVALUATION</text>
+
+  <!-- maintainer figure with actual carrying arms -->
+  <circle cx="195" cy="278" r="32" fill="#8B98A4" stroke="#5F6D79" stroke-width="3"/>
+  <path d="M145 400V338C145 309 165 296 195 296s50 13 50 42v62Z" fill="#8B98A4" stroke="#5F6D79" stroke-width="3"/>
+  <path d="M165 263q30-28 60 0v-10q-5-31-30-31t-30 31Z" fill="#65727E"/>
+  <line x1="242" y1="326" x2="390" y2="307" stroke="#8B98A4" stroke-width="25" stroke-linecap="round"/>
+  <line x1="235" y1="356" x2="392" y2="352" stroke="#8B98A4" stroke-width="25" stroke-linecap="round"/>
+  <circle cx="398" cy="306" r="15" fill="#B3BDC5" stroke="#65727E" stroke-width="2"/>
+  <circle cx="398" cy="352" r="15" fill="#B3BDC5" stroke="#65727E" stroke-width="2"/>
+  <text x="195" y="423" class="center small bold" fill="#596673">Benchmark maintainer</text>
+
+  <!-- fully assembled target being handed over -->
+  <g filter="url(#shadow)">
+    <rect x="392" y="244" width="322" height="132" rx="14" fill="#E2F5E9" stroke="#1F9D58" stroke-width="4"/>
+  </g>
+  <rect x="416" y="264" width="72" height="91" rx="7" fill="#fff" stroke="#1F9D58" stroke-width="2"/>
+  <g fill="#EAF8EF" stroke="#1F9D58" stroke-width="2"><rect x="427" y="276" width="50" height="18" rx="4"/><rect x="427" y="301" width="50" height="18" rx="4"/><rect x="427" y="326" width="50" height="18" rx="4"/></g>
+  <g fill="#1F9D58"><circle cx="437" cy="285" r="4"/><circle cx="437" cy="310" r="4"/><circle cx="437" cy="335" r="4"/></g>
+  <text x="510" y="280" class="green caps" font-size="17">RUNNING TARGET</text>
+  <text x="510" y="307" class="green small">Service online</text><text x="510" y="328" class="green small">Dependencies configured</text><text x="510" y="349" class="green small">Vulnerable firmware loaded</text>
+  <g transform="rotate(-11 650 243)"><rect x="596" y="222" width="108" height="42" rx="7" fill="#fff" stroke="#65727E" stroke-width="2"/><text x="650" y="249" class="center caps" fill="#596673" font-size="15">GIVEN</text></g>
+
+  <!-- physical handover arrow and start gate -->
+  <line x1="728" y1="310" x2="932" y2="310" stroke="#65727E" stroke-width="9" stroke-linecap="round" marker-end="url(#arrNavy)"/>
+  <text x="824" y="290" class="center caps" fill="#596673" font-size="12">HANDED TO THE AGENT</text>
+  <line x1="940" y1="184" x2="940" y2="425" stroke="#17324D" stroke-width="6"/>
+  <path d="M940 186h62l-15 16 15 16h-62Z" fill="#17324D"/>
+  <text x="970" y="208" class="white center caps" font-size="10">START</text>
+  <g transform="rotate(-90 958 315)"><text x="958" y="319" class="center caps navy" font-size="11">BENCHMARK BEGINS HERE</text></g>
+
+  <!-- agent receives; clear reaching arm -->
+  <rect x="1050" y="240" width="116" height="82" rx="20" fill="#DDE9FF" stroke="#2F6FED" stroke-width="3"/>
+  <circle cx="1085" cy="277" r="7" fill="#2F6FED"/><circle cx="1131" cy="277" r="7" fill="#2F6FED"/>
+  <path d="M1085 300q23 13 46 0" fill="none" stroke="#2F6FED" stroke-width="4" stroke-linecap="round"/>
+  <line x1="1108" y1="240" x2="1108" y2="221" stroke="#2F6FED" stroke-width="3"/><circle cx="1108" cy="216" r="6" fill="#2F6FED"/>
+  <rect x="1062" y="329" width="92" height="70" rx="16" fill="#2F6FED" stroke="#204FAE" stroke-width="3"/>
+  <line x1="1068" y1="345" x2="984" y2="318" stroke="#2F6FED" stroke-width="24" stroke-linecap="round"/><circle cx="977" cy="316" r="15" fill="#7EA7F8" stroke="#204FAE" stroke-width="2"/>
+  <text x="1108" y="419" class="center blue bold" font-size="13">Agent receives a ready target</text>
+
+  <!-- exploit outcome -->
+  <path d="M1178 308h104" stroke="#D94747" stroke-width="6" marker-end="url(#arrRed)"/>
+  <path d="M1230 282l-18 34h18l-13 33 41-48h-20l14-19Z" fill="#D94747"/>
+  <rect x="1305" y="238" width="265" height="142" rx="16" fill="#FFF0F0" stroke="#D94747" stroke-width="3"/>
+  <circle cx="1362" cy="290" r="29" fill="#D94747"/><path d="M1347 290l11 11 21-25" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1410" y="278" class="red caps" font-size="16">EXPLOIT</text><text x="1410" y="303" class="red caps" font-size="16">EVIDENCE</text><text x="1410" y="335" class="red small">Only this part is scored</text>
+  <rect x="1000" y="391" width="570" height="31" rx="15" fill="#DDE9FF"/><text x="1285" y="412" class="center blue caps" font-size="12">EVALUATED</text>
+
+  <!-- BOTTOM: BUILT -->
+  <rect x="48" y="470" width="1604" height="412" rx="18" fill="#fff" stroke="#2F6FED" stroke-width="3"/>
+  <circle cx="87" cy="509" r="19" fill="#2F6FED"/><text x="87" y="516" class="white center bold" font-size="18">b</text>
+  <text x="122" y="516" class="navy bold" font-size="22">ReproBench</text>
+  <rect x="1235" y="490" width="355" height="38" rx="19" fill="#FFF0CC" stroke="#E69F00"/>
+  <text x="1412" y="515" class="center caps" fill="#8A5C00" font-size="12">ENVIRONMENT CREATION = EVALUATED TASK</text>
+
+  <!-- agent builder at workbench -->
+  <rect x="94" y="572" width="106" height="76" rx="18" fill="#DDE9FF" stroke="#2F6FED" stroke-width="3"/>
+  <circle cx="126" cy="606" r="7" fill="#2F6FED"/><circle cx="168" cy="606" r="7" fill="#2F6FED"/><path d="M127 628q20 12 40 0" fill="none" stroke="#2F6FED" stroke-width="4" stroke-linecap="round"/>
+  <line x1="147" y1="572" x2="147" y2="554" stroke="#2F6FED" stroke-width="3"/><circle cx="147" cy="549" r="6" fill="#2F6FED"/>
+  <rect x="105" y="655" width="84" height="70" rx="14" fill="#2F6FED" stroke="#204FAE" stroke-width="3"/>
+  <line x1="182" y1="670" x2="323" y2="630" stroke="#2F6FED" stroke-width="23" stroke-linecap="round"/><circle cx="328" cy="629" r="14" fill="#7EA7F8" stroke="#204FAE" stroke-width="2"/>
+  <line x1="112" y1="676" x2="251" y2="715" stroke="#2F6FED" stroke-width="23" stroke-linecap="round"/><circle cx="255" cy="716" r="14" fill="#7EA7F8" stroke="#204FAE" stroke-width="2"/>
+  <text x="147" y="752" class="center blue caps" font-size="12">AGENT BUILDER</text>
+
+  <!-- CVE input in agent hand -->
+  <path d="M215 565h108v86h-108Z" fill="#fff" stroke="#2F6FED" stroke-width="2"/><path d="M294 565l29 29h-29Z" fill="#DDE9FF" stroke="#2F6FED" stroke-width="2"/>
+  <text x="269" y="606" class="center blue caps" font-size="13">CVE</text><text x="269" y="625" class="center tiny" fill="#244F9E">description</text>
+  <path d="M272 651l-9 18h18Z" fill="#2F6FED"/>
+  <text x="269" y="690" class="center tiny bold" fill="#244F9E">ONLY STARTING INPUT</text>
+
+  <!-- workbench -->
+  <rect x="350" y="714" width="715" height="32" rx="6" fill="#8A5C00"/>
+  <rect x="390" y="746" width="25" height="88" fill="#8A5C00"/><rect x="1000" y="746" width="25" height="88" fill="#8A5C00"/>
+  <rect x="365" y="697" width="685" height="20" rx="5" fill="#E69F00"/>
+  <text x="707" y="823" class="center caps" fill="#8A5C00" font-size="12">ENVIRONMENT-ASSEMBLY WORKBENCH</text>
+
+  <!-- firmware crate -->
+  <rect x="374" y="619" width="150" height="78" rx="9" fill="#FFF0CC" stroke="#E69F00" stroke-width="3"/><rect x="393" y="601" width="74" height="24" rx="6" fill="#FFE09A" stroke="#E69F00" stroke-width="2"/>
+  <text x="449" y="654" class="center orange caps" font-size="13">FIRMWARE</text><text x="449" y="676" class="center tiny" fill="#8A5C00">vendor image</text>
+
+  <!-- exploded components flying into half-built target -->
+  <g font-size="11" text-anchor="middle" fill="#8A5C00">
+    <rect x="552" y="558" width="102" height="38" rx="8" fill="#fff" stroke="#E69F00" stroke-width="2"/><text x="603" y="582">rootfs</text>
+    <rect x="680" y="535" width="102" height="38" rx="8" fill="#fff" stroke="#E69F00" stroke-width="2"/><text x="731" y="559">httpd</text>
+    <rect x="570" y="626" width="122" height="38" rx="8" fill="#fff" stroke="#E69F00" stroke-width="2"/><text x="631" y="650">libnvram.so</text>
+    <rect x="714" y="607" width="102" height="38" rx="8" fill="#fff" stroke="#E69F00" stroke-width="2"/><text x="765" y="631">config</text>
+  </g>
+  <path d="M654 578l85 45M782 558l-10 61M692 645l50 15M816 626l-30 32" stroke="#E69F00" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#arrGreen)"/>
+  <path d="M625 604q35-28 70 0" fill="none" stroke="#2F6FED" stroke-width="3"/><circle cx="625" cy="604" r="5" fill="#2F6FED"/><circle cx="695" cy="604" r="5" fill="#2F6FED"/>
+
+  <!-- half-built target cabinet on bench -->
+  <rect x="830" y="572" width="190" height="125" rx="12" fill="#F5FFF8" stroke="#1F9D58" stroke-width="4"/>
+  <rect x="850" y="592" width="57" height="84" rx="6" fill="#fff" stroke="#1F9D58" stroke-width="2"/>
+  <rect x="860" y="604" width="37" height="16" rx="3" fill="#EAF8EF" stroke="#1F9D58"/><rect x="860" y="629" width="37" height="16" rx="3" fill="#fff" stroke="#A9CDB8" stroke-dasharray="4 3"/><rect x="860" y="654" width="37" height="16" rx="3" fill="#fff" stroke="#A9CDB8" stroke-dasharray="4 3"/>
+  <circle cx="867" cy="612" r="3" fill="#1F9D58"/>
+  <text x="924" y="612" class="green caps" font-size="13">TARGET</text><text x="924" y="635" class="green tiny">being assembled</text>
+  <path d="M930 650h56M930 666h43" stroke="#9AC9AD" stroke-width="5" stroke-linecap="round"/>
+  <path d="M335 625l-28 10 20 19-12 31 45-31-22-15Z" fill="#E69F00"/>
+  <text x="968" y="558" class="center" fill="#E69F00" font-size="35">⚙</text>
+
+  <!-- build transformation -->
+  <line x1="1056" y1="637" x2="1160" y2="637" stroke="#21A35B" stroke-width="8" stroke-linecap="round" marker-end="url(#arrGreen)"/>
+  <text x="1107" y="615" class="center caps green" font-size="12">BOOT</text>
+
+  <!-- same completed target -->
+  <g filter="url(#shadow)"><rect x="1175" y="570" width="250" height="135" rx="14" fill="#E2F5E9" stroke="#1F9D58" stroke-width="4"/></g>
+  <rect x="1195" y="591" width="65" height="92" rx="7" fill="#fff" stroke="#1F9D58" stroke-width="2"/>
+  <g fill="#EAF8EF" stroke="#1F9D58" stroke-width="2"><rect x="1205" y="603" width="45" height="18" rx="4"/><rect x="1205" y="628" width="45" height="18" rx="4"/><rect x="1205" y="653" width="45" height="18" rx="4"/></g>
+  <g fill="#1F9D58"><circle cx="1215" cy="612" r="4"/><circle cx="1215" cy="637" r="4"/><circle cx="1215" cy="662" r="4"/></g>
+  <text x="1276" y="610" class="green caps" font-size="15">RUNNING</text><text x="1276" y="631" class="green caps" font-size="15">TARGET</text><text x="1276" y="658" class="green tiny">same ready state</text>
+  <g transform="rotate(-11 1370 570)"><rect x="1318" y="549" width="104" height="42" rx="7" fill="#fff" stroke="#E69F00" stroke-width="2"/><text x="1370" y="576" class="center caps" fill="#8A5C00" font-size="15">BUILT</text></g>
+
+  <!-- same exploit outcome -->
+  <line x1="1428" y1="637" x2="1470" y2="637" stroke="#D94747" stroke-width="6" marker-end="url(#arrRed)"/>
+  <path d="M1443 606l-15 29h16l-12 29 37-42h-18l13-16Z" fill="#D94747"/>
+  <rect x="1490" y="574" width="115" height="125" rx="14" fill="#FFF0F0" stroke="#D94747" stroke-width="3"/>
+  <circle cx="1547" cy="615" r="24" fill="#D94747"/><path d="M1535 615l9 9 17-20" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1547" y="659" class="center red caps" font-size="12">EXPLOIT</text><text x="1547" y="677" class="center red caps" font-size="12">EVIDENCE</text>
+
+  <!-- full evaluation bracket -->
+  <path d="M90 790v34h1515v-34" fill="none" stroke="#2F6FED" stroke-width="3"/>
+  <rect x="445" y="804" width="805" height="40" rx="20" fill="#DDE9FF" stroke="#2F6FED"/>
+  <text x="847" y="830" class="center blue caps" font-size="13">AGENT RESPONSIBILITY · ENVIRONMENT CONSTRUCTION IS SCORED</text>
+
+  <!-- takeaway -->
+  <rect x="180" y="900" width="1340" height="46" rx="10" fill="#17324D"/>
+  <text x="850" y="929" class="center white caps" font-size="16">OTHERS START WITH THE TARGET.  REPROBENCH STARTS WITH THE VULNERABILITY DESCRIPTION.</text>
+</svg>

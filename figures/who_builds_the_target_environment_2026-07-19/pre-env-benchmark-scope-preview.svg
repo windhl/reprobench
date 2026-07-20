@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="920" viewBox="0 0 1700 920">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#2F6FED"/></marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#E69F00"/></marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#8A97A3"/></marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#D84A4A"/></marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#259B57"/></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#17324D" flood-opacity="0.16"/></filter>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif}.navy{fill:#17324D}.muted{fill:#5D6B78}.small{font-size:12px}.tiny{font-size:10px}.label{font-size:13px;font-weight:700;letter-spacing:.3px}.panelTitle{font-size:21px;font-weight:700}.center{text-anchor:middle}.white{fill:#fff}
+    </style>
+  </defs>
+
+  <rect width="1700" height="920" fill="#F8FAFC"/>
+  <text x="70" y="58" class="navy" font-size="30" font-weight="800">WHO BUILDS THE TARGET ENVIRONMENT?</text>
+  <text x="72" y="86" class="muted" font-size="15">The same cybersecurity outcome — but a fundamentally different benchmark starting point</text>
+  <rect x="1098" y="38" width="300" height="40" rx="20" fill="#17324D"/>
+  <text x="1248" y="63" class="white center label">A RUNNABLE TARGET NOW EXISTS</text>
+  <line x1="1248" y1="78" x2="1248" y2="110" stroke="#17324D" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- Panel A -->
+  <rect x="50" y="112" width="1600" height="300" rx="14" fill="#fff" stroke="#CBD5DF" stroke-width="2"/>
+  <circle cx="93" cy="150" r="18" fill="#697784"/><text x="93" y="156" class="white center" font-size="18" font-weight="700">a</text>
+  <text x="125" y="158" class="navy panelTitle">Benchmarks compared in Table X</text>
+  <rect x="1370" y="132" width="230" height="34" rx="17" fill="#EDF0F3" stroke="#A7B0B8"/>
+  <text x="1485" y="154" class="center label" fill="#596673">ENVIRONMENT = INPUT</text>
+
+  <rect x="82" y="184" width="970" height="170" rx="12" fill="#F1F3F5" stroke="#A7B0B8" stroke-width="2" stroke-dasharray="9 7"/>
+  <text x="105" y="218" fill="#697784" font-size="15" font-weight="700">OFF-STAGE SETUP</text>
+  <text x="105" y="238" fill="#697784" font-size="12">performed by benchmark maintainers — hidden and unscored</text>
+
+  <!-- maintainer -->
+  <circle cx="166" cy="274" r="21" fill="#8A97A3" stroke="#65727E" stroke-width="2"/>
+  <path d="M132 343v-20c0-19 15-27 34-27s34 8 34 27v20z" fill="#8A97A3" stroke="#65727E" stroke-width="2"/>
+  <text x="166" y="367" class="center small" fill="#596673" font-weight="700">Maintainer</text>
+  <text x="245" y="315" class="center" fill="#697784" font-size="40">⚙</text>
+
+  <!-- offstage parts -->
+  <g font-size="11" text-anchor="middle" fill="#697784">
+    <rect x="325" y="257" width="85" height="38" rx="8" fill="#fff" stroke="#A7B0B8"/><text x="367" y="281">rootfs</text>
+    <rect x="425" y="257" width="85" height="38" rx="8" fill="#fff" stroke="#A7B0B8"/><text x="467" y="281">binary</text>
+    <rect x="375" y="307" width="85" height="38" rx="8" fill="#fff" stroke="#A7B0B8"/><text x="417" y="331">libs</text>
+  </g>
+  <line x1="520" y1="300" x2="917" y2="300" stroke="#8A97A3" stroke-width="3" marker-end="url(#arrowGray)"/>
+  <rect x="635" y="282" width="180" height="23" rx="11" fill="#F1F3F5"/><text x="725" y="298" class="center small" fill="#697784">assembled for the agent</text>
+
+  <!-- target A -->
+  <g filter="url(#shadow)"><rect x="930" y="215" width="300" height="135" rx="12" fill="#E4F6EA" stroke="#259B57" stroke-width="3"/></g>
+  <g fill="#fff" stroke="#259B57" stroke-width="2">
+    <rect x="952" y="235" width="52" height="25" rx="5"/><rect x="952" y="269" width="52" height="25" rx="5"/><rect x="952" y="303" width="52" height="25" rx="5"/>
+  </g>
+  <g fill="#25A55F"><circle cx="966" cy="247" r="5"/><circle cx="966" cy="281" r="5"/><circle cx="966" cy="315" r="5"/></g>
+  <text x="1018" y="253" fill="#176D3C" font-size="17" font-weight="800">RUNNING TARGET</text>
+  <text x="1018" y="279" fill="#35644B" class="small">VM / container ready</text><text x="1018" y="298" fill="#35644B" class="small">Service reachable</text><text x="1018" y="317" fill="#35644B" class="small">Dependencies configured</text>
+  <g transform="rotate(-12 942 208)"><rect x="890" y="189" width="105" height="37" rx="7" fill="#fff" stroke="#697784" stroke-width="2"/><text x="942" y="214" class="center label" fill="#596673">GIVEN</text></g>
+
+  <!-- gate -->
+  <rect x="1246" y="178" width="5" height="625" fill="#17324D"/>
+  <g transform="rotate(-90 1270 277)"><text x="1270" y="281" class="center tiny navy" font-weight="800">BENCHMARK START</text></g>
+
+  <!-- A evaluated action -->
+  <line x1="1232" y1="277" x2="1294" y2="277" stroke="#2F6FED" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <rect x="1305" y="225" width="145" height="105" rx="12" fill="#E5EFFF" stroke="#2F6FED" stroke-width="2"/>
+  <text x="1377" y="267" class="center" fill="#244F9E" font-size="15" font-weight="800">AGENT</text><text x="1377" y="290" class="center small" fill="#244F9E">trigger &amp; verify</text>
+  <line x1="1452" y1="277" x2="1488" y2="277" stroke="#D84A4A" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <rect x="1500" y="225" width="110" height="105" rx="12" fill="#FDEBEC" stroke="#D84A4A" stroke-width="2"/>
+  <text x="1555" y="269" class="center" fill="#A83232" font-size="27" font-weight="800">✓</text><text x="1555" y="296" class="center small" fill="#A83232">Exploit evidence</text>
+  <rect x="310" y="368" width="410" height="28" rx="14" fill="#E7EAED"/><text x="515" y="387" class="center label" fill="#697784">✕  ENVIRONMENT CONSTRUCTION NOT EVALUATED</text>
+  <rect x="1325" y="368" width="230" height="28" rx="14" fill="#DDEBFF"/><text x="1440" y="387" class="center label" fill="#244F9E">✓  EVALUATED</text>
+
+  <!-- Panel B -->
+  <rect x="50" y="435" width="1600" height="385" rx="14" fill="#fff" stroke="#2F6FED" stroke-width="3"/>
+  <circle cx="93" cy="473" r="18" fill="#2F6FED"/><text x="93" y="479" class="white center" font-size="18" font-weight="700">b</text>
+  <text x="125" y="481" class="navy panelTitle">ReproBench</text>
+  <rect x="1330" y="455" width="270" height="34" rx="17" fill="#FFF0CC" stroke="#E69F00"/><text x="1465" y="477" class="center label" fill="#9A6500">ENVIRONMENT CREATION = TASK</text>
+
+  <!-- Agent B -->
+  <circle cx="107" cy="572" r="24" fill="#2F6FED" stroke="#244F9E" stroke-width="2"/><path d="M69 650v-20c0-22 17-30 38-30s38 8 38 30v20z" fill="#2F6FED" stroke="#244F9E" stroke-width="2"/>
+  <text x="107" y="677" class="center label" fill="#244F9E">AGENT</text><text x="107" y="694" class="center tiny" fill="#244F9E">starts here</text>
+
+  <!-- B flow -->
+  <path d="M185 545h145v92c0 10-8 18-18 18H203c-10 0-18-8-18-18z" fill="#fff" stroke="#2F6FED" stroke-width="2"/><path d="M290 545l40 40h-40z" fill="#DDEBFF" stroke="#2F6FED" stroke-width="2"/>
+  <text x="257" y="595" class="center" fill="#244F9E" font-size="14" font-weight="800">CVE-XXXX</text><text x="257" y="617" class="center tiny" fill="#244F9E">public advisory</text>
+  <rect x="205" y="672" width="105" height="24" rx="12" fill="#E5EFFF"/><text x="257" y="688" class="center tiny" fill="#244F9E" font-weight="800">R1 · GROUND</text>
+  <line x1="146" y1="610" x2="174" y2="610" stroke="#2F6FED" stroke-width="3" marker-end="url(#arrowBlue)"/>
+
+  <rect x="390" y="555" width="145" height="95" rx="9" fill="#FFF0CC" stroke="#E69F00" stroke-width="2"/><rect x="405" y="538" width="70" height="25" rx="7" fill="#FFE19A" stroke="#E69F00" stroke-width="2"/>
+  <text x="462" y="598" class="center" fill="#8A5C00" font-size="14" font-weight="800">FIRMWARE</text><text x="462" y="620" class="center tiny" fill="#8A5C00">vendor image</text>
+  <rect x="407" y="672" width="112" height="24" rx="12" fill="#FFF0CC"/><text x="463" y="688" class="center tiny" fill="#8A5C00" font-weight="800">R2 · ACQUIRE</text>
+  <line x1="332" y1="600" x2="378" y2="600" stroke="#E69F00" stroke-width="3" marker-end="url(#arrowOrange)"/><text x="355" y="584" class="center tiny" fill="#8A5C00">download</text>
+
+  <rect x="600" y="520" width="275" height="150" rx="10" fill="#FFF9EA" stroke="#E69F00" stroke-width="2" stroke-dasharray="7 5"/><text x="737" y="546" class="center label" fill="#9A6500">TARGET PARTS</text>
+  <g font-size="11" text-anchor="middle" fill="#8A5C00">
+    <rect x="620" y="560" width="90" height="38" rx="8" fill="#fff" stroke="#E69F00"/><text x="665" y="584">rootfs</text>
+    <rect x="720" y="550" width="90" height="38" rx="8" fill="#fff" stroke="#E69F00"/><text x="765" y="574">binary</text>
+    <rect x="760" y="605" width="90" height="38" rx="8" fill="#fff" stroke="#E69F00"/><text x="805" y="629">.so libs</text>
+    <rect x="655" y="615" width="90" height="38" rx="8" fill="#fff" stroke="#E69F00"/><text x="700" y="639">config</text>
+  </g>
+  <rect x="637" y="684" width="200" height="24" rx="12" fill="#FFF0CC"/><text x="737" y="700" class="center tiny" fill="#8A5C00" font-weight="800">R3–R4 · EXTRACT &amp; IDENTIFY</text>
+  <line x1="537" y1="600" x2="588" y2="600" stroke="#E69F00" stroke-width="3" marker-end="url(#arrowOrange)"/><text x="562" y="584" class="center tiny" fill="#8A5C00">unpack</text>
+
+  <rect x="925" y="545" width="195" height="115" rx="10" fill="#FFF0CC" stroke="#E69F00" stroke-width="3"/><text x="1022" y="583" class="center" fill="#8A5C00" font-size="15" font-weight="800">REHOST</text><text x="1022" y="608" class="center tiny" fill="#8A5C00">emulation · dependencies</text><text x="1022" y="626" class="center tiny" fill="#8A5C00">NVRAM · network</text><text x="923" y="550" class="center" fill="#E69F00" font-size="36">⚙</text>
+  <rect x="942" y="684" width="165" height="24" rx="12" fill="#FFF0CC"/><text x="1024" y="700" class="center tiny" fill="#8A5C00" font-weight="800">R5 · BUILD ENVIRONMENT</text>
+  <line x1="877" y1="600" x2="913" y2="600" stroke="#E69F00" stroke-width="3" marker-end="url(#arrowOrange)"/><text x="895" y="584" class="center tiny" fill="#8A5C00">assemble</text>
+
+  <!-- target B -->
+  <g filter="url(#shadow)"><rect x="1165" y="535" width="245" height="135" rx="12" fill="#E4F6EA" stroke="#259B57" stroke-width="3"/></g>
+  <g fill="#fff" stroke="#259B57" stroke-width="2"><rect x="1185" y="555" width="47" height="24" rx="5"/><rect x="1185" y="587" width="47" height="24" rx="5"/><rect x="1185" y="619" width="47" height="24" rx="5"/></g>
+  <g fill="#25A55F"><circle cx="1198" cy="567" r="5"/><circle cx="1198" cy="599" r="5"/><circle cx="1198" cy="631" r="5"/></g>
+  <text x="1245" y="574" fill="#176D3C" font-size="16" font-weight="800">RUNNING TARGET</text><text x="1245" y="605" fill="#35644B" class="small">service online</text><text x="1245" y="625" fill="#35644B" class="small">real target</text>
+  <g transform="rotate(-12 1177 528)"><rect x="1125" y="510" width="105" height="37" rx="7" fill="#fff" stroke="#E69F00" stroke-width="2"/><text x="1177" y="535" class="center label" fill="#9A6500">BUILT</text></g>
+  <line x1="1122" y1="602" x2="1153" y2="602" stroke="#259B57" stroke-width="3" marker-end="url(#arrowGreen)"/><text x="1138" y="586" class="center tiny" fill="#176D3C">boot</text>
+
+  <rect x="1480" y="545" width="115" height="115" rx="12" fill="#FDEBEC" stroke="#D84A4A" stroke-width="2"/><text x="1537" y="591" class="center" fill="#A83232" font-size="27" font-weight="800">✓</text><text x="1537" y="618" class="center small" fill="#A83232">Exploit</text><text x="1537" y="636" class="center small" fill="#A83232">evidence</text>
+  <rect x="1452" y="684" width="170" height="24" rx="12" fill="#FDEBEC"/><text x="1537" y="700" class="center tiny" fill="#A83232" font-weight="800">R6 · TRIGGER &amp; VERIFY</text>
+  <line x1="1412" y1="602" x2="1468" y2="602" stroke="#D84A4A" stroke-width="3" marker-end="url(#arrowRed)"/><text x="1440" y="586" class="center tiny" fill="#A83232">payload</text>
+
+  <rect x="250" y="745" width="1170" height="42" rx="21" fill="#DDEBFF" stroke="#2F6FED"/><text x="835" y="771" class="center label" fill="#244F9E">✓  AGENT RESPONSIBILITY · ALL STAGES EVALUATED</text>
+
+  <rect x="215" y="848" width="1270" height="50" rx="10" fill="#17324D"/>
+  <text x="850" y="879" class="center white" font-size="17" font-weight="800">ReproBench evaluates environment creation as part of the cybersecurity task — not as a prerequisite.</text>
+</svg>
