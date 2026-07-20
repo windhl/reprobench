@@ -28,6 +28,41 @@
 \begin{document}
 \maketitle
 
+<<<<<<< HEAD
+=======
+% 针对安全任务，现有 Benchmark 都已提前准备好漏洞环境 -> 我们的目标：评估智能体能否从零开始、仅从CVE开始复现已知漏洞
+% 提出ReproBench: 基于公开证据的IoT漏洞从零复现评测基准
+%   漏洞数据集： 30个CVE = 10 bof + 10 cmdi + 10 ab
+%   groundtruth：公开证据档案，包括 CVE 记录、厂商安全公告、公开 PoC、安全博客等
+%   打分方法：将漏洞复现划分为六个阶段：漏洞信息收集、固件获取、固件提取、二进制文件识别、服务重新托管、漏洞触发，并从plan和task两方面打分，要求依据复现trace和产物作为支撑。
+% 实验： 450 次漏洞复现任务（30 个 CVE、5 个模型、3 次重复实验）以及对应的 450 次评分过程，通过事后人工审计验证评分结果、P5/P6 阶段的完成情况以及失败模式分析。
+% 最终目标：评估智能体能否逐步完成漏洞复现流程，并生成可审计的真实目标环境证据，评估智能体的从零开始复现漏洞能力。
+
+\begin{abstract}
+%
+Large language model (LLM) agents are increasingly evaluated on cybersecurity tasks such as vulnerability reproduction, exploitation, and patching.
+%
+However, most cybersecurity benchmarks begin after the target environment has already been prepared, i.e., handing the agent source code, a container, or an executable binary.
+%
+This post-environment setting leaves open a central question for real-world vulnerability analysis: \emph{can an agent reconstruct the missing execution environment and then reproduce a vulnerability from scratch?}
+
+%
+We introduce \sys, a public-evidence-grounded benchmark that evaluates vulnerability reproduction from only a CVE identifier. 
+%
+We instantiate the benchmark with three representative vulnerability classes---buffer overflows, command injections, and authentication bypasses---each paired with a curated collection of public evidence as ground truth.
+%
+We further propose an evidence-grounded scoring framework that decomposes reproduction process into six phases, jointly evaluates planning and execution.
+
+%
+Based on our evaluation, only 4.7\% of evaluated runs successfully reproduce the real vulnerabilities.
+%
+And 69.8\% of runs rely on simulated reproductions that never execute the target firmware, which we name this common failure mode as \emph{simulation substitution}.
+%
+\sys{} exposes the gap between textual vulnerability understanding and grounded vulnerability triggering, revealing the primary bottlenecks during the LLM-based reproduction.
+
+
+\end{abstract}
+>>>>>>> 337c0e5 (small-again abs)
 
 \input{sections/000-abstract}
 \input{sections/100-introduction}
