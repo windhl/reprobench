@@ -1,6 +1,14 @@
 \section{Background and Related Work}
 \label{sec:background}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.png}
+    \caption{Comparison Between Existing Benchmarks and \sys{}.}
+    \label{fig:iceberg}
+    \end{figure}
+    
+
 % 介绍漏洞复现的定义、流程、难点
 \subsection{Vulnerability Reproduction}
 Vulnerability reproduction is the process of demonstrating that a known vulnerability exists by producing a proof-of-concept (PoC) that triggers the expected behavior on the affected target~\cite{cybergym}. 
@@ -11,11 +19,5 @@ These steps are strictly sequential, so a early stage failure will block all dow
 \subsection{Cybersecurity Benchmarks}
 Existing cybersecurity benchmarks can be grouped by which stage of the vulnerability lifecycle they evaluate. CyberGym~\cite{cybergym}, K-Repro~\cite{krepro}, and SEC-Bench~\cite{secbench} focus on vulnerability reproduction, where the agent produces a PoC against a ready-to-run target. CVE-Bench~\cite{cvebench}, ExploitBench~\cite{exploitbench}, and ExploitGym~\cite{exploitgym} focus on exploitation, where the agent escalates a bug into a concrete security impact starting from a running service or a pre-built binary with a triggering input. CyberGym-E2E~\cite{cybergyme2e} and BountyBench~\cite{bountybench} evaluate broader pipelines spanning discover, exploit, and patch.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.png}
-\caption{Comparison Between Existing Benchmarks and \sys{}.}
-\label{fig:iceberg}
-\end{figure}
 
 As illustrated in Figure~\ref{fig:iceberg}, all of these benchmarks operate in the post-environment setting: the target is already built, containerized, or running, and the agent is scored only on what it does after that starting line. Whether the agent can perform the full from-scratch reproduction pipeline---from a CVE identifier to triggering the vulnerability on the real target---remains an open question. \sys{} explores this question by making environment construction a scored phase of the reproduction pipeline, decomposing reproduction into six phases and applying real-target gating that rejects simulated reproductions.
