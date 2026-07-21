@@ -2,23 +2,39 @@
 \subsection{Agent Execution}
 \label{sec:agent-runs}
 % agent执行：统一prompt，opencode agent，5模型×3次=450 runs
-Each agent receives the following prompt (with the CVE identifier substituted accordingly):
 
-\begin{quote}
-\small\ttfamily
-Reproduce \underline{\$CVE-Id} vulnerability following three main steps: \\
-Firstly, design a reproduction plan into a markdown file, named plan.md \\
-Secondly, reproduce the vulnerability based on the plan. \\
-Finally, conclude the reproduction to a markdown file, named report.md. \\
-Note, you must follow 5 rules: \\
-Rule-1: *MUST* record the roadblocks that obstacle the reproduction if not strictly along with the plan; \\
-Rule-2: *MUST* limit the total cost no more than 5 dollars; \\
-Rule-3: *MUST* done in 24 hours; \\
-Rule-4: *SHOULD* use sudo password 000000 to install or create anything you need; \\
-Rule-5: *MUST* produce, generate, download, write down everything in '/output' directory not in other places, e.g., '/tmp'.
-\end{quote}
+\subsubsection{Prompt-Driven Runs}
+As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template with per-case CVE identifier substitution to steer agent execution. The template comprises three parts: \textit{CVE-Providing} to assign the target CVE and enforce a three-stage (planning, execution, summarization) workflow; a workflow specification that standardizes output file naming for plans and summaries; and a rule set governing reproduction constraints, such as obstacle logging, budget/time limits, root access for tool setup, and consistent working directories.
 
-Considering the ease of model switch, we use \textit{OpenCode} as the unified agent harness for all models. Five model configurations are evaluated: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5-free}. Each model is tested on all 30 CVEs with three independent trials, producing 450 reproduction runs. For each run, we record two types of artifacts: (1) \emph{trace}---session messages and container logs capturing the agent's reasoning and execution process, and (2) \emph{workspace}---all files produced during the reproduction, including the plan, downloaded firmware, extracted filesystems, PoC scripts, debugging logs, and the final report.
+%%\begin{quote}
+%%\small\ttfamily
+%%Reproduce \underline{\$CVE-Id} vulnerability following three main steps: \\
+%%Firstly, design a reproduction plan into a markdown file, named plan.md \\
+%%Secondly, reproduce the vulnerability based on the plan. \\
+%%Finally, conclude the reproduction to a markdown file, named report.md. \\
+%%Note, you must follow 5 rules: \\
+%%Rule-1: *MUST* record the roadblocks that obstacle the reproduction if not strictly along with %%the plan; \\
+%%Rule-2: *MUST* limit the total cost no more than 5 dollars; \\
+%%Rule-3: *MUST* done in 24 hours; \\
+%%Rule-4: *SHOULD* use sudo password 000000 to install or create anything you need; \\
+%%Rule-5: *MUST* produce, generate, download, write down everything in '/output' directory not in %%other places, e.g., '/tmp'.
+%%\end{quote}
+
+\subsubsection{LLM Selection}
+To enable flexible and consistent model switching, we adopt \textit{OpenCode} as the unified agent harness across all evaluated models. We evaluate five representative model configurations: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5}. Each model is tested across all 30 CVE cases with three independent container-based trials per case, yielding a total of 450 distinct reproduction runs. For each run, we systematically collect two categories of experimental artifacts:
+
+\noindent{\textbf{Evidence-Files}}: all files generated throughout the reproduction pipeline, including the task plan, downloaded firmware images, extracted filesystems, proof-of-concept (PoC) scripts, debugging logs, and the final summary report.
+
+\noindent{\textbf{Tractory-Files}}: full session interaction messages and container runtime logs, which comprehensively capture the agent’s reasoning trajectory and step-by-step execution process.
+
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.47\textwidth]{figures/prompt.pdf}
+\caption{The prompt template for Agent Exeuction.}
+\label{fig:prompt}
+\end{figure}
 
 \subsection{Scoring Protocol}
 % best-of-three排名方式
