@@ -1,14 +1,16 @@
 """Render the ReproBench four-panel 3D phase-trajectory figure.
 
-For each CVE/model pair, select the run with the largest recomputed task score
-(P1+...+P6); ties use the smallest run id. Normalize phases by rubric maxima
-before averaging over CVEs.
+For each CVE/model pair, select the run with the largest skill-consistent task
+score (R1+...+R6); ties use the smallest run id. Normalize phases by rubric
+maxima before averaging over CVEs. Cross-check the flat summary against every
+evaluation JSON before rendering.
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import json
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -23,10 +25,24 @@ from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SUMMARY = ROOT / "reprobench" / "data" / "evaluation_summary.txt"
+def find_project_root(script_path: Path) -> Path:
+    """Find the outer workspace root from either maintained script copy."""
+    summary_tail = Path("data/reprobench/eval/evaluation/evaluation_summary.txt")
+    for candidate in (script_path.parent, *script_path.parents):
+        if (candidate / summary_tail).is_file():
+            return candidate
+    raise FileNotFoundError(
+        "Could not locate data/reprobench/eval/evaluation/evaluation_summary.txt "
+        f"above {script_path}"
+    )
+
+
+ROOT = find_project_root(Path(__file__).resolve())
+DEFAULT_EVAL_ROOT = ROOT / "data" / "reprobench" / "eval" / "evaluation"
+DEFAULT_SUMMARY = DEFAULT_EVAL_ROOT / "evaluation_summary.txt"
+DEFAULT_GROUNDTRUTH = ROOT / "data" / "reprobench" / "eval" / "repro_groundtruth"
 DEFAULT_METADATA = ROOT / "figure" / "data" / "reprobench_cve_metadata.csv"
-DEFAULT_OUTPUT_DIR = ROOT / "figure" / "results" / "3d_method_trajectories"
+DEFAULT_OUTPUT_DIR = ROOT / "reprobench" / "figures" / "3d_method_trajectories"
 
 MODELS = (
     "claude-sonnet-4-6",
@@ -57,7 +73,7 @@ COLORS = {
     "mimo-v2.5-free": "#3F7FBF",
 }
 
-PHASES = ("P1", "P2", "P3", "P4", "P5", "P6")
+PHASES = ("R1", "R2", "R3", "R4", "R5", "R6")
 PHASE_MAX = np.array((15.0, 15.0, 15.0, 15.0, 20.0, 20.0))
 PANEL_SPECS = (
     ("All CVEs", None),
@@ -66,6 +82,28 @@ PANEL_SPECS = (
     ("Authentication Bypass", "Authentication Bypass"),
 )
 WALL_ALPHA = 0.105
+
+CLASS_MARKERS = {
+    "Buffer Overflow": (
+        "buffer overflow",
+        "cwe-120",
+        "cwe-121",
+        "cwe-122",
+        "cwe-787",
+    ),
+    "Command Injection": ("command injection", "os command", "cwe-77", "cwe-78"),
+    "Authentication Bypass": (
+        "authenticat",
+        "unauthenticated",
+        "access control",
+        "cwe-284",
+        "cwe-287",
+        "cwe-288",
+        "cwe-306",
+        "cwe-798",
+        "cwe-912",
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -132,6 +170,148 @@ def read_metadata(path: Path) -> dict[str, dict[str, str]]:
     return metadata
 
 
+def _json_number(
+    value: object, label: str, default: float | None = None
+) -> float:
+    if isinstance(value, (int, float)):
+        return float(value)
+    if default is not None:
+        return float(default)
+    raise ValueError(f"Expected numeric {label}, found {value!r}")
+
+
+def validate_evaluation_jsons(
+    eval_root: Path, records: list[RunRecord]
+) -> tuple[int, list[str]]:
+    """Cross-check the flat table against all skill-format evaluation JSONs."""
+    record_map = {(row.cve, row.model, row.run): row for row in records}
+    json_paths = sorted(eval_root.glob("CVE-*/*/[123]/evaluation-CVE-*.json"))
+    if len(json_paths) != len(records):
+        raise ValueError(
+            f"Expected {len(records)} evaluation JSONs, found {len(json_paths)} in {eval_root}"
+        )
+
+    warnings: list[str] = []
+    seen: set[tuple[str, str, int]] = set()
+    for json_path in json_paths:
+        relative = json_path.relative_to(eval_root)
+        cve, model, run_text, _ = relative.parts
+        key = (cve, model, int(run_text))
+        if key not in record_map:
+            raise ValueError(f"Evaluation JSON has no score-table row: {relative}")
+        if key in seen:
+            raise ValueError(f"Duplicate evaluation JSON for {key}")
+        seen.add(key)
+
+        with json_path.open("r", encoding="utf-8") as handle:
+            data = json.load(handle)
+        plan = data.get("plan_score", {})
+        task = data.get("task_score", {})
+        record = record_map[key]
+        plan_total = _json_number(plan.get("total"), f"{key} plan total")
+        defaulted_fields: list[str] = []
+        if not isinstance(task.get("total"), (int, float)):
+            defaulted_fields.append("Task")
+        task_total = _json_number(task.get("total"), f"{key} task total", default=0.0)
+        overall = _json_number(data.get("overall_score"), f"{key} overall score")
+
+        if not np.isclose(plan_total, record.plan, atol=0.051):
+            raise ValueError(f"{key}: JSON plan {plan_total} != summary {record.plan}")
+        if not np.isclose(task_total, record.reported_task, atol=0.051):
+            raise ValueError(
+                f"{key}: JSON task {task_total} != summary {record.reported_task}"
+            )
+        if not np.isclose(overall, record.reported_overall, atol=0.051):
+            raise ValueError(
+                f"{key}: JSON overall {overall} != summary {record.reported_overall}"
+            )
+
+        phase_scores: list[float] = []
+        for index, (phase_name, phase_max) in enumerate(
+            zip(PHASES, PHASE_MAX, strict=True), start=1
+        ):
+            phase = task.get(f"Phase {index}", task.get(phase_name, {}))
+            if not isinstance(phase, dict):
+                phase = {}
+            if not isinstance(phase.get("score"), (int, float)):
+                defaulted_fields.append(phase_name)
+            phase_score = _json_number(
+                phase.get("score"), f"{key} {phase_name} score", default=0.0
+            )
+            if phase_score < 0 or phase_score > phase_max:
+                raise ValueError(
+                    f"{key}: {phase_name}={phase_score} outside 0..{phase_max}"
+                )
+            phase_scores.append(phase_score)
+            item_scores = phase.get("item_scores", {})
+            if not isinstance(item_scores, dict):
+                raise ValueError(f"{key}: invalid {phase_name} item_scores")
+            item_sum = sum(
+                _json_number(item.get("score"), f"{key} {phase_name}/{item_name}", default=0.0)
+                for item_name, item in item_scores.items()
+                if isinstance(item, dict)
+            )
+            if not np.isclose(phase_score, item_sum, atol=0.01):
+                warnings.append(
+                    f"{cve} / {model} / run {run_text}: {phase_name} "
+                    f"score={phase_score:.1f}, checklist sum={item_sum:.1f}"
+                )
+
+        if not np.allclose(phase_scores, record.phases, atol=0.051):
+            raise ValueError(
+                f"{key}: JSON phases {phase_scores} != summary {record.phases}"
+            )
+        phase_sum = float(sum(phase_scores))
+        if not np.isclose(task_total, phase_sum, atol=0.01):
+            default_note = (
+                f"; skill-defaulted missing fields={','.join(defaulted_fields)}"
+                if defaulted_fields
+                else ""
+            )
+            warnings.append(
+                f"{cve} / {model} / run {run_text}: reported Task={task_total:.1f}, "
+                f"phase sum={phase_sum:.1f}{default_note}"
+            )
+
+        breakdown = data.get("weighted_score_breakdown", {})
+        if isinstance(breakdown, dict):
+            plan_weighted = _json_number(
+                breakdown.get("plan_weighted_score"), f"{key} weighted plan"
+            )
+            task_weighted = _json_number(
+                breakdown.get("task_weighted_score"), f"{key} weighted task"
+            )
+            if not np.isclose(overall, plan_weighted + task_weighted, atol=0.01):
+                warnings.append(
+                    f"{cve} / {model} / run {run_text}: Overall={overall:.1f}, "
+                    f"weighted sum={plan_weighted + task_weighted:.1f}"
+                )
+
+    if seen != set(record_map):
+        missing = sorted(set(record_map) - seen)
+        raise ValueError(f"Score-table rows missing evaluation JSONs: {missing}")
+    return len(json_paths), warnings
+
+
+def validate_metadata_groundtruth(
+    metadata: dict[str, dict[str, str]], groundtruth_root: Path
+) -> int:
+    """Confirm every panel label is supported by the local ground-truth dossier."""
+    issues: list[str] = []
+    for cve, row in metadata.items():
+        info_path = groundtruth_root / cve / "info.txt"
+        if not info_path.is_file():
+            issues.append(f"{cve}: missing {info_path}")
+            continue
+        text = info_path.read_text(encoding="utf-8", errors="replace").lower()
+        category = row["vulnerability_class"]
+        markers = CLASS_MARKERS.get(category, ())
+        if not markers or not any(marker in text for marker in markers):
+            issues.append(f"{cve}: {category!r} is not supported by info.txt")
+    if issues:
+        raise ValueError("Ground-truth class validation failed: " + "; ".join(issues))
+    return len(metadata)
+
 def select_best_task_runs(records: list[RunRecord]) -> tuple[list[RunRecord], list[RunRecord]]:
     grouped: dict[tuple[str, str], list[RunRecord]] = defaultdict(list)
     for record in records:
@@ -139,7 +319,7 @@ def select_best_task_runs(records: list[RunRecord]) -> tuple[list[RunRecord], li
 
     selected: list[RunRecord] = []
     for group in grouped.values():
-        # Draft policy: recompute Task as P1+...+P6, then use the smallest
+        # Draft policy: recompute Task as R1+...+R6, then use the smallest
         # run id as a deterministic tie breaker.
         selected.append(sorted(group, key=lambda row: (-row.phase_task, row.run))[0])
     selected.sort(key=lambda row: (row.cve, MODELS.index(row.model)))
@@ -195,6 +375,12 @@ def write_audit_outputs(
     metadata: dict[str, dict[str, str]],
     aggregated: dict[str, dict[str, np.ndarray]],
     panel_sizes: dict[str, int],
+    summary_path: Path,
+    eval_root: Path,
+    groundtruth_root: Path,
+    evaluation_json_count: int,
+    groundtruth_count: int,
+    skill_warnings: list[str],
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     with (output_dir / "selected_best_task_runs.csv").open(
@@ -239,29 +425,37 @@ def write_audit_outputs(
     lines = [
         "REPROBENCH 3D PHASE-TRAJECTORY DATA AUDIT",
         "",
-        "Selection policy: maximize recomputed Task = P1+...+P6; ties use smallest run id.",
-        f"Parsed runs: {len(selected) * 3}",
+        "Scoring specification: reprobench/skills/reprobench-scoring/SKILL.md",
+        f"Source summary: {summary_path.resolve().relative_to(ROOT).as_posix()}",
+        f"Evaluation JSON root: {eval_root.resolve().relative_to(ROOT).as_posix()}",
+        f"Ground-truth root: {groundtruth_root.resolve().relative_to(ROOT).as_posix()}",
+        "",
+        "Selection policy: maximize skill-consistent Task = R1+...+R6; ties use smallest run id.",
+        f"Score-table rows parsed: {len(selected) * 3}",
+        f"Evaluation JSON files checked and matched: {evaluation_json_count}",
         f"Selected CVE/model rows: {len(selected)}",
-        f"Metadata CVEs: {len(metadata)}",
+        f"Ground-truth class labels verified: {groundtruth_count}/{len(metadata)}",
         "Class counts: " + ", ".join(
             f"{key}={value}" for key, value in sorted(category_counts.items())
         ),
-        f"Rows whose reported Task differs from P1+...+P6: {len(corrections)}",
+        f"Rows whose reported Task differs from R1+...+R6: {len(corrections)}",
     ]
     for record in corrections:
         lines.append(
             f"  {record.cve} / {record.model} / run {record.run}: "
             f"reported={record.reported_task:.1f}, recomputed={record.phase_task:.1f}"
         )
+    lines.extend(["", f"Skill consistency warnings: {len(skill_warnings)}"])
+    lines.extend(f"  {warning}" for warning in skill_warnings)
     lines.extend(
         [
             "",
-            "Known source warning not resolvable from the flat table:",
-            "  CVE-2023-26315 / deepseek-v4-flash-free / run 2: R4 differs from checklist-item sum.",
+            "Plotting correction policy:",
+            "  Run selection uses the recomputed six-phase sum required by the scoring skill.",
+            "  Plotted phase values always come from the six phase objects, not the reported Task field.",
         ]
     )
     (output_dir / "data_audit.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
-
 
 def add_vertical_wall(ax, x: np.ndarray, y: float, z: np.ndarray, color: str) -> None:
     quads = [
@@ -301,7 +495,7 @@ def style_3d_axis(ax, panel_index: int, title: str, n_cves: int) -> None:
     else:
         ax.set_yticklabels(("", "", "", "", ""))
 
-    ax.set_xlabel("Pipeline phase", labelpad=-1)
+    ax.set_xlabel("Reproduction phase", labelpad=-1)
     ax.view_init(elev=23.5, azim=-59, roll=0)
     ax.set_proj_type("persp", focal_length=0.95)
     ax.set_box_aspect((1.38, 0.92, 0.98))
@@ -412,15 +606,32 @@ def build_figure(
 
 def render(
     summary_path: Path,
+    eval_root: Path,
     metadata_path: Path,
+    groundtruth_root: Path,
     output_dir: Path,
     dpi: int,
 ) -> list[Path]:
     records = parse_score_table(summary_path)
+    evaluation_json_count, skill_warnings = validate_evaluation_jsons(eval_root, records)
     metadata = read_metadata(metadata_path)
+    groundtruth_count = validate_metadata_groundtruth(metadata, groundtruth_root)
     selected, corrections = select_best_task_runs(records)
     aggregated, panel_sizes = aggregate_phase_scores(selected, metadata)
-    write_audit_outputs(output_dir, selected, corrections, metadata, aggregated, panel_sizes)
+    write_audit_outputs(
+        output_dir,
+        selected,
+        corrections,
+        metadata,
+        aggregated,
+        panel_sizes,
+        summary_path,
+        eval_root,
+        groundtruth_root,
+        evaluation_json_count,
+        groundtruth_count,
+        skill_warnings,
+    )
 
     fig = build_figure(aggregated, panel_sizes)
     outputs = [
@@ -434,6 +645,10 @@ def render(
         if output.suffix.lower() in {".png", ".jpg", ".jpeg"}:
             kwargs["dpi"] = 180 if output.suffix.lower() in {".jpg", ".jpeg"} else dpi
         fig.savefig(output, **kwargs)
+        if output.suffix.lower() == ".svg":
+            svg_text = output.read_text(encoding="utf-8")
+            with output.open("w", encoding="utf-8", newline="\n") as handle:
+                handle.write("\n".join(line.rstrip() for line in svg_text.splitlines()) + "\n")
     plt.close(fig)
     return outputs
 
@@ -441,7 +656,9 @@ def render(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--summary", type=Path, default=DEFAULT_SUMMARY)
+    parser.add_argument("--eval-root", type=Path, default=DEFAULT_EVAL_ROOT)
     parser.add_argument("--metadata", type=Path, default=DEFAULT_METADATA)
+    parser.add_argument("--groundtruth", type=Path, default=DEFAULT_GROUNDTRUTH)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--dpi", type=int, default=420)
     return parser.parse_args()
@@ -449,5 +666,12 @@ def parse_args() -> argparse.Namespace:
 
 if __name__ == "__main__":
     args = parse_args()
-    for path in render(args.summary, args.metadata, args.output_dir, args.dpi):
+    for path in render(
+        args.summary,
+        args.eval_root,
+        args.metadata,
+        args.groundtruth,
+        args.output_dir,
+        args.dpi,
+    ):
         print(path)
