@@ -112,6 +112,21 @@ Scores range from 99.5 (CVE-2023-26315) to 23.4 (CVE-2025-34037). The top-perfor
 % RQ6: graded评分揭示二元评分隐藏的差异
 Under binary evaluation, 143/150 pairs (95.3\%) would be failures (P6 $<$ 15/20). Graded scoring reveals a 23.5-point spread (41.7--65.2) and a stage funnel invisible to binary metrics. Best-of-three scoring adds $\sim$10 points over per-run averages, with stronger models showing larger variance (e.g., \texttt{glm-5.2}: +14.3), suggesting that succeeding at least once is itself a capability dimension.
 
+
+% 异常点分析：18个CVE存在分化，graded评分暴露阶段特定能力
+To quantify what binary metrics conceal, we conduct an anomaly analysis across all 450 runs. We define a divergence point as a phase where a minority of runs (1--5 of 15) score $\geq$40\% of the phase maximum while a majority ($\geq$8) score $\leq$15\%. For each CVE we select the earliest divergent phase to avoid cascading low scores from unmet prerequisites. We identify \textbf{18 CVEs} exhibiting such divergence; inspecting the HIGH and LOW runs' workspace artifacts, trace logs, and reports for each reveals three phase-specific capabilities that binary success metrics cannot expose.
+
+% 三大分化模式：阶段特定能力
+\textbf{Pattern 1: Search strategy (P2, 10 cases).} HIGH runs test the ``firmware unavailable'' hypothesis by issuing real \texttt{curl} requests to vendor CDNs, regional sites, and community firmware archives; LOW runs accept the hypothesis without verification and jump to simulation. On CVE-2020-14140, only 1/15 runs actually curls the Xiaomi CDN, discovers the firmware is publicly downloadable, and statically analyzes the extracted Lua controllers; the other 14 runs assume unavailability and produce Python mock servers with zero \texttt{curl} invocations.
+
+\textbf{Pattern 2: Tooling knowledge (P3--P4, 3 cases).} HIGH runs possess domain-specific tooling knowledge to handle encrypted firmware---the \texttt{delink} tool for D-Link MH01 encryption, OpenWrt GPL code for deriving the DIR-X3260 AES key, or BigNerd95's GSFW.py for Grandstream firmware---while LOW runs assume standard \texttt{binwalk -e} suffices and produce empty extraction directories. On CVE-2024-6045, only 4/15 runs know the \texttt{delink} Rust tool is required; the rest create \texttt{firmware/} and \texttt{extracted/} directories that remain empty because standard binwalk cannot process MH01 encryption.
+
+\textbf{Pattern 3: Rehosting technique (P5--P6, 5 cases).} HIGH runs author custom \texttt{-nostdlib} LD\_PRELOAD ioctl shims, NVRAM stub libraries, and FastCGI launchers to satisfy proprietary binary dependencies under QEMU; LOW runs hit QEMU failures and switch to C/Python reimplementation of the vulnerability pattern. On CVE-2020-13389, the HIGH run writes a 13-line ioctl shim that fakes \texttt{SIOCGIFADDR} responses for the \texttt{br0} interface, allowing the real Tenda httpd to reach \texttt{bind}/\texttt{listen}; the LOW run of the same model spins in an infinite ioctl/nanosleep retry loop and never binds.
+
+% HIGH run的三个共同特质
+Across all three patterns, HIGH runs share three common traits: (1) authoring shim code (libnvram/libwrscfg/nofork stubs, FastCGI launchers, ioctl hooks) that makes proprietary binaries runnable under QEMU; (2) distinguishing flashable firmware binaries from GPL source packages, which lack runtime shared libraries such as \texttt{ld-uClibc.so.0}; and (3) trying multiple URLs---regional pages, static CDNs, community archives---rather than abandoning acquisition after the first 404. These traits are invisible under binary evaluation, which collapses all 18 divergent CVEs into uniform failures.
+
+
 \begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ6:} Evidence-grounded scoring reveals distinctions hidden by binary success. Binary evaluation classifies 95.3\% as failures, but graded scoring shows a 23.5-point spread. The stage funnel, simulation-substitution rate, and plan--execution gap are all invisible under binary metrics.
+\noindent\textbf{Result for RQ6:} Evidence-grounded scoring reveals distinctions hidden by binary success. Binary evaluation classifies 95.3\% as failures, but graded scoring shows a 23.5-point spread and a stage funnel invisible to binary metrics. Anomaly analysis of 18 divergent CVEs exposes three phase-specific capabilities---hypothesis-testing search strategies at P2, domain-specific tooling knowledge at P3--P4, and custom shim authoring for rehosting at P5--P6---that binary metrics conflate into uniform failure.
 \end{mdframed}
