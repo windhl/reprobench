@@ -89,12 +89,12 @@ We compare plan score against task score for each CVE--model pair. \texttt{glm-5
 % RQ4: 69.8%的run存在模拟替代
 Simulation substitution is the most frequent failure mode: 314/450 runs (69.8\%) produce simulated reproductions. Figure~\ref{fig:heatmap} shows per-phase progress rates across models. The rate varies significantly: \texttt{claude-sonnet-4-6} substitutes in 81.1\% of runs despite strong plan quality, while \texttt{glm-5.2} substitutes in only 56.7\%. Simulated outputs are often coherent---valid crash signals, correct exploit syntax, convincing reports---but never exercise the real firmware binary. Without real-target gating, these would be indistinguishable from successful reproduction.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/roadblock_heatmap.pdf}
+\includegraphics[width=\textwidth]{figures/3d.pdf}
 \caption{Per-phase progress rates across models. P1--P4 show moderate success, but P5 and P6 collapse to near-zero for all models.}
 \label{fig:heatmap}
-\end{figure}
+\end{figure*}
 
 \begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
 \noindent\textbf{Result for RQ4:} 69.8\% of runs involve simulation substitution. Stronger models do not necessarily substitute less---\texttt{claude-sonnet-4-6} has the highest rate (81.1\%)---suggesting that simulation is driven by task difficulty rather than model weakness. Real-target gating is essential to distinguish genuine reproduction from simulation.
