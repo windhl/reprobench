@@ -3,7 +3,7 @@
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.png}
+    \includegraphics[width=\columnwidth]{figures/who_builds_the_target_environment_2026-07-19/iceberg-v2.png}
     \caption{Comparison Between Existing Benchmarks and \sys{}.}
     \label{fig:iceberg}
     \end{figure}
@@ -15,9 +15,13 @@ Vulnerability reproduction is the process of demonstrating that a known vulnerab
 In practice, a security analyst reproduces a vulnerability starting from a CVE identifier by collecting vulnerability information, acquiring the affected artifact, setting up a runnable target environment, constructing a PoC, and triggering the vulnerability on the real target. 
 These steps are strictly sequential, so a early stage failure will block all downstream progress. This means that the full reproduction pipeline is far more demanding than the final triggering step alone.
 
-% 网络安全benchmark，按任务类型分组
+% 网络安全benchmark，按四类漏洞任务分组
 \subsection{Cybersecurity Benchmarks}
-Existing cybersecurity benchmarks can be grouped by which stage of the vulnerability lifecycle they evaluate. CyberGym~\cite{cybergym}, K-Repro~\cite{krepro}, and SEC-Bench~\cite{secbench} focus on vulnerability reproduction, where the agent produces a PoC against a ready-to-run target. CVE-Bench~\cite{cvebench}, ExploitBench~\cite{exploitbench}, and ExploitGym~\cite{exploitgym} focus on exploitation, where the agent escalates a bug into a concrete security impact starting from a running service or a pre-built binary with a triggering input. CyberGym-E2E~\cite{cybergyme2e} and BountyBench~\cite{bountybench} evaluate broader pipelines spanning discover, exploit, and patch.
+Existing cybersecurity benchmarks can be grouped by which stage of the vulnerability lifecycle they evaluate: \emph{discovery} (finding an unknown vulnerability), \emph{reproduction} (producing a PoC that triggers a known vulnerability), \emph{exploitation} (escalating a bug into a concrete security impact), and \emph{patching} (generating a code fix). 
+For discovery, CyberGym~\cite{cybergym} (Level~0), CVE-Bench~\cite{cvebench} (zero-day), CyberGym-E2E~\cite{cybergyme2e}, and BountyBench~\cite{bountybench} (Detect) require the agent to find vulnerabilities without prior information. 
+For reproduction, CyberGym~\cite{cybergym}, K-Repro~\cite{krepro}, and SEC-Bench~\cite{secbench} task the agent with building a PoC from a vulnerability description or patch, while ExploitBench~\cite{exploitbench} evaluates reproduction as part of a broader capability ladder. 
+For exploitation, CVE-Bench~\cite{cvebench}, ExploitGym~\cite{exploitgym}, and ExploitBench~\cite{exploitbench} require the agent to achieve concrete security impacts such as code execution or privilege escalation. 
+For patching, SEC-Bench~\cite{secbench}, CyberGym-E2E~\cite{cybergyme2e}, and BountyBench~\cite{bountybench} evaluate the agent's ability to generate and verify fixes.
 
 
 As illustrated in Figure~\ref{fig:iceberg}, all of these benchmarks operate in the post-environment setting: the target is already built, containerized, or running, and the agent is scored only on what it does after that starting line. Whether the agent can perform the full from-scratch reproduction pipeline---from a CVE identifier to triggering the vulnerability on the real target---remains an open question. \sys{} explores this question by making environment construction a scored phase of the reproduction pipeline, decomposing reproduction into six phases and applying real-target gating that rejects simulated reproductions.
