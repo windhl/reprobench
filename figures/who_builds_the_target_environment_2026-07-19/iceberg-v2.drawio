@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0">
   <diagram id="iceberg-v10" name="Pre-env Iceberg">
-    <mxGraphModel dx="3264" dy="2384" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3642" dy="2598" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -17,7 +17,7 @@
           <mxGeometry height="610" width="990" x="-60" y="420" as="geometry" />
         </mxCell>
         <mxCell id="waterline" parent="1" style="fillColor=#17324D;strokeColor=none;" value="" vertex="1">
-          <mxGeometry height="6" width="1250" x="-260" y="420" as="geometry" />
+          <mxGeometry height="6" width="1240" x="-260" y="420" as="geometry" />
         </mxCell>
         <mxCell id="postEnvLabel" parent="1" style="text;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;fontColor=#566471;fontFamily=Arial;fontSize=35;align=center;verticalAlign=middle;" value="&lt;span style=&quot;font-weight:800&quot;&gt;Post-Environment&lt;/span&gt;" vertex="1">
           <mxGeometry height="35" width="190" x="-220" y="239" as="geometry" />
