@@ -1,0 +1,15 @@
+% 针对安全任务，现有 Benchmark 都已提前准备好漏洞环境 -> 我们的目标：评估智能体能否从零开始、仅从CVE开始复现已知漏洞
+% 提出ReproBench: 基于公开证据的IoT漏洞从零复现评测基准
+%   漏洞数据集： 30个CVE = 10 bof + 10 cmdi + 10 ab
+%   groundtruth：公开证据档案，包括 CVE 记录、厂商安全公告、公开 PoC、安全博客等
+%   打分方法：将漏洞复现划分为六个阶段：漏洞信息收集、固件获取、固件提取、二进制文件识别、服务重新托管、漏洞触发，并从plan和task两方面打分，要求依据复现trace和产物作为支撑。
+% 实验： 450 次漏洞复现任务（30 个 CVE、5 个模型、3 次重复实验）以及对应的 450 次评分过程，通过事后人工审计验证评分结果、P5/P6 阶段的完成情况以及失败模式分析。
+% 最终目标：评估智能体能否逐步完成漏洞复现流程，并生成可审计的真实目标环境证据，评估智能体的从零开始复现漏洞能力。
+
+\begin{abstract}
+    Large language model (LLM) agents are increasingly evaluated on cybersecurity tasks such as vulnerability reproduction, exploitation, and patching. However, existing cybersecurity benchmarks predominantly operate under a post-environment evaluation paradigm, i.e., handing the agent source code, a container, or an executable binary. This setup bypasses the critical environment reconstruction step, leaving a fundamental question for real-world vulnerability analysis: \emph{can an agent autonomously reconstruct the required execution environment and reproduce a vulnerability entirely from scratch?}
+     
+    To address this gap, we present \sys, an evidence-grounded benchmark designed to evaluate agent capabilities in end-to-end vulnerability reproduction starting from solely a CVE identifier. \sys{} decomposes the full reproduction workflow into six distinct phases, and assesses performance on each phase independently using verifiable experimental artifacts: downloaded firmware images, unpacked binaries, granular analysis logs, and validated crash samples, among others. We instantiate \sys{} with 30 real-world IoT firmware vulnerabilities, which serve as ideal test cases for our from-scratch evaluation setting.
+
+    Our evaluation demonstrates that 69.8\% of test runs resort to vulnerability simulation—a prevalent remediation workaround adopted across all evaluated LLM agents—while only 4.7\% of runs achieve successful reproduction of real-world vulnerabilities. Despite the low overall success rate, these non-trivial successful cases confirm that state-of-the-art LLM agents already possess the capacity for fully autonomous end-to-end vulnerability reproduction. Concurrently, our in-depth analysis of failed cases identifies core bottlenecks impeding LLM agents throughout the reproduction pipeline, offering actionable insights for subsequent research.
+\end{abstract}

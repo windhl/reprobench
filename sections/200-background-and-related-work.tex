@@ -1,21 +1,23 @@
-\section{Background and Pre-Environment}
-\label{sec:related}
+\section{Background and Related Work}
+\label{sec:background}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.png}
+    \caption{Comparison Between Existing Benchmarks and \sys{}.}
+    \label{fig:iceberg}
+    \end{figure}
+    
 
+% 介绍漏洞复现的定义、流程、难点
+\subsection{Vulnerability Reproduction}
+Vulnerability reproduction is the process of demonstrating that a known vulnerability exists by producing a proof-of-concept (PoC) that triggers the expected behavior on the affected target~\cite{cybergym}. 
+In practice, a security analyst reproduces a vulnerability starting from a CVE identifier by collecting vulnerability information, acquiring the affected artifact, setting up a runnable target environment, constructing a PoC, and triggering the vulnerability on the real target. 
+These steps are strictly sequential, so a early stage failure will block all downstream progress. This means that the full reproduction pipeline is far more demanding than the final triggering step alone.
 
-% 软件工程benchmark
-\subsection{Software Engineering Benchmarks}
-SWE-bench~\cite{swebench} is the first work aiming to evaluate whether large language models can resolve real-world GitHub issues by producing patches against a pre-checked-out repository snapshot; success is judged by the project's own test suite. SWE-bench-Live extends this with a live-updatable, contamination-resistant pipeline but still hands the agent a ready container. ProgramBench~\cite{programbench} shares our from-scratch philosophy: the agent receives only a compiled executable and documentation, and must reconstruct a behaviorally-equivalent program. However, it operates on user-space software with readable documentation, not on closed-source vendor firmware with no build system.
-
-% 安全benchmark
+% 网络安全benchmark，按任务类型分组
 \subsection{Cybersecurity Benchmarks}
-CyberGym~\cite{cybergym} provides 1{,}507 instances from OSS-Fuzz projects with pre-built sanitizer-instrumented executables and a containerized PoC submission interface; its successor CyberGym-E2E~\cite{cybergyme2e} extends to end-to-end discover$\rightarrow$PoC$\rightarrow$patch but still places the agent inside a pre-configured build environment. CVE-Bench~\cite{cvebench} ships 40 critical web-application CVEs as running Docker-Compose stacks; the agent's task is to exploit a pre-deployed service. ExploitBench~\cite{exploitbench} measures exploitation depth on V8 N-day bugs with pre-built binaries, patch diffs, and a deterministic 16-flag capability bitmap. ExploitGym~\cite{exploitgym} tasks agents with escalating a given proof-of-vulnerability input into a full exploit, again with ready-built targets. K-Repro~\cite{krepro} studies Linux kernel N-day reproduction from a patch commit, operating inside a prepared QEMU VM with KASAN. BountyBench~\cite{bountybench} evaluates offense and defense on 25 real OSS systems, each manually packaged into Docker containers. SEC-Bench~\cite{secbench} automates CVE instance construction with verifiable PoCs but still delivers each task as a pre-built Docker image.
-
-% 对比表
-Table~\ref{tab:compare} summarizes the key differences along three dimensions: what the agent receives as input, whether the environment is pre-prepared, and what type of target the agent operates on. Every existing benchmark provides the agent with a prepared environment and evaluates post-environment capabilities. None targets IoT firmware, which requires cross-architecture rehosting of closed-source vendor binaries.
+Existing cybersecurity benchmarks can be grouped by which stage of the vulnerability lifecycle they evaluate. CyberGym~\cite{cybergym}, K-Repro~\cite{krepro}, and SEC-Bench~\cite{secbench} focus on vulnerability reproduction, where the agent produces a PoC against a ready-to-run target. CVE-Bench~\cite{cvebench}, ExploitBench~\cite{exploitbench}, and ExploitGym~\cite{exploitgym} focus on exploitation, where the agent escalates a bug into a concrete security impact starting from a running service or a pre-built binary with a triggering input. CyberGym-E2E~\cite{cybergyme2e} and BountyBench~\cite{bountybench} evaluate broader pipelines spanning discover, exploit, and patch.
 
 
-
-% 最后一段：指出gap，引出ReproBench
-\subsection{The Pre-Environment Gap}
-All benchmarks above are \emph{post-environment}: they evaluate what an agent can do \emph{after} the vulnerable target is already built, containerized, or running. None tests whether the agent can \emph{construct} the reproduction environment from scratch---locate the correct firmware image from a bare CVE identifier, unpack vendor-specific formats, identify the vulnerable binary, and rehost the real service under emulation. This pre-environment pipeline is exactly what a security analyst performs in the wild, and it is where agents lose grounding most often: our results show that 69.8\% of runs substitute simulated reproductions for real firmware execution, a failure mode invisible under post-environment evaluation. \sys{} fills this gap by making environment construction the scored task itself, with the scoring skill decomposing reproduction into six phases and applying real-target gating that rejects simulated reproductions.
+As illustrated in Figure~\ref{fig:iceberg}, all of these benchmarks operate in the post-environment setting: the target is already built, containerized, or running, and the agent is scored only on what it does after that starting line. Whether the agent can perform the full from-scratch reproduction pipeline---from a CVE identifier to triggering the vulnerability on the real target---remains an open question. \sys{} explores this question by making environment construction a scored phase of the reproduction pipeline, decomposing reproduction into six phases and applying real-target gating that rejects simulated reproductions.

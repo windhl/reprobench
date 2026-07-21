@@ -1,10 +1,6 @@
 \section{Evaluation Results}
 \label{sec:results}
 
-\subsection{Overall Capability (RQ1)}
-% RQ1: agent能进展多远——max-based平均50.1，glm-5.2最强，P5/R6几乎不可达
-Table~\ref{tab:model-results} reports the best-of-three results for each model across 30 CVEs. \texttt{glm-5.2} achieves the highest average overall score (65.2/100), followed by \texttt{mimo-v2.5-free} (50.3) and \texttt{claude-sonnet-4-6} (49.9). The best single run reaches 99.5/100 (\texttt{glm-5.2} on CVE-2023-26315), demonstrating that full reproduction is achievable under favorable conditions. However, strict real-target success remains rare: only 10 out of 150 CVE--model pairs achieve near-full P5 credit (score $\geq$ 15/20), and only 7 achieve near-full P6 credit.
-
 \begin{table*}[t]
 \centering
 \caption{Best-of-three model summary across 30 CVEs. Plan and Task are the best scores across three independent trials (may come from different runs). P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
@@ -24,6 +20,13 @@ All & 78.8 & 43.0 & 50.1 & 99.5 & 10/150 & 7/150 \\
 \bottomrule
 \end{tabular}
 \end{table*}
+
+
+\subsection{Overall Capability (RQ1)}
+% RQ1: agent能进展多远——max-based平均50.1，glm-5.2最强，P5/R6几乎不可达
+Table~\ref{tab:model-results} reports the best-of-three results for each model across 30 CVEs. \texttt{glm-5.2} achieves the highest average overall score (65.2/100), followed by \texttt{mimo-v2.5-free} (50.3) and \texttt{claude-sonnet-4-6} (49.9). The best single run reaches 99.5/100 (\texttt{glm-5.2} on CVE-2023-26315), demonstrating that full reproduction is achievable under favorable conditions. However, strict real-target success remains rare: only 10 out of 150 CVE--model pairs achieve near-full P5 credit (score $\geq$ 15/20), and only 7 achieve near-full P6 credit.
+
+
 
 % 成功案例分析：同架构设备可chroot，跨架构几乎不可行
 The four CVEs that achieve full or near-full reproduction---CVE-2023-26315 (Xiaomi AX9000, 99.5), CVE-2023-44418 (95.0), CVE-2025-6443 (92.1), and CVE-2025-60690 (91.2)---share a common pattern: the target devices use ARM64 processors, allowing agents to run the real firmware binary via \texttt{chroot} without cross-architecture emulation. In contrast, MIPS-based devices requiring QEMU emulation almost universally fail at P5, because agents cannot reliably configure NVRAM, shared libraries, and network bridges.
