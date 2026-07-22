@@ -51,6 +51,13 @@ MODELS = (
     "gpt-5.5",
     "mimo-v2.5-free",
 )
+PLOT_MODELS = (
+    "claude-sonnet-4-6",
+    "deepseek-v4-flash-free",
+    "gpt-5.5",
+    "mimo-v2.5-free",
+    "glm-5.2",
+)
 DISPLAY_NAMES = {
     "claude-sonnet-4-6": "Claude Sonnet 4.6",
     "deepseek-v4-flash-free": "DeepSeek V4 Flash",
@@ -74,6 +81,7 @@ COLORS = {
 }
 
 PHASES = ("R1", "R2", "R3", "R4", "R5", "R6")
+PHASE_LABELS = ("P1", "P2", "P3", "P4", "P5", "P6")
 PHASE_MAX = np.array((15.0, 15.0, 15.0, 15.0, 20.0, 20.0))
 PANEL_SPECS = (
     ("All CVEs", None),
@@ -484,18 +492,18 @@ def style_3d_axis(ax, panel_index: int, title: str, n_cves: int) -> None:
     ax.set_ylim(0.35, 5.65)
     ax.set_zlim(0.0, 100.0)
     ax.set_xticks(np.arange(1, 7))
-    ax.set_xticklabels(PHASES)
+    ax.set_xticklabels(PHASE_LABELS)
     ax.set_yticks(np.arange(1, 6))
     ax.set_zticks((0, 25, 50, 75, 100))
 
     if panel_index == 0:
-        ax.set_yticklabels([LANE_LABELS[model] for model in MODELS])
+        ax.set_yticklabels([LANE_LABELS[model] for model in PLOT_MODELS])
         ax.set_ylabel("Model", labelpad=6)
         ax.set_zlabel("Normalized phase score (%)", labelpad=4)
     else:
         ax.set_yticklabels(("", "", "", "", ""))
 
-    ax.set_xlabel("Reproduction phase", labelpad=-1)
+    ax.set_xlabel("Reproduction Phase", labelpad=-1)
     ax.view_init(elev=23.5, azim=-59, roll=0)
     ax.set_proj_type("persp", focal_length=0.95)
     ax.set_box_aspect((1.38, 0.92, 0.98))
@@ -551,12 +559,12 @@ def build_figure(
         for index in range(4)
     ]
     x = np.arange(1, 7, dtype=float)
-    depths = {model: float(index + 1) for index, model in enumerate(MODELS)}
+    depths = {model: float(index + 1) for index, model in enumerate(PLOT_MODELS)}
 
     for panel_index, ((title, _), ax) in enumerate(zip(PANEL_SPECS, axes, strict=True)):
-        for model in reversed(MODELS):
+        for model in reversed(PLOT_MODELS):
             add_vertical_wall(ax, x, depths[model], aggregated[title][model], COLORS[model])
-        for model in reversed(MODELS):
+        for model in reversed(PLOT_MODELS):
             values = aggregated[title][model]
             ax.plot(
                 x,
@@ -586,11 +594,11 @@ def build_figure(
             linewidth=1.9,
             label=DISPLAY_NAMES[model],
         )
-        for model in MODELS
+        for model in PLOT_MODELS
     ]
     fig.legend(
         handles=handles,
-        labels=[DISPLAY_NAMES[model] for model in MODELS],
+        labels=[DISPLAY_NAMES[model] for model in PLOT_MODELS],
         loc="lower center",
         bbox_to_anchor=(0.5, 0.025),
         ncol=5,
