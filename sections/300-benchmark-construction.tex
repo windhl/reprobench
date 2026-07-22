@@ -1,15 +1,17 @@
 \section{ReproBench}
 
-\subsection{Overview}
-% 整体流程概述
-Figure~\ref{fig:framework} illustrates the overall pipeline of \sys{}. We first collect IoT vulnerabilities from public sources and select 30 representative CVEs as the benchmark dataset (\S\ref{sec:dataset}). For each CVE, we build a public evidence collection as ground truth for scoring (\S\ref{sec:dossier}). The agent receives only a CVE identifier and a task prompt; no reproduction pipeline or phase structure is disclosed to the agent. After execution, an evidence-grounded scoring skill evaluates each run against the public evidence, producing an overall score and failure attribution (\S\ref{sec:scoring}).
-
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/framework0721.pdf}
 \caption{Overview of the \sys{} pipeline. CVEs are curated and paired with public evidence. Agents receive only a CVE identifier and must plan, execute, and report. The scoring skill evaluates each run against the public evidence.}
 \label{fig:framework}
 \end{figure*}
+
+\subsection{Overview}
+% 整体流程概述
+Figure~\ref{fig:framework} illustrates the overall pipeline of \sys{}. We first collect IoT vulnerabilities from public sources and select 30 representative CVEs as the benchmark dataset (\S\ref{sec:dataset}). For each CVE, we build a public evidence collection as ground truth for scoring (\S\ref{sec:dossier}). The agent receives only a CVE identifier and a task prompt; no reproduction pipeline or phase structure is disclosed to the agent. After execution, an evidence-grounded scoring skill evaluates each run against the public evidence, producing an overall score and failure attribution (\S\ref{sec:scoring}).
+
+
 
 \subsection{Dataset Construction}
 \label{sec:dataset}
@@ -34,14 +36,14 @@ To enable fine-grained evaluation, the scoring skill decomposes the reproduction
 \small
 \begin{tabular}{c l l}
 \toprule
-\textbf{Phase} & \textbf{Name} & \textbf{Key artifact} \\
+\textbf{Phase} & \textbf{Name} & \textbf{Key Artifact (Evidence)} \\
 \midrule
-P1 & Information Gathering & CVE facts, version, endpoint \\
-P2 & Firmware Acquisition & Firmware image file \\
-P3 & Firmware Extraction & Extracted root filesystem \\
-P4 & Binary Identification & Vulnerable binary + analysis \\
-P5 & Service Rehosting & Running real firmware service \\
-P6 & Vulnerability Triggering & PoC + trigger evidence \\
+P1 & Information Gathering & Vendor, Version, Function \\
+P2 & Firmware Acquisition & Firmware Image \\
+P3 & Firmware Extraction & Root Filesystem \\
+P4 & Binary Identification & Target Binary, Root Cause \\
+P5 & Service Rehosting & Service Log \\
+P6 & Vulnerability Triggering & PoC, Debugging Log \\
 \bottomrule
 \end{tabular}
 \end{table}

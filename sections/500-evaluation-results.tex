@@ -1,25 +1,7 @@
 \section{Evaluation Results}
 \label{sec:results}
 
-\begin{table*}[t]
-\centering
-\caption{Best-of-three model summary across 30 CVEs. Plan and Task are the best scores across three independent trials (may come from different runs). P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
-\label{tab:model-results}
-\small
-\begin{tabular}{lrrrrrr}
-\toprule
-Model & Avg Plan & Avg Task & Avg Overall & Max Overall & P5$\geq$15 & P6$\geq$15 \\
-\midrule
-\texttt{glm-5.2} & 88.3 & 59.4 & \textbf{65.2} & 99.5 & 6/30 & 4/30 \\
-\texttt{mimo-v2.5-free} & 82.6 & 42.2 & 50.3 & 73.4 & 0/30 & 0/30 \\
-\texttt{claude-sonnet-4-6} & 80.4 & 42.2 & 49.9 & 99.0 & 2/30 & 1/30 \\
-\texttt{deepseek-v4-flash-free} & 71.2 & 36.6 & 43.5 & 95.6 & 1/30 & 1/30 \\
-\texttt{gpt-5.5} & 71.2 & 34.3 & 41.7 & 91.8 & 1/30 & 1/30 \\
-\midrule
-All & 78.8 & 43.0 & 50.1 & 99.5 & 10/150 & 7/150 \\
-\bottomrule
-\end{tabular}
-\end{table*}
+
 
 
 \subsection{Overall Capability (RQ1)}
