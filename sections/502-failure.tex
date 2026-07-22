@@ -33,24 +33,36 @@ P6 & Vulnerability triggering&  2.6 & 20 & 13.0\% \\
 % 失败模式四类：simulation主导，rehosting第二
 Across all 450 runs, four failure families account for the terminal blockers. \textbf{Simulation substitution} dominates at 314/450 runs (69.8\%): agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern without running the real firmware binary. \textbf{Rehosting gap} accounts for 99/450 runs (22.0\%): agents attempt QEMU or FirmAE but cannot configure dynamic loaders, NVRAM values, or network listeners, and abandon after one or two errors. \textbf{Artifact failures} (57/450, 12.7\%) and \textbf{extraction/binary-analysis failures} (44/450, 9.8\%) round out the taxonomy. Terminal blockers cluster at Phase 5 (246/450) and Phase 2 (143/450).
 
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ2:} The pipeline collapses at P5 (Service Rehosting), which averages 2.7/20 even under best-of-three scoring. The dominant failure mode is simulation substitution (69.8\% of all runs), followed by rehosting gap (22.0\%). Terminal blockers concentrate at Phase 5 (54.7\%) and Phase 2 (31.8\%).
-\end{mdframed}
+\textbf{Artifact failures (57/450, 12.7\%).} Agents download incorrect firmware, stop after 403 errors, or fail to distinguish firmware from HTML. Terminal blockers at Phase 2 account for 143/450 runs.
 
-\subsection{Does Plan Quality Predict Execution? (RQ3)}
-% RQ3: plan质量部分预测执行，gap普遍存在，fallback最弱
-We compare plan score against task score for each CVE--model pair. \texttt{glm-5.2} achieves both the highest plan (88.3) and the highest task (59.4), with a gap of 28.9 points. \texttt{gpt-5.5} has a plan of 71.2 but a task of only 34.3, a gap of 36.9. The plan--execution gap exists across all models, but stronger models tend to have smaller gaps. The fallback component is the weakest plan sub-score, averaging only 26.4/100 across all 450 runs, predicting premature abandonment and simulation substitution.
+\textbf{Extraction and binary-analysis failures (44/450, 9.8\%).} Agents misuse extraction tools or analyze binaries from PoC repositories rather than the target firmware.
 
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ3:} Plan quality partially predicts execution progress. \texttt{glm-5.2} achieves both the highest plan (88.3) and task (59.4), with the smallest gap. However, the plan--execution gap persists across all models (29--37 points). Weak fallback planning (avg.\ 26.4/100) is the strongest predictor of simulation substitution.
-\end{mdframed}
+\textbf{The rehosting gap (99/450, 22.0\%).} Agents know QEMU and firmware emulators but cannot configure dynamic loaders, NVRAM, or network listeners, and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap via \texttt{chroot}.
 
-\subsection{How Often Do Agents Simulate? (RQ4)}
-% RQ4: 69.8%的run存在模拟替代
-Simulation substitution is the most frequent failure mode: 314/450 runs (69.8\%) produce simulated reproductions. Figure~\ref{fig:heatmap} shows per-phase progress rates across models. The rate varies significantly: \texttt{claude-sonnet-4-6} substitutes in 81.1\% of runs despite strong plan quality, while \texttt{glm-5.2} substitutes in only 56.7\%. Simulated outputs are often coherent---valid crash signals, correct exploit syntax, convincing reports---but never exercise the real firmware binary. Without real-target gating, these would be indistinguishable from successful reproduction.
+\textbf{Simulation substitution (314/450, 69.8\%).} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern but not the instance. The output may be coherent and reproducible, but wrong for the benchmark goal. Real-target gating rejects all of these.
 
 
 
 \begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ4:} 69.8\% of runs involve simulation substitution. Stronger models do not necessarily substitute less---\texttt{claude-sonnet-4-6} has the highest rate (81.1\%)---suggesting that simulation is driven by task difficulty rather than model weakness. Real-target gating is essential to distinguish genuine reproduction from simulation.
+\noindent\textbf{Result-4:} Simulation substitution dominate failures.
 \end{mdframed}
+
+
+
+%%\subsection{Does Plan Quality Predict Execution? (RQ3)}
+%%% RQ3: plan质量部分预测执行，gap普遍存在，fallback最弱
+%%We compare plan score against task score for each CVE--model pair. %%\texttt{glm-5.2} achieves both the highest plan (88.3) and the %%highest task (59.4), with a gap of 28.9 points. \texttt{gpt-5.5} %%has a plan of 71.2 but a task of only 34.3, a gap of 36.9. The %%plan--execution gap exists across all models, but stronger models %%tend to have smaller gaps. The fallback component is the weakest %%plan sub-score, averaging only 26.4/100 across all 450 runs, %%predicting premature abandonment and simulation substitution.
+%%
+%%\begin{mdframed}[linecolor=black,linewidth=1pt,%%backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
+%%\noindent\textbf{Result for RQ3:} Plan quality partially predicts %%execution progress. \texttt{glm-5.2} achieves both the highest plan %%(88.3) and task (59.4), with the smallest gap. However, the %%plan--execution gap persists across all models (29--37 points). %%Weak fallback planning (avg.\ 26.4/100) is the strongest predictor %%of simulation substitution.
+%%\end{mdframed}
+%%
+%%\subsection{How Often Do Agents Simulate? (RQ4)}
+%%% RQ4: 69.8%的run存在模拟替代
+%%Simulation substitution is the most frequent failure mode: 314/450 %%runs (69.8\%) produce simulated reproductions. Figure~\ref%%{fig:heatmap} shows per-phase progress rates across models. The %%rate varies significantly: \texttt{claude-sonnet-4-6} substitutes %%in 81.1\% of runs despite strong plan quality, while \texttt{glm-5.%%2} substitutes in only 56.7\%. Simulated outputs are often %%coherent---valid crash signals, correct exploit syntax, convincing %%reports---but never exercise the real firmware binary. Without %%real-target gating, these would be indistinguishable from %%successful reproduction.
+%%
+%%
+%%
+%%\begin{mdframed}[linecolor=black,linewidth=1pt,%%backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
+%%\noindent\textbf{Result for RQ4:} 69.8\% of runs involve simulation %%substitution. Stronger models do not necessarily substitute %%less---\texttt{claude-sonnet-4-6} has the highest rate (81.1\%)%%---suggesting that simulation is driven by task difficulty rather %%than model weakness. Real-target gating is essential to distinguish %%genuine reproduction from simulation.
+%%\end{mdframed}
