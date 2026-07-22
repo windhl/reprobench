@@ -6,6 +6,14 @@
 % 异常点分析：18个CVE存在分化，graded评分暴露阶段特定能力
 Besides, to quantify what capabilities binary metrics conceal, we conduct an anomaly analysis across all 450 runs. We define a divergence point where a minority of runs score $\geq$40\% of the phase maximum while a majority score $\leq$15\%. For each CVE we select the earliest divergent phase to avoid cascading low scores from unmet prerequisites. We totally identify \textit{18 CVEs} exhibiting such divergence and inspect the HIGH and LOW runs' artifacts, trajectories for each. Finally, we conclude following three phase-specific capabilities.
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/3d.pdf}
+\caption{Per-phase progress rates across models. P1--P4 show moderate success, but P5 and P6 collapse to near-zero for all models.}
+\label{fig:heatmap}
+\end{figure*}
+
+
 % 三大分化模式：阶段特定能力
 \noindent{\textbf{PSC 1: Search Strategy.}} HIGH runs test the ``firmware unavailable'' hypothesis by issuing real \texttt{curl} requests to vendor CDNs, regional sites, and community firmware archives; LOW runs accept the hypothesis without verification and jump to simulation. On CVE-2020-14140, only 1/15 runs actually curls the Xiaomi CDN, discovers the firmware is publicly downloadable, and statically analyzes the extracted Lua controllers; the other 14 runs assume unavailability and produce Python mock servers with zero \texttt{curl} invocations.
 

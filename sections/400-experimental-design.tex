@@ -50,15 +50,10 @@ All & 78.8 & 43.0 & 50.1 & 99.5 & 10/150 & 7/150 \\
 \end{table*}
 
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/3d.pdf}
-\caption{Per-phase progress rates across models. P1--P4 show moderate success, but P5 and P6 collapse to near-zero for all models.}
-\label{fig:heatmap}
-\end{figure*}
+
 
 \subsubsection{LLM Selection}
-To enable flexible and consistent model switching, we adopt \textit{OpenCode} as the unified agent harness across all evaluated models. We evaluate five representative model configurations: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5}. Each model is tested across all 30 CVE cases with three independent container-based trials per case, yielding a total of 450 distinct reproduction runs. For each run, we systematically collect two categories of experimental artifacts:
+To enable flexible and consistent model switching, we adopt \textit{OpenCode} as the unified agent harness across all evaluated models. We evaluate five representative model configurations: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5}. Each model is tested across all 30 CVE cases with three independent container-based trials per case, yielding a total of 450 distinct reproduction runs. For each run, we systematically collect two categories of experimental artifacts that are used for the two scoring strategies metioned in above section:
 
 \noindent{\textbf{Evidence-Files}}: all files generated throughout the reproduction pipeline, including the task plan, downloaded firmware images, extracted filesystems, proof-of-concept (PoC) scripts, debugging logs, and the final summary report.
 
