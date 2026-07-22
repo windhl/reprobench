@@ -55,16 +55,17 @@ All & 78.8 & 43.0 & 50.1 & 99.5 & 10/150 & 7/150 \\
 \subsubsection{LLM Selection}
 To enable flexible and consistent model switching, we adopt \textit{OpenCode} as the unified agent harness across all evaluated models. We evaluate five representative model configurations: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5}. Each model is tested across all 30 CVE cases with three independent container-based trials per case, yielding a total of 450 distinct reproduction runs. For each run, we systematically collect two categories of experimental artifacts that are used for the two scoring strategies metioned in above section:
 
-\noindent{\textbf{Evidence-Files}}: all files generated throughout the reproduction pipeline, including the task plan, downloaded firmware images, extracted filesystems, proof-of-concept (PoC) scripts, debugging logs, and the final summary report.
+\noindent{\textbf{Artifact Files}}: all files generated throughout the reproduction pipeline, including the task plan, downloaded firmware images, extracted filesystems, proof-of-concept (PoC) scripts, debugging logs, and the final summary report.
 
-\noindent{\textbf{Trajectory-Files}}: full session interaction messages and container runtime logs, which comprehensively capture the agent’s reasoning trajectory and step-by-step execution process.
+\noindent{\textbf{Trajectory Files}}: full session interaction messages and container runtime logs, which comprehensively capture the agent’s reasoning trajectory and step-by-step execution process.
 
 
 \subsection{Scoring Skill}
-% best-of-three排名方式
-Every run is evaluated by the scoring skill, producing 450 JSON score files and summaries. For each CVE--model pair, we report the best plan score and the best task score across three trials (may come from different runs), combined as $\text{Overall} = 0.2 \times \text{BestPlan} + 0.8 \times \text{BestTask}$. This reflects the practical question: given multiple attempts, can an agent reproduce a vulnerability at least once? We also report failure attribution based on all 450 runs.
 
-We implement a rubric-constrained scoring skill that evaluates each run by inspecting the trace and workspace against the public evidence. The scorer cites concrete evidence for every non-zero score and outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
+We implement a rubric-constrained LLM scoring skill that evaluates each run by inspecting the trajectory and artifact files against the public evidence. The scorer cites concrete evidence for every non-zero score and outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
+
+% best-of-three排名方式
+All 450 runs are scored using the evidence-grounded framework defined in Section~\ref{sec:scoring}. For each CVE--model pair, we report the best plan score and the best task score across three trials (may come from different runs), combined as $\text{Overall} = 0.2 \times \text{BestPlan} + 0.8 \times \text{BestTask}$. We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic, but a single success demonstrates that the capability exists.
 
 
 %%\subsection{Research Questions}
