@@ -1,0 +1,7 @@
+\subsection{Impact of Vulnerability Class}
+% RQ5: CVE级别差异大，同架构设备成功率高
+Scores range from 99.5 (CVE-2023-26315) to 23.4 (CVE-2025-34037). The top-performing CVEs involve ARM64 devices where \texttt{chroot} suffices; the bottom involve MIPS devices with encrypted firmware or unavailable downloads. Seven CVEs show a $>$20-point gap between \texttt{glm-5.2} and both \texttt{claude-sonnet-4-6} and \texttt{gpt-5.5}; in all seven, the weaker models fail at P2 (firmware acquisition) while \texttt{glm-5.2} downloads, extracts, and in some cases rehosts the firmware. Buffer overflows allow partial credit via static analysis (P4); command injections require real rehosting; authentication bypasses need stateful request comparisons. Vulnerability class affects the validation path but is secondary to rehosting feasibility.
+
+\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
+\noindent\textbf{Result for RQ5:} CVE-level scores range from 99.5 to 23.4. Success correlates strongly with target architecture: ARM64 devices allowing \texttt{chroot}-based rehosting achieve full reproduction, while MIPS devices requiring QEMU almost universally fail at P5. Model-level differences are driven primarily by firmware acquisition success, not raw reasoning ability.
+\end{mdframed}
