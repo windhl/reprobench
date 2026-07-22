@@ -1,117 +1,20 @@
 \section{Evaluation Results}
 \label{sec:results}
 
-\begin{table*}[t]
-\centering
-\caption{Best-of-three model summary across 30 CVEs. Plan and Task are the best scores across three independent trials (may come from different runs). P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
-\label{tab:model-results}
-\small
-\begin{tabular}{lrrrrrr}
-\toprule
-Model & Avg Plan & Avg Task & Avg Overall & Max Overall & P5$\geq$15 & P6$\geq$15 \\
-\midrule
-\texttt{glm-5.2} & 88.3 & 59.4 & \textbf{65.2} & 99.5 & 6/30 & 4/30 \\
-\texttt{mimo-v2.5-free} & 82.6 & 42.2 & 50.3 & 73.4 & 0/30 & 0/30 \\
-\texttt{claude-sonnet-4-6} & 80.4 & 42.2 & 49.9 & 99.0 & 2/30 & 1/30 \\
-\texttt{deepseek-v4-flash-free} & 71.2 & 36.6 & 43.5 & 95.6 & 1/30 & 1/30 \\
-\texttt{gpt-5.5} & 71.2 & 34.3 & 41.7 & 91.8 & 1/30 & 1/30 \\
-\midrule
-All & 78.8 & 43.0 & 50.1 & 99.5 & 10/150 & 7/150 \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-
-\subsection{Overall Capability (RQ1)}
-% RQ1: agent能进展多远——max-based平均50.1，glm-5.2最强，P5/R6几乎不可达
-Table~\ref{tab:model-results} reports the best-of-three results for each model across 30 CVEs. \texttt{glm-5.2} achieves the highest average overall score (65.2/100), followed by \texttt{mimo-v2.5-free} (50.3) and \texttt{claude-sonnet-4-6} (49.9). The best single run reaches 99.5/100 (\texttt{glm-5.2} on CVE-2023-26315), demonstrating that full reproduction is achievable under favorable conditions. However, strict real-target success remains rare: only 10 out of 150 CVE--model pairs achieve near-full P5 credit (score $\geq$ 15/20), and only 7 achieve near-full P6 credit.
 
 
 
-% 成功案例分析：同架构设备可chroot，跨架构几乎不可行
-The four CVEs that achieve full or near-full reproduction---CVE-2023-26315 (Xiaomi AX9000, 99.5), CVE-2023-44418 (95.0), CVE-2025-6443 (92.1), and CVE-2025-60690 (91.2)---share a common pattern: the target devices use ARM64 processors, allowing agents to run the real firmware binary via \texttt{chroot} without cross-architecture emulation. In contrast, MIPS-based devices requiring QEMU emulation almost universally fail at P5, because agents cannot reliably configure NVRAM, shared libraries, and network bridges.
+\input{sections/501-overall}
+\input{sections/503-feature}
+\input{sections/504-vulclass}
+\input{sections/502-failure}
 
-% 模型行为差异分析：glm胜出的原因不是更聪明而是行为模式更适配
-A notable finding is that \texttt{glm-5.2}, not \texttt{claude-sonnet-4-6} or \texttt{gpt-5.5}, achieves the highest overall score. Per-run averages reveal the mechanism: \texttt{glm-5.2} averages 7.7/15 on P2 (Firmware Acquisition), nearly double \texttt{claude-sonnet-4-6}'s 4.5/15. Since P2 is a prerequisite for all downstream phases, this gap cascades---\texttt{claude-sonnet-4-6} has 17 runs where the plan scores above 50 but the task falls below 15, all blocked at P2 with zero downstream credit. Furthermore, \texttt{claude-sonnet-4-6} exhibits the highest simulation-substitution rate (81.1\% of runs vs.\ \texttt{glm-5.2}'s 56.7\%): when rehosting proves difficult, it rapidly pivots to writing mock servers or harnesses, producing polished reports that do not exercise the real firmware. \texttt{gpt-5.5} suffers from both weak firmware acquisition (P2 avg.\ 5.4) and 6 infrastructure failures (vs.\ 1 for \texttt{claude-sonnet-4-6}). In contrast, \texttt{glm-5.2} achieves the highest fallback planning score (37.2/100 vs.\ 25.8--31.7 for others), which correlates with its lower simulation rate and deeper pipeline progression. These results suggest that on from-scratch reproduction tasks, the decisive factor is not raw model capability but task-appropriate behavior: persistent artifact acquisition, fallback-driven recovery, and resistance to simulation substitution.
 
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ1:} Agents can progress partway from a CVE identifier toward vulnerability reproduction, averaging 50.1/100 under best-of-three scoring. However, real-target rehosting (P5) and triggering (P6) remain near-insurmountable barriers: only 6.7\% of CVE--model pairs achieve near-full P5 credit and 4.7\% achieve near-full P6. Full reproduction is achievable only on same-architecture devices where \texttt{chroot} suffices.
-\end{mdframed}
 
-\subsection{Where Does the Pipeline Collapse? (RQ2)}
-% RQ2: 阶段漏斗——P1-R4合理，R5骤降，terminal blocker主要在Phase 5
-Table~\ref{tab:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.8/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores (7.0--8.8/15), reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 2.7/20. P6 averages 2.6/20, with most points coming from PoC construction rather than real-target triggering.
 
-\begin{table}[t]
-\centering
-\caption{Stage-level averages under best-of-three scoring. The pipeline collapses at P5.}
-\label{tab:stage-funnel}
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{c l r r r}
-\toprule
-\textbf{Phase} & \textbf{Description} & \textbf{Score} & \textbf{Max} & \textbf{\%} \\
-\midrule
-P1 & Information gathering   & 13.8 & 15 & 92.0\% \\
-P2 & Firmware acquisition    &  8.8 & 15 & 58.7\% \\
-P3 & Firmware extraction     &  8.0 & 15 & 53.3\% \\
-P4 & Binary identification   &  7.0 & 15 & 46.7\% \\
-\midrule
-P5 & Service rehosting       &  2.7 & 20 & 13.5\% \\
-P6 & Vulnerability triggering&  2.6 & 20 & 13.0\% \\
-\bottomrule
-\end{tabular}
-\end{table}
 
-%%
-%%\begin{figure}[t]
-%%\centering
-%%\includegraphics[width=\columnwidth]{figures/pipeline.pdf}
-%%\caption{The six-stage vulnerability reproduction pipeline. Agents receive a CVE number and must progress through each stage. The pipeline collapses at P5 (Service Rehosting), where cross-architecture emulation fails across nearly all runs.}
-%%\label{fig:pipeline}
-%%\end{figure}
 
-% 失败模式四类：simulation主导，rehosting第二
-Across all 450 runs, four failure families account for the terminal blockers. \textbf{Simulation substitution} dominates at 314/450 runs (69.8\%): agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern without running the real firmware binary. \textbf{Rehosting gap} accounts for 99/450 runs (22.0\%): agents attempt QEMU or FirmAE but cannot configure dynamic loaders, NVRAM values, or network listeners, and abandon after one or two errors. \textbf{Artifact failures} (57/450, 12.7\%) and \textbf{extraction/binary-analysis failures} (44/450, 9.8\%) round out the taxonomy. Terminal blockers cluster at Phase 5 (246/450) and Phase 2 (143/450).
 
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ2:} The pipeline collapses at P5 (Service Rehosting), which averages 2.7/20 even under best-of-three scoring. The dominant failure mode is simulation substitution (69.8\% of all runs), followed by rehosting gap (22.0\%). Terminal blockers concentrate at Phase 5 (54.7\%) and Phase 2 (31.8\%).
-\end{mdframed}
 
-\subsection{Does Plan Quality Predict Execution? (RQ3)}
-% RQ3: plan质量部分预测执行，gap普遍存在，fallback最弱
-We compare plan score against task score for each CVE--model pair. \texttt{glm-5.2} achieves both the highest plan (88.3) and the highest task (59.4), with a gap of 28.9 points. \texttt{gpt-5.5} has a plan of 71.2 but a task of only 34.3, a gap of 36.9. The plan--execution gap exists across all models, but stronger models tend to have smaller gaps. The fallback component is the weakest plan sub-score, averaging only 26.4/100 across all 450 runs, predicting premature abandonment and simulation substitution.
 
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ3:} Plan quality partially predicts execution progress. \texttt{glm-5.2} achieves both the highest plan (88.3) and task (59.4), with the smallest gap. However, the plan--execution gap persists across all models (29--37 points). Weak fallback planning (avg.\ 26.4/100) is the strongest predictor of simulation substitution.
-\end{mdframed}
 
-\subsection{How Often Do Agents Simulate? (RQ4)}
-% RQ4: 69.8%的run存在模拟替代
-Simulation substitution is the most frequent failure mode: 314/450 runs (69.8\%) produce simulated reproductions. Figure~\ref{fig:heatmap} shows per-phase progress rates across models. The rate varies significantly: \texttt{claude-sonnet-4-6} substitutes in 81.1\% of runs despite strong plan quality, while \texttt{glm-5.2} substitutes in only 56.7\%. Simulated outputs are often coherent---valid crash signals, correct exploit syntax, convincing reports---but never exercise the real firmware binary. Without real-target gating, these would be indistinguishable from successful reproduction.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/3d.pdf}
-\caption{Per-phase progress rates across models. P1--P4 show moderate success, but P5 and P6 collapse to near-zero for all models.}
-\label{fig:heatmap}
-\end{figure*}
-
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ4:} 69.8\% of runs involve simulation substitution. Stronger models do not necessarily substitute less---\texttt{claude-sonnet-4-6} has the highest rate (81.1\%)---suggesting that simulation is driven by task difficulty rather than model weakness. Real-target gating is essential to distinguish genuine reproduction from simulation.
-\end{mdframed}
-
-\subsection{Vulnerability-Class and Model Analysis (RQ5)}
-% RQ5: CVE级别差异大，同架构设备成功率高
-Scores range from 99.5 (CVE-2023-26315) to 23.4 (CVE-2025-34037). The top-performing CVEs involve ARM64 devices where \texttt{chroot} suffices; the bottom involve MIPS devices with encrypted firmware or unavailable downloads. Seven CVEs show a $>$20-point gap between \texttt{glm-5.2} and both \texttt{claude-sonnet-4-6} and \texttt{gpt-5.5}; in all seven, the weaker models fail at P2 (firmware acquisition) while \texttt{glm-5.2} downloads, extracts, and in some cases rehosts the firmware. Buffer overflows allow partial credit via static analysis (P4); command injections require real rehosting; authentication bypasses need stateful request comparisons. Vulnerability class affects the validation path but is secondary to rehosting feasibility.
-
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ5:} CVE-level scores range from 99.5 to 23.4. Success correlates strongly with target architecture: ARM64 devices allowing \texttt{chroot}-based rehosting achieve full reproduction, while MIPS devices requiring QEMU almost universally fail at P5. Model-level differences are driven primarily by firmware acquisition success, not raw reasoning ability.
-\end{mdframed}
-
-\subsection{Graded vs.\ Binary Metrics (RQ6)}
-% RQ6: graded评分揭示二元评分隐藏的差异
-Under binary evaluation, 143/150 pairs (95.3\%) would be failures (P6 $<$ 15/20). Graded scoring reveals a 23.5-point spread (41.7--65.2) and a stage funnel invisible to binary metrics. Best-of-three scoring adds $\sim$10 points over per-run averages, with stronger models showing larger variance (e.g., \texttt{glm-5.2}: +14.3), suggesting that succeeding at least once is itself a capability dimension.
-
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result for RQ6:} Evidence-grounded scoring reveals distinctions hidden by binary success. Binary evaluation classifies 95.3\% as failures, but graded scoring shows a 23.5-point spread. The stage funnel, simulation-substitution rate, and plan--execution gap are all invisible under binary metrics.
-\end{mdframed}
