@@ -5,7 +5,7 @@
 \label{sec:lessons}
 
 
-\textbf{Pre-environment scoring surfaces a failure class that post-environment benchmarks structurally cannot see.} 69.8\% of our runs produce simulated reproductions which never execute the real firmware binary. The lesson for benchmark design is concrete: record full artifacts and trajectories, require artifact provenance for every claimed success. Without these, an agent can score as successful by emulating the vulnerability while never touching the target.
+\textbf{Pre-environment scoring surfaces a failure class that post-environment benchmarks structurally cannot see.} 70.2\% of our runs produce simulated reproductions which never execute the real firmware binary. The lesson for benchmark design is concrete: record full artifacts and trajectories, require artifact provenance for every claimed success. Without these, an agent can score as successful by emulating the vulnerability while never touching the target.
 
 \noindent{\textbf{On from-scratch reproduction, behavior is the decisive factor.}} \texttt{glm-5.2} outperforms \texttt{claude-sonnet-4-6} and \texttt{gpt-5.5} despite being a smaller model, because it persists longer at firmware acquisition, plans better fallbacks, and resists simulation substitution. The observation that stronger models do not necessarily substitute less indicates that simulation is driven by task difficulty and behavioral defaults, not by model weakness.
 

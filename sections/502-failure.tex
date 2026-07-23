@@ -1,6 +1,6 @@
 \subsection{Failure Analysis}
 % RQ2: 阶段漏斗——P1-R4合理，R5骤降，terminal blocker主要在Phase 5
-Table~\ref{tab:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.8/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores (7.0--8.8/15), reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 2.7/20. P6 averages 2.6/20, with most points coming from PoC construction rather than real-target triggering.
+Table~\ref{tab:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.9/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores (7.6--9.0/15), reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 3.7/20. P6 averages 2.8/20, with most points coming from PoC construction rather than real-target triggering.
 
 \begin{table}[t]
 \centering
@@ -11,13 +11,13 @@ Table~\ref{tab:stage-funnel} shows the stage funnel from P1 to P6. P1 (Informati
 \toprule
 \textbf{Phase} & \textbf{Description} & \textbf{Score} & \textbf{Max} & \textbf{\%} \\
 \midrule
-P1 & Information gathering   & 13.8 & 15 & 92.0\% \\
-P2 & Firmware acquisition    &  8.8 & 15 & 58.7\% \\
-P3 & Firmware extraction     &  8.0 & 15 & 53.3\% \\
-P4 & Binary identification   &  7.0 & 15 & 46.7\% \\
+P1 & Information gathering   & 13.9 & 15 & 92.8\% \\
+P2 & Firmware acquisition    &  9.0 & 15 & 59.8\% \\
+P3 & Firmware extraction     &  8.1 & 15 & 53.7\% \\
+P4 & Binary identification   &  7.6 & 15 & 50.8\% \\
 \midrule
-P5 & Service rehosting       &  2.7 & 20 & 13.5\% \\
-P6 & Vulnerability triggering&  2.6 & 20 & 13.0\% \\
+P5 & Service rehosting       &  3.7 & 20 & 18.6\% \\
+P6 & Vulnerability triggering&  2.8 & 20 & 13.8\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -31,15 +31,13 @@ P6 & Vulnerability triggering&  2.6 & 20 & 13.0\% \\
 %%\end{figure}
 
 % 失败模式四类：simulation主导，rehosting第二
-Across all 450 runs, four failure families account for the terminal blockers. \textbf{Simulation substitution} dominates at 314/450 runs (69.8\%): agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern without running the real firmware binary. \textbf{Rehosting gap} accounts for 99/450 runs (22.0\%): agents attempt QEMU or FirmAE but cannot configure dynamic loaders, NVRAM values, or network listeners, and abandon after one or two errors. \textbf{Artifact failures} (57/450, 12.7\%) and \textbf{extraction/binary-analysis failures} (44/450, 9.8\%) round out the taxonomy. Terminal blockers cluster at Phase 5 (246/450) and Phase 2 (143/450).
+Across all 450 runs, four failure families account for the terminal blockers. \textbf{Simulation substitution} dominates at 316/450 runs (70.2\%): agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern without running the real firmware binary. \textbf{Rehosting gap} accounts for 97/450 runs (21.6\%): agents identify the target binary but cannot configure dynamic loaders, NVRAM values, or network listeners under QEMU. \textbf{Extraction failures} (37/450, 8.2\%) and \textbf{infrastructure failures} (15/450, 3.3\%) round out the taxonomy. Terminal blockers cluster at Phase 2 (202/450) and Phase 5 (109/450).
 
-\textbf{Artifact failures (57/450, 12.7\%).} Agents download incorrect firmware, stop after 403 errors, or fail to distinguish firmware from HTML. Terminal blockers at Phase 2 account for 143/450 runs.
+\textbf{Extraction failures (37/450, 8.2\%).} Agents acquire firmware but misuse extraction tools or analyze binaries from PoC repositories rather than the target firmware.
 
-\textbf{Extraction and binary-analysis failures (44/450, 9.8\%).} Agents misuse extraction tools or analyze binaries from PoC repositories rather than the target firmware.
+\textbf{The rehosting gap (97/450, 21.6\%).} Agents identify the target binary but cannot configure dynamic loaders, NVRAM, or network listeners under QEMU, and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap via \texttt{chroot}.
 
-\textbf{The rehosting gap (99/450, 22.0\%).} Agents know QEMU and firmware emulators but cannot configure dynamic loaders, NVRAM, or network listeners, and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap via \texttt{chroot}.
-
-\textbf{Simulation substitution (314/450, 69.8\%).} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern but not the instance. The output may be coherent and reproducible, but wrong for the benchmark goal. Real-target gating rejects all of these.
+\textbf{Simulation substitution (316/450, 70.2\%).} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability pattern but not the instance. The output may be coherent and reproducible, but wrong for the benchmark goal. Real-target gating rejects all of these.
 
 
 
