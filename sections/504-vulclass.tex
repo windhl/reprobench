@@ -1,24 +1,33 @@
 \subsection{Impact of Vulnerability Class}
 
+
+
 % RQ3: 漏洞类型如何影响复现——前端获取、两极分化、验证路径
 We disaggregate the 450 runs by vulnerability class. The three classes differ in best-of-three overall score (58.5 vs.\ 48.9 vs.\ 46.0 for BOF, CMDI, and AUTH respectively), but the more striking differences lie in \emph{where} they succeed and fail: front-end acquisition, polarization, and the validation path each vary systematically with class.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/3d.pdf}
-\caption{Per-phase progress rates across models. P1--P4 show moderate success, but P5 and P6 collapse to near-zero for all models.}
-\label{fig:heatmap}
-\end{figure*}
+
+
+
+    
+
+
+
+
+
 
 \noindent\textbf{Buffer Overflow} performs best across the front-end phases. Agents average 7.23/15 on P2 (Firmware Acquisition) and 6.81/15 on P4 (Binary Identification), and 62\% of runs acquire the firmware---well above the other two classes. The mechanism is signature precision: buffer overflows expose a concrete function-level target (\texttt{strcpy}/\texttt{sprintf} on a named binary), so agents pin the target firmware version and binary directly from the CVE description. For CVE-2023-41229 and CVE-2023-44418 (D-Link \texttt{prog.cgi}), agents identify the HNAP Referer vector and target binary upfront, yielding high P2 scores.
 
+
+
 \noindent\textbf{Command Injection} shows the sharpest polarization. It attains a 3.3\% full-trigger rate (5/150 runs reaching P6$\geq$18) yet also a high simulation rate. Once a service is rehosted, command-injection PoCs are easy to verify---shell side effects such as \texttt{uid=0} or file creation provide unambiguous evidence (e.g., runs on CVE-2023-26315 rehost the Xiaomi \texttt{plugincenter} via \texttt{chroot} and trigger root RCE). The bottleneck is acquisition: none of the ten command-injection CVEs ships with firmware, and several target non-HTTP services (DHCP, SIP, UPnP GENA) whose firmware sources are harder to locate. Four CVEs form a low-score cluster (Overall $\leq$33) where almost no run acquires firmware---all involve non-standard services with dead or region-locked download URLs.
+
+
 
 \noindent\textbf{Authentication Bypass} is weakest in binary identification (P4: 3.68/15 per-run average) and rehosting attempts. Its root cause is usually cross-component session or access-control logic rather than a single faulty function, so agents struggle to localize the vulnerable path in one binary (e.g., CVE-2021-33044's \texttt{clientType: "NetKeyboard"} parameter; CVE-2025-6443's VXLAN network-layer control). Trigger verification is also uniquely hard: unlike a crash or a command side effect, an auth bypass requires a controlled authenticated-vs.-unauthenticated comparison. The exception is network-layer bypasses---CVE-2025-6443 (MikroTik) is fully reproduced by booting a RouterOS CHR image under QEMU system mode and sending VXLAN packets, bypassing binary-level analysis entirely.
 
 These class differences couple to distinct rehosting paths: buffer overflows target standard \texttt{httpd} services needing NVRAM shims under QEMU user mode; command injections span diverse protocols (udhcpd, CGI, thrift); auth bypasses occasionally demand a full OS image under QEMU system mode. We note one confound: firmware is pre-attached for 8/10 buffer-overflow CVEs but 0/10 command-injection and 4/10 auth-bypass CVEs. Yet the command-injection leaders (CVE-2023-26315 and CVE-2024-23624 reach 99.0 and 80.8) show that \emph{downloadability}, not pre-attachment, is decisive---the low-score cluster fails because URLs are dead or region-locked, not because firmware was absent from the dataset.
 
 
-\begin{mdframed}[linecolor=black,linewidth=1pt,backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
-\noindent\textbf{Result-3:} Vulnerability class systematically shapes reproduction. Class differences couple to distinct rehosting paths, and firmware downloadability is the decisive external factor.
-\end{mdframed}
+%%\begin{mdframed}[linecolor=black,linewidth=1pt,%%backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]
+%%\noindent\textbf{Result-3:} Vulnerability class %%systematically shapes reproduction. Class differences %%couple to distinct rehosting paths, and firmware %%downloadability is the decisive external factor.
+%%\end{mdframed}

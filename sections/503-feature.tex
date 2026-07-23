@@ -3,6 +3,13 @@
 %%While 143/150 pairs (95.3\%) would be failures under binary %%evaluation, graded scoring reveals a 23.5-point spread (41.7--65.%%2). Best-of-three scoring adds $\sim$10 points over per-run %%averages, with stronger models showing larger variance (e.g., %%\texttt{glm-5.2}: +14.3), suggesting that succeeding at least once %%is itself a capability dimension.
 %%
 
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/3d.pdf}
+    \caption{Per-phase progress rates across models. P1--P4 show moderate success, but P5 and P6 collapse to near-zero for all models.}
+    \label{fig:heatmap}
+\end{figure*}
+
 % 异常点分析：18个CVE存在分化，graded评分暴露阶段特定能力
 To quantify what capabilities binary metrics conceal, we conduct an anomaly analysis across all 450 runs. We define a divergence point where a minority of runs score $\geq$40\% of the phase maximum while a majority score $\leq$15\%. These two thresholds are chosen to separate genuine capability from attempt-score noise, which caps at $\sim$7\%. For each CVE we select the earliest divergent phase to avoid cascading low scores from unmet prerequisites. We identify \textit{18 CVEs} exhibiting such divergence and inspect the HIGH and LOW runs' artifacts and trajectories for each. Finally, we conclude the following three phase-specific capabilities.
 
