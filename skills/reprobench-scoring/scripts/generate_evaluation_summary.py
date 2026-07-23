@@ -105,9 +105,14 @@ def validation_warnings(
         phase_key = phase_name.lower()
         phase_score = phases[phase_key]["score"]
         item_sum = sum(item["score"] for item in phases[phase_key]["item_scores"].values())
+        attempt = phases[phase_key].get("attempt_score", {})
+        attempt_val = num(attempt.get("score", 0)) if isinstance(attempt, dict) else 0.0
         phase_total += phase_score
-        if abs(phase_score - item_sum) > 0.01:
-            warnings.append(f"{run_id}: {phase_name} score {phase_score:.2f} != item sum {item_sum:.2f}")
+        expected_phase = item_sum + attempt_val
+        if abs(phase_score - expected_phase) > 0.01:
+            warnings.append(
+                f"{run_id}: {phase_name} score {phase_score:.2f} != item sum {item_sum:.2f} + attempt {attempt_val:.2f}"
+            )
 
     if abs(task_score - phase_total) > 0.01:
         warnings.append(f"{run_id}: task score {task_score:.2f} != phase sum {phase_total:.2f}")
@@ -218,6 +223,7 @@ def collect_results(eval_root: Path) -> list[dict]:
                         "score": num(phase.get("score", 0)),
                         "max": phase_max,
                         "item_scores": item_scores,
+                        "attempt_score": phase.get("attempt_score", {}),
                     }
                 run_id = f"{cve_dir}/{model_dir}/{run_dir}"
                 failures = normalize_failure_analysis(data)
@@ -405,6 +411,34 @@ def write_summary(results: list[dict], output_path: Path) -> None:
                 f.write(f"{phase.upper():<6} {item_name:<42} {avg_score:>10.2f} {max_score:>8.1f} {aligned_pct:>9.1f}%\n")
         f.write("\n")
 
+        # ---- Attempt score summary ----
+        f.write(sep + "\n")
+        f.write("ATTEMPT SCORE SUMMARY\n")
+        f.write(sep + "\n\n")
+        f.write(f'{"Phase":<6} {"Triggered":>10} {"Avg Score":>10} {"Max":>6} {"Fragmentary":>12} {"Targeted":>10}\n')
+        f.write("-" * 70 + "\n")
+        for phase in ("r1", "r2", "r3", "r4", "r5", "r6"):
+            attempts = [r["phases"][phase].get("attempt_score", {}) for r in results]
+            triggered_count = sum(
+                1 for a in attempts if isinstance(a, dict) and a.get("triggered", False)
+            )
+            avg_score = sum(
+                num(a.get("score", 0)) if isinstance(a, dict) else 0.0 for a in attempts
+            ) / total
+            fragmentary_count = sum(
+                1 for a in attempts
+                if isinstance(a, dict) and a.get("attempt_level") == "fragmentary"
+            )
+            targeted_count = sum(
+                1 for a in attempts
+                if isinstance(a, dict) and a.get("attempt_level") == "targeted"
+            )
+            f.write(
+                f"{phase.upper():<6} {triggered_count:>10} {avg_score:>10.3f} {1:>6} "
+                f"{fragmentary_count:>12} {targeted_count:>10}\n"
+            )
+        f.write("\n")
+
         # ---- Scores by CVE ----
         f.write(sep + "\n")
         f.write("SCORES BY CVE\n")
@@ -454,6 +488,35 @@ def write_summary(results: list[dict], output_path: Path) -> None:
                     )
         f.write("\n")
 
+        # ---- Per-run phase breakdown (artifact vs attempt) ----
+        f.write(sep + "\n")
+        f.write("PER-RUN PHASE BREAKDOWN (ARTIFACT vs ATTEMPT)\n")
+        f.write(sep + "\n\n")
+        f.write(
+            f'{"CVE":<18} {"Model":<25} {"Run":>4} {"Phase":<6} '
+            f'{"Artifact":>9} {"AttScore":>9} {"AttLvl":<14} {"Triggered":>10} {"PhaseTotal":>11} {"Max":>5}\n'
+        )
+        f.write("-" * 130 + "\n")
+        for r in sorted(results, key=lambda x: (x["cve"], x["model"], x["run"])):
+            for phase in ("r1", "r2", "r3", "r4", "r5", "r6"):
+                pdata = r["phases"][phase]
+                item_sum = sum(item["score"] for item in pdata["item_scores"].values())
+                attempt = pdata.get("attempt_score", {})
+                if not isinstance(attempt, dict):
+                    attempt = {}
+                att_score = num(attempt.get("score", 0))
+                att_triggered = attempt.get("triggered", False)
+                att_level = attempt.get("attempt_level", "") or ""
+                att_trig_str = "yes" if att_triggered else "no"
+                phase_total = pdata["score"]
+                phase_max = pdata["max"]
+                f.write(
+                    f'{r["cve"]:<18} {r["model"]:<25} {r["run"]:>4} {phase.upper():<6} '
+                    f'{item_sum:>9.1f} {att_score:>9.1f} {att_level:<14} {att_trig_str:>10} '
+                    f'{phase_total:>11.1f} {phase_max:>5}\n'
+                )
+        f.write("\n")
+
         # ---- Per-run brief summaries ----
         f.write(sep + "\n")
         f.write("PER-RUN BRIEF SUMMARIES\n")
@@ -494,6 +557,12 @@ def write_summary(results: list[dict], output_path: Path) -> None:
                     parts.append(f"{item_name}={item['score']:.1f}/{item['max']:.1f}")
                 if parts:
                     f.write(f"  {phase.upper()} items: " + ", ".join(parts) + "\n")
+                attempt = r["phases"][phase].get("attempt_score", {})
+                if isinstance(attempt, dict) and attempt.get("triggered", False):
+                    f.write(
+                        f"  {phase.upper()} attempt: score={num(attempt.get('score', 0)):.1f}/1 "
+                        f"level={attempt.get('attempt_level', '?')}\n"
+                    )
             f.write(f"  {s}\n\n")
 
         # ---- Key findings ----
