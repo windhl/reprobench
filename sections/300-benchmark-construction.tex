@@ -29,25 +29,26 @@ For each CVE, we collect public evidence by automatically gathering and organizi
 To enable fine-grained evaluation, the scoring skill decomposes the reproduction process into six phases. %(Table~\ref{tab:phases}). 
 This decomposition is applied only during scoring; the agent is not informed of the phase structure and freely decides how to approach the task. Each phase is associated with specific checklist items that serve as the scoring granularity. The six phases are used in two complementary scores: the \emph{Plan Score} evaluates whether the agent's written plan covers these phases in correct order with fallback strategies, and the \emph{Task Score} evaluates whether the agent's execution actually achieved the goals of each phase with observable evidence. The overall score is $\text{Overall}=0.2\cdot\text{Plan}+0.8\cdot\text{Task}$, weighting execution more heavily because the benchmark measures whether an agent can realize a reproduction, not merely describe one.
 
-%%\begin{table}[t]
-%%\centering
-%%\caption{Six scoring phases. P1--P4 carry 15 points each; P5--P6 %%carry 20 points each. These weights apply to both Plan Score %%(Coverage) and Task Score.}
-%%\label{tab:phases}
-%%\renewcommand{\arraystretch}{1.15}
-%%\small
-%%\begin{tabular}{c l l}
-%%\toprule
-%%\textbf{Phase} & \textbf{Name} & \textbf{Key Artifact (Evidence)} \\
-%%\midrule
-%%P1 & Information Gathering & Vendor, Version, Function \\
-%%P2 & Firmware Acquisition & Firmware Image \\
-%%P3 & Firmware Extraction & Root Filesystem \\
-%%P4 & Binary Identification & Target Binary, Root Cause \\
-%%P5 & Service Rehosting & Service Log \\
-%%P6 & Vulnerability Triggering & PoC, Debugging Log \\
-%%\bottomrule
-%%\end{tabular}
-%%\end{table}
+\begin{table}[t]
+\setlength{\tabcolsep}{3.8pt}
+\centering
+\caption{Six scoring phases. P1--P4 carry 15 points each; P5--P6 carry 20 points ch. These weights are applied to both Plan Score (Coverage) and Task Score.}
+\label{tab:phases}
+\renewcommand{\arraystretch}{1.15}
+\small
+\begin{tabular}{c l l}
+\toprule
+\textbf{Phase} & \textbf{Name} & \textbf{Evidence} \\
+\midrule
+P1 & Information Gathering & Vendor, Version, Function \\
+P2 & Firmware Acquisition & Firmware Image \\
+P3 & Firmware Extraction & Root Filesystem \\
+P4 & Binary Identification & Target Binary, Root Cause \\
+P5 & Service Rehosting & Service Log \\
+P6 & Vulnerability Triggering & PoC, Debugging Log \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsubsection{Plan Score}
 Before execution, the agent writes a reproduction plan (\texttt{plan.md}). The plan score has three components, each normalized to 0--100: $\text{Plan} = 0.6 \times \text{Coverage} + 0.3 \times \text{Dependency} + 0.1 \times \text{Fallback}$. \emph{Coverage} evaluates whether the plan explicitly covers all six phases, using the same phase weights as the task score. %(Table~\ref{tab:phases}). 
