@@ -52,9 +52,9 @@ MODELS = (
     "mimo-v2.5-free",
 )
 PLOT_MODELS = (
-    "claude-sonnet-4-6",
-    "deepseek-v4-flash-free",
     "gpt-5.5",
+    "deepseek-v4-flash-free",
+    "claude-sonnet-4-6",
     "mimo-v2.5-free",
     "glm-5.2",
 )
