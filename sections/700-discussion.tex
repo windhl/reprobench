@@ -17,6 +17,6 @@
 \textbf{Dataset scope.} \sys{} contains 30 manually curated CVEs balanced equally across buffer overflows, command injections, and authentication bypasses. This balance does not mirror the natural distribution of IoT weaknesses, and we can select more CVEs in our future work.
 
 
-\noindent{\textbf{Scoring Skill.}} \sys{} use the scoring skill which is a rubric-constrained evaluator rather than a deterministic exploit oracle. It is better to find a more concrete scoring strategies in the future.
+\noindent{\textbf{Scoring Skill.}} The LLM-based scorer performs semantic analysis on trajectories and artifacts, which introduces nondeterminism in some ways. For example, failure attribution does not always conform to the predefined family and mode taxonomy, occasionally producing hybrid or uncategorized labels. Partial credit on checklist items is not always assigned at standard increments (25\%, 50\%, 75\%); approximately 16\% of partial-credit items receive non-standard ratios. Although we apply post-scoring filtering and normalization to mitigate these inconsistencies, the underlying nondeterminism may still affect fine-grained score comparisons.
 
 \noindent{\textbf{Single Agent Harness.}} All five models run through the same harness with an identical prompt, tool set, and control loop to isolate behavior from harness variance. However, alternative harnesses such as Claude Code or multi-agent pipelines may shift both scores and the simulation-substitution rate. Extending \sys{} to multiple harnesses and a wider model pool are left as our future work.

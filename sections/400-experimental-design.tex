@@ -65,11 +65,9 @@ All agent runs execute on a single ARM64-architecture host equipped with 128\,GB
 
 \subsection{Scoring Skill}
 
-We implement a rubric-constrained LLM scoring skill that evaluates each run by inspecting the artifacts and trajectories against the public evidence. The scorer cites concrete evidence for every non-zero score and outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution. 
-%
-%%A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
-% best-of-three排名方式
-Specifically, all 450 runs are scored using the evidence-grounded framework defined in Section~\ref{sec:scoring}. For each CVE--model pair, we report the best plan score, the best task score, and the best overall score across three independent trials, where the best overall is the maximum per-run overall (not a recombination of best plan and best task from different runs). We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic, but a single success demonstrates that the capability exists.
+We score all 450 runs using the evidence-grounded framework defined in Section~\ref{sec:scoring}. The scoring skill is implemented as an LLM-based evaluator that operates in two passes: first scanning phase-specific artifacts to assign artifact-based scores, then inspecting the trajectory for traceable attempts when a phase receives zero artifact-based credit. Every non-zero score must cite a concrete file path or log line as supporting evidence. P5 and P6 enforce real-target gating: any run that substitutes mock servers, host-native harnesses, or static-only analysis for the real firmware binary receives zero credit for these phases. The scorer outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution.
+
+For each CVE--model pair, we report the best plan score, the best task score, and the best overall score across three independent trials, where the best overall is the maximum per-run overall. We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic---a single success demonstrates that the capability exists, even if execution is unreliable. To validate scoring reliability, we conduct a stratified manual review of runs spanning non-zero P5/P6 claims, high-scoring runs, and simulation-flagged workspaces, confirming that the scorer's evidence citations and failure attributions are consistent with the underlying artifacts and trajectories.
 
 
 

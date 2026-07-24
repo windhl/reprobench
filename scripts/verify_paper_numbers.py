@@ -50,17 +50,17 @@ AUTH_CVES = {
 }
 
 MODELS = [
-    'glm-5.2', 'mimo-v2.5-free', 'claude-sonnet-4-6',
-    'gpt-5.5', 'deepseek-v4-flash-free',
+    'glm-5.2', 'mimo-v2.5', 'claude-sonnet-4-6',
+    'gpt-5.5', 'deepseek-v4-flash',
 ]
 
 # Paper values (what the .tex files should contain)
 PAPER_TABLE1 = {
     'glm-5.2':                {'plan': 86.7, 'task': 59.9, 'overall': 64.6, 'max_overall': 99.0, 'p5': 7, 'p6': 5},
-    'mimo-v2.5-free':         {'plan': 83.2, 'task': 45.5, 'overall': 52.9, 'max_overall': 76.9, 'p5': 0, 'p6': 0},
+    'mimo-v2.5':              {'plan': 83.2, 'task': 45.5, 'overall': 52.9, 'max_overall': 76.9, 'p5': 0, 'p6': 0},
     'claude-sonnet-4-6':      {'plan': 79.1, 'task': 42.7, 'overall': 50.0, 'max_overall': 99.0, 'p5': 2, 'p6': 1},
     'gpt-5.5':                {'plan': 71.1, 'task': 38.2, 'overall': 44.7, 'max_overall': 89.1, 'p5': 1, 'p6': 1},
-    'deepseek-v4-flash-free': {'plan': 68.5, 'task': 37.7, 'overall': 43.6, 'max_overall': 98.0, 'p5': 1, 'p6': 1},
+    'deepseek-v4-flash':      {'plan': 68.5, 'task': 37.7, 'overall': 43.6, 'max_overall': 98.0, 'p5': 1, 'p6': 1},
 }
 PAPER_ALL = {'plan': 77.7, 'task': 44.8, 'overall': 51.1, 'max_overall': 99.0, 'p5': 11, 'p6': 8}
 
@@ -116,29 +116,43 @@ def parse_data(data_path):
     with open(data_path) as f:
         lines = f.readlines()
 
-    # Find score table header
-    start = None
+    # Find score table header (starts with CVE and contains Model, Run, Plan, P1, etc.)
+    header_idx = None
     for i, line in enumerate(lines):
-        if line.strip().startswith('CVE') and 'Model' in line and 'Run' in line:
-            start = i + 2
+        s = line.strip()
+        if s.startswith('CVE') and 'Model' in s and 'Run' in s and 'P1' in s and 'Overall' in s:
+            header_idx = i
             break
-    if start is None:
-        sys.exit('ERROR: could not find score table header')
+    if header_idx is None:
+        sys.exit('ERROR: could not find FULL SCORE TABLE header')
+
+    # Parse header into column names by splitting on whitespace
+    header_names = lines[header_idx].split()
 
     runs = []
-    for line in lines[start:]:
-        line = line.strip()
-        if not line or line.startswith('==='):
+    for line in lines[header_idx + 2:]:  # skip header + separator
+        s = line.strip()
+        if not s or s.startswith('==='):
             break
-        parts = line.split()
-        if len(parts) < 13:
+        parts = s.split()
+        if len(parts) < len(header_names):
             continue
+        # Build dict from header names
+        row = {}
+        for j, col in enumerate(header_names):
+            val = parts[j]
+            if col in ('CVE', 'Model'):
+                row[col] = val
+            elif col == 'Run':
+                row[col] = int(val)
+            else:
+                row[col] = float(val)
         runs.append({
-            'cve': parts[0], 'model': parts[1], 'run': int(parts[2]),
-            'plan': float(parts[3]),
-            'r1': float(parts[5]), 'r2': float(parts[6]), 'r3': float(parts[7]),
-            'r4': float(parts[8]), 'r5': float(parts[9]), 'r6': float(parts[10]),
-            'task': float(parts[11]), 'overall': float(parts[13]),
+            'cve': row['CVE'], 'model': row['Model'], 'run': row['Run'],
+            'plan': row['Plan'],
+            'p1': row['P1'], 'p2': row['P2'], 'p3': row['P3'],
+            'p4': row['P4'], 'p5': row['P5'], 'p6': row['P6'],
+            'task': row['Task'], 'overall': row['Overall'],
         })
 
     return runs, lines
@@ -196,8 +210,8 @@ def compute_table1(pairs):
         bp = [max(r['plan'] for r in pr) for pr in mp.values()]
         bt = [max(r['task'] for r in pr) for pr in mp.values()]
         bo = [max(r['overall'] for r in pr) for pr in mp.values()]
-        p5 = sum(1 for pr in mp.values() if max(r['r5'] for r in pr) >= 15)
-        p6 = sum(1 for pr in mp.values() if max(r['r6'] for r in pr) >= 15)
+        p5 = sum(1 for pr in mp.values() if max(r['p5'] for r in pr) >= 15)
+        p6 = sum(1 for pr in mp.values() if max(r['p6'] for r in pr) >= 15)
         results[model] = {
             'plan': sum(bp) / n, 'task': sum(bt) / n,
             'overall': sum(bo) / n, 'max_overall': max(bo),
@@ -205,8 +219,8 @@ def compute_table1(pairs):
         }
         all_bp.extend(bp); all_bt.extend(bt); all_bo.extend(bo)
         for k, pr in mp.items():
-            if max(r['r5'] for r in pr) >= 15: all_p5.add(k)
-            if max(r['r6'] for r in pr) >= 15: all_p6.add(k)
+            if max(r['p5'] for r in pr) >= 15: all_p5.add(k)
+            if max(r['p6'] for r in pr) >= 15: all_p6.add(k)
 
     n = len(pairs)
     results['All'] = {
@@ -219,9 +233,9 @@ def compute_table1(pairs):
 
 def compute_funnel(pairs):
     """Compute best-of-three phase averages."""
-    phase_max = {'r1': 15, 'r2': 15, 'r3': 15, 'r4': 15, 'r5': 20, 'r6': 20}
+    phase_max = {'p1': 15, 'p2': 15, 'p3': 15, 'p4': 15, 'p5': 20, 'p6': 20}
     results = []
-    for phase in ['r1', 'r2', 'r3', 'r4', 'r5', 'r6']:
+    for phase in ['p1', 'p2', 'p3', 'p4', 'p5', 'p6']:
         scores = [max(r[phase] for r in pr) for pr in pairs.values()]
         avg = sum(scores) / len(scores)
         mx = phase_max[phase]
@@ -234,21 +248,21 @@ def compute_failure(runs, sim_count):
     """Compute per-run, non-overlapping failure attribution."""
     cats = {'infra': 0, 'p2': 0, 'p3': 0, 'p5': 0, 'p6': 0, 'success': 0}
     for r in runs:
-        if r['overall'] == 0 and r['r1'] == 0:
+        if r['overall'] == 0 and r['p1'] == 0:
             cats['infra'] += 1
-        elif r['r2'] == 0:
+        elif r['p2'] == 0:
             cats['p2'] += 1
-        elif r['r3'] == 0:
+        elif r['p3'] == 0:
             cats['p3'] += 1
-        elif r['r5'] <= 2:
+        elif r['p5'] <= 2:
             cats['p5'] += 1
-        elif r['r6'] <= 2:
+        elif r['p6'] <= 2:
             cats['p6'] += 1
         else:
             cats['success'] += 1
 
-    # Rehosting family: subset of P5 where R4 > 0
-    rehosting = sum(1 for r in runs if r['r4'] > 0 and r['r5'] <= 2 and r['r2'] > 0 and r['r3'] > 0)
+    # Rehosting family: subset of P5 where P4 > 0
+    rehosting = sum(1 for r in runs if r['p4'] > 0 and r['p5'] <= 2 and r['p2'] > 0 and r['p3'] > 0)
 
     return {
         'simulation': sim_count,
@@ -274,11 +288,11 @@ def compute_vultype(runs, pairs):
         n_runs = len(vt_runs)
 
         bo = sum(max(r['overall'] for r in pr) for pr in vt_pairs.values()) / n_pairs
-        r2 = sum(r['r2'] for r in vt_runs) / n_runs
-        r4 = sum(r['r4'] for r in vt_runs) / n_runs
-        fw = sum(1 for r in vt_runs if r['r2'] > 0) / n_runs * 100
+        p2 = sum(r['p2'] for r in vt_runs) / n_runs
+        p4 = sum(r['p4'] for r in vt_runs) / n_runs
+        fw = sum(1 for r in vt_runs if r['p2'] > 0) / n_runs * 100
 
-        results[vt_name] = {'overall': bo, 'r2': r2, 'r4': r4, 'fw_pct': fw, 'n_runs': n_runs}
+        results[vt_name] = {'overall': bo, 'r2': p2, 'r4': p4, 'fw_pct': fw, 'n_runs': n_runs}
     return results
 
 
@@ -287,8 +301,8 @@ def compute_model_behavior(runs, pairs, fallback_by_model):
     glm_pairs = {k: v for k, v in pairs.items() if k[1] == 'glm-5.2'}
     claude_pairs = {k: v for k, v in pairs.items() if k[1] == 'claude-sonnet-4-6'}
 
-    glm_p2 = sum(max(r['r2'] for r in pr) for pr in glm_pairs.values()) / len(glm_pairs)
-    claude_p2 = sum(max(r['r2'] for r in pr) for pr in claude_pairs.values()) / len(claude_pairs)
+    glm_p2 = sum(max(r['p2'] for r in pr) for pr in glm_pairs.values()) / len(glm_pairs)
+    claude_p2 = sum(max(r['p2'] for r in pr) for pr in claude_pairs.values()) / len(claude_pairs)
     claude_phtt = sum(1 for r in runs if r['model'] == 'claude-sonnet-4-6' and r['plan'] > 50 and r['task'] < 15)
 
     fb = {}
@@ -319,7 +333,7 @@ def compute_cve_level(runs, pairs):
     cve_23624 = max(max(r['overall'] for r in pr) for k, pr in pairs.items() if k[0] == 'CVE-2024-23624')
 
     cmdi_runs = [r for r in runs if r['cve'] in CMDI_CVES]
-    cmdi_p6_18 = sum(1 for r in cmdi_runs if r['r6'] >= 18)
+    cmdi_p6_18 = sum(1 for r in cmdi_runs if r['p6'] >= 18)
 
     return {
         'top_score': max(cve_best.values()),
