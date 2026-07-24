@@ -11,6 +11,9 @@
 \label{fig:prompt}
 \end{figure}
 
+
+
+
 \subsubsection{Prompt-Driven Runs}
 As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template with per-case CVE identifier substitution to steer agent execution. The template comprises three parts: \textit{CVE-Providing} to assign the target CVE and enforce a three-stage (planning, execution, summarization) workflow; a workflow specification that standardizes output file naming for plans and summaries; and a rule set governing reproduction constraints, such as obstacle logging, budget/time limits, root access for tool setup, and consistent working directories.
 
@@ -59,6 +62,10 @@ To enable flexible and consistent model switching, we adopt \textit{OpenCode} as
 
 \noindent{\textbf{Trajectory Files}}: full session interaction messages and container runtime logs, which comprehensively capture the agent’s reasoning trajectory and step-by-step execution process.
 
+\subsubsection{Execution Setup}
+% 运行环境：ARM64主机+Docker容器隔离，每次run独立启动
+All agent runs execute on a single ARM64-architecture host equipped with 128\,GB of memory and an NVIDIA GB10 processor, providing the compute and memory headroom required for firmware acquisition, filesystem extraction, and cross-architecture QEMU emulation. To enforce isolation and reproducibility, each of the 450 runs is launched inside a dedicated Docker container built from a consistent base image, provisioned with root-level access for tool installation, and mounted with a dedicated \texttt{/output} volume for artifact collection. Containers are started independently and discarded after each run, preventing cross-run state leakage and ensuring that every trial begins as a clean from-scratch attempt.
+
 
 \subsection{Scoring Skill}
 
@@ -66,6 +73,8 @@ We implement a rubric-constrained LLM scoring skill that evaluates each run by i
 
 % best-of-three排名方式
 All 450 runs are scored using the evidence-grounded framework defined in Section~\ref{sec:scoring}. For each CVE--model pair, we report the best plan score, the best task score, and the best overall score across three independent trials, where the best overall is the maximum per-run overall (not a recombination of best plan and best task from different runs). We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic, but a single success demonstrates that the capability exists.
+
+
 
 
 %%\subsection{Research Questions}
