@@ -56,23 +56,20 @@ All & 77.7 & 44.8 & 51.1 & 99.0 & 11/150 & 8/150 \\
 
 
 \subsubsection{LLM Selection}
-To enable flexible and consistent model switching, we adopt \textit{OpenCode} as the unified agent harness across all evaluated models. We evaluate five representative model configurations: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5}. Each model is tested across all 30 CVE cases with three independent container-based trials per case, yielding a total of 450 distinct reproduction runs. For each run, we systematically collect two categories of experimental artifacts that are used for the two scoring strategies mentioned in above section:
-
-\noindent{\textbf{Artifact Files}}: all files generated throughout the reproduction pipeline, including the task plan, downloaded firmware images, extracted filesystems, proof-of-concept (PoC) scripts, debugging logs, and the final summary report.
-
-\noindent{\textbf{Trajectory Files}}: full session interaction messages and container runtime logs, which comprehensively capture the agent’s reasoning trajectory and step-by-step execution process.
+To enable flexible and consistent model switching, we adopt \texttt{OpenCode} as the unified agent harness across all evaluated models. We evaluate five representative model configurations: \texttt{claude-sonnet-4-6}, \texttt{deepseek-v4-flash}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and \texttt{mimo-v2.5}. Each model is tested across all 30 CVE cases with three independent container-based trials per case, yielding a total of 450 distinct reproduction runs. For each run, we systematically collect the artifacts and trajectories that are used for the two scoring strategies mentioned in above section.
 
 \subsubsection{Execution Setup}
 % 运行环境：ARM64主机+Docker容器隔离，每次run独立启动
-All agent runs execute on a single ARM64-architecture host equipped with 128\,GB of memory and an NVIDIA GB10 processor, providing the compute and memory headroom required for firmware acquisition, filesystem extraction, and cross-architecture QEMU emulation. To enforce isolation and reproducibility, each of the 450 runs is launched inside a dedicated Docker container built from a consistent base image, provisioned with root-level access for tool installation, and mounted with a dedicated \texttt{/output} volume for artifact collection. Containers are started independently and discarded after each run, preventing cross-run state leakage and ensuring that every trial begins as a clean from-scratch attempt.
+All agent runs execute on a single ARM64-architecture host equipped with 128\,GB of memory and an NVIDIA GB10 processor, providing the compute and memory headroom required for firmware acquisition, filesystem extraction, and cross-architecture QEMU emulation. To enforce isolation and reproducibility, each of the 450 runs is launched inside a dedicated Docker container built from a consistent base image, provisioned with root-level access for tool installation, and mounted with volumes, \texttt{/output} and \texttt{/trace}, for the artifact and trajectory collection. Containers are started independently and discarded after each run, preventing cross-run state leakage and ensuring that every trial begins as a clean from-scratch attempt.
 
 
 \subsection{Scoring Skill}
 
-We implement a rubric-constrained LLM scoring skill that evaluates each run by inspecting the trajectory and artifact files against the public evidence. The scorer cites concrete evidence for every non-zero score and outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution. A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
-
+We implement a rubric-constrained LLM scoring skill that evaluates each run by inspecting the artifacts and trajectories against the public evidence. The scorer cites concrete evidence for every non-zero score and outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution. 
+%
+%%A stratified human audit validates the scoring on a sample of runs---focusing on non-zero P5/P6 claims, high scores, and simulation-like workspaces---but does not add hidden credit for unobserved work.
 % best-of-three排名方式
-All 450 runs are scored using the evidence-grounded framework defined in Section~\ref{sec:scoring}. For each CVE--model pair, we report the best plan score, the best task score, and the best overall score across three independent trials, where the best overall is the maximum per-run overall (not a recombination of best plan and best task from different runs). We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic, but a single success demonstrates that the capability exists.
+Specifically, all 450 runs are scored using the evidence-grounded framework defined in Section~\ref{sec:scoring}. For each CVE--model pair, we report the best plan score, the best task score, and the best overall score across three independent trials, where the best overall is the maximum per-run overall (not a recombination of best plan and best task from different runs). We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic, but a single success demonstrates that the capability exists.
 
 
 
