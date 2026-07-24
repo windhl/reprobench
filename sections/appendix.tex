@@ -31,7 +31,7 @@ We release the following artifacts in a public repository:
     \item The corpus manifest: 30 CVE identifiers with device model, firmware version, architecture, vulnerability type, and public evidence fields.
     \item Firmware references: vendor download URLs or archive.org snapshots for each CVE. We do not redistribute firmware images directly, as they are vendor-copyrighted.
     \item The scoring skill: rubric specification, JSON schema, and the summary generation script, runnable on any Linux container with standard tools.
-    \item The agent harness: system prompt, tool definitions, budget enforcement (\$10, 24-hour limit), and workspace configuration.
+    \item The agent harness: system prompt, tool definitions, budget enforcement (\$5, 24-hour limit), and workspace configuration.
     \item Docker container images for each CVE, pre-configured with the correct firmware reference and evaluation environment.
 \end{itemize}
 Every experiment is re-runnable by executing the harness against the container images with the provided system prompt. We do not release model API keys; the harness uses direct API access through a uniform tool interface.
