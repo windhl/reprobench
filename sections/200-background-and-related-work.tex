@@ -18,10 +18,11 @@ These steps are strictly sequential, so an early stage failure will block all do
 % 网络安全benchmark，按四类漏洞任务分组
 \subsection{Cybersecurity Benchmarks}
 Existing cybersecurity benchmarks can be grouped by which stage of the vulnerability lifecycle they evaluate: \emph{discovery} (finding an unknown vulnerability), \emph{reproduction} (producing a PoC that triggers a known vulnerability), \emph{exploitation} (escalating a bug into a concrete security impact), and \emph{patching} (generating a code fix). 
-For discovery, CyberGym~\cite{cybergym} (Level~0), CVE-Bench~\cite{cvebench} (zero-day), CyberGym-E2E~\cite{cybergyme2e}, and BountyBench~\cite{bountybench} (Detect) require the agent to find vulnerabilities without prior information. 
-For reproduction, CyberGym~\cite{cybergym}, K-Repro~\cite{krepro}, and SEC-Bench~\cite{secbench} task the agent with building a PoC from a vulnerability description or patch, while ExploitBench~\cite{exploitbench} evaluates reproduction as part of a broader capability ladder. 
-For exploitation, CVE-Bench~\cite{cvebench}, ExploitGym~\cite{exploitgym}, and ExploitBench~\cite{exploitbench} require the agent to achieve concrete security impacts such as code execution or privilege escalation. 
-For patching, SEC-Bench~\cite{secbench}, CyberGym-E2E~\cite{cybergyme2e}, and BountyBench~\cite{bountybench} evaluate the agent's ability to generate and verify fixes.
+For discovery, they usually provide the source code for
+the target programs (\cite{cybergym, cvebench, cybergyme2e, bountybench}). 
+For reproduction, beside the target program, they also need some more things, e.g., vulnerability description, a PoC script or a patch file (\cite{krepro, secbench}). 
+For exploitation and patching, they usually need a execution binary, a containerized or a running service before they conduct the evaluation (\cite{exploitbench, exploitgym, cybergyme2e}).
 
 
-As illustrated in Figure~\ref{fig:iceberg}, all of these benchmarks operate in the post-environment setting: the target is already built, containerized, or running, and the agent is scored only on what it does after that starting line. Whether the agent can perform the full from-scratch reproduction pipeline---from a CVE identifier to triggering the vulnerability on the real target---remains an open question. \sys{} explores this question by making environment construction a scored phase of the reproduction pipeline, decomposing reproduction into six phases and applying real-target gating that rejects simulated reproductions.
+\subsection{From-Scratch Reproduction Gap}
+Based on above description, as illustrated in Figure~\ref{fig:iceberg}, all of these benchmarks operate in the post-environment setting: the target is already built, containerized, or running, and the agent is scored only on what it does after that starting line. Whether the agent can perform the full from-scratch reproduction pipeline---from a CVE identifier to triggering the vulnerability on the real target---remains an open question. \sys{} explores this question by making environment construction a scored phase of the reproduction pipeline and exposes the specific capabilities, common failure behaviors for the representative LLM agents.
