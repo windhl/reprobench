@@ -63,21 +63,11 @@ To enable flexible and consistent model switching, we adopt \texttt{OpenCode} as
 All agent runs execute on a single ARM64-architecture host equipped with 128\,GB of memory and an NVIDIA GB10 processor, providing the compute and memory headroom required for firmware acquisition, filesystem extraction, and cross-architecture QEMU emulation. To enforce isolation and reproducibility, each of the 450 runs is launched inside a dedicated Docker container built from a consistent base image, provisioned with root-level access for tool installation, and mounted with volumes, \texttt{/output} and \texttt{/trace}, for the artifact and trajectory collection. Containers are started independently and discarded after each run, preventing cross-run state leakage and ensuring that every trial begins as a clean from-scratch attempt.
 
 
-\subsection{Scoring Skill}
+\subsection{Skill-based Scoring}
 
-We score all 450 runs using the evidence-grounded framework defined in Section~\ref{sec:scoring}. The scoring skill is implemented as an LLM-based evaluator that operates in two passes: first scanning phase-specific artifacts to assign artifact-based scores, then inspecting the trajectory for traceable attempts when a phase receives zero artifact-based credit. Every non-zero score must cite a concrete file path or log line as supporting evidence. P5 and P6 enforce real-target gating: any run that substitutes mock servers, host-native harnesses, or static-only analysis for the real firmware binary receives zero credit for these phases. The scorer outputs structured JSON with per-item scores, ground-truth alignment flags, and failure attribution.
+To automatically complete the scoring, we design two agent skills.
+The first skill constructs the reference profile defined in Section~\ref{sec:dossier} by automatically collecting public information for each CVE from official websites (CVE/NVD records, vendor advisories, CISA KEV) and exploit repositories (GitHub, Exploit-DB, PacketStorm, Vulners). Then it saves every fetched information into plaintext, and distills a structured \texttt{info.txt} capturing the vulnerability facts needed for scoring. An additional operation then verifies that each CVE has concrete trigger evidence, ensuring the reference profile is grounded in reproducible facts.
 
-For each CVE--model pair, we report the best plan score, the best task score, and the best overall score across three independent trials, where the best overall is the maximum per-run overall. We adopt best-of-three rather than averaging because vulnerability reproduction is a search task where success is stochastic---a single success demonstrates that the capability exists, even if execution is unreliable. To validate scoring reliability, we conduct a stratified manual review of runs spanning non-zero P5/P6 claims, high-scoring runs, and simulation-flagged workspaces, confirming that the scorer's evidence citations and failure attributions are consistent with the underlying artifacts and trajectories.
+The second skill scores the 450 runs against the evidence-grounded framework (Section~\ref{sec:scoring}). It is an LLM-based evaluator that operates in two passes, first scanning phase-specific artifacts to assign artifact-based scores, then inspecting the trajectory for traceable attempts when a phase receives zero credit. Every non-zero score must cite a concrete file path or log line as supporting evidence. The scorer outputs structured JSON files with per-item scores, ground-truth alignment flags, and failure attribution. For each CVE--model pair, it also report the best plan, task, and overall scores across the three independent trials. 
+%%Scoring reliability is validated by a stratified manual review spanning non-zero P5/P6 claims, high-scoring runs, and simulation-flagged workspaces, confirming that the scorer's evidence citations and failure attributions match the underlying artifacts and trajectories
 
-
-
-
-%%\subsection{Research Questions}
-%%
-%%We set four core research questions to drive our evaluation:
-%%\begin{itemize}
-%%\item RQ1: How far can agents progress from a CVE identifier?
-%%\item RQ2: What failure patterns limit agent progress?
-%%\item RQ3: How do vulnerability class affect reproduction?
-%%\item RQ4: Does evidence-grounded scoring reveal distinctions that binary success %%metrics conceal?
-%%\end{itemize}
