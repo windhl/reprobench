@@ -35,7 +35,7 @@ Figure~\ref{fig:stage-funnel} shows the stage funnel from P1 to P6. P1 (Informat
 
 
 
-Across all 450 runs, terminal blockers fall into four failure families, ordered below by descending frequency, and cluster at two phases---P2 (202/450) and P5 (109/450)---consistent with the funnel above. The dominant families are reproduction-logic errors; a small residual involves the execution environment.
+Across all 450 runs, terminal blockers fall into four failure families, ordered below by descending frequency, and cluster at two phases---P2 (202/450) and P5 (109/450)---consistent with the funnel above. The dominant families are reproduction-logic errors and a small residual involves the execution environment.
 
 \noindent{\textbf{Simulation substitution (316/450, 70.2\%).}} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability \emph{pattern} but not the target \emph{instance}. The output is often coherent and reproducible---valid crash signals, correct exploit syntax, convincing reports---yet never exercises the real firmware binary, so real-target gating rejects all of these.
 
