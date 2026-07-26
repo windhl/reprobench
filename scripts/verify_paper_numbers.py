@@ -56,7 +56,7 @@ MODELS = [
 
 # Paper values (what the .tex files should contain)
 PAPER_TABLE1 = {
-    'glm-5.2':                {'plan': 86.7, 'task': 59.9, 'overall': 64.6, 'max_overall': 99.0, 'p5': 7, 'p6': 5},
+    'glm-5.2':                {'plan': 86.7, 'task': 59.9, 'overall': 64.6, 'max_overall': 98.7, 'p5': 7, 'p6': 5},
     'mimo-v2.5':              {'plan': 83.2, 'task': 45.5, 'overall': 52.9, 'max_overall': 76.9, 'p5': 0, 'p6': 0},
     'claude-sonnet-4-6':      {'plan': 79.1, 'task': 42.7, 'overall': 50.0, 'max_overall': 99.0, 'p5': 2, 'p6': 1},
     'gpt-5.5':                {'plan': 71.1, 'task': 38.2, 'overall': 44.7, 'max_overall': 89.1, 'p5': 1, 'p6': 1},
@@ -66,25 +66,25 @@ PAPER_ALL = {'plan': 77.7, 'task': 44.8, 'overall': 51.1, 'max_overall': 99.0, '
 
 PAPER_FUNNEL = [
     ('P1', 13.9, 15, 92.8),
-    ('P2', 9.0, 15, 59.8),
-    ('P3', 8.1, 15, 53.7),
+    ('P2', 9.0, 15, 59.9),
+    ('P3', 8.1, 15, 53.8),
     ('P4', 7.6, 15, 50.8),
     ('P5', 3.7, 20, 18.6),
-    ('P6', 2.8, 20, 13.8),
+    ('P6', 2.8, 20, 13.9),
 ]
 
 PAPER_FAILURE = {
     'simulation': 316, 'simulation_pct': 70.2,
-    'rehosting': 97, 'rehosting_pct': 21.6,
-    'extraction': 37, 'extraction_pct': 8.2,
+    'rehosting': 93, 'rehosting_pct': 20.7,
+    'extraction': 36, 'extraction_pct': 8.0,
     'infrastructure': 15, 'infrastructure_pct': 3.3,
-    'p2_blockers': 202, 'p5_blockers': 109,
+    'p2_blockers': 211, 'p5_blockers': 173,
 }
 
 PAPER_VULTYPE = {
-    'BOF':  {'overall': 58.5, 'r2': 7.23, 'r4': 6.81, 'fw_pct': 62},
+    'BOF':  {'overall': 58.5, 'r2': 7.25, 'r4': 6.81, 'fw_pct': 65},
     'CMDI': {'overall': 48.9},
-    'AUTH': {'overall': 46.0, 'r4': 3.68},
+    'AUTH': {'overall': 46.0, 'r4': 3.69},
 }
 
 PAPER_MODEL_BEHAVIOR = {
@@ -102,6 +102,18 @@ PAPER_CVE = {
     'cve_23624': 80.8,
     'cmdi_p6_ge18': 5,
 }
+
+# Additional paper values for missing checks
+PAPER_501_BEST_RUN = 99.0        # "best single run reaches 99.0/100"
+PAPER_503_DIVERGENT = 18          # "18 scoring results that exhibit such divergence"
+PAPER_503_CVE14140_PASS = 1       # "only one of 15 runs" on CVE-2020-14140
+PAPER_503_CVE6045_PASS = 4        # "only 4/15 runs know the delink tool"
+PAPER_503_TOP_P5 = 20.0           # "top-scoring run (glm-5.2, 20/20)"
+PAPER_504_CMDI_TRIGGER_PCT = 3.3  # "3.3% full-trigger rate"
+PAPER_504_CMDI_LOW_CLUSTER = 2    # "Two CVEs form a low-score cluster (Overall ≤33)"
+PAPER_504_FW_PREATTACH = {'BOF': 8, 'CMDI': 0, 'AUTH': 4}  # firmware pre-attached counts
+PAPER_300_CANDIDATES = 696        # "30 out of 696 representative CVEs"
+PAPER_700_NONSTANDARD_PCT = 16    # "approximately 16% of partial-credit items"
 
 PAPER_P5P6 = {'union': 11, 'overlap': 8}
 PAPER_SIM_PCT = 70.2
@@ -138,21 +150,33 @@ def parse_data(data_path):
         if len(parts) < len(header_names):
             continue
         # Build dict from header names
+        STRING_COLS = {'CVE', 'Model', 'Fam', 'Mode', 'TermPhase'}
+        NUMERIC_COLS = {'Plan', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6',
+                        'Task', 'Overall', 'Cov', 'Dep', 'Fall'}
         row = {}
+        termphase_idx = header_names.index('TermPhase') if 'TermPhase' in header_names else None
         for j, col in enumerate(header_names):
             val = parts[j]
             if col in ('CVE', 'Model'):
                 row[col] = val
             elif col == 'Run':
                 row[col] = int(val)
-            else:
+            elif col == 'TermPhase' and termphase_idx is not None:
+                # TermPhase is last column, value may contain spaces
+                row[col] = ' '.join(parts[termphase_idx:])
+            elif col in STRING_COLS:
+                row[col] = val
+            elif col in NUMERIC_COLS:
                 row[col] = float(val)
+            # else: skip other numeric sub-item columns
         runs.append({
             'cve': row['CVE'], 'model': row['Model'], 'run': row['Run'],
-            'plan': row['Plan'],
-            'p1': row['P1'], 'p2': row['P2'], 'p3': row['P3'],
-            'p4': row['P4'], 'p5': row['P5'], 'p6': row['P6'],
-            'task': row['Task'], 'overall': row['Overall'],
+            'plan': row.get('Plan', 0),
+            'p1': row.get('P1', 0), 'p2': row.get('P2', 0), 'p3': row.get('P3', 0),
+            'p4': row.get('P4', 0), 'p5': row.get('P5', 0), 'p6': row.get('P6', 0),
+            'task': row.get('Task', 0), 'overall': row.get('Overall', 0),
+            'fam': row.get('Fam', ''), 'mode': row.get('Mode', ''),
+            'termphase': row.get('TermPhase', ''),
         })
 
     return runs, lines
@@ -245,36 +269,35 @@ def compute_funnel(pairs):
 
 
 def compute_failure(runs, sim_count):
-    """Compute per-run, non-overlapping failure attribution."""
-    cats = {'infra': 0, 'p2': 0, 'p3': 0, 'p5': 0, 'p6': 0, 'success': 0}
-    for r in runs:
-        if r['overall'] == 0 and r['p1'] == 0:
-            cats['infra'] += 1
-        elif r['p2'] == 0:
-            cats['p2'] += 1
-        elif r['p3'] == 0:
-            cats['p3'] += 1
-        elif r['p5'] <= 2:
-            cats['p5'] += 1
-        elif r['p6'] <= 2:
-            cats['p6'] += 1
-        else:
-            cats['success'] += 1
+    """Compute per-run failure attribution from actual Fam/Mode labels in data."""
+    from collections import Counter
+    fam_counts = Counter(r['fam'] for r in runs)
+    mode_counts = Counter(r['mode'] for r in runs)
 
-    # Rehosting family: subset of P5 where P4 > 0
-    rehosting = sum(1 for r in runs if r['p4'] > 0 and r['p5'] <= 2 and r['p2'] > 0 and r['p3'] > 0)
+    # Count terminal phase blockers from TermPhase column
+    # TermPhase looks like "Phase 5 Service Rehosting" or "All Phases"
+    p2_blockers = sum(1 for r in runs if 'Phase 2' in r.get('termphase', ''))
+    p5_blockers = sum(1 for r in runs if 'Phase 5' in r.get('termphase', ''))
 
+    # Simulation: multi-label count from summary text (passed as sim_count).
+    # A run may have simulation_substitution as one of multiple labels.
+    simulation = sim_count
+    rehosting = mode_counts.get('rehosting_failure', 0)
+    extraction = mode_counts.get('extraction_failure', 0)
+    infrastructure = mode_counts.get('infrastructure_failure', 0)
+
+    n = len(runs)
     return {
-        'simulation': sim_count,
-        'simulation_pct': sim_count / len(runs) * 100,
+        'simulation': simulation,
+        'simulation_pct': simulation / n * 100,
         'rehosting': rehosting,
-        'rehosting_pct': rehosting / len(runs) * 100,
-        'extraction': cats['p3'],
-        'extraction_pct': cats['p3'] / len(runs) * 100,
-        'infrastructure': cats['infra'],
-        'infrastructure_pct': cats['infra'] / len(runs) * 100,
-        'p2_blockers': cats['p2'],
-        'p5_blockers': cats['p5'],
+        'rehosting_pct': rehosting / n * 100,
+        'extraction': extraction,
+        'extraction_pct': extraction / n * 100,
+        'infrastructure': infrastructure,
+        'infrastructure_pct': infrastructure / n * 100,
+        'p2_blockers': p2_blockers,
+        'p5_blockers': p5_blockers,
     }
 
 
@@ -341,6 +364,60 @@ def compute_cve_level(runs, pairs):
         'cve_26315': cve_26315,
         'cve_23624': cve_23624,
         'cmdi_p6_ge18': cmdi_p6_18,
+    }
+
+
+def compute_additional(runs, pairs):
+    """Compute additional stats for missing paper checks."""
+    # #61: best single run overall
+    best_run = max(r['overall'] for r in runs)
+
+    # #63: divergent CVEs (anomaly analysis)
+    # Definition from 503: minority of runs score >=40% of phase max while majority score <=15%
+    # For each CVE (15 runs), find the earliest phase where this divergence occurs
+    phase_max = {'p1': 15, 'p2': 15, 'p3': 15, 'p4': 15, 'p5': 20, 'p6': 20}
+    divergent_cves = set()
+    for cve in set(r['cve'] for r in runs):
+        cve_runs = [r for r in runs if r['cve'] == cve]
+        n = len(cve_runs)
+        for phase in ['p1', 'p2', 'p3', 'p4', 'p5', 'p6']:
+            mx = phase_max[phase]
+            scores = [r[phase] / mx for r in cve_runs]
+            pass_count = sum(1 for s in scores if s >= 0.40)
+            fail_median = sorted(scores)[n // 2]  # rough median
+            if pass_count <= 5 and pass_count >= 1 and max(scores) >= 0.40 and fail_median < 0.25:
+                divergent_cves.add(cve)
+                break
+
+    # #64: CVE-2020-14140 - how many runs have P2 > 0 (genuine acquisition attempt)
+    cve14140_pass = sum(1 for r in runs if r['cve'] == 'CVE-2020-14140' and r['p2'] > 0)
+
+    # #65: CVE-2024-6045 - how many runs have P3 > 0 (successful extraction)
+    cve6045_pass = sum(1 for r in runs if r['cve'] == 'CVE-2024-6045' and r['p3'] > 0)
+
+    # #66: top P5 score for glm-5.2
+    top_p5 = max(r['p5'] for r in runs if r['model'] == 'glm-5.2')
+
+    # #67: CMDI full-trigger rate
+    cmdi_runs = [r for r in runs if r['cve'] in CMDI_CVES]
+    cmdi_trigger_pct = sum(1 for r in cmdi_runs if r['p6'] >= 18) / len(cmdi_runs) * 100
+
+    # #68: CMDI low-score cluster (best overall per CVE <= 33)
+    cmdi_cve_best = {}
+    for cve in CMDI_CVES:
+        cp = {k: v for k, v in pairs.items() if k[0] == cve}
+        if cp:
+            cmdi_cve_best[cve] = max(max(r['overall'] for r in pr) for pr in cp.values())
+    cmdi_low_cluster = sum(1 for v in cmdi_cve_best.values() if v <= 33)
+
+    return {
+        'best_run': best_run,
+        'divergent_cves': len(divergent_cves),
+        'cve14140_pass': cve14140_pass,
+        'cve6045_pass': cve6045_pass,
+        'top_p5': top_p5,
+        'cmdi_trigger_pct': cmdi_trigger_pct,
+        'cmdi_low_cluster': cmdi_low_cluster,
     }
 
 
@@ -459,8 +536,8 @@ def main():
     v.check("P5 blockers", PAPER_FAILURE['p5_blockers'], fail['p5_blockers'], tol=0)
 
     # Check text contains these numbers (handle LaTeX \% escaping)
-    for s in ['316/450', '70.2', '97/450', '21.6', '37/450', '8.2', '15/450', '3.3',
-              '202/450', '109/450', '13.9/15', '9.0/15', '3.7/20', '2.8/20']:
+    for s in ['316/450', '70.2', '93/450', '20.7', '36/450', '8.0', '15/450', '3.3',
+              '211/450', '173/450', '13.9/15', '9.0/15', '3.7/20', '2.8/20']:
         v.check_in_text(f"502 contains '{s}'", tex502, s)
 
     # ===== VULTYPE =====
@@ -479,7 +556,7 @@ def main():
             v.check(f"{vt_name} FW%", pv['fw_pct'], round(cv['fw_pct']), tol=0.5)
 
     # Check text
-    for s in ['58.5', '48.9', '46.0', '7.23', '6.81', '3.68', '62', '99.0', '80.8', '5/150']:
+    for s in ['58.5', '48.9', '46.0', '7.25', '6.81', '3.69', '65', '99.0', '80.8', '5/150']:
         v.check_in_text(f"504 contains '{s}'", tex504, s)
 
     # ===== MODEL BEHAVIOR =====
@@ -525,6 +602,51 @@ def main():
 
     # Conclusion: P5 score should be 3.7/20
     v.check_in_text("conclusion 3.7/20", tex_concl, '3.7/20')
+
+    # ===== ADDITIONAL CHECKS =====
+    print("\n--- Additional checks (501, 503, 504, 300, 700) ---")
+    tex300 = read_tex('300-benchmark-construction.tex')
+    tex503 = read_tex('503-feature.tex')
+    addl = compute_additional(runs, pairs)
+
+    # #61: best single run in 501
+    v.check("501 best single run", PAPER_501_BEST_RUN, round(addl['best_run'], 1))
+    v.check_in_text("501 contains '99.0/100'", tex501, '99.0/100')
+
+    # #63: divergent CVEs in 503
+    v.check("503 divergent CVEs", PAPER_503_DIVERGENT, addl['divergent_cves'], tol=0)
+    v.check_in_text("503 contains '18'", tex503, '18')
+
+    # #64: CVE-2020-14140 pass count
+    v.check("503 CVE-2020-14140 pass", PAPER_503_CVE14140_PASS, addl['cve14140_pass'], tol=0)
+    v.check_in_text("503 contains 'one of 15'", tex503, 'one of 15')
+
+    # #65: CVE-2024-6045 pass count
+    v.check("503 CVE-2024-6045 pass", PAPER_503_CVE6045_PASS, addl['cve6045_pass'], tol=0)
+    v.check_in_text("503 contains '4/15'", tex503, '4/15')
+
+    # #66: top P5 score for glm-5.2
+    v.check("503 top P5 score", PAPER_503_TOP_P5, round(addl['top_p5'], 1))
+    v.check_in_text("503 contains '20/20'", tex503, '20/20')
+
+    # #67: CMDI trigger rate
+    v.check("504 CMDI trigger pct", PAPER_504_CMDI_TRIGGER_PCT, round(addl['cmdi_trigger_pct'], 1))
+    v.check_in_text("504 contains '3.3'", tex504, '3.3')
+
+    # #68: CMDI low-score cluster
+    v.check("504 CMDI low cluster", PAPER_504_CMDI_LOW_CLUSTER, addl['cmdi_low_cluster'], tol=0)
+    v.check_in_text("504 contains 'Two CVEs'", tex504, 'Two CVEs')
+
+    # #69: firmware pre-attached (text-only check, metadata not in evaluation data)
+    v.check_in_text("504 contains '8/10'", tex504, '8/10')
+    v.check_in_text("504 contains '0/10'", tex504, '0/10')
+    v.check_in_text("504 contains '4/10'", tex504, '4/10')
+
+    # #74: 696 candidate CVEs (text-only check, metadata not in evaluation data)
+    v.check_in_text("300 contains '696'", tex300, '696')
+
+    # #75: 16% non-standard partial credit (text-only check, not computable from summary)
+    v.check_in_text("700 contains '16'", tex_disc, '16')
 
     # ===== SUMMARY =====
     v.summary()

@@ -2,30 +2,21 @@
 
 
 
-% RQ3: 漏洞类型如何影响复现——前端获取、两极分化、验证路径
-We disaggregate the 450 runs by vulnerability class. The three classes differ in best-of-three overall score (58.5 vs.\ 48.9 vs.\ 46.0 for BOF, CMDI, and AUTH respectively), but the more striking differences lie in \emph{where} they succeed and fail: front-end acquisition, polarization, and the validation path each vary systematically with class.
+% Statistics: Overall score = best-of-three -> per-pair average.
+% Phase-level numbers (P2, P4) and FW% = per-run average across 150 runs per class.
+% CVE-level best scores (e.g., 99.0, 80.8) = best-of-three -> max across pairs and models.
+We disaggregate the 450 runs by vulnerability class. The three classes differ in best-of-three overall score (60.4 vs.\ 48.6 vs.\ 44.4 for BOF, CMDI, and AUTH respectively), but the more striking differences lie in \emph{where} the pipeline breaks for each class.
 
 
+\noindent\textbf{Buffer Overflow} performs best across the early phases. Agents average 8.06/15 on P2 (Firmware Acquisition) and 7.09/15 on P4 (Binary Identification), and 73\% of runs acquire the firmware. These statistics are well above the other two classes because buffer overflows expose a concrete function-level target (\texttt{strcpy}/\texttt{sprintf} on a named binary), so agents can confirm the vulnerable code path by grepping for the function name in the extracted binary, yielding high P4 scores. For CVE-2023-41229 and CVE-2023-44418 (D-Link \texttt{prog.cgi}), agents identify the HNAP Referer vector and target binary upfront, and the memory-layout dependency of buffer overflows motivates agents to pursue the real firmware rather than settling for simulation.
 
 
-    
+\noindent\textbf{Command Injection} shows the sharpest polarization. It attains a 3.3\% full-trigger rate (5/150 runs reaching P6$\geq$18) yet also a high simulation rate. Once a service is rehosted, command-injection PoCs are easy to verify---shell side effects such as \texttt{uid=0} or file creation provide unambiguous evidence (e.g., runs on CVE-2023-26315 rehost the Xiaomi \texttt{plugincenter} via \texttt{chroot} and trigger root RCE). The bottleneck is acquisition: 50\% of command-injection runs stall after information gathering (P2--P6 all zero), as agents judge the vulnerability to require physical hardware and skip directly to Python simulation. This is driven by the logic-simulability of command injection: since a PoC can be demonstrated with a simple Python script, agents see no need to pursue the real firmware. Two CVEs form a low-score cluster (Overall $\leq$33) where almost no run acquires firmware---both involve non-standard services with dead or region-locked download URLs.
 
 
+\noindent\textbf{Authentication Bypass} is weakest in binary identification (P4: 3.14/15 per-run average) and rehosting attempts. Its root cause is usually cross-component session or access-control logic rather than a single faulty function, so agents struggle to localize the vulnerable path in one binary---unlike buffer overflows where \texttt{strcpy} is directly greppable, a missing authentication check is an absence of code that no string search can find (e.g., CVE-2021-33044's \texttt{clientType: "NetKeyboard"} parameter; CVE-2025-6443's VXLAN network-layer control). Trigger verification is also uniquely hard: unlike a crash or a command side effect, an auth-bypass requires a controlled authenticated and unauthenticated comparison. The exception is network-layer bypasses---CVE-2025-6443 (MikroTik) is fully reproduced by booting a RouterOS CHR image under QEMU system mode and sending VXLAN packets, bypassing binary-level analysis entirely.
 
-
-
-
-\noindent\textbf{Buffer Overflow} performs best across the front-end phases. Agents average 7.23/15 on P2 (Firmware Acquisition) and 6.81/15 on P4 (Binary Identification), and 62\% of runs acquire the firmware---well above the other two classes. The mechanism is signature precision: buffer overflows expose a concrete function-level target (\texttt{strcpy}/\texttt{sprintf} on a named binary), so agents pin the target firmware version and binary directly from the CVE description. For CVE-2023-41229 and CVE-2023-44418 (D-Link \texttt{prog.cgi}), agents identify the HNAP Referer vector and target binary upfront, yielding high P2 scores.
-
-
-
-\noindent\textbf{Command Injection} shows the sharpest polarization. It attains a 3.3\% full-trigger rate (5/150 runs reaching P6$\geq$18) yet also a high simulation rate. Once a service is rehosted, command-injection PoCs are easy to verify---shell side effects such as \texttt{uid=0} or file creation provide unambiguous evidence (e.g., runs on CVE-2023-26315 rehost the Xiaomi \texttt{plugincenter} via \texttt{chroot} and trigger root RCE). The bottleneck is acquisition: none of the ten command-injection CVEs ships with firmware, and several target non-HTTP services (DHCP, SIP, UPnP GENA) whose firmware sources are harder to locate. Four CVEs form a low-score cluster (Overall $\leq$33) where almost no run acquires firmware---all involve non-standard services with dead or region-locked download URLs.
-
-
-
-\noindent\textbf{Authentication Bypass} is weakest in binary identification (P4: 3.68/15 per-run average) and rehosting attempts. Its root cause is usually cross-component session or access-control logic rather than a single faulty function, so agents struggle to localize the vulnerable path in one binary (e.g., CVE-2021-33044's \texttt{clientType: "NetKeyboard"} parameter; CVE-2025-6443's VXLAN network-layer control). Trigger verification is also uniquely hard: unlike a crash or a command side effect, an auth-bypass requires a controlled authenticated and unauthenticated comparison. The exception is network-layer bypasses---CVE-2025-6443 (MikroTik) is fully reproduced by booting a RouterOS CHR image under QEMU system mode and sending VXLAN packets, bypassing binary-level analysis entirely.
-
-These class differences couple to distinct rehosting paths: buffer overflows target standard \texttt{httpd} services needing NVRAM shims under QEMU user mode; command injections span diverse protocols (udhcpd, CGI, thrift); auth-bypasses occasionally demand a full OS image under QEMU system mode. We note one confound: firmware is pre-attached for 8/10 buffer-overflow CVEs but 0/10 command-injection and 4/10 auth-bypass CVEs. Yet the command-injection leaders (CVE-2023-26315 and CVE-2024-23624 reach 99.0 and 80.8) show that \emph{downloadability}, not pre-attachment, is decisive. The low-score cluster fails because URLs are dead or region-locked, not because firmware was absent from the dataset.
+Across all three classes, vulnerability semantics determine \emph{where} the pipeline breaks: buffer overflows achieve the highest firmware acquisition rate because memory-layout dependency forces agents to pursue real-binary execution, yet collapse at rehosting; command injections stall at acquisition because logic-simulability lets agents skip directly to Python simulation; auth-bypasses struggle at binary identification because missing access-control checks cannot be grepped like \texttt{strcpy}. Despite these differences, P5 (Service Rehosting) remains the common bottleneck---even BOF, the strongest, averages only 3.0/20---indicating that rehosting capability is the primary ceiling for LLM agents regardless of vulnerability type.
 
 
 %%\begin{mdframed}[linecolor=black,linewidth=1pt,%%backgroundcolor=gray!10,roundcorner=3pt,nobreak=true]

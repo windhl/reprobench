@@ -32,6 +32,9 @@ As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template
 %%\end{quote}
 
 
+% Statistics: Best-of-three (max per CVE-model pair across 3 runs) -> per-pair average (30 pairs per model).
+% Avg Overall = average of max(per-run overall), NOT 0.2*AvgPlan + 0.8*AvgTask.
+% P5/P6 >= 15: count pairs where max(P5/P6 across 3 runs) >= 15.
 \begin{table*}[t]
 \centering
 \caption{Best-of-three model summary across 30 CVEs. Overall is the maximum per-run overall score across three independent trials. P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
@@ -41,7 +44,7 @@ As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template
 \toprule
 \textbf{Model} & \textbf{Avg Plan} & \textbf{Avg Task} & \textbf{Avg Overall} & \textbf{Max Overall} & \textbf{P5$\geq$15} & \textbf{P6$\geq$15} \\
 \midrule
-\texttt{glm-5.2} & 86.7 & 59.9 & \textbf{64.6} & 99.0 & 7/30 & 5/30 \\
+\texttt{glm-5.2} & 86.7 & 59.9 & \textbf{64.6} & 98.7 & 7/30 & 5/30 \\
 \texttt{mimo-v2.5} & 83.2 & 45.5 & 52.9 & 76.9 & 0/30 & 0/30 \\
 \texttt{claude-sonnet-4-6} & 79.1 & 42.7 & 50.0 & 99.0 & 2/30 & 1/30 \\
 \texttt{gpt-5.5} & 71.1 & 38.2 & 44.7 & 89.1 & 1/30 & 1/30 \\

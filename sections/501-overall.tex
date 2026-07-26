@@ -1,5 +1,9 @@
 \subsection{Overall Progress}
-% RQ1: agent能进展多远——max-based平均51.1，glm-5.2最强，P5/R6几乎不可达
+% Statistics: model scores = best-of-three -> per-pair average (from Table 1).
+% P2 comparison (11.5/15, 7.7/15) = best-of-three -> per-pair average.
+% plan>50 & task<15 count (20 runs) = per-run count.
+% fallback scores (32.2, 15.0--28.6) = per-run average.
+% CVE-level (five CVEs >=90, best run 99.0) = best-of-three -> max across pairs and models.
 Table~\ref{tab:model-results} reports the best-of-three results for each model across 30 CVEs. \texttt{glm-5.2} achieves the highest average overall score (64.6/100), followed by \texttt{mimo-v2.5} (52.9) and \texttt{claude-sonnet-4-6} (50.0). While real-target success remains rare---only 11 out of 150 CVE--model pairs achieve near-full P5 credit ($\geq$15/20), of which 8 also achieve near-full P6 credit---the best single run reaches 99.0/100, demonstrating that full autonomous reproduction is achievable under favorable conditions.
 
 
