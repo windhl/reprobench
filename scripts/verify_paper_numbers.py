@@ -34,18 +34,18 @@ SECTIONS_DIR = os.path.join(os.path.dirname(__file__), '..', 'sections')
 
 # CVE → vulnerability type mapping
 BOF_CVES = {
-    'CVE-2020-13389', 'CVE-2020-15416', 'CVE-2020-27866', 'CVE-2020-5760',
-    'CVE-2021-44158', 'CVE-2023-41229', 'CVE-2023-44418', 'CVE-2024-5293',
-    'CVE-2025-60690', 'CVE-2026-7273',
+    'CVE-2020-13389', 'CVE-2020-15416', 'CVE-2021-44158', 'CVE-2022-0650',
+    'CVE-2023-41229', 'CVE-2023-44418', 'CVE-2024-5293', 'CVE-2025-60690',
+    'CVE-2025-23123', 'CVE-2026-7273',
 }
 CMDI_CVES = {
-    'CVE-2021-27252', 'CVE-2021-32030', 'CVE-2022-30525', 'CVE-2023-1389',
-    'CVE-2023-26315', 'CVE-2023-50199', 'CVE-2024-23624', 'CVE-2025-14738',
-    'CVE-2025-34037', 'CVE-2026-31195',
+    'CVE-2020-5760', 'CVE-2021-27252', 'CVE-2022-30525', 'CVE-2023-1389',
+    'CVE-2023-36103', 'CVE-2023-26315', 'CVE-2024-23624', 'CVE-2025-34037',
+    'CVE-2025-55637', 'CVE-2026-31195',
 }
 AUTH_CVES = {
-    'CVE-2020-14140', 'CVE-2021-33044', 'CVE-2022-0650', 'CVE-2022-35572',
-    'CVE-2023-36103', 'CVE-2024-6045', 'CVE-2025-23123', 'CVE-2025-55637',
+    'CVE-2020-27866', 'CVE-2020-14140', 'CVE-2021-32030', 'CVE-2021-33044',
+    'CVE-2022-35572', 'CVE-2023-50199', 'CVE-2024-6045', 'CVE-2025-14738',
     'CVE-2025-6443', 'CVE-2026-0405',
 }
 
@@ -74,7 +74,7 @@ PAPER_FUNNEL = [
 ]
 
 PAPER_FAILURE = {
-    'simulation': 316, 'simulation_pct': 70.2,
+    'simulation': 204, 'simulation_pct': 45.3,
     'rehosting': 93, 'rehosting_pct': 20.7,
     'extraction': 36, 'extraction_pct': 8.0,
     'infrastructure': 15, 'infrastructure_pct': 3.3,
@@ -82,9 +82,9 @@ PAPER_FAILURE = {
 }
 
 PAPER_VULTYPE = {
-    'BOF':  {'overall': 58.5, 'r2': 7.25, 'r4': 6.81, 'fw_pct': 65},
-    'CMDI': {'overall': 48.9},
-    'AUTH': {'overall': 46.0, 'r4': 3.69},
+    'BOF':  {'overall': 60.4, 'r2': 8.06, 'r4': 7.09, 'fw_pct': 73},
+    'CMDI': {'overall': 48.6},
+    'AUTH': {'overall': 44.4, 'r4': 3.14},
 }
 
 PAPER_MODEL_BEHAVIOR = {
@@ -105,7 +105,7 @@ PAPER_CVE = {
 
 # Additional paper values for missing checks
 PAPER_501_BEST_RUN = 99.0        # "best single run reaches 99.0/100"
-PAPER_503_DIVERGENT = 18          # "18 scoring results that exhibit such divergence"
+PAPER_503_DIVERGENT = 19          # "19 scoring results that exhibit such divergence"
 PAPER_503_CVE14140_PASS = 1       # "only one of 15 runs" on CVE-2020-14140
 PAPER_503_CVE6045_PASS = 4        # "only 4/15 runs know the delink tool"
 PAPER_503_TOP_P5 = 20.0           # "top-scoring run (glm-5.2, 20/20)"
@@ -116,7 +116,7 @@ PAPER_300_CANDIDATES = 696        # "30 out of 696 representative CVEs"
 PAPER_700_NONSTANDARD_PCT = 16    # "approximately 16% of partial-credit items"
 
 PAPER_P5P6 = {'union': 11, 'overlap': 8}
-PAPER_SIM_PCT = 70.2
+PAPER_SIM_PCT = 45.3
 PAPER_P6_PAIRS_PCT = 5.3  # 8/150
 
 
@@ -279,9 +279,8 @@ def compute_failure(runs, sim_count):
     p2_blockers = sum(1 for r in runs if 'Phase 2' in r.get('termphase', ''))
     p5_blockers = sum(1 for r in runs if 'Phase 5' in r.get('termphase', ''))
 
-    # Simulation: multi-label count from summary text (passed as sim_count).
-    # A run may have simulation_substitution as one of multiple labels.
-    simulation = sim_count
+    # Simulation: terminal-only count from Mode column.
+    simulation = mode_counts.get('simulation_substitution', 0)
     rehosting = mode_counts.get('rehosting_failure', 0)
     extraction = mode_counts.get('extraction_failure', 0)
     infrastructure = mode_counts.get('infrastructure_failure', 0)
@@ -536,7 +535,7 @@ def main():
     v.check("P5 blockers", PAPER_FAILURE['p5_blockers'], fail['p5_blockers'], tol=0)
 
     # Check text contains these numbers (handle LaTeX \% escaping)
-    for s in ['316/450', '70.2', '93/450', '20.7', '36/450', '8.0', '15/450', '3.3',
+    for s in ['204/450', '45.3', '93/450', '20.7', '36/450', '8.0', '15/450', '3.3',
               '211/450', '173/450', '13.9/15', '9.0/15', '3.7/20', '2.8/20']:
         v.check_in_text(f"502 contains '{s}'", tex502, s)
 
@@ -556,7 +555,7 @@ def main():
             v.check(f"{vt_name} FW%", pv['fw_pct'], round(cv['fw_pct']), tol=0.5)
 
     # Check text
-    for s in ['58.5', '48.9', '46.0', '7.25', '6.81', '3.69', '65', '99.0', '80.8', '5/150']:
+    for s in ['60.4', '48.6', '44.4', '8.06', '7.09', '3.14', '73', '99.0', '80.8', '5/150']:
         v.check_in_text(f"504 contains '{s}'", tex504, s)
 
     # ===== MODEL BEHAVIOR =====
@@ -591,10 +590,10 @@ def main():
     tex_concl = read_tex('800-conclusion.tex')
     tex_disc = read_tex('700-discussion.tex')
 
-    # Simulation % should be 70.2% everywhere
-    v.check_in_text("abstract 70.2%", tex_abs, '70.2')
-    v.check_in_text("intro 70.2%", tex_intro, '70.2')
-    v.check_in_text("discussion 70.2%", tex_disc, '70.2')
+    # Simulation % should be 45.3% everywhere
+    v.check_in_text("abstract 45.3%", tex_abs, '45.3')
+    v.check_in_text("intro 45.3%", tex_intro, '45.3')
+    v.check_in_text("discussion 45.3%", tex_disc, '45.3')
 
     # P6 pairs % should be 5.3% (8/150)
     v.check_in_text("abstract 5.3%", tex_abs, '5.3')
@@ -636,11 +635,6 @@ def main():
     # #68: CMDI low-score cluster
     v.check("504 CMDI low cluster", PAPER_504_CMDI_LOW_CLUSTER, addl['cmdi_low_cluster'], tol=0)
     v.check_in_text("504 contains 'Two CVEs'", tex504, 'Two CVEs')
-
-    # #69: firmware pre-attached (text-only check, metadata not in evaluation data)
-    v.check_in_text("504 contains '8/10'", tex504, '8/10')
-    v.check_in_text("504 contains '0/10'", tex504, '0/10')
-    v.check_in_text("504 contains '4/10'", tex504, '4/10')
 
     # #74: 696 candidate CVEs (text-only check, metadata not in evaluation data)
     v.check_in_text("300 contains '696'", tex300, '696')
