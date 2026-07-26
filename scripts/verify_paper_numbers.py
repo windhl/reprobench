@@ -108,7 +108,7 @@ PAPER_501_BEST_RUN = 99.0        # "best single run reaches 99.0/100"
 PAPER_503_DIVERGENT = 19          # "19 scoring results that exhibit such divergence"
 PAPER_503_CVE14140_PASS = 1       # "only one of 15 runs" on CVE-2020-14140
 PAPER_503_CVE6045_PASS = 4        # "only 4/15 runs know the delink tool"
-PAPER_503_TOP_P5 = 20.0           # "top-scoring run (glm-5.2, 20/20)"
+PAPER_503_TOP_P5 = 19.0           # "top-scoring run (glm-5.2, 19/20)" on CVE-2020-13389
 PAPER_504_CMDI_TRIGGER_PCT = 3.3  # "3.3% full-trigger rate"
 PAPER_504_CMDI_LOW_CLUSTER = 2    # "Two CVEs form a low-score cluster (Overall ≤33)"
 PAPER_504_FW_PREATTACH = {'BOF': 8, 'CMDI': 0, 'AUTH': 4}  # firmware pre-attached counts
@@ -394,8 +394,8 @@ def compute_additional(runs, pairs):
     # #65: CVE-2024-6045 - how many runs have P3 > 0 (successful extraction)
     cve6045_pass = sum(1 for r in runs if r['cve'] == 'CVE-2024-6045' and r['p3'] > 0)
 
-    # #66: top P5 score for glm-5.2
-    top_p5 = max(r['p5'] for r in runs if r['model'] == 'glm-5.2')
+    # #66: top P5 score for glm-5.2 on CVE-2020-13389
+    top_p5 = max(r['p5'] for r in runs if r['model'] == 'glm-5.2' and r['cve'] == 'CVE-2020-13389')
 
     # #67: CMDI full-trigger rate
     cmdi_runs = [r for r in runs if r['cve'] in CMDI_CVES]
