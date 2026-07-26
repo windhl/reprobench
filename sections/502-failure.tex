@@ -10,7 +10,7 @@
 
 
 % RQ2: 阶段漏斗——P1-R4合理，R5骤降，terminal blocker主要在Phase 5
-Figure~\ref{fig:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.9/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores (7.6--9.0/15), reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 3.7/20. P6 averages 2.8/20, with most points coming from PoC construction rather than real-target triggering.
+Figure~\ref{fig:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.9/15, indicating that most agents successfully collect CVE facts. P2--P4 show moderate scores, reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 3.7/20. P6 averages 2.8/20, with most points coming from PoC construction rather than real-target triggering.
 
 %%\begin{table}[t]
 %%\setlength{\tabcolsep}{3.8pt}
@@ -41,7 +41,7 @@ Across all 450 runs, failure families cluster at two phases---P2 (211/450) and P
 
 \noindent{\textbf{Simulation substitution (204/450, 45.3\%).}} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability \emph{pattern} but not the target \emph{instance}. The output is often coherent and reproducible---valid crash signals, correct exploit syntax, convincing reports---yet never exercises the real firmware binary, so real-target gating rejects all of these.
 
-\noindent{\textbf{Rehosting gap (93/450, 20.7\%).}} Agents identify the target binary but cannot configure dynamic loaders, NVRAM values, or network listeners under QEMU, and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap via \texttt{chroot}, leaving cross-architecture (MIPS) targets that require QEMU emulation as the bulk of these blockers.
+\noindent{\textbf{Rehosting gap (93/450, 20.7\%).}} Agents identify the target binary but cannot properly configure dynamic loaders, NVRAM values and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap, leaving cross-architecture (MIPS) targets that require QEMU emulation as the bulk of these blockers.
 
 \noindent{\textbf{Extraction failures (36/450, 8.0\%).}} Agents acquire firmware but misuse extraction tools---e.g., applying standard \texttt{binwalk} to vendor-encrypted images---or analyze binaries pulled from PoC repositories rather than from the target firmware.
 

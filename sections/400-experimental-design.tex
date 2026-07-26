@@ -63,8 +63,8 @@ To enable flexible and consistent model switching, we adopt \texttt{OpenCode} as
 
 \subsubsection{Execution Setup}
 % 运行环境：ARM64主机+Docker容器隔离，每次run独立启动
-All agent runs execute on a single ARM64-architecture host equipped with 128\,GB of memory and an NVIDIA GB10 processor. %%providing the compute and memory headroom required for firmware acquisition, filesystem extraction, and cross-architecture QEMU emulation. 
-To enforce isolation and reproducibility, each of the 450 runs is launched inside a dedicated Docker container built from the official Ubuntu 24.04 image, and mounted with volumes, \texttt{/output} and \texttt{/trace}, for the artifact and trajectory collection. Containers are started independently and discarded after each run to prevent cross-run state leakage. Note that we use the latest version of \texttt{OpenCode}, \texttt{binwalk}, \texttt{QEMU}, \texttt{Ghdria}, etc.,.
+All agent runs execute on a single ARM64-architecture host equipped with 128\,GB unified memory and a NVIDIA GB10 processor. %%providing the compute and memory headroom required for firmware acquisition, filesystem extraction, and cross-architecture QEMU emulation. 
+To enforce isolation and reproducibility, each of the 450 runs is launched inside a dedicated Docker container built from the official Ubuntu 24.04 image, and mounted with volumes, \texttt{/output} and \texttt{/trace}, for the artifact and trajectory collection. Containers are started independently and discarded after each run to prevent cross-run state leakage. Note that we use the latest version of \texttt{OpenCode}, \texttt{binwalk}, \texttt{QEMU}, \texttt{Ghdria} and \texttt{Docker} for our evaluation.
 
 
 \subsection{Skill-based Scoring}
