@@ -20,7 +20,7 @@ To quantify what capabilities binary metrics conceal, we conduct an anomaly anal
 
 \noindent{\textbf{PSC 3: Rehosting Technique.}} Even with the correct binary extracted, proprietary firmware services fail under QEMU due to missing NVRAM state, kernel ioctl dependencies, and non-standard FastCGI interfaces. High runs employ techniques such as QEMU \texttt{-L} sysroot for library resolution, LD\_PRELOAD NVRAM/nofork stubs, and direct FastCGI socket injection. Low runs hit QEMU failures and switch to C/Python reimplementation. For example, on CVE-2020-13389, the top run (\texttt{glm-5.2}, 19/20) uses QEMU \texttt{-L rootfs} to launch the real Tenda httpd, while a low run using \texttt{chroot} fails on \texttt{br0} ENODEV. On CVE-2023-44418, the top run (\texttt{glm-5.2}, 20/20) identifies \texttt{prog.cgi} as a FastCGI responder and injects protocol frames via a Unix socket; a run with full P1--P4 credit scores only P5=4 by treating it as a standalone web server.
 
-Note that under binary evaluation all 19 divergent CVEs would be uniformly labeled as failures, yet the high runs demonstrate distinct capabilities---hypothesis verification, tool-chain selection, and environment engineering---that are directly transferable to real-world vulnerability analysis but invisible without graded, phase-level scoring.
+%%Note that under binary evaluation all 19 divergent CVEs would be uniformly labeled as failures, yet the high runs demonstrate distinct capabilities---hypothesis verification, tool-chain selection, and environment engineering---that are directly transferable to real-world vulnerability analysis but invisible without graded, phase-level scoring.
 
 
 
