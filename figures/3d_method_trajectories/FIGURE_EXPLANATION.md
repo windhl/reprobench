@@ -35,14 +35,10 @@
 
 ## 3. 数据来源
 
-最底层数据是工作区根目录 `./data` 中的 450 个逐次评测 JSON：
+图中分数直接读取次一级 `reprobench` 仓库内已更新并提交的评测汇总：
 
 ```text
-data/reprobench/eval/evaluation/
-└── CVE-XXXX-YYYY/
-    └── <model>/
-        └── <run>/
-            └── evaluation-CVE-XXXX-YYYY.json
+../../data/evaluation_summary.txt
 ```
 
 数据规模为：
@@ -51,15 +47,11 @@ data/reprobench/eval/evaluation/
 30 个 CVE × 5 个模型 × 3 次运行 = 450 次评测
 ```
 
-这些 JSON 依据 ReproBench scoring skill，从每次运行对应的 workspace、trace 和 ground truth 证据中得到 R1--R6 分数。绘图过程不会重新评分原始实验，而是读取已经完成的逐 run 评分。
-
-450 个 JSON 由 skill 自带的 `generate_evaluation_summary.py` 汇总为：
-
-```text
-../../../data/reprobench/eval/evaluation/evaluation_summary.txt
-```
-
-重绘前，脚本会将汇总表中的 450 条记录与 450 个 evaluation JSON 逐条核对。
+该文件包含全部 450 次运行的阶段子项、R1--R6 总分、Task、Plan 和
+Overall。绘图过程不会重新评分原始实验，而是解析这份新版逐 run
+汇总。脚本会核对其恰好包含 450 条记录、150 个 CVE--模型组合且每组
+均有 3 次运行，并以六个阶段总分重算 Task。外层工作区中的旧版
+evaluation JSON 不参与新版图的数据计算或交叉校验。
 
 漏洞类型面板划分来自：
 

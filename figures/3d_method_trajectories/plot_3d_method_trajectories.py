@@ -2,8 +2,8 @@
 
 For each CVE/model pair, select the run with the largest skill-consistent task
 score (R1+...+R6); ties use the smallest run id. Normalize phases by rubric
-maxima before averaging over CVEs. Cross-check the flat summary against every
-evaluation JSON before rendering.
+maxima before averaging over CVEs. The plotted scores come from the inner
+ReproBench repository's published evaluation summary.
 """
 
 from __future__ import annotations
@@ -25,59 +25,68 @@ from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 
-def find_project_root(script_path: Path) -> Path:
-    """Find the outer workspace root from either maintained script copy."""
-    summary_tail = Path("data/reprobench/eval/evaluation/evaluation_summary.txt")
+def find_repository_root(script_path: Path) -> Path:
+    """Find the inner ReproBench repository from either maintained script copy."""
+    summary_tail = Path("data/evaluation_summary.txt")
     for candidate in (script_path.parent, *script_path.parents):
         if (candidate / summary_tail).is_file():
             return candidate
+        nested_repository = candidate / "reprobench"
+        if (nested_repository / summary_tail).is_file():
+            return nested_repository
     raise FileNotFoundError(
-        "Could not locate data/reprobench/eval/evaluation/evaluation_summary.txt "
-        f"above {script_path}"
+        "Could not locate the inner reprobench/data/evaluation_summary.txt "
+        f"from {script_path}"
     )
 
 
-ROOT = find_project_root(Path(__file__).resolve())
-DEFAULT_EVAL_ROOT = ROOT / "data" / "reprobench" / "eval" / "evaluation"
-DEFAULT_SUMMARY = DEFAULT_EVAL_ROOT / "evaluation_summary.txt"
-DEFAULT_GROUNDTRUTH = ROOT / "data" / "reprobench" / "eval" / "repro_groundtruth"
-DEFAULT_METADATA = ROOT / "figure" / "data" / "reprobench_cve_metadata.csv"
-DEFAULT_OUTPUT_DIR = ROOT / "reprobench" / "figures" / "3d_method_trajectories"
+REPOSITORY_ROOT = find_repository_root(Path(__file__).resolve())
+WORKSPACE_ROOT = REPOSITORY_ROOT.parent
+DEFAULT_SUMMARY = REPOSITORY_ROOT / "data" / "evaluation_summary.txt"
+DEFAULT_EVAL_ROOT = None
+DEFAULT_GROUNDTRUTH = (
+    WORKSPACE_ROOT / "data" / "reprobench" / "eval" / "repro_groundtruth"
+)
+DEFAULT_METADATA = WORKSPACE_ROOT / "figure" / "data" / "reprobench_cve_metadata.csv"
+DEFAULT_OUTPUT_DIR = REPOSITORY_ROOT / "figures" / "3d_method_trajectories"
 
 MODELS = (
-    "claude-sonnet-4-6",
-    "deepseek-v4-flash-free",
-    "glm-5.2",
     "gpt-5.5",
-    "mimo-v2.5-free",
-)
-PLOT_MODELS = (
-    "gpt-5.5",
-    "deepseek-v4-flash-free",
+    "deepseek-v4-flash",
     "claude-sonnet-4-6",
-    "mimo-v2.5-free",
+    "mimo-v2.5",
     "glm-5.2",
 )
+PLOT_MODELS = MODELS
+MODEL_ALIASES = {
+    "gpt-5.5": "gpt-5.5",
+    "deepseek-v4-flash": "deepseek-v4-flash",
+    "deepseek-v4-flash-free": "deepseek-v4-flash",
+    "claude-sonnet-4-6": "claude-sonnet-4-6",
+    "mimo-v2.5": "mimo-v2.5",
+    "mimo-v2.5-free": "mimo-v2.5",
+    "glm-5.2": "glm-5.2",
+}
 DISPLAY_NAMES = {
     "claude-sonnet-4-6": "Claude Sonnet 4.6",
-    "deepseek-v4-flash-free": "DeepSeek V4 Flash",
+    "deepseek-v4-flash": "DeepSeek V4 Flash",
     "glm-5.2": "GLM-5.2",
     "gpt-5.5": "GPT-5.5",
-    "mimo-v2.5-free": "MiMo-V2.5",
+    "mimo-v2.5": "MiMo-V2.5",
 }
 LANE_LABELS = {
     "claude-sonnet-4-6": "Claude",
-    "deepseek-v4-flash-free": "DeepSeek",
+    "deepseek-v4-flash": "DeepSeek",
     "glm-5.2": "GLM",
     "gpt-5.5": "GPT",
-    "mimo-v2.5-free": "MiMo",
+    "mimo-v2.5": "MiMo",
 }
 COLORS = {
     "claude-sonnet-4-6": "#2A9D6F",
-    "deepseek-v4-flash-free": "#E69F00",
+    "deepseek-v4-flash": "#E69F00",
     "glm-5.2": "#D45A87",
     "gpt-5.5": "#7657A6",
-    "mimo-v2.5-free": "#3F7FBF",
+    "mimo-v2.5": "#3F7FBF",
 }
 
 PHASES = ("R1", "R2", "R3", "R4", "R5", "R6")
@@ -133,23 +142,42 @@ def parse_score_table(path: Path) -> list[RunRecord]:
     records: list[RunRecord] = []
     for line in path.read_text(encoding="utf-8").splitlines():
         fields = line.split()
-        if len(fields) != 14 or not fields[0].startswith("CVE-"):
+        if len(fields) < 3 or not fields[0].startswith("CVE-"):
             continue
-        if fields[1] not in MODELS or fields[2] not in {"1", "2", "3"}:
+        model = MODEL_ALIASES.get(fields[1])
+        if model not in MODELS or fields[2] not in {"1", "2", "3"}:
             continue
         try:
-            numeric = [float(value) for value in fields[3:]]
+            if len(fields) == 14:
+                numeric = [float(value) for value in fields[3:]]
+                plan = numeric[0]
+                phases = tuple(numeric[2:8])
+                reported_task = numeric[8]
+                reported_overall = numeric[10]
+            elif len(fields) >= 50:
+                # Published detailed format:
+                # CVE Model Run Cov Dep Fall Plan Pl*0.2 [phase items/totals]
+                # Task T*0.8 Overall Fam Mode TermPhase...
+                [float(value) for value in fields[3:49]]
+                plan = float(fields[6])
+                phases = tuple(
+                    float(fields[index]) for index in (14, 19, 25, 31, 38, 45)
+                )
+                reported_task = float(fields[46])
+                reported_overall = float(fields[48])
+            else:
+                continue
         except ValueError:
             continue
         records.append(
             RunRecord(
                 cve=fields[0],
-                model=fields[1],
+                model=model,
                 run=int(fields[2]),
-                plan=numeric[0],
-                phases=tuple(numeric[2:8]),
-                reported_task=numeric[8],
-                reported_overall=numeric[10],
+                plan=plan,
+                phases=phases,
+                reported_task=reported_task,
+                reported_overall=reported_overall,
             )
         )
     if len(records) != 450:
@@ -203,7 +231,8 @@ def validate_evaluation_jsons(
     seen: set[tuple[str, str, int]] = set()
     for json_path in json_paths:
         relative = json_path.relative_to(eval_root)
-        cve, model, run_text, _ = relative.parts
+        cve, model_directory, run_text, _ = relative.parts
+        model = MODEL_ALIASES.get(model_directory, model_directory)
         key = (cve, model, int(run_text))
         if key not in record_map:
             raise ValueError(f"Evaluation JSON has no score-table row: {relative}")
@@ -330,7 +359,7 @@ def select_best_task_runs(records: list[RunRecord]) -> tuple[list[RunRecord], li
         # Draft policy: recompute Task as R1+...+R6, then use the smallest
         # run id as a deterministic tie breaker.
         selected.append(sorted(group, key=lambda row: (-row.phase_task, row.run))[0])
-    selected.sort(key=lambda row: (row.cve, MODELS.index(row.model)))
+    selected.sort(key=lambda row: (row.cve, PLOT_MODELS.index(row.model)))
 
     corrections = [
         record
@@ -366,7 +395,7 @@ def aggregate_phase_scores(
     aggregated: dict[str, dict[str, np.ndarray]] = {}
     for title, _ in PANEL_SPECS:
         aggregated[title] = {}
-        for model in MODELS:
+        for model in PLOT_MODELS:
             rows = grouped[(title, model)]
             if len(rows) != panel_sizes[title]:
                 raise ValueError(
@@ -384,7 +413,7 @@ def write_audit_outputs(
     aggregated: dict[str, dict[str, np.ndarray]],
     panel_sizes: dict[str, int],
     summary_path: Path,
-    eval_root: Path,
+    eval_root: Path | None,
     groundtruth_root: Path,
     evaluation_json_count: int,
     groundtruth_count: int,
@@ -425,7 +454,7 @@ def write_audit_outputs(
         writer = csv.writer(handle)
         writer.writerow(["panel", "n_cves", "model", "phase", "normalized_score_pct"])
         for title, _ in PANEL_SPECS:
-            for model in MODELS:
+            for model in PLOT_MODELS:
                 for phase, value in zip(PHASES, aggregated[title][model], strict=True):
                     writer.writerow([title, panel_sizes[title], model, phase, f"{value:.3f}"])
 
@@ -434,13 +463,21 @@ def write_audit_outputs(
         "REPROBENCH 3D PHASE-TRAJECTORY DATA AUDIT",
         "",
         "Scoring specification: reprobench/skills/reprobench-scoring/SKILL.md",
-        f"Source summary: {summary_path.resolve().relative_to(ROOT).as_posix()}",
-        f"Evaluation JSON root: {eval_root.resolve().relative_to(ROOT).as_posix()}",
-        f"Ground-truth root: {groundtruth_root.resolve().relative_to(ROOT).as_posix()}",
+        f"Source summary: {summary_path.resolve()}",
+        (
+            f"Evaluation JSON root: {eval_root.resolve()}"
+            if eval_root is not None
+            else "Evaluation JSON root: not supplied (published summary is the score source)"
+        ),
+        f"Ground-truth root: {groundtruth_root.resolve()}",
         "",
         "Selection policy: maximize skill-consistent Task = R1+...+R6; ties use smallest run id.",
         f"Score-table rows parsed: {len(selected) * 3}",
-        f"Evaluation JSON files checked and matched: {evaluation_json_count}",
+        (
+            f"Evaluation JSON files checked and matched: {evaluation_json_count}"
+            if eval_root is not None
+            else "Evaluation JSON cross-check: skipped (no matching inner-repository JSON set)"
+        ),
         f"Selected CVE/model rows: {len(selected)}",
         f"Ground-truth class labels verified: {groundtruth_count}/{len(metadata)}",
         "Class counts: " + ", ".join(
@@ -614,14 +651,19 @@ def build_figure(
 
 def render(
     summary_path: Path,
-    eval_root: Path,
+    eval_root: Path | None,
     metadata_path: Path,
     groundtruth_root: Path,
     output_dir: Path,
     dpi: int,
 ) -> list[Path]:
     records = parse_score_table(summary_path)
-    evaluation_json_count, skill_warnings = validate_evaluation_jsons(eval_root, records)
+    if eval_root is None:
+        evaluation_json_count, skill_warnings = 0, []
+    else:
+        evaluation_json_count, skill_warnings = validate_evaluation_jsons(
+            eval_root, records
+        )
     metadata = read_metadata(metadata_path)
     groundtruth_count = validate_metadata_groundtruth(metadata, groundtruth_root)
     selected, corrections = select_best_task_runs(records)
@@ -664,7 +706,12 @@ def render(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--summary", type=Path, default=DEFAULT_SUMMARY)
-    parser.add_argument("--eval-root", type=Path, default=DEFAULT_EVAL_ROOT)
+    parser.add_argument(
+        "--eval-root",
+        type=Path,
+        default=DEFAULT_EVAL_ROOT,
+        help="Optional matching evaluation-JSON root for row-by-row cross-checking.",
+    )
     parser.add_argument("--metadata", type=Path, default=DEFAULT_METADATA)
     parser.add_argument("--groundtruth", type=Path, default=DEFAULT_GROUNDTRUTH)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)

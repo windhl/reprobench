@@ -4,12 +4,15 @@ This directory contains the publication outputs for the ReproBench phase-traject
 
 ## Source of truth
 
-The figure reads the current evaluation data under the workspace-level `./data` tree:
+The plotted scores come from the updated summary committed to the inner
+`reprobench` repository:
 
-- `data/reprobench/eval/evaluation/CVE-*/<model>/<run>/evaluation-*.json`: all 450 skill-format run evaluations.
-- `data/reprobench/eval/evaluation/evaluation_summary.txt`: flat score table generated from those JSON files.
-- `data/reprobench/eval/repro_groundtruth/CVE-*/info.txt`: local ground-truth dossiers used to verify the three vulnerability classes.
-- `figure/data/reprobench_cve_metadata.csv`: the balanced 30-CVE panel map, cross-checked against the local dossiers.
+- `reprobench/data/evaluation_summary.txt`: the 450-run published score table
+  used for run selection and every plotted phase value.
+- `data/reprobench/eval/repro_groundtruth/CVE-*/info.txt`: workspace-level local
+  ground-truth dossiers used only to verify the three vulnerability classes.
+- `figure/data/reprobench_cve_metadata.csv`: the workspace-level balanced
+  30-CVE panel map, cross-checked against the local dossiers.
 
 The scoring contract is `reprobench/skills/reprobench-scoring/SKILL.md`.
 
@@ -22,10 +25,11 @@ run id. It normalizes R1--R4 by 15 and R5--R6 by 20 before averaging over CVEs.
 Panels are All CVEs (n=30), Buffer Overflow (n=10), Command Injection (n=10),
 and Authentication Bypass (n=10).
 
-Before rendering, the script checks all 450 flat-table rows against the 450
-evaluation JSONs and verifies every class label against the corresponding local
-ground-truth dossier. Any skill-level score consistency warnings are written to
-`data_audit.txt`.
+Before rendering, the script checks that the inner summary contains exactly
+450 rows and 150 CVE/model cells with three runs each. It recomputes Task from
+the six phase totals and verifies every class label against the corresponding
+local ground-truth dossier. The outer workspace's older evaluation JSON set is
+deliberately not used to validate the updated inner summary.
 
 ## Re-render
 
