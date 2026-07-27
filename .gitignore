@@ -7,3 +7,5 @@
 *.fls
 .DS_Store
 reprobench.pdf
+ReproducibilityChecklist.pdf
+**/__pycache__
