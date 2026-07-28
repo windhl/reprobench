@@ -37,8 +37,7 @@ As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template
 % P5/P6 >= 15: count pairs where max(P5/P6 across 3 runs) >= 15.
 \begin{table*}[t]
 \centering
-\caption{Best-of-three model summary across 30 CVEs. Overall is the maximum per-run overall score across three independent trials. P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
-\label{tab:model-results}
+
 %\small
 \begin{tabular}{lrrrrrr}
 \toprule
@@ -53,6 +52,8 @@ As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template
 All & 77.7 & 44.8 & 51.1 & 99.0 & 11/150 & 8/150 \\
 \bottomrule
 \end{tabular}
+\caption{Best-of-three model summary across 30 CVEs. Overall is the maximum per-run overall score across three independent trials. P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
+\label{tab:model-results}
 \end{table*}
 
 
