@@ -38,9 +38,9 @@
   organization={IEEE}
 }
 @inproceedings{angr,
-  title={Sok:(state of) the art of war: Offensive techniques in binary analysis},
-  author={Shoshitaishvili, Yan and Wang, Ruoyu and Salls, Christopher and Stephens, Nick and Polino, Mario and Dutcher, Andrew and Grosen, John and Feng, Siji and Hauser, Christophe and Kruegel, Christopher and others},
-  booktitle={2016 IEEE symposium on security and privacy (SP)},
+  title={{SoK}: (State of) The Art of War: Offensive Techniques in Binary Analysis},
+  author={Shoshitaishvili, Yan and Wang, Ruoyu and Salls, Christopher and Stephens, Nick and Polino, Mario and Dutcher, Andrew and Grosen, John and Feng, Siji and Hauser, Christophe and Kruegel, Christopher and Vigna, Giovanni},
+  booktitle={2016 IEEE Symposium on Security and Privacy (SP)},
   pages={138--157},
   year={2016},
   organization={IEEE}
@@ -226,14 +226,14 @@
 %------------ fuzz --------------%
 
 @article{fuzz,
-  title={An empirical study of the reliability of UNIX utilities},
-  author={Miller, Barton P and Fredriksen, Lars and So, Bryan},
+  title={An Empirical Study of the Reliability of {UNIX} Utilities},
+  author={Miller, Barton P. and Fredriksen, Lars and So, Bryan},
   journal={Communications of the ACM},
   volume={33},
   number={12},
   pages={32--44},
   year={1990},
-  publisher={ACM New York, NY, USA}
+  publisher={ACM}
 }
 
 %------------ firmware fuzz & rehosting --------------%
@@ -685,15 +685,13 @@
   year={2014}
 }
 
-@article{s2e,
-  title={S2E: A platform for in-vivo multi-path analysis of software systems},
+@inproceedings{s2e,
+  title={{S2E}: A Platform for In-Vivo Multi-Path Analysis of Software Systems},
   author={Chipounov, Vitaly and Kuznetsov, Volodymyr and Candea, George},
-  journal={Acm Sigplan Notices},
-  volume={46},
-  number={3},
+  booktitle={Proceedings of the 16th International Conference on Architectural Support for Programming Languages and Operating Systems},
   pages={265--278},
   year={2011},
-  publisher={ACM New York, NY, USA}
+  organization={ACM}
 }
 
 @inproceedings{symqemu,
@@ -705,20 +703,11 @@
 }
 
 @inproceedings{qsym,
-  title={$\{$QSYM$\}$: A practical concolic execution engine tailored for hybrid fuzzing},
+  title={{QSYM}: A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing},
   author={Yun, Insu and Lee, Sangho and Xu, Meng and Jang, Yeongjin and Kim, Taesoo},
   booktitle={27th USENIX Security Symposium (USENIX Security 18)},
   pages={745--761},
   year={2018}
-}
-
-@inproceedings{kell,
-  title={Klee: unassisted and automatic generation of high-coverage tests for complex systems programs.},
-  author={Cadar, Cristian and Dunbar, Daniel and Engler, Dawson R and others},
-  booktitle={OSDI},
-  volume={8},
-  pages={209--224},
-  year={2008}
 }
 
 @inproceedings{nyxnet,
@@ -765,14 +754,14 @@
 }
 
 @article{king1976symb,
-  title={Symbolic execution and program testing},
-  author={King, James C},
+  title={Symbolic Execution and Program Testing},
+  author={King, James C.},
   journal={Communications of the ACM},
   volume={19},
   number={7},
   pages={385--394},
   year={1976},
-  publisher={ACM New York, NY, USA}
+  publisher={ACM}
 }
 
 @article{gpt,
@@ -855,13 +844,15 @@
   author={Wang, Chunlin and Yang, Yicheng and Zhang, Yuan and Xiao, Haoyu and Zhang, Yifan and Dai, Jiarun}
 }
 
-@inproceedings{klee,
-  title={Klee: unassisted and automatic generation of high-coverage tests for complex systems programs.},
-  author={Cadar, Cristian and Dunbar, Daniel and Engler, Dawson R and others},
-  booktitle={OSDI},
-  volume={8},
-  pages={209--224},
-  year={2008}
+@inproceedings{kell,
+  author={Cadar, Cristian and Dunbar, Daniel and Engler, Dawson},
+  title={{KLEE}: Unassisted and Automatic Generation of {High-Coverage} Tests for Complex Systems Programs},
+  booktitle={8th USENIX Symposium on Operating Systems Design and Implementation (OSDI 08)},
+  year={2008},
+  address={San Diego, CA},
+  url={https://www.usenix.org/conference/osdi-08/klee-unassisted-and-automatic-generation-high-coverage-tests-complex-systems},
+  publisher={USENIX Association},
+  month=dec
 }
 
 @article{secbench,
@@ -1025,4 +1016,237 @@
   author={Zhao, Mengyao and Li, Kaixuan and Zhang, Lyuye and Dang, Wenjing and Ding, Chenggong and Chen, Sen and Liu, Zheli},
   journal={arXiv preprint arXiv:2510.10148},
   year={2025}
+}
+
+%---------- foundational vulnerability exploitation ----------%
+
+@misc{alephone1996stack,
+  author={Aleph One},
+  title={Smashing the Stack for Fun and Profit},
+  howpublished={Phrack Magazine, Volume 7, Issue 49, File 14},
+  year={1996},
+  url={https://phrack.org/issues/49/14_md},
+  urldate={2026-07-29}
+}
+
+@inproceedings{shacham2007rop,
+  title={The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the {x86})},
+  author={Shacham, Hovav},
+  booktitle={Proceedings of the 14th ACM Conference on Computer and Communications Security},
+  pages={552--561},
+  year={2007},
+  organization={ACM}
+}
+
+@inproceedings{brumley2008patchaeg,
+  title={Automatic Patch-Based Exploit Generation Is Possible: Techniques and Implications},
+  author={Brumley, David and Poosankam, Pongsin and Song, Dawn and Zheng, Jiang},
+  booktitle={2008 IEEE Symposium on Security and Privacy (SP)},
+  pages={143--157},
+  year={2008},
+  organization={IEEE}
+}
+
+@inproceedings{avgerinos2011aeg,
+  title={{AEG}: Automatic Exploit Generation},
+  author={Avgerinos, Thanassis and Cha, Sang Kil and Hao, Brent Lim Tze and Brumley, David},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2011}
+}
+
+@inproceedings{schwartz2011q,
+  title={{Q}: Exploit Hardening Made Easy},
+  author={Schwartz, Edward J. and Avgerinos, Thanassis and Brumley, David},
+  booktitle={20th USENIX Security Symposium (USENIX Security 11)},
+  year={2011}
+}
+
+@inproceedings{cha2012mayhem,
+  title={Unleashing {MAYHEM} on Binary Code},
+  author={Cha, Sang Kil and Avgerinos, Thanassis and Rebert, Alexandre and Brumley, David},
+  booktitle={2012 IEEE Symposium on Security and Privacy (SP)},
+  pages={380--394},
+  year={2012},
+  organization={IEEE}
+}
+
+@inproceedings{hu2016dop,
+  title={Data-Oriented Programming: On the Expressiveness of Non-control Data Attacks},
+  author={Hu, Hong and Shinde, Shweta and Adrian, Sendroiu and Chua, Zheng Leong and Saxena, Prateek and Liang, Zhenkai},
+  booktitle={2016 IEEE Symposium on Security and Privacy (SP)},
+  pages={969--986},
+  year={2016},
+  organization={IEEE}
+}
+
+@article{mechanicalphish,
+  title={Mechanical Phish: Resilient Autonomous Hacking},
+  author={Shoshitaishvili, Yan and Bianchi, Antonio and Borgolte, Kevin and Cama, Amat and Corbetta, Jacopo and Disperati, Francesco and Dutcher, Andrew and Grosen, John and Grosen, Paul and Machiry, Aravind and Salls, Christopher and Stephens, Nick and Wang, Ruoyu and Vigna, Giovanni},
+  journal={IEEE Security \& Privacy},
+  volume={16},
+  number={2},
+  pages={12--22},
+  year={2018},
+  publisher={IEEE}
+}
+
+@inproceedings{heelan2018shrike,
+  title={Automatic Heap Layout Manipulation for Exploitation},
+  author={Heelan, Sean and Melham, Tom and Kroening, Daniel},
+  booktitle={27th USENIX Security Symposium (USENIX Security 18)},
+  pages={763--779},
+  year={2018}
+}
+
+@inproceedings{wu2018fuze,
+  title={{FUZE}: Towards Facilitating Exploit Generation for Kernel {Use-After-Free} Vulnerabilities},
+  author={Wu, Wei and Chen, Yueqi and Xu, Jun and Xing, Xinyu and Gong, Xiaorui and Zou, Wei},
+  booktitle={27th USENIX Security Symposium (USENIX Security 18)},
+  pages={781--797},
+  year={2018}
+}
+
+%---------- foundational program and binary analysis ----------%
+
+@inproceedings{newsome2005taintcheck,
+  title={Dynamic Taint Analysis for Automatic Detection, Analysis, and Signature Generation of Exploits on Commodity Software},
+  author={Newsome, James and Song, Dawn},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2005}
+}
+
+@inproceedings{cadar2006exe,
+  title={{EXE}: Automatically Generating Inputs of Death},
+  author={Cadar, Cristian and Ganesh, Vijay and Pawlowski, Peter M. and Dill, David L. and Engler, Dawson R.},
+  booktitle={Proceedings of the 13th ACM Conference on Computer and Communications Security},
+  pages={322--335},
+  year={2006},
+  organization={ACM}
+}
+
+@inproceedings{nethercote2007valgrind,
+  title={Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation},
+  author={Nethercote, Nicholas and Seward, Julian},
+  booktitle={Proceedings of the 2007 ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  pages={89--100},
+  year={2007},
+  organization={ACM}
+}
+
+@inproceedings{song2008bitblaze,
+  title={BitBlaze: A New Approach to Computer Security via Binary Analysis},
+  author={Song, Dawn and Brumley, David and Yin, Heng and Caballero, Juan and Jager, Ivan and Kang, Min Gyung and Liang, Zhenkai and Newsome, James and Poosankam, Pongsin and Saxena, Prateek},
+  booktitle={Information Systems Security: 4th International Conference (ICISS)},
+  pages={1--25},
+  year={2008},
+  publisher={Springer}
+}
+
+@inproceedings{schwartz2010taint,
+  title={All You Ever Wanted to Know about Dynamic Taint Analysis and Forward Symbolic Execution (but Might Have Been Afraid to Ask)},
+  author={Schwartz, Edward J. and Avgerinos, Thanassis and Brumley, David},
+  booktitle={2010 IEEE Symposium on Security and Privacy (SP)},
+  pages={317--331},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{brumley2011bap,
+  title={{BAP}: A Binary Analysis Platform},
+  author={Brumley, David and Jager, Ivan and Avgerinos, Thanassis and Schwartz, Edward J.},
+  booktitle={Computer Aided Verification: 23rd International Conference (CAV)},
+  pages={463--469},
+  year={2011},
+  publisher={Springer}
+}
+
+%---------- foundational vulnerability discovery ----------%
+
+@inproceedings{wagner2000boon,
+  title={A First Step Towards Automated Detection of Buffer Overrun Vulnerabilities},
+  author={Wagner, David and Foster, Jeffrey S. and Brewer, Eric A. and Aiken, Alexander},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2000}
+}
+
+@inproceedings{engler2001bugs,
+  title={Bugs as Deviant Behavior: A General Approach to Inferring Errors in Systems Code},
+  author={Engler, Dawson and Chen, David Yu and Hallem, Seth and Chou, Andy and Chelf, Benjamin},
+  booktitle={Proceedings of the 18th ACM Symposium on Operating Systems Principles},
+  pages={57--72},
+  year={2001},
+  organization={ACM}
+}
+
+@inproceedings{godefroid2005dart,
+  title={{DART}: Directed Automated Random Testing},
+  author={Godefroid, Patrice and Klarlund, Nils and Sen, Koushik},
+  booktitle={Proceedings of the 2005 ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  pages={213--223},
+  year={2005},
+  organization={ACM}
+}
+
+@inproceedings{sen2005cute,
+  title={{CUTE}: A Concolic Unit Testing Engine for {C}},
+  author={Sen, Koushik and Marinov, Darko and Agha, Gul},
+  booktitle={Proceedings of the 10th European Software Engineering Conference Held Jointly with the 13th ACM SIGSOFT International Symposium on Foundations of Software Engineering},
+  pages={263--272},
+  year={2005},
+  organization={ACM}
+}
+
+@inproceedings{godefroid2008sage,
+  title={Automated Whitebox Fuzz Testing},
+  author={Godefroid, Patrice and Levin, Michael Y. and Molnar, David},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2008}
+}
+
+@inproceedings{bohme2016aflfast,
+  title={Coverage-Based Greybox Fuzzing as Markov Chain},
+  author={B{\"o}hme, Marcel and Pham, Van-Thuan and Roychoudhury, Abhik},
+  booktitle={Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security},
+  pages={1032--1043},
+  year={2016},
+  organization={ACM}
+}
+
+@inproceedings{stephens2016driller,
+  title={Driller: Augmenting Fuzzing Through Selective Symbolic Execution},
+  author={Stephens, Nick and Grosen, John and Salls, Christopher and Dutcher, Andrew and Wang, Ruoyu and Corbetta, Jacopo and Shoshitaishvili, Yan and Kruegel, Christopher and Vigna, Giovanni},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2016}
+}
+
+@inproceedings{rawat2017vuzzer,
+  title={{VUzzer}: Application-Aware Evolutionary Fuzzing},
+  author={Rawat, Sanjay and Jain, Vivek and Kumar, Ashish and Cojocar, Lucian and Giuffrida, Cristiano and Bos, Herbert},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2017}
+}
+
+@inproceedings{chen2018angora,
+  title={Angora: Efficient Fuzzing by Principled Search},
+  author={Chen, Peng and Chen, Hao},
+  booktitle={2018 IEEE Symposium on Security and Privacy (SP)},
+  pages={711--725},
+  year={2018},
+  organization={IEEE}
+}
+
+@inproceedings{aschermann2019redqueen,
+  title={{REDQUEEN}: Fuzzing with Input-to-State Correspondence},
+  author={Aschermann, Cornelius and Schumilo, Sergej and Blazytko, Tim and Gawlik, Robert and Holz, Thorsten},
+  booktitle={Proceedings of the Network and Distributed System Security Symposium (NDSS)},
+  year={2019}
+}
+
+@inproceedings{she2019neuzz,
+  title={{NEUZZ}: Efficient Fuzzing with Neural Program Smoothing},
+  author={She, Dongdong and Pei, Kexin and Epstein, Dave and Yang, Junfeng and Ray, Baishakhi and Jana, Suman},
+  booktitle={2019 IEEE Symposium on Security and Privacy (SP)},
+  pages={803--817},
+  year={2019},
+  organization={IEEE}
 }
