@@ -6,7 +6,7 @@ LLM agents now plan, call tools, write code, and operate inside software reposit
 %
 This shift has prompted a wave of benchmarks measuring agentic performance on software engineering and cybersecurity tasks, from issue resolution~\cite{swebench} and program rewriting~\cite{programbench} to vulnerability reproduction~\cite{cybergym,krepro}, exploitation~\cite{cvebench,exploitgym,exploitbench}, and offense--defense exercises~\cite{bountybench,secbench}. 
 %
-A common assumption underlies all of them: the target environment has already been prepared. 
+A common assumption for all of them is that the target environment has already been prepared. 
 
 %
 Specifically, the agent receives a repository, a patch, a sanitizer-instrumented binary, a running Docker, and then is scored on what it does \emph{after} that starting line. 
@@ -15,16 +15,17 @@ In real-world vulnerability analysis, however, a typical investigation usually b
 %
 We call the prepared setting \emph{post-environment} evaluation and the from-scratch setting \emph{pre-environment} evaluation. 
 %
-The gap between them is not cosmetic: it is the gap between grading an exploit and grading the ability to reach a target worth exploiting.
+%%The gap between them is not cosmetic: it is %%the gap between grading an exploit and %%grading the ability to reach a target worth %%exploiting.
+The gap between them should be considered when benchmarking existing LLM agents.
 
-
-We focus on a domain where this gap is especially sharp: IoT firmware vulnerability reproduction. 
+In this work, we focus on a domain where this gap is especially sharp: IoT firmware vulnerability reproduction. 
 %
-A firmware image is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state and shared libraries, and reachable only after \textit{rehosting} under architecture-level emulation~\cite{challenges,firmadyne,firmae}.
+A firmware image is a proprietary binary blob compiled for MIPS or ARM and reachable only after \textit{rehosting} under architecture-level emulation~\cite{challenges,firmadyne,firmae}.
 %
-Unlike source-level targets, firmware cannot be rebuilt from a patch. The analyst must obtain the exact image, extract it from a vendor archive, identify the vulnerable binary among dozens of blobs, and rehost the service on a synthetic environment before any exploit can be triggered. 
+Unlike source-level targets, the analyst must obtain the exact image, extract it from a vendor archive, identify the vulnerable binary among dozens of blobs, and rehost the service on a synthetic environment before any exploit can be triggered. 
 %
-This makes firmware reproduction an end-to-end artifact reconstruction and validation task, where failure can occur at every step and where a polished-looking PoC may never touch the real target. 
+This makes firmware reproduction an end-to-end artifact reconstruction and validation task.
+%, where failure can occur at every step and where a polished-looking PoC may never touch the real target. 
 %
 %The security stakes are concrete: IoT devices are deployed at billions of units %across homes, factories, and edge infrastructure, and the same opacity that %makes firmware hard to rehost also makes it a persistent reservoir of unpatched, %remotely exploitable bugs.
 
@@ -33,7 +34,8 @@ To address this gap, we introduce \sys, a benchmark that evaluates whether LLM a
 %
 \sys{} deliberately withholds the prepared environment and scores the full artifact-to-execution pipeline. 
 %
-In doing so, it stresses capabilities that existing benchmarks do not exercise at all: open-world information gathering, artifact provenance checking, cross-architecture binary analysis, long-horizon tool orchestration, and grounded validation against the real target rather than against a surrogate of the agent's own construction.
+In doing so, it stresses capabilities that existing benchmarks do not exercise at all: open-world information gathering, artifact provenance checking, cross-architecture binary analysis, long-horizon tool orchestration, and grounded validation against the real target.
+% rather than against a surrogate of the agent's own construction.
 
 
 %%
@@ -62,7 +64,7 @@ In doing so, it stresses capabilities that existing benchmarks do not exercise a
 
 Our evaluation exposes a failure behavior that, to our knowledge, has not been isolated in prior benchmarking: when rehosting becomes difficult, agents do not report failure---they \emph{substitute}. 
 %
-They produce Python mock servers or synthetic C harnesses that crash in the expected way, and wrap them in coherent reports with valid exploit syntax and convincing crash traces. 
+%%They produce Python mock servers or synthetic C harnesses that crash in the expected way, and wrap them in coherent reports with valid exploit syntax and convincing crash traces. 
 %
 In short, the vulnerability is being emulated, but the environment is not. 
 %
@@ -74,13 +76,16 @@ In short, the vulnerability is being emulated, but the environment is not.
 Our contributions are as follows:
 \begin{itemize}
 
-\item We formulate \emph{CVE-only} vulnerability reproduction as a from-scratch, long-horizon LLM agent task, and introduce the pre/post-environment distinction that separates \sys{} from all prior cybersecurity benchmarks.
+\item We formulate \emph{CVE-only} vulnerability reproduction as a from-scratch, long-horizon LLM agent task, and introduce the pre/post-environment distinction.
+% that separates \sys{} from all prior cybersecurity benchmarks.
 
-\item We carefully construct, from official CVE database, a 30-CVE public-evidence dataset balanced across buffer overflow, command injection, and authentication bypass, reported from 2020 to 2026.
+\item We construct, from official CVE database, a 30-CVE public-evidence dataset balanced across buffer overflow, command injection, and authentication bypass.
+%, reported from 2020 to 2026.
 
-\item We propose an evidence-grounded, non-binary scoring framework that decomposes reproduction into six phases with real-target gating, jointly measuring planning and execution, rejecting simulated reproductions.
+\item We propose an evidence-grounded scoring framework that decomposes reproduction into six phases jointly measuring planning and execution.
 
-\item We evaluate 450 reproduction runs (30 CVEs, 5 models, 3 trials) and find a dominant, previously unreported failure mode---\emph{simulation substitution} (45.3\% of runs)---showing that real-target triggering remains near-insurmountable (5.3\% of CVE--model pairs).
+\item We evaluate 450 reproduction runs (30 CVEs, 5 models, 3 trials) and find a dominant, previously unreported failure mode---\emph{simulation substitution}.
+% (45.3\% of runs)---showing that real-target triggering remains near-insurmountable (5.3\% of CVE--model pairs).
 
 \end{itemize}
 

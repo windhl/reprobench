@@ -1,11 +1,6 @@
 \section{ReproBench}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.95\textwidth]{figures/framework0724.pdf}
-\caption{Overview of the \sys{} pipeline. CVEs are curated and paired with public evidence. Agents receive only a CVE identifier and must plan, execute, and report. The scoring skill evaluates each run against the public evidence.}
-\label{fig:framework}
-\end{figure*}
+
 
 \subsection{Overview}
 % 整体流程概述
@@ -16,7 +11,7 @@ Figure~\ref{fig:framework} illustrates the overall pipeline of \sys{}. We first 
 \subsection{Dataset Construction}
 \label{sec:dataset}
 % CVE收集与筛选
-We collect IoT firmware vulnerabilities from public CVE databases~\cite{cveorg,cvedetails}, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories, spanning vulnerabilities disclosed from 2020 to 2026. From this pool, we apply three filtering criteria: (1) \emph{firmware accessibility}---the affected firmware image must be obtainable from vendor sites, archive mirrors, or public dumps; (2) \emph{public-evidence richness}---sufficient public information (advisories, PoCs, blog posts) must exist to build a reference collection; and (3) \emph{vulnerability class}---the vulnerability must fall into one of our three target categories. From the filtered candidates, we select 30 out of 696 representative CVEs balanced equally across three classes: 10 buffer overflows, 10 command injections, and 10 authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
+We collect IoT firmware vulnerabilities from public CVE databases~\cite{cveorg,cvedetails}, vendor advisories, NVD entries, exploit databases, security blogs, and GitHub PoC repositories, spanning vulnerabilities disclosed from 2020 to 2026. From this pool, we apply three filtering criteria: (1) \emph{firmware accessibility}---the affected firmware image must be obtainable from vendor sites, archive mirrors, or public dumps; (2) \emph{public-evidence richness}---sufficient public information (advisories, PoCs, blog posts) must exist to build a reference collection; and (3) \emph{vulnerability class}---the vulnerability must fall into one of our three target categories. From the filtered candidates, we select 30 out of 696 representative CVEs balanced equally across three classes: buffer overflows, command injections, and authentication bypasses. These classes require different validation signals---crashes for buffer overflows, command side effects for injection, and unauthenticated access for bypass---creating a controlled benchmark for comparing agent capabilities.
 
 \subsection{Reference Profile Generation}
 \label{sec:dossier}
@@ -57,7 +52,9 @@ P6 & Vulnerability Triggering & PoC, Debugging Log \\
 \end{table}
 
 \subsubsection{Plan Score}
-Before execution, the agent is required to write a reproduction plan (\texttt{plan.md}). The plan score has three components, each normalized to 0--100: $\text{Plan} = 0.6 \times \text{Coverage} + 0.3 \times \text{Dependency} + 0.1 \times \text{Fallback}$. \emph{Coverage} evaluates whether the plan explicitly covers all six phases, using the same phase weights as the task score. %(Table~\ref{tab:phases}). 
+Before execution, the agent is required to write a reproduction plan whose score has three components:
+%, each normalized to 0--100: 
+$\text{Plan} = 0.6 \times \text{Coverage} + 0.3 \times \text{Dependency} + 0.1 \times \text{Fallback}$. \emph{Coverage} evaluates whether the plan explicitly covers all six phases, using the same phase weights as the task score. %(Table~\ref{tab:phases}). 
 Each phase receives a quality multiplier: clearly planned (1.0), mentioned but vague (0.5), or missing (0). \emph{Dependency correctness} checks that the planned execution order respects P1$\rightarrow$P2$\rightarrow$P3$\rightarrow$P4$\rightarrow$P5$\rightarrow$P6, deducting 20 points per violation. \emph{Fallback planning} is scored on a quality scale from 0 (no fallback) to 100 (phase-specific contingencies identifying the blocked phase, failure mode, and alternative action).
 
 \subsubsection{Task Score}
@@ -65,9 +62,14 @@ The task score assigns 100 points across P1--P6: 15 points each for P1--P4 and 2
 
 \begin{itemize}
 
-\item \noindent\textbf{Artifact-based Strategy.} This is the primary component, measuring whether the agent produced observable artifacts aligned with the reference profile. The scorer inspects phase-specific artifacts: downloaded firmware images (P2), extracted root filesystems and file listings (P3), the identified target binary together with a root-cause statement (P4), rehosting service and debugging logs showing the real binary running and receiving requests (P5), and PoC scripts together with debugging logs proving the vulnerability was triggered on the real target (P6). Generally, each checklist item requires a concrete artifact that the scorer can cite and artifacts absent from the workspace receive no credit.
+\item \noindent\textbf{Artifact-based Strategy.} This is the primary component, measuring whether the agent produced observable artifacts aligned with the reference profile. The scorer inspects phase-specific artifacts: downloaded firmware images (P2), extracted root filesystems and file listings (P3), the identified target binary together with a root-cause statement (P4), rehosting service and running logs (P5), and PoC scripts together with debugging logs (P6). Generally, each checklist item requires a concrete artifact that the scorer can cite.
+% and artifacts absent from the workspace receive no credit.
 
-\item \noindent\textbf{Attempt Strategy.} Reproduction is long-horizon and failure-prone, so a run that attempts a phase but does not produce a citable artifact should still receive partial credit. When the artifact-based score for a phase is zero, the scorer inspects the trajectory for traceable attempts and assigns partial credit on a coarse scale (0, 0.5, or 1 point per phase). This score is mutually exclusive with artifact-based credit and can lift a zero-score phase to at most 1 point. For example, a run that issues \texttt{curl} requests to vendor download URLs but receives only 404 responses demonstrates a genuine P2 attempt, and a run that launches \texttt{qemu-user} but fails to satisfy NVRAM dependencies demonstrates a genuine P5 attempt. This distinguishes an agent that tried but failed from one that skipped the phase entirely. 
+\item \noindent\textbf{Attempt Strategy.} 
+%Reproduction is long-horizon and failure-prone, so a run that 
+A run attempts a phase but does not produce a citable artifact should still receive partial credit. When the artifact-based score for a phase is zero, the scorer inspects the trajectory for traceable attempts and assigns partial credit on a coarse scale (0, 0.5, or 1 point per phase). This score is mutually exclusive with artifact-based credit and can lift a zero-score phase to at most 1 point. For example, a run that issues \texttt{curl} requests 
+%to vendor download URLs 
+but receives only 404 responses demonstrates a genuine P2 attempt, and a run that launches \texttt{qemu-user} but fails to satisfy NVRAM dependencies demonstrates a genuine P5 attempt. This distinguishes an agent that tried but failed from one that skipped the phase entirely. 
 
 \end{itemize}
 
