@@ -3,7 +3,7 @@
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/stagefunnel.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/stagefunnel.pdf}
     \caption{Stage-level averages under best-of-three scoring.}
     \label{fig:stage-funnel}
 \end{figure}
@@ -37,7 +37,9 @@ Figure~\ref{fig:stage-funnel} shows the stage funnel from P1 to P6. P1 (Informat
 
 % Failure attribution: per-run counts (terminal failure mode, each run counted once).
 % P2/P5 blockers are terminal phase counts (TermPhase column).
-Across all 450 runs, terminal blockers concentrate at two phases---P2 (211/450, firmware acquisition) and P5 (173/450, service rehosting)---consistent with the funnel above. We categorize the dominant failure modes that drive these blockers:
+Based on the sharp collapse and across all 450 runs, 
+%terminal blockers concentrate at two phases---P2 (211/450, firmware acquisition) and P5 (173/450, service rehosting)---consistent with the funnel above. 
+we analyze the dominant failure modes that drive these blockers:
 
 \noindent{\textbf{Simulation substitution (204/450, 45.3\%).}} The dominant failure: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability \emph{pattern} but not the target \emph{instance}. The output is often coherent and reproducible---valid crash signals, correct exploit syntax, convincing reports---yet never exercises the real firmware binary, so real-target gating rejects all of these.
 
