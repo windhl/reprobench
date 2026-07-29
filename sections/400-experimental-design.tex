@@ -43,13 +43,13 @@ As illustrated in Figure~\ref{fig:prompt}, we leverage a uniform prompt template
 \toprule
 \textbf{Model} & \textbf{Avg Plan} & \textbf{Avg Task} & \textbf{Avg Overall} & \textbf{Max Overall} & \textbf{P5$\geq$15} & \textbf{P6$\geq$15} \\
 \midrule
-\texttt{glm-5.2} & 86.7 & 59.9 & \textbf{64.6} & 98.7 & 7/30 & 5/30 \\
+\texttt{glm-5.2} & 86.7 & 59.9 & \textbf{\underline{64.6}} & 98.7 & 7/30 & 5/30 \\
 \texttt{mimo-v2.5} & 83.2 & 45.5 & 52.9 & 76.9 & 0/30 & 0/30 \\
 \texttt{claude-sonnet-4-6} & 79.1 & 42.7 & 50.0 & 99.0 & 2/30 & 1/30 \\
 \texttt{gpt-5.5} & 71.1 & 38.2 & 44.7 & 89.1 & 1/30 & 1/30 \\
 \texttt{deepseek-v4-flash} & 68.5 & 37.7 & 43.6 & 98.0 & 1/30 & 1/30 \\
 \midrule
-All & 77.7 & 44.8 & 51.1 & 99.0 & 11/150 & 8/150 \\
+All & 77.7 & 44.8 & 51.1 & 99.0 & 11/150 & \textbf{\underline{8}}/150 \\
 \bottomrule
 \end{tabular}
 \caption{Best-of-three model summary across 30 CVEs. Overall is the maximum per-run overall score across three independent trials. P5/P6 columns count CVEs with near-full credit ($\geq$15/20).}
