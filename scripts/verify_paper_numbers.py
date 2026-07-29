@@ -82,9 +82,9 @@ PAPER_FAILURE = {
 }
 
 PAPER_VULTYPE = {
-    'BOF':  {'overall': 60.4, 'r2': 8.06, 'r4': 7.09, 'fw_pct': 73},
-    'CMDI': {'overall': 48.6},
-    'AUTH': {'overall': 44.4, 'r4': 3.14},
+    'BOF':  {'overall': 58.5, 'r2': 8.06, 'r4': 7.09, 'fw_pct': 73},
+    'CMDI': {'overall': 48.9},
+    'AUTH': {'overall': 46.0, 'r4': 3.14},
 }
 
 PAPER_MODEL_BEHAVIOR = {
@@ -555,7 +555,7 @@ def main():
             v.check(f"{vt_name} FW%", pv['fw_pct'], round(cv['fw_pct']), tol=0.5)
 
     # Check text
-    for s in ['60.4', '48.6', '44.4', '8.06', '7.09', '3.14', '73', '99.0', '80.8', '5/150']:
+    for s in ['58.5', '48.9', '46.0', '8.06', '7.09', '3.14', '73', '99.0', '80.8', '5/150']:
         v.check_in_text(f"504 contains '{s}'", tex504, s)
 
     # ===== MODEL BEHAVIOR =====

@@ -5,7 +5,7 @@
 % Statistics: Overall score = best-of-three -> per-pair average.
 % Phase-level numbers (P2, P4) and FW% = per-run average across 150 runs per class.
 % CVE-level best scores (e.g., 99.0, 80.8) = best-of-three -> max across pairs and models.
-We disaggregate the 450 runs by vulnerability class. The three classes differ in best-of-three overall score (60.4 vs.\ 48.6 vs.\ 44.4 for BOF, CMDI, and AUTH respectively), but the more striking differences lie in \emph{where} the pipeline breaks for each class.
+We disaggregate the 450 runs by vulnerability class. The three classes differ in best-of-three overall score (58.5 vs.\ 48.9 vs.\ 46.0 for BOF, CMDI, and AUTH respectively), but the more striking differences lie in \emph{where} the pipeline breaks for each class.
 
 
 \noindent\textbf{Buffer Overflow} performs best across the early phases. Agents average 8.06/15 on P2 (Firmware Acquisition) and 7.09/15 on P4 (Binary Identification), and 73\% of runs acquire the firmware. These statistics are well above the other two classes because buffer overflows expose a concrete function-level target (\texttt{strcpy}/\texttt{sprintf} on a named binary), so agents can confirm the vulnerable code path by grepping for the function name in the extracted binary, yielding high P4 scores. For CVE-2023-41229 and CVE-2023-44418 (D-Link \texttt{prog.cgi}), agents identify the HNAP Referer vector and target binary upfront, and the memory-layout dependency of buffer overflows motivates agents to pursue the real firmware rather than settling for simulation.
