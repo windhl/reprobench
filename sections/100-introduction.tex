@@ -11,7 +11,7 @@ A common assumption underlies all of them: the target environment has already be
 %
 Specifically, the agent receives a repository, a patch, a sanitizer-instrumented binary, a running Docker, and then is scored on what it does \emph{after} that starting line. 
 %
-In real-world vulnerability analysis, however, a typical investigation usually begins with a bare identifier---a CVE number, which is followed by identifying the affected product, locating the correct artifact, recovering a runnable environment, and validating the vulnerability by producing a proof-of-concept (PoC). 
+In real-world vulnerability analysis, however, a typical investigation usually begins with a bare identifier---a CVE number---which is followed by identifying the affected product, locating the correct artifact, recovering a runnable environment, and validating the vulnerability by producing a proof-of-concept (PoC). 
 %
 We call the prepared setting \emph{post-environment} evaluation and the from-scratch setting \emph{pre-environment} evaluation. 
 %
@@ -20,9 +20,9 @@ The gap between them is not cosmetic: it is the gap between grading an exploit a
 
 We focus on a domain where this gap is especially sharp: IoT firmware vulnerability reproduction. 
 %
-A firmware image is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state and shared libraries, and reachable only after \textit{rehosting} under architecture-level emulation.
+A firmware image is a proprietary binary blob compiled for MIPS or ARM, packed in vendor-specific formats, dependent on missing NVRAM state and shared libraries, and reachable only after \textit{rehosting} under architecture-level emulation~\cite{challenges,firmadyne,firmae}.
 %
-Unlike source-level targets, firmware cannot be rebuilt from a patch; the analyst must obtain the exact image, extract it from a vendor archive, identify the vulnerable binary among dozens of blobs, and rehost the service on a synthetic environment before any exploit can be triggered. 
+Unlike source-level targets, firmware cannot be rebuilt from a patch. The analyst must obtain the exact image, extract it from a vendor archive, identify the vulnerable binary among dozens of blobs, and rehost the service on a synthetic environment before any exploit can be triggered. 
 %
 This makes firmware reproduction an end-to-end artifact reconstruction and validation task, where failure can occur at every step and where a polished-looking PoC may never touch the real target. 
 %

@@ -11,9 +11,11 @@
 
 % 介绍漏洞复现的定义、流程、难点
 \subsection{Vulnerability Reproduction}
-Vulnerability reproduction is the process of demonstrating that a known vulnerability exists by producing a proof-of-concept (PoC) that triggers the expected behavior on the affected target~\cite{cybergym}. 
+Vulnerability reproduction is the process of demonstrating that a known vulnerability exists by producing a proof-of-concept (PoC) that triggers the expected behavior on the affected target~\cite{cybergym}. Recent work has explored automating this process with LLM agents, from generating PoCs from CVE descriptions~\cite{liu2026cve2poc,zhao2025systematic} to reproducing kernel vulnerabilities from patch commits~\cite{krepro}. 
 In practice, a security analyst reproduces a vulnerability starting from a CVE identifier by collecting vulnerability information, acquiring the affected artifact, setting up a runnable target environment, constructing a PoC, and triggering the vulnerability on the real target. 
 These steps are strictly sequential, so an early stage failure will block all downstream progress. This means that the full reproduction pipeline is far more demanding than the final triggering step alone.
+
+For IoT devices, vulnerability reproduction is particularly challenging. Existing vulnerability detection efforts predominantly rely on static analysis~\cite{karonte,satc,emtaint,hermescan,mango,nvwa}, which can identify candidate vulnerability paths but cannot confirm their triggerability in a real runtime environment~\cite{challenges}. Transforming static analysis reports into verified results requires dynamic validation on the actual firmware binary, a process that is largely manual and demands expert knowledge of firmware rehosting~\cite{firmadyne,firmae,greenhouse,pandawan}. The core difficulty lies in rehosting: proprietary firmware images are tightly coupled to specific hardware and often cannot be stably launched in emulation environments~\cite{fuzzware,firmafl}.
 
 % 网络安全benchmark，按四类漏洞任务分组
 \subsection{Cybersecurity Benchmarks}
