@@ -1,0 +1,54 @@
+Good work, but experiments are limited
+Official Reviewby Program Committee KLRF31 Aug 2026, 13:14 (modified: 25 Sept 2026, 05:24)Program Chairs, Area Chairs, Senior Program Committee, Program Committee KLRF, Authors, Program Committee SubmittedRevisions
+Paper Summary:
+ReproBench introduces a benchmark evaluating LLM agents' ability to reproduce real-world IoT firmware vulnerabilities from scratch using only a CVE identifier. The reproduction process is broken down into six stages, from information gathering to vulnerability triggering. Evaluations across 30 CVEs reveal that while agents perform well in initial information gathering and firmware analysis, they fail significantly at real-firmware rehosting and triggering (nearly half resort to simulation, and full success is rare). The primary capability bottlenecks identified are firmware acquisition, domain-specific tooling, and rehosting techniques.
+
+Strengths:
+Clear and important problem formulation: Identifies the gap between post-environment cybersecurity benchmarks and realistic from-scratch vulnerability reproduction.
+Well-structured benchmark: The six-phase decomposition provides a useful framework for analysing where agent capabilities fail.
+Evidence-grounded evaluation: Requiring concrete artifacts and real-target gating substantially reduces the possibility of receiving credit for merely plausible vulnerability simulations.
+Useful failure analysis: The identification of simulation substitution, acquisition failures, and rehosting failures provides actionable insights beyond aggregate benchmark scores.
+Phase-specific analysis is informative: The distinction between search strategy, tooling knowledge, and rehosting technique helps explain why agents fail rather than simply reporting low scores.
+Weaknesses:
+Limited dataset diversity: Only 30 manually selected CVEs from three vulnerability classes may not represent the broader IoT vulnerability landscape.
+Potential scoring subjectivity: The LLM-based evaluator introduces non-determinism, particularly in failure attribution.
+Single-harness limitation: Results may depend substantially on OpenCode's control loop, tool configuration, and prompting rather than purely on model capability.
+Plan-score design may be somewhat arbitrary: The 20%/80% Plan–Task weighting and Coverage/Dependency/Fallback coefficients are not strongly empirically justified.
+Limited comparison with alternative benchmark settings: The paper establishes the pre-/post-environment distinction but does not experimentally quantify how much performance changes when the same agents are evaluated under the corresponding post-environment setting.
+Justification of Recommendation:
+The strong benchmark design and evidence-grounded evaluation motivated my positive rating, while limited dataset diversity, LLM-based scoring, and the lack of robustness analysis prevented a higher rating; stronger validation of the scoring framework and broader evaluation would increase my confidence.
+
+Specific Points of Feedback for Rebuttal:
+Please see the Weaknesses section.
+
+Rating: 4: Ok but not good enough - rejection
+Confidence: 4: The reviewer is confident but not absolutely certain that the evaluation is correct
+ReproBench: Benchmarking LLM Agents on Reproducing Vulnerability From Scratch
+Official Reviewby Program Committee cT2128 Aug 2026, 17:45 (modified: 25 Sept 2026, 05:24)Program Chairs, Area Chairs, Senior Program Committee, Program Committee cT21, Authors, Program Committee SubmittedRevisions
+Paper Summary:
+This paper proposes ReproBench, a benchmark designed to evaluate whether LLM-based agents can autonomously perform end-to-end reproduction of IoT firmware vulnerabilities starting from only a CVE ID. The authors decompose the task into six sequential phases, select 30 CVEs across three categories from 696 candidates via a filtering pipeline, and employ an LLM-based evaluator to score agent performance.
+
+Strengths:
+The problem formulation distinguishes this benchmark from existing ones and addresses a practically significant, real-world challenge.
+
+The six-phase task decomposition aligns well with the actual operational workflow of firmware vulnerability reproduction.
+
+The failure analysis provides valuable behavioral insights into the models' decision-making processes.
+
+Weaknesses:
+Insufficient representativeness of the benchmark sample (30 CVEs) and questionable filtering methodology. Equal sampling across categories fails to reflect the real-world prevalence disparity among different vulnerability types. Averaging scores across multiple vulnerability types obscures model performance differences when facing varying reproduction difficulty levels. The filtering criterion requiring firmware availability contradicts the paper's claimed "starting from a bare CVE ID" setting, and it also does not reflect the actual proportion of firmware-available samples in the wild. The paper does not report the distribution of firmware sizes. Critical factors that substantially affect re-hosting difficulty, such as the number of services running in the firmware and the number of dependent libraries, are not reported. Reproduction difficulty varies enormously across different instruction set architectures (ISAs), yet the paper fails to provide a detailed distribution of ISA coverage. Although the CVEs span from 2020 to 2026, the specific yearly distribution is omitted. For all 30 samples, the root cause, affected binary, and trigger method are already known in advance. This significantly undermines the benchmark's ability to evaluate the model's reasoning capability for root-cause discovery. It is also inconsistent with the stated "bare CVE ID" premise; in practice, the benchmark actually evaluates "reproduction capability under the premise that the firmware is known to exist and is already retrievable."
+
+Biases and flaws in the evaluation metrics. Incidental failures in the early firmware acquisition phase (e.g., temporary unavailability) nullify all subsequent phase scores, which may systematically underestimate models with strong re-hosting or later-stage capabilities. For example, the reported results show GLM-5.2 leading overall, but this does not necessarily indicate superior Phase-5 (triggering) ability, it may simply reflect better Phase-2 (acquisition) performance. The metrics should be decoupled or conditioned on previous-stage success to enable fairer analysis. The simple linear summation of six phase scores implies that a model scoring high in early phases but failing to ultimately trigger the vulnerability can still be rewarded, diluting the benchmark's emphasis on end-to-end success. The chosen weighting scheme across phases lacks theoretical justification. The use of an LLM as an evaluator introduces potential scoring bias, uncertainty, and circular reasoning. The scoring model may be more lenient toward models from the same model family (e.g., homologous LLMs). Multiple scoring runs may yield inconsistent results; therefore, the paper must report inter-run consistency (e.g., agreement rates) as well as human-LLM agreement statistics. The scoring relies on the completeness of reference configuration files, but these references themselves lack human verification. For instance, publicly available PoCs, security blogs, and vulnerability databases often contain version conflicts, mis-transcriptions, or erroneous replications, the paper does not address how such issues are handled.
+
+Justification of Recommendation:
+Despite the practical relevance and intuitive task decomposition, the benchmark suffers from fundamental and severe limitations that undermine its validity and reliability. The sample size is small, and the filtering strategy severely restricts the diversity and ecological validity of the dataset while contradicting the core "bare CVE" claim. Moreover, the evaluation metrics are confounded by phase-coupling effects and lack theoretical grounding, and the LLM-based scoring mechanism introduces unchecked biases and reproducibility concerns. These issues collectively cast significant doubt on whether the benchmark can faithfully measure the claimed capabilities. I recommend Reject for the current version. If the authors can substantially expand the dataset, provide thorough distributional analyses, decouple the metrics, rigorously validate the LLM judge with human agreement and consistency tests, and clarify the actual scope of the evaluation, a borderline acceptance could be reconsidered.
+
+Specific Points of Feedback for Rebuttal:
+Regarding dataset representativeness and filtering: Can the authors provide a detailed breakdown of the final 30 samples across firmware size, instruction set architecture (ISA) distribution, yearly distribution (2020–2026), and key re-hosting complexity metrics (e.g., number of running services and dependent library counts)? Given that the filtering pipeline explicitly excludes CVEs whose firmware is not publicly retrievable, how do the authors justify that the benchmark still evaluates the claimed "starting from a bare CVE ID" scenario, rather than a "firmware-already-known-to-exist" setting? Would the authors consider expanding the dataset or conducting a sensitivity analysis on a larger unfiltered set in a revision?
+
+Regarding metric coupling and phase decoupling: Since an incidental failure in Phase 2 (acquisition) nullifies all subsequent phase scores, the current overall ranking may be dominated by acquisition ability rather than later-stage re-hosting or triggering capability. Could the authors provide a conditional analysis—e.g., re-evaluating Phases 3–6 only on the subset where acquisition succeeded—to verify whether the top-ranked model (GLM-5.2) indeed exhibits superior Phase-5 (triggering) performance?
+
+Regarding the LLM-based evaluator and reference validity: The authors use an LLM as a judge, which raises concerns about self-bias, run-to-run variance, and circular reasoning. In the rebuttal, please report: (a) inter-run agreement statistics (e.g., exact-match or Cohen's kappa across multiple scoring runs), and (b) human-expert agreement rates on a sampled subset of scored outputs.
+
+Rating: 4: Ok but not good enough - rejection
+Confidence: 4: The reviewer is confident but not absolutely certain that the evaluation is correct

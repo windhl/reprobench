@@ -1,0 +1,35 @@
+\begin{table*}[t]
+\centering
+
+% \resizebox{\linewidth}{!}{%
+
+% \vspace{-2ex}
+\begin{tabular}{ccccccccccccc}
+\toprule
+\multirow{2}{*}{Model} & \multicolumn{6}{c}{TIMEBench} & \multirow{2}{*}{MVB}  & \multirow{2}{*}{TC} & \multirow{2}{*}{AE-V} & \multirow{2}{*}{V-MME} & \multirow{2}{*}{AN-QA} \\ 
+\cmidrule(lr){2-7}
+ & LO & DU & DY & OR & RE & AVG & & \\
+\midrule
+Random   & 33.3 & 33.3 & 25.0 & 25.0 & 25.0 & 28.3& 27.3  & 30.0 & 0.0 & 27.2 & 0.0 \\
+\midrule
+
+Video-LLaVA      & 32.7 & 32.3 & 22.8 & 26.5 & 24.8 & 27.3 & 42.8 & 51.9 & 9.8 & 30.3 & 37.8 \\ 
++ Ours                                   & \textbf{37.0}  & \textbf{34.3}  & \textbf{25.5}  & \textbf{34.3}  & \textbf{28.3}  & \textbf{31.4}  & \textbf{44.6}    & 
+\textbf{53.8} & \textbf{11.3} & \textbf{30.7} & \textbf{38.7} \\ 
+
+\midrule
+VideoLLaMA~2     & 32.3 & 30.3 & 22.8 & 28.0 & 24.0 & 27.4 & 45.9 & 44.2 & 11.9 & 41.7 & 44.3 \\
++ Ours                                 & \textbf{33.3} & \textbf{43.0} & \textbf{28.0} & \textbf{33.0} & \textbf{26.8} & \textbf{32.8} & \textbf{47.2} & \textbf{58.2} & \textbf{14.7} & \textbf{41.8} & \textbf{44.7} \\
+\midrule
+ShareGPT4Video &  33.7  &  46.7  & 31.0 &  33.8  &  26.5 & 33.7 & 46.5 & 54.7 & 11.0 & 36.0 & 33.6 \\ 
++ Ours   &  \textbf{38.3}  &  \textbf{47.3}  &  \textbf{31.7} &  \textbf{34.5} &  \textbf{29.5} &  \textbf{35.6} & \textbf{49.0} & \textbf{55.4} & \textbf{11.9} & \textbf{37.1} & \textbf{41.3} \\
+\midrule
+InternVL~2.5 & 30.3 & 45.7 & 29.3 & 42.0 & 26.8 & 34.4 & \textbf{72.1} & 52.2 & 14.7 & \textbf{59.6} & 51.7\\
++ Ours    & \textbf{30.6} & \textbf{48.3} & \textbf{29.8} & \textbf{42.8} & \textbf{27.0} & \textbf{35.7} & 71.9 & \textbf{52.7} & \textbf{15.0} & 59.0  & \textbf{54.4}\\
+\bottomrule
+\end{tabular}
+
+% }
+\caption{Performance comparison across six benchmarks. The best performance for each part is highlighted in \textbf{bold}. TIMEBench, MVB, TC and AE-V focus on temporal scenarios, whereas V-MME and AN-QA address general scenario. TIMEBench, MVB and V-MME are multiple-choice forms, AE-V and AN-QA are open-ended forms, and TC contains both multiple-choice and open-ended forms.}
+\label{tab:performance}
+\end{table*}

@@ -1,0 +1,8 @@
+\section{Limitation and Future Work}
+While our work provides the first large-scale, empirical evaluation of Tool Poisoning on real-world MCP servers, we acknowledge the following limitations:
+
+% \textbf{Scope of MCP Servers.} MCPTox includes 46+ real-world servers, which is a significant sample. However, it does not represent an exhaustive list of the thousands of servers in the live ecosystem. The prevalence of vulnerabilities may differ in other application domains not covered in our set. Future work could expand the server set and conduct a more fine-grained analysis of vulnerability by domain.
+
+\textbf{Single-turn interaction.} The current evaluation primarily assesses an agent's vulnerability in a single-turn interaction. It does not model long-term, conversational interactions where an agent's memory could be poisoned over time, or a sleeper instruction waits for a specific trigger. Future benchmarks should explore these more complex, stateful attack scenarios.
+
+\textbf{Manual Attack Crafting.} The attack payloads in MCPTox are generated using a semi-automated process guided by human-defined paradigms. This is a common characteristic of current prompt injection benchmarks, whose attacks are often generic and based on human experience rather than being optimized against a specific defense. A significant direction for future work is the development of automated and adaptive attack generation for Tool Poisoning. 

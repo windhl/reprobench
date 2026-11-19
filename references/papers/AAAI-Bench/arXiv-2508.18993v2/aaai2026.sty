@@ -1,0 +1,575 @@
+\NeedsTeXFormat{LaTeX2e}%
+\ProvidesPackage{aaai2026}[2026/04/29 AAAI 2026 Submission format]%
+\def\year{2026}%
+\typeout{Conference Style for AAAI for LaTeX 2e -- version for submission}%
+%
+\def\copyright@on{T}
+\def\showauthors@on{T}
+\def\nocopyright{\gdef\copyright@on{}} % Copyright notice is required for camera-ready only.
+\DeclareOption{submission}{%
+  \gdef\copyright@on{}%
+  \gdef\showauthors@on{}%
+  \long\gdef\pdfinfo #1{\relax}%
+}%
+\DeclareOption{draft}{%
+  \gdef\copyright@on{}%
+}%
+\ProcessOptions\relax%
+% WARNING: IF YOU ARE USING THIS STYLE SHEET FOR AN AAAI PUBLICATION, YOU
+% MAY NOT MODIFY IT FOR ANY REASON. MODIFICATIONS (IN YOUR SOURCE
+% OR IN THIS STYLE SHEET WILL RESULT IN REJECTION OF YOUR PAPER).
+%
+% WARNING: This style is NOT guaranteed to work. It is provided in the
+% hope that it might make the preparation of papers easier, but this style
+% file is provided "as is" without warranty of any kind, either express or
+% implied, including but not limited to the implied warranties of
+% merchantability, fitness for a particular purpose, or noninfringement.
+% You use this style file at your own risk. Standard disclaimers apply.
+% There are undoubtably bugs in this style. If you would like to submit
+% bug fixes, improvements, etc. please let us know. Please use the contact form
+%
+% Do not use this file unless you are an experienced LaTeX user.
+%
+% PHYSICAL PAGE LAYOUT
+\setlength\topmargin{-0.25in} \setlength\oddsidemargin{-0.25in}
+\setlength\textheight{9.0in} \setlength\textwidth{7.0in}
+\setlength\columnsep{0.375in} \newlength\titlebox \setlength\titlebox{2.25in}
+\setlength\headheight{0pt}  \setlength\headsep{0pt}
+%\setlength\footheight{0pt}  \setlength\footskip{0pt}
+\thispagestyle{empty} \pagestyle{empty}
+\flushbottom \twocolumn \sloppy
+% We're never going to need a table of contents, so just flush it to
+% save space --- suggested by drstrip@sandia-2
+\def\addcontentsline#1#2#3{}
+% gf: PRINT COPYRIGHT NOTICE
+\def\copyright@year{\number\year}
+\def\copyright@text{Copyright \copyright\space \copyright@year,
+Association for the Advancement of Artificial Intelligence (www.aaai.org).
+All rights reserved.}
+\def\copyrighttext#1{\gdef\copyright@on{T}\gdef\copyright@text{#1}}
+\def\copyrightyear#1{\gdef\copyright@on{T}\gdef\copyright@year{#1}}
+% gf: End changes for copyright notice (used in \maketitle, below)
+% Title stuff, taken from deproc.
+%
+\def\maketitle{%
+  \par%
+  \begingroup % to make the footnote style local to the title
+    \def\thefootnote{\fnsymbol{footnote}}
+    \twocolumn[\@maketitle] \@thanks%
+  \endgroup%
+  % Insert copyright slug unless turned off
+  \if T\copyright@on\insert\footins{\noindent\footnotesize\copyright@text}\fi%
+  %
+  \setcounter{footnote}{0}%
+  \let\maketitle\relax%
+  \let\@maketitle\relax%
+  \gdef\@thanks{}%
+  \gdef\@author{}%
+  \gdef\@title{}%
+  \let\thanks\relax%
+}%
+\long\gdef\affiliations #1{ \def \affiliations_{\if T\showauthors@on#1\fi}}%
+%
+\def\@maketitle{%
+  \def\theauthors{\if T\showauthors@on\@author\else Anonymous submission\fi}
+  \newcounter{eqfn}\setcounter{eqfn}{0}%
+  \newsavebox{\titlearea}
+  \sbox{\titlearea}{
+    \let\footnote\relax\let\thanks\relax%
+    \setcounter{footnote}{0}%
+    \def\equalcontrib{%
+      \ifnum\value{eqfn}=0%
+        \footnote{These authors contributed equally.}%
+        \setcounter{eqfn}{\value{footnote}}%
+      \else%
+        \footnotemark[\value{eqfn}]%
+      \fi%
+    }%
+    \vbox{%
+      \hsize\textwidth%
+      \linewidth\hsize%
+      \vskip 0.625in minus 0.125in%
+      \centering%
+      {\LARGE\bf \@title \par}%
+      \vskip 0.1in plus 0.5fil minus 0.05in%
+      {\Large{\textbf{\theauthors\ifhmode\\\fi}}}%
+      \vskip .2em plus 0.25fil%
+      {\normalsize \affiliations_\ifhmode\\\fi}%
+      \vskip 1em plus 2fil%
+    }%
+  }%
+%
+  \newlength\actualheight%
+  \settoheight{\actualheight}{\usebox{\titlearea}}%
+  \ifdim\actualheight>\titlebox%
+    \setlength{\titlebox}{\actualheight}%
+  \fi%
+%
+  \vbox to \titlebox {%
+    \let\footnote\thanks\relax%
+    \setcounter{footnote}{0}%
+    \def\equalcontrib{%
+      \ifnum\value{eqfn}=0%
+        \footnote{These authors contributed equally.}%
+        \setcounter{eqfn}{\value{footnote}}%
+      \else%
+        \footnotemark[\value{eqfn}]%
+      \fi%
+    }%
+    \hsize\textwidth%
+    \linewidth\hsize%
+    \vskip 0.625in minus 0.125in%
+    \centering%
+    {\LARGE\bf \@title \par}%
+    \vskip 0.1in plus 0.5fil minus 0.05in%
+    {\Large{\textbf{\theauthors\ifhmode\\\fi}}}%
+    \vskip .2em plus 0.25fil%
+    {\normalsize \affiliations_\ifhmode\\\fi}%
+    \vskip 1em plus 2fil%
+  }%
+}%
+%
+\renewenvironment{abstract}{%
+  \centerline{\bf Abstract}%
+  \vspace{0.5ex}%
+  \setlength{\leftmargini}{10pt}%
+  \begin{quote}%
+    \small%
+}{%
+  \par%
+  \end{quote}%
+  \vskip 1ex%
+}%
+\newenvironment{links}{%
+  \newcommand{\link}[2]{\par\textbf{##1} --- \url{##2}}%
+  \setlength{\hangindent}{10pt}%
+  \setlength{\parskip}{2pt}%
+  \begin{flushleft}%
+}{%
+  \end{flushleft}%
+  \vskip 1ex%
+}%
+% jsp added:
+\def\pubnote#1{
+  \thispagestyle{myheadings}%
+  \pagestyle{myheadings}%
+  \markboth{#1}{#1}%
+  \setlength\headheight{10pt}%
+  \setlength\headsep{10pt}%
+}%
+%
+% SECTIONS with less space
+\def\section{\@startsection {section}{1}{\z@}{-2.0ex plus
+-0.5ex minus -.2ex}{3pt plus 2pt minus 1pt}{\Large\bf\centering}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{-2.0ex plus
+-0.5ex minus -.2ex}{3pt plus 2pt minus 1pt}{\large\bf\raggedright}}
+\def\subsubsection{\@startsection{subparagraph}{3}{\z@}{-6pt plus
+%%% DIEGO changed: 29/11/2009
+%% 2pt minus 1pt}{-1em}{\normalsize\bf}}
+-2pt minus -1pt}{-1em}{\normalsize\bf}}
+%%% END changed
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}{-6pt plus -2pt minus -1pt}{-1em}{\normalsize\bf}}%
+\setcounter{secnumdepth}{0}
+% add period to section (but not subsection) numbers, reduce space after
+%\renewcommand{\thesection}
+%   {\arabic{section}.\hskip-0.6em}
+%\renewcommand{\thesubsection}
+%   {\arabic{section}.\arabic{subsection}\hskip-0.6em}
+% FOOTNOTES
+\footnotesep 6.65pt %
+\skip\footins 9pt plus 4pt minus 2pt
+\def\footnoterule{\kern-3pt \hrule width 5pc \kern 2.6pt }
+\setcounter{footnote}{0}
+% LISTS AND PARAGRAPHS
+\parindent 10pt
+\topsep 4pt plus 1pt minus 2pt
+\partopsep 1pt plus 0.5pt minus 0.5pt
+\itemsep 0.5pt plus 1pt minus 0.5pt
+\parsep 2pt plus 1pt minus 0.5pt
+\leftmargin 10pt \leftmargini 13pt \leftmarginii 10pt \leftmarginiii 5pt \leftmarginiv 5pt \leftmarginv 5pt \leftmarginvi 5pt
+\labelwidth\leftmargini\advance\labelwidth-\labelsep \labelsep 5pt
+\def\@listi{\leftmargin\leftmargini}
+\def\@listii{\leftmargin\leftmarginii
+\labelwidth\leftmarginii\advance\labelwidth-\labelsep
+\topsep 2pt plus 1pt minus 0.5pt
+\parsep 1pt plus 0.5pt minus 0.5pt
+\itemsep \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+\labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+\topsep 1pt plus 0.5pt minus 0.5pt
+\parsep \z@
+\partopsep 0.5pt plus 0pt minus 0.5pt
+\itemsep \topsep}
+\def\@listiv{\leftmargin\leftmarginiv
+\labelwidth\leftmarginiv\advance\labelwidth-\labelsep}
+\def\@listv{\leftmargin\leftmarginv
+\labelwidth\leftmarginv\advance\labelwidth-\labelsep}
+\def\@listvi{\leftmargin\leftmarginvi
+\labelwidth\leftmarginvi\advance\labelwidth-\labelsep}
+\abovedisplayskip 7pt plus2pt minus5pt%
+\belowdisplayskip \abovedisplayskip
+\abovedisplayshortskip 0pt plus3pt%
+\belowdisplayshortskip 4pt plus3pt minus3pt%
+% Less leading in most fonts (due to the narrow columns)
+% The choices were between 1-pt and 1.5-pt leading
+\def\normalsize{\@setfontsize\normalsize\@xpt{11}}   % 10 point on 11
+\def\small{\@setfontsize\small\@ixpt{10}}    % 9 point on 10
+\def\footnotesize{\@setfontsize\footnotesize\@ixpt{10}}  % 9 point on 10
+\def\scriptsize{\@setfontsize\scriptsize\@viipt{10}}  % 7 point on 8
+\def\tiny{\@setfontsize\tiny\@vipt{7}}    % 6 point on 7
+\def\large{\@setfontsize\large\@xipt{12}}    % 11 point on 12
+\def\Large{\@setfontsize\Large\@xiipt{14}}    % 12 point on 14
+\def\LARGE{\@setfontsize\LARGE\@xivpt{16}}    % 14 point on 16
+\def\huge{\@setfontsize\huge\@xviipt{20}}    % 17 point on 20
+\def\Huge{\@setfontsize\Huge\@xxpt{23}}    % 20 point on 23
+
+\AtBeginDocument{%
+  \@ifpackageloaded{natbib}%
+    {%
+      % When natbib is in use, set the proper style and fix a few things
+      \let\cite\citep
+      \let\shortcite\citeyearpar
+      \setcitestyle{aysep={}}
+      \setlength\bibhang{0pt}
+      \bibliographystyle{aaai2026}
+    }{}%
+  \@ifpackageloaded{bbm}%
+    {%
+      \PackageError{aaai}{You must not use bbm package in AAAI papers because it introduces Type 3 fonts which are forbidden.}{See https://tex.stackexchange.com/questions/479160/a-replacement-to-mathbbm1-with-type-1-fonts for possible alternatives.}
+    }{}%
+    \@ifpackageloaded{authblk}%
+    {%
+      \PackageError{aaai}{Package authblk is forbbidden.}{Package authblk is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{balance}%
+    {%
+      \PackageError{aaai}{Package balance is forbbidden.}{Package balance is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{CJK}%
+    {%
+      \PackageError{aaai}{Package CJK is forbbidden.}{Package CJK is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{flushend}%
+    {%
+      \PackageError{aaai}{Package flushend is forbbidden.}{Package flushend is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{fontenc}%
+    {%
+      \PackageError{aaai}{Package fontenc is forbbidden.}{Package fontenc is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{fullpage}%
+    {%
+      \PackageError{aaai}{Package fullpage is forbbidden.}{Package fullpage is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{geometry}%
+    {%
+      \PackageError{aaai}{Package geometry is forbbidden.}{Package geometry is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{grffile}%
+    {%
+      \PackageError{aaai}{Package grffile is forbbidden.}{Package grffile is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{navigator}%
+    {%
+      \PackageError{aaai}{Package navigator is forbbidden.}{Package navigator is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{savetrees}%
+    {%
+      \PackageError{aaai}{Package savetrees is forbbidden.}{Package savetrees is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{setspace}%
+    {%
+      \PackageError{aaai}{Package setspace is forbbidden.}{Package setspace is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{stfloats}%
+    {%
+      \PackageError{aaai}{Package stfloats is forbbidden.}{Package stfloats is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{tabu}%
+    {%
+      \PackageError{aaai}{Package tabu is forbbidden.}{Package tabu is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{titlesec}%
+    {%
+      \PackageError{aaai}{Package titlesec is forbbidden.}{Package titlesec is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{tocbibind}%
+    {%
+      \PackageError{aaai}{Package tocbibind is forbbidden.}{Package tocbibind is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{ulem}%
+    {%
+      \PackageError{aaai}{Package ulem is forbbidden.}{Package ulem is forbbiden. You must find an alternative.}
+    }{}%
+  \@ifpackageloaded{wrapfig}%
+    {%
+      \PackageError{aaai}{Package wrapfig is forbbidden.}{Package wrapfig is forbbiden. You must find an alternative.}
+    }{}%
+}
+
+\let\endthebibliography=\endlist
+
+
+
+
+%% === PATCH BEGIN: Front-matter macros (no env capture, bulletproof) ===
+\makeatletter
+
+% Flags + storage
+\newif\ifaaai@hasfrontabs     \aaai@hasfrontabsfalse
+\newif\ifaaai@hasfrontteaser  \aaai@hasfrontteaserfalse
+\def\aaai@frontabstract{}
+\def\aaai@frontteaser{}
+
+% Public macros for authors to set content BEFORE \maketitle
+\long\def\frontabstract#1{\gdef\aaai@frontabstract{#1}\aaai@hasfrontabstrue}
+\long\def\frontteaser#1{\gdef\aaai@frontteaser{#1}\aaai@hasfrontteasertrue}
+
+% Fallback \captionof if not provided by caption/capt-of
+\providecommand{\captionof}[2]{%
+  \refstepcounter{#1}%
+  \par\noindent\small\bfseries \csname fnum@#1\endcsname\space #2\par
+}
+
+% Builder: inject right after title/authors inside the two-column top box
+\def\aaai@frontblock{%
+  \ifaaai@hasfrontabs
+    \par\centerline{\bf Abstract}\vspace{0.5ex}%
+    \begin{quote}\small \aaai@frontabstract\end{quote}\vskip 1ex%
+  \fi
+  \ifaaai@hasfrontteaser
+    \par\begingroup\centering \aaai@frontteaser \par\endgroup \vskip 1ex%
+  \fi
+}
+
+% Patch \maketitle: typeset \@maketitle + our front block in the first-page top box
+\renewcommand\maketitle{%
+  \par
+  \begingroup
+    \def\thefootnote{\fnsymbol{footnote}}%
+    \twocolumn[{%
+      \@maketitle
+      \aaai@frontblock
+    }]%
+    \@thanks
+  \endgroup
+  \if T\copyright@on
+    \insert\footins{\noindent\footnotesize\copyright@text}%
+  \fi
+  \setcounter{footnote}{0}%
+  \let\maketitle\relax
+  \let\@maketitle\relax
+  \gdef\@thanks{}%
+  \gdef\@author{}%
+  \gdef\@title{}%
+  \let\thanks\relax
+}
+
+\makeatother
+%% === PATCH END ===
+
+% === UPDATE: configurable Abstract margins ===
+\makeatletter
+
+% 1) 两个可配置的边距量，默认和 quote 环境差不多
+\newdimen\aaai@absleft
+\newdimen\aaai@absright
+\aaai@absleft=10pt
+\aaai@absright=10pt
+
+% 2) 给作者用的设置命令：\setfrontabstractmargins{<left>}{<right>}
+\newcommand{\setfrontabstractmargins}[2]{%
+  \aaai@absleft=#1\relax
+  \aaai@absright=#2\relax
+}
+
+% 3) 替换你补丁里 \aaai@frontblock 中“Abstract 输出”的那一段：
+%    原来是：
+%      \par\centerline{\bf Abstract}\vspace{0.5ex}%
+%      \begin{quote}\small \aaai@frontabstract\end{quote}\vskip 1ex%
+%    改成下面这段（自定义左右边距的 list 方案）：
+\def\aaai@frontblock{%
+  \ifaaai@hasfrontabs
+    \par\centerline{\bf Abstract}\vspace{0.5ex}%
+    {\small
+      \list{}{\leftmargin\aaai@absleft \rightmargin\aaai@absright}\item[]
+      \aaai@frontabstract
+      \endlist
+    }%
+    \vskip 1ex%
+  \fi
+  \ifaaai@hasfrontteaser
+    \par\begingroup\centering \aaai@frontteaser \par\endgroup \vskip 1ex%
+  \fi
+}
+
+\makeatother
+% === END UPDATE ===
+
+% === UPDATE: Abstract 外围加彩色细边框，仅框住文字区域 ===
+% 依赖 xcolor（AAAI 未禁），若未加载则自动加载
+\makeatletter
+\@ifpackageloaded{xcolor}{}{\RequirePackage{xcolor}}
+
+% 颜色、线宽、内边距的参数（可改）
+\definecolor{aaaiFrontAbsBorderDefault}{RGB}{106,90,205} % #6A5ACD 蓝紫
+\colorlet{AAAIFrontAbsBorder}{aaaiFrontAbsBorderDefault}
+\newcommand{\setfrontabstractbordercolor}[1]{\colorlet{AAAIFrontAbsBorder}{#1}}
+
+\newlength\aaai@absboxsep   \setlength{\aaai@absboxsep}{6pt}   % 盒子内边距
+\newlength\aaai@absboxrule  \setlength{\aaai@absboxrule}{0.6pt} % 边框线宽
+\newcommand{\setfrontabstractboxsep}[1]{\setlength{\aaai@absboxsep}{#1}}
+\newcommand{\setfrontabstractboxrule}[1]{\setlength{\aaai@absboxrule}{#1}}
+
+% 重新定义摘要输出块：仅替换 \aaai@frontblock 中摘要那几行
+\let\aaai@oldfrontblock\aaai@frontblock
+\def\aaai@frontblock{%
+  \ifaaai@hasfrontabs
+    \par\centerline{\bf Abstract}\vspace{0.5ex}%
+    {\small
+      \list{}{\leftmargin\aaai@absleft \rightmargin\aaai@absright}\item[]
+        \begingroup
+          \setlength{\fboxsep}{\aaai@absboxsep}%
+          \setlength{\fboxrule}{\aaai@absboxrule}%
+          \fcolorbox{AAAIFrontAbsBorder}{white}{%
+            \parbox[t]{\linewidth}{\aaai@frontabstract}%
+          }%
+        \endgroup
+      \endlist
+    }%
+    \vskip 1ex%
+  \fi
+  \ifaaai@hasfrontteaser
+    \par\begingroup\centering \aaai@frontteaser \par\endgroup \vskip 1ex%
+  \fi
+}
+\makeatother
+% === END UPDATE ===
+
+% === UPDATE 2: 把“Abstract”标题也包含进边框里 ===
+\makeatletter
+
+% 标题与正文之间的竖向间距（可调）
+\newlength\aaai@abstitlebelow
+\setlength{\aaai@abstitlebelow}{0.4ex}
+\newcommand{\setfrontabstracttitleskip}[1]{\setlength{\aaai@abstitlebelow}{#1}}
+
+% 标题格式（可重定义：居中/加粗/小型大写等）
+\newcommand{\frontabstracttitleformat}{\centering\bfseries}
+\newcommand{\setfrontabstracttitleformat}[1]{%
+  \renewcommand{\frontabstracttitleformat}{#1}%
+}
+
+% 如需自定义标题文本（例如改成“摘要”），提供接口
+\newcommand{\frontabstracttitle}{Abstract}
+\newcommand{\setfrontabstracttitle}[1]{\renewcommand{\frontabstracttitle}{##1}}
+
+% 重新定义摘要输出块（仅覆盖摘要部分；首图逻辑保持不变）
+\let\aaai@oldfrontblock\aaai@frontblock
+\def\aaai@frontblock{%
+  \ifaaai@hasfrontabs
+    {
+      \list{}{\leftmargin\aaai@absleft \rightmargin\aaai@absright}\item[]
+        \begingroup
+          \setlength{\fboxsep}{\aaai@absboxsep}% 盒子内边距（你之前已配置）
+          \setlength{\fboxrule}{\aaai@absboxrule}% 边框线宽（你之前已配置）
+          \fcolorbox{AAAIFrontAbsBorder}{white}{%
+            \parbox[t]{\linewidth}{%
+              {\frontabstracttitleformat \frontabstracttitle\par}%
+              \vspace{\aaai@abstitlebelow}%
+              \aaai@frontabstract
+            }%
+          }%
+        \endgroup
+      \endlist
+    }%
+    \vskip 1ex%
+  \fi
+  \ifaaai@hasfrontteaser
+    \par\begingroup\centering \aaai@frontteaser \par\endgroup \vskip 1ex%
+  \fi
+}
+
+\makeatother
+% === END UPDATE 2 ===
+
+% === UPDATE 3: 让 Abstract 标题颜色跟边框一致 ===
+\makeatletter
+\@ifpackageloaded{xcolor}{}{\RequirePackage{xcolor}}
+% 如果之前还没定义过边框色名，就给个默认（#6A5ACD）
+\@ifundefined{AAAIFrontAbsBorder}{\definecolor{AAAIFrontAbsBorder}{RGB}{106,90,205}}{}
+
+% 关键：重定义标题格式，加入颜色
+\renewcommand{\frontabstracttitleformat}{\centering\bfseries\color{AAAIFrontAbsBorder}}
+\makeatother
+% === END UPDATE 3 ===
+
+% === UPDATE 4+5: 摘要框精确水平定位 + 圆角边框（合并版） ===
+\makeatletter
+
+% 依赖（AAAI 未禁）：tikz 画圆角；如未加载则自动加载
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}
+\@ifpackageloaded{xcolor}{}{\RequirePackage{xcolor}}
+
+% 若未定义边框颜色名，给默认蓝紫 #6A5ACD
+\@ifundefined{AAAIFrontAbsBorder}{\definecolor{AAAIFrontAbsBorder}{RGB}{106,90,205}}{}
+
+% 可能外部已定义的参数，这里给兜底默认值，避免未定义时报错
+\@ifundefined{aaai@absleft}{\newdimen\aaai@absleft \aaai@absleft=10pt}{}
+\@ifundefined{aaai@absright}{\newdimen\aaai@absright \aaai@absright=10pt}{}
+\@ifundefined{aaai@absboxsep}{\newlength\aaai@absboxsep \setlength{\aaai@absboxsep}{6pt}}{}
+\@ifundefined{aaai@absboxrule}{\newlength\aaai@absboxrule \setlength{\aaai@absboxrule}{0.6pt}}{}
+\@ifundefined{aaai@abstitlebelow}{\newlength\aaai@abstitlebelow \setlength{\aaai@abstitlebelow}{0.4ex}}{}
+\@ifundefined{aaai@afterabsskip}{\newlength\aaai@afterabsskip \setlength{\aaai@afterabsskip}{1ex}}{}
+\@ifundefined{frontabstracttitleformat}{\newcommand{\frontabstracttitleformat}{\centering\bfseries\color{AAAIFrontAbsBorder}}}{}
+\@ifundefined{frontabstracttitle}{\newcommand{\frontabstracttitle}{Abstract}}{}
+
+% 圆角半径（可配置）
+\newlength\aaai@absboxradius
+\setlength{\aaai@absboxradius}{4pt}
+\newcommand{\setfrontabstractboxradius}[1]{\setlength{\aaai@absboxradius}{#1}}
+
+% 计算宽度用
+\newlength\aaai@abscontentwidth
+\newlength\aaai@absinnerwidth
+
+\let\aaai@oldfrontblock\aaai@frontblock
+\def\aaai@frontblock{%
+  \ifaaai@hasfrontabs
+    {\small
+      % 1) 内容区域总宽 = \textwidth - 左/右边距
+      \setlength{\aaai@abscontentwidth}{\dimexpr\textwidth-\aaai@absleft-\aaai@absright\relax}%
+      % 2) 盒子内部 parbox 宽 = 内容总宽 - 2*内边距 - 2*线宽
+      \setlength{\aaai@absinnerwidth}{\dimexpr
+        \aaai@abscontentwidth - 2\aaai@absboxsep - 2\aaai@absboxrule\relax}%
+      % 3) 精确水平定位：左边距 -> 盒子 -> 右边距
+      \noindent
+      \hspace*{\aaai@absleft}%
+      \begin{tikzpicture}[baseline=(absbox.base)]
+        \node[draw=AAAIFrontAbsBorder,
+              fill=white,
+              line width=\aaai@absboxrule,
+              rounded corners=\aaai@absboxradius,
+              inner sep=\aaai@absboxsep] (absbox)
+        {\parbox[t]{\aaai@absinnerwidth}{%
+           {\frontabstracttitleformat \frontabstracttitle\par}%
+           \vspace{\aaai@abstitlebelow}%
+           \aaai@frontabstract
+        }};
+      \end{tikzpicture}%
+      \hspace*{\aaai@absright}%
+      \par
+    }%
+    % 摘要块与首图之间的间距（可用 \setfrontafterabsskip 调）
+    \vskip \aaai@afterabsskip
+  \fi
+  \ifaaai@hasfrontteaser
+    \par\begingroup\centering \aaai@frontteaser \par\endgroup \vskip 1ex%
+  \fi
+}
+
+\makeatother
+% === END UPDATE 4+5 ===
+
+
+

@@ -1,0 +1,802 @@
+%File: anonymous-submission-latex-2026.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage[]{aaai2026}  % DO NOT CHANGE THIS
+\usepackage[T1]{fontenc}
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{amsmath} 
+\usepackage{amssymb}  % 为了使用 \checkmark
+\usepackage{pifont}   % 为了使用 \ding{55}
+
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{makecell} 
+\usepackage{hyperref}
+
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+
+\usepackage{xcolor}  % 颜色包
+\usepackage{todonotes}
+
+% \usepackage{abstract}
+% \renewcommand{\abstractnamefont}{\normalfont\bfseries}
+% \renewcommand{\abstracttextfont}{\normalfont\normalsize}
+\newenvironment{AAAIFrontBlock}
+  {\twocolumn[\begin{@twocolumnfalse}]}
+  {\end{@twocolumnfalse}]}
+
+\newcommand{\hongzhang}[1]{\textcolor{red}{[Hongzhang: #1]}}
+%\newcommand{\todo}[2]{\textcolor{red}{#1}}           % TODO comments
+% \newcommand{\zhtang}[1]{[\textcolor{purple}{ZHTang: #1}]}
+% \usepackage{ulem}
+% \newcommand{\du}[1]{{\color{blue}{\bf du:} #1}}
+
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai2026.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+\title{GitTaskBench: A Benchmark for Code Agents Solving Real-World Tasks \\ Through Code Repository Leveraging}
+% \author{
+%     %Authors
+%     % All authors must be in the same font size and format.
+%     Written by AAAI Press Staff\textsuperscript{\rm 1}\thanks{With help from the AAAI Publications Committee.}\\
+%     AAAI Style Contributions by Pater Patel Schneider,
+%     Sunil Issar,\\
+%     J. Scott Penberthy,
+%     George Ferguson,
+%     Hans Guesgen,
+%     Francisco Cruz\equalcontrib,
+%     Marc Pujol-Gonzalez\equalcontrib
+% }
+% \affiliations{
+%     %Afiliations
+%     \textsuperscript{\rm 1}Association for the Advancement of Artificial Intelligence\\
+%     % If you have multiple authors and multiple affiliations
+%     % use superscripts in text and roman font to identify them.
+%     % For example,
+
+%     % Sunil Issar\textsuperscript{\rm 2},
+%     % J. Scott Penberthy\textsuperscript{\rm 3},
+%     % George Ferguson\textsuperscript{\rm 4},
+%     % Hans Guesgen\textsuperscript{\rm 5}
+%     % Note that the comma should be placed after the superscript
+
+%     1101 Pennsylvania Ave, NW Suite 300\\
+%     Washington, DC 20004 USA\\
+%     % email address must be in roman text type, not monospace or sans serif
+%     proceedings-questions@aaai.org
+% %
+% % See more examples next
+% }
+
+\vspace{10pt}
+\author{
+\normalsize
+\\[0.3em]
+    \textbf{\textit{Ziyi Ni}\textsuperscript{1,2 *}}\quad
+    \textbf{\textit{Huacan Wang}\textsuperscript{1,* ‡}}\quad
+    \textbf{\textit{Shuo Zhang}\textsuperscript{3 *}}\quad
+    \textbf{Shuo Lu\textsuperscript{1,2}}\quad
+    \textbf{Ziyang He\textsuperscript{4}}\quad
+    \textbf{Wang You\textsuperscript{5}}
+\\[0.3em]
+    \textbf{Zhenheng Tang\textsuperscript{6}}\quad
+    \textbf{Yuntao Du\textsuperscript{7}}\quad
+    \textbf{Bill Sun\textsuperscript{8}}\quad
+    \textbf{Hongzhang Liu\textsuperscript{9,10}}\quad
+    \textbf{Sen Hu\textsuperscript{10}}\quad
+    \textbf{Ronghao Chen\textsuperscript{10}}
+\\[0.3em]
+    \textbf{Bo Li\textsuperscript{6}}\quad
+    \textbf{Xin Li\textsuperscript{11}}\quad
+    \textbf{Chen Hu\textsuperscript{5,‡}}\quad
+    \textbf{Binxing Jiao\textsuperscript{5}}\quad
+    \textbf{Daxin Jiang\textsuperscript{5,‡}}\quad
+    \textbf{Pin Lyu\textsuperscript{2,‡}}
+\\[1em]
+ \textsuperscript{1}UCAS\quad \textsuperscript{2}CASIA\quad \textsuperscript{3}BUPT\quad \textsuperscript{4}NUS\quad \textsuperscript{5}StepFun\quad
+ \textsuperscript{6}HKUST\quad
+ \textsuperscript{7}SDU\quad
+ \textsuperscript{8}PINAI\quad
+ \textsuperscript{9}USYD\quad
+ \textsuperscript{10}PKU\quad
+ \textsuperscript{11}USTC\quad
+\\[1em]
+\textsuperscript{\textbf{*}} \textbf{These authors contributed equally to this work.}
+\\[0.5em]
+\textsuperscript{$\dagger$} \textbf{Corresponding authors:}
+\href{mailto:wanghuacan17@mails.ucas.ac.cn}{wanghuacan17@mails.ucas.ac.cn},\quad
+  \href{mailto:djiang@stepfun.com}  {djiang@stepfun.com},\quad
+  \href{mailto:pin.lv@ia.ac.cn}{pin.lv@ia.ac.cn}
+% wanghuacan17@mails.ucas.ac.cn\quad
+% djiang@stepfun.com\quad
+% pin.lv@ia.ac.cn
+\\[1.2em]
+}
+
+% REMOVE THIS: bibentry
+% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
+% \usepackage{bibentry}
+% END REMOVE bibentry
+
+
+\renewcommand{\floatpagefraction}{0.2}
+\nocopyright
+
+\begin{document}
+
+\setfrontabstractmargins{3.2pc}{3.2pc}
+\setfrontabstractboxsep{16pt}                   % 盒子内边距
+\setfrontabstracttitleskip{1ex}               % 标题与正文距离
+\setfrontabstracttitleformat{\centering\bfseries\color{AAAIFrontAbsBorder}\fontsize{12}{13}\selectfont}
+
+% \begin{abstract}
+\frontabstract{
+Beyond scratch coding, exploiting large-scale code repositories (e.g., GitHub) for practical tasks is vital in real-world software development, yet current benchmarks rarely evaluate code agents in such authentic, workflow-driven scenarios. 
+To bridge this gap, we introduce GitTaskBench, a benchmark designed to systematically assess this capability via 54 realistic tasks across 7 modalities and 7 domains. 
+Each task pairs a relevant repository with an automated, human-curated evaluation harness specifying practical success criteria. Beyond measuring execution and task success, we also propose the alpha-value metric to quantify the economic benefit of agent performance, which integrates task success rates, token cost, and average developer salaries. Experiments across three state-of-the-art agent frameworks with multiple advanced LLMs show that leveraging code repositories for complex task solving remains challenging: even the best-performing system, \mbox{OpenHands+Claude 3.7}, solves only 48.15\,\% of tasks (\textit{recent progress has pushed the frontier further, with \mbox{RepoMaster+Claude 3.5} achieving a new record of 62.96\%}). Error analysis attributes over half of failures to seemingly mundane yet critical steps like environment setup and dependency resolution, highlighting the need for more robust workflow management and increased timeout preparedness.
+By releasing GitTaskBench, we aim to drive progress and attention toward repository-aware code reasoning, execution, and deployment---moving agents closer to solving complex, end-to-end real-world tasks.
+\\[0.8em]
+\textbf{Benchmark and code:} \url{https://github.com/QuantaAlpha/GitTaskBench}.
+\\[0.3em]
+\textbf{Our project page: }\url{https://gittaskbench.github.io/}.
+% \end{abstract}
+}
+
+
+\frontteaser{
+ \vspace{1.2em}
+ % \begin{firstpagefigure}
+\includegraphics[width=\textwidth]{images/leaderboard.png}
+    \captionof{figure}{Up-to-Date Leaderboard: AI agent performance on GitTaskBench evaluation tasks.}
+  % \end{firstpagefigure}
+}
+
+
+\maketitle
+
+
+% % \vspace{4pt}
+% \begin{figure*}[!bt]
+% \centering 
+% \includegraphics[width=1\textwidth]{images/leaderboard.png}
+% \label{Fig.leaderboard} 
+% % \vspace{-8pt}
+% \end{figure*}
+
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.975\linewidth]{images/overview_v6.pdf}
+    \caption{Overview of GitTaskBench. 7 example real-life tasks from different modalities and their evaluations are shown.}
+    \label{fig:overview}
+\end{figure*}
+
+
+\section{Introduction}
+
+
+In just two years, fueled by the transformative progress of large language model (LLM) agents, an increasing number of code benchmarks have reached saturation~\cite{HumanEval2021,MBPP2021,hendrycks2021measuring,2021codexglue}. 
+However, \textbf{most early code-agent works and benchmarks target isolated, static problems}, such as algorithmic tests \cite{hendrycks2021measuring, 2022alphacode, zheng2025livecodebench}, code completion at the function \cite{HumanEval2021, MBPP2021, 2023ds-1000}, class \cite{du2023classeval}, or repository level \cite{liu2023repobench,ding2023crosscodeeval}, or program repair \cite{jimenez2023swe}---\textbf{failing to assess agents’ capacity in real-world problem solving}.
+
+Recent efforts have begun to develop more practical, comprehensive benchmarks.
+Some works still focus on code generation, requiring agents to produce increasingly complex code, even generating entire repositories from scratch \cite{yu2024HumanEval-Pro, weirdml, chan2025mle-bench, swe-lancer, paperbench}. 
+%
+%
+However, such a heavy burden remains prohibitively difficult for most current agent systems~\cite{li2024devbench, paperbench}. Moreover, \textbf{focusing solely on code generation overlooks the broader scope of real-world developer practice}~\cite{Adnan2024Manus}, and \textbf{provides diminishing insight into agent capabilities}~\cite{gao2024LLMSurvey}. 
+%
+Another line of work rethinks evaluation paradigms \cite{2024MAcode-generation} by integrating code generation with external tools or API calls~\cite{API-bank, codeact, ToolEyes, zhuo2024bigcodebench,tang2025the,dong2025can}, thus easing the generation burden but still sidestepping the harder challenge of understanding and repurposing the full repositories. 
+
+However, \textit{real-world programmers usually exploit open-source libraries\footnote{Current GitHub has 28 million repositories and 190 million public projects to be exploited.} to tackle diverse real-world tasks without reinventing ``the wheel''}. Previous code-agent benchmarks ignore the ability of \textbf{autonomous environment setup and leveraging open-source repositories for solving complex, end-to-end tasks}, which is a more \textbf{\textit{user-centric}} setting in practical software engineering~\cite{gitagent, tang2023ml-bench, repomaster2025}.
+
+To this end, we design and develop \textbf{GitTaskBench}~\cite{gittaskbench2025}, 
+which \textbf{systematically evaluates how well agents leverage code repositories to automatically solve real-world tasks end-to-end in realistic scenarios}, focusing on the following three key dimensions:
+\begin{itemize}
+    \item Overall coding mastery: Navigating extensive documentation, understanding code dependencies, and dynamically generating, modifying, or debugging code.
+    \item Task-oriented execution: Efficiently comprehending user intent, completing tasks via multi-turn reasoning and appropriate tool usage. All generated code is task-focused.
+    \item Autonomous environment provisioning: Independently managing environment setup and dependency resolution in the sandbox without pre-built support.
+\end{itemize}
+
+The construction of GitTaskBench follows a rigorous four-step process: task and repository selection, completeness verification, execution framework design, and evaluation framework development, each performed by humans and some assisted by LLMs. The resulting benchmark covers 54 real-life, multimodal tasks across 7 domains and 24 subdomains, \textit{going far beyond the technically narrow scope of traditional machine learning tasks} \cite{liu2018mlbench, tang2023ml-bench, chan2025mle-bench}. 
+Each task comes with human-designed, automated evaluation scripts that assess both execution completion and task pass by practical success criteria. 
+% RL.
+%practical utility.
+%by our proposed alpha-value metric. 
+
+Beyond these core metrics, we further introduce the \textbf{alpha metric, which jointly considers cost and effectiveness}. Previous work has rarely analyzed or quantified the tangible benefits of agent applications, especially in multimodal scenarios~\cite{swe-agent,2025artificialReport,chen2025xbench}. 
+%
+Our alpha metric integrates task completion quality, agent token usage, and market-rate human labor costs into a unified framework, enabling direct, interpretable comparisons between agent and human efficiency. 
+
+Experiments are conducted on multiple code agents with advanced LLMs, and the results show the following findings: (1) Complex repository-centric tasks remain challenging, with the top success rate of only 48.15\% (OpenHands, Claude3.7). (2) Replacing humans with agents is not always cost-effective; evaluating cost-efficiency is key for practical application. (3) Agents excel in purely textual tasks versus multimodal ones. (4) Better environment configuration and dependency management in the experimental workflow are crucial for accelerating real-world code agent deployment. 
+
+Our main contributions are summarized as follows:
+\begin{enumerate}
+    \item We present GitTaskBench, \textit{the first open-source benchmark} that tests agents on \textbf{solving real-world complex tasks by leveraging open-source repositories in a human-like manner}, encompassing 54 tasks drawn from 18 GitHub projects across 7 modalities.
+    % evaluation (process, result(true/false)+comments)
+    \item \textbf{Each task includes hand-crafted test scripts and corresponding practical success criteria} \textit{to enable rigorous and automated evaluation}. 
+    % automated evaluation 重点！
+    \item We propose a novel domain-specific “alpha value” formula to quantitatively assess agent economic benefits, providing actionable insights for agent deployment.
+    % in practical scenarios.
+    \item We benchmark state-of-the-art agent frameworks with both open- and closed-source LLMs, perform hyperparameter sensitivity analysis, and conduct a detailed error analysis to highlight the remaining challenges.
+\end{enumerate}
+
+
+\section{Related Work}
+%现有对code agent的benchmarks要么更聚焦于LLM代码方面的能力评测，要么更与复杂任务解决相关。
+Existing code-agent benchmarks can broadly be divided into two categories: code-generation- and task-solving-centric. 
+
+\subsection{Code Generation Benchmark}
+% 定义为 level较为低级的任务，任务本身就是代码相关的问题
+% 问题：1.比较局部，粒度小 2.不是复杂环境/现实操作状态
+In the first category, benchmarks evaluate code generation tasks of increasing complexity and granularity—from early single-function-level tasks (e.g., HumanEval \cite{HumanEval2021} and MBPP \cite{MBPP2021}), to class-level completion~\cite{du2023classeval}, program synthesis \cite{program2021}, and algorithmic generation~\cite{hendrycks2021measuring,2022alphacode}, further extending to repository-level completion (e.g., RepoBench \cite{liu2023repobench}, CrossCodeEval \cite{ding2023crosscodeeval}). 
+More recently, more challenging benchmarks like SWE-Bench \cite{jimenez2023swe} have targeted resolving GitHub issues, but are already nearly saturated (Claude 4-sonnet: 80.2\%).
+% though the state-of-the-art Claude 4-sonnet model~\cite{claude4} has already saturated it with an 80.2\% score.  
+SWE-Lancer \cite{swe-lancer} expands into real-world software engineering jobs with payouts, but ~90\% of its Individual Contributor tasks remain narrowly bug fixing in pre-configured environments. 
+These benchmarks share two main limitations: (1) tasks are still relatively isolated with small granularity, and (2) evaluations typically occur within simplified or synthetic environments rather than dynamic, realistic conditions. 
+Our GitTaskBench benchmark addresses these through realistic, repository-aware tasks and practical coding environments that mirror authentic user scenarios.
+
+\subsection{Programming Task Benchmark}
+In the second category, task-oriented benchmarks evaluate general programming skills involving tool usage and external API calls. Examples include library-involved tasks (Odex \cite{wang2022odex}), data science-specific evaluations (PandasEval \cite{jain2022Pandas}, NumpyEval \cite{zhang2023NumpyEval}, DS-1000 \cite{2023ds-1000}), API-based tasks (CodeAct \cite{codeact}, ToC \cite{ni2024toc}), and machine learning (ML) challenges in closed environments~\cite{liu2018mlbench, tang2023ml-bench, chan2025mle-bench,wang2025all}. However, these tasks remain predominantly technical-oriented, missing a critical capability \textbf{widely practiced}: leveraging GitHub repositories ("wheels") to \textbf{solve real-world daily problems}. 
+
+\section{GitTaskBench}
+
+% 任务定义：对大型仓库 的理解、探索
+% 输入(仓库 + 指令)，输出：任务输出
+
+GitTaskBench rigorously evaluates code agents on realistic, repository-centric tasks closely aligned with common user queries (see Figure \ref{fig:overview}). Agents must autonomously analyze and reuse existing repositories to complete tasks that mirror authentic user workflows, handling any errors \textit{without human intervention}.
+The benchmark is primarily handcrafted and validated by five computer science PhDs to ensure quality. 
+%
+Each task pairs a representative full-scale GitHub repository accompanied by a specific natural-language instruction specifying input-output requirements, and tailored \textit{task-specific} evaluation metrics reflecting both correctness and utility, allowing meaningful automated assessment of agent performance. 
+%
+Below is how we constructed it.
+
+
+
+\begin{table*}[htbp]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|cccccc}
+\toprule
+\textbf{Benchmark} 
+  & \textbf{Task Num} 
+  & \textbf{Task Type} 
+  & \textbf{Multimodal} 
+  & \textbf{Repo Use} 
+  & \textbf{Repo‑level CodeGen} 
+  & \textbf{Auto Env Setup} \\
+\midrule
+RepoBench~\cite{liu2023repobench} 
+  & 7778  & Code Completion            &            & \checkmark &            &            \\
+Swe‑Bench‑Verified~\cite{jimenez2023swe} 
+  & 500   & Program Repair              &            & \checkmark &            &            \\
+LiveCode~\cite{jain2024livecodebench} 
+  & 584   & Programming Competitions               &            &            &            &            \\
+\midrule
+MLAgentBench~\cite{MLAB} 
+  & 13    & ML \textbf{\textit{Tasks}}              & \checkmark &            & \checkmark &            \\
+MLE‑Bench~\cite{chan2025mle-bench} 
+  & 72    & Kaggle (ML) \textbf{\textit{Tasks}}                    & \checkmark &            & \checkmark &            \\
+PaperBench~\cite{paperbench} 
+  & 20    & Paper Code Replication \textbf{\textit{Tasks}}     & \checkmark &            & \checkmark & \checkmark \\
+\cellcolor{gray!12}\textbf{GitTaskBench~(Ours)} 
+  & \cellcolor{gray!12}\textbf{54}   & \cellcolor{gray!12}\textbf{User‑centric, Daily‑life \textit{Tasks}}     & \cellcolor{gray!12}\textbf{\checkmark} & \cellcolor{gray!12}\textbf{\checkmark} & \cellcolor{gray!12}\textbf{\checkmark} & \cellcolor{gray!12}\textbf{\checkmark} \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of GitTaskBench (Ours) with Existing Benchmarks of Similar Complexity and Comprehensiveness.}
+\label{tab:benchmark-comparison}
+\end{table*}
+
+
+
+\begin{table}[t]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{llr}
+\toprule
+\textbf{Category} & \textbf{Metric}                         & \textbf{(Mean) Value}    \\
+\midrule
+\multirow{4}{*}{Instances}
+  & \# Domain                              & 7                 \\
+  & \# Subdomain                           & 24                \\
+  & \# Tasks                               & 54                \\
+  & \# Modality                            & 7                 \\
+\midrule
+\multirow{6}{*}{Repos}
+  & \# Size                                & 18                \\
+  & \# Files                               & 204 \texttt{(7-1157)}               \\
+& \# Classes                               & 263.61 \texttt{(2-1130)}               \\
+& \# Functions                           & 1274.78 \texttt{(25-4915)}           \\
+  & \# Dependency                          & 1242.72 \texttt{(33-6979)}           \\
+  & \# Calls               & 8651.28 \texttt{(180-40552)}\\
+  & \# Code Lines               & 52.63 \texttt{(0.575-351.42)} \textbf{k}          \\
+    & \# Tokens               & 448.95 \texttt{(4.87-2888.35)} \textbf{k}          \\
+  % & \# Tokens                               & 448.95 \texttt{(4.87-2888.35)} \textbf{k}         \\
+\bottomrule
+\end{tabular}
+\caption{Summary Statistics of GitTaskBench.}
+\label{tab:gitaskbench_stats}
+\end{table}
+
+%% 数据占比图
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=1\linewidth]{images/Domain_v4_50.pdf}
+    \caption{Overview of Task Domains in GitTaskBench.}
+    \label{fig:datasets}
+\end{figure}
+
+\subsection{Task and Repository Selection}		
+
+We began by \textbf{identifying the target domains} through extensive literature reviews, deep LLM-driven research, and consultation with domain experts, combining these insights with practical, everyday experience. For each domain, we \textbf{selected subdomains} that mirror frequent user needs, including a broad spectrum of modalities. 
+We prioritized \textit{tasks that are non-trivial}, \textit{typically requiring the integration or reuse of existing tools or codebases}, to ensure that benchmarks are both meaningful and challenging for code agents. 
+\textbf{Human completion time} for these tasks ranged up to three hours, averaging \textbf{1.34 hours} per task (see Appendix A).
+
+For each domain, we run targeted deep researches (prompts in Appendix C to \textbf{locate suitable GitHub repos}. Candidates must (1) be Python-based, (2) have $\ge 50$ stars with activity in the past five years (including issue updates), and (3) provide ready-to-use weights and a simple setup. We then inspect key statistics like stars, forks, license, commit history, and manually verify functionality. 
+The resulting set formed the pool of potential repositories.
+
+\textit{Task and repository selection was iterative and tightly coupled}—repository capabilities and task requirements were refined in parallel, with each informing the other. When a promising repository was identified, we would \textbf{expand potential task formulations} around its core features. 
+
+Summary statistics of GitTaskBench are presented in Table~\ref{tab:gitaskbench_stats}. 
+Figure~\ref{fig:datasets} illustrates the features of each domain.
+% Covering multiple modalities, 
+GitTaskBench supports both data generation and analysis-oriented objectives. 
+See Appendix A for details. 
+
+\subsection{Completeness Verification}
+Following the \textbf{Repository Selection} phase, each chosen repository undergoes a stringent \textbf{Completeness Verification}. 
+In this human-driven stage, experts follow the repository’s documented instructions, performing tasks exactly as an agent would, ensuring both \textbf{a 100\% human success rate and outputs that satisfy all task requirements}. This process confirms that the repository is fully operational and free of hidden obstacles that could hinder execution.
+
+The verification process includes: Checking for essential \textit{dependencies}, such as \texttt{requirements.txt} or \texttt{package.json};
+Confirming the availability of key \textit{configuration} files, like \texttt{config.yaml} or \texttt{setup.py};
+Ensuring that the \textit{required datasets} and \textit{pre-trained models} are publicly accessible and properly formatted.
+
+If any required resources are gated or instructions are only available via external links, we supplement the repository by downloading relevant files and inlining essential documentation into the \texttt{README.md}, ensuring all information needed for task execution is completely \textbf{self-contained}. 
+
+
+\begin{figure*}[t]
+    \centering
+\includegraphics[width=1\textwidth]{images/Benchmark_Construction.pdf}
+    \caption{Overview of the GitTaskBench Data Curation and Processing Pipeline.}
+    \label{fig:pipeline_diagram}
+\end{figure*}
+
+
+
+\subsection{Execution Framework Design}
+%
+To evaluate code agents in realistic and repository-leveraging contexts, we design an execution framework that integrates structured task formulation, automated execution, and output verification. This framework not only tests agents’ capabilities for understanding and utilizing existing codebases but also ensures reproducibility and automation throughout the evaluation process.
+
+\textbf{Task Formulation.} We meticulously define each task, specifying the expected input format (e.g., image path, text string) and the desired output format (e.g., processed image, generated report), ensuring clarity in task goals and reducing ambiguity in prompt interpretation. A single repository may host multiple distinct tasks, each with its clear definition.
+
+\textbf{Agent Inputs and Expected Outputs.} The framework provides the agent with two inputs: a GitHub repository and a task definition prompt. Unlike conventional code generation settings that require only code snippets, our framework emphasizes end-to-end functionality. Agents are expected to return the final task-specific output, which could be a file, text, or visual result, depending on the task requirements. 
+
+
+\textbf{Execution Workflow.}
+Agents are evaluated on their ability to autonomously solve tasks in the multi-stage process: 
+\textit{(1) Repository Understanding:} Agents not just read the repository's code, but analyze its structure, dependencies, and available functionalities, often leveraging entry-point documentation such as \texttt{README.md} and selectively parsing key source files.
+\textit{(2) Code Generation or Modification:} Based on their understanding and the task definition, agents generate new scripts or adapt existing files to fulfill the task.
+\textit{(3) Environment Setup:} Agents are expected to construct the required execution environment, including issuing installation commands (e.g., \texttt{pip install -r requirements.txt}) and resolving dependency issues.
+\textit{(4) Code Execution:} The generated or modified code is executed automatically in the sandbox, directly assessing the agent's ability to produce runnable and correct solutions.
+
+
+\subsection{Evaluation Framework}
+To support automated, practical, and cost-benefit evaluation, we introduce the following metrics, which are implemented through hand-verified custom-built test scripts.
+
+\textbf{Execution Completion Rate (ECR).} ECR measures the proportion of cases where the agent successfully executes the target code repository and generates outputs in an acceptable format (e.g., \texttt{.jpg} or \texttt{.png} for image processing tasks). This metric reflects the agent's compatibility with the code repository and its basic operational capability. It ensures that: (1) the output file(s) exist, (2) the output file(s) are not empty, and (3) the output format can be correctly processed by the testing scripts.
+
+\textbf{Task Pass Rate (TPR).} TPR quantifies the agent's actual performance quality in task completion. It is determined by formulating evaluation test functions and defining concrete success and failure criteria using established metrics tailored to each task, drawing on standards recognized within the domain developer community. TPR requires the agent's outputs to satisfy predefined quality standards, such as functional correctness, result completeness, or achieving specific task objectives. For example, in speech enhancement tasks, success might be defined by achieving a \textbf{PESQ $\ge 2.0$} (indicating acceptable perceptual quality) and a \textbf{SNR $\ge 15 dB$} (suggesting good suppression of noise). Tasks failing to meet these thresholds are marked as failures.
+
+
+% \textbf{By Automated Test Scripts.}
+\textbf{Both of the above metrics are evaluated using hand-crafted test scripts.} Additionally, we streamlined the benchmarking process so that all tasks can be automatically assessed with a single shell command. The evaluation outputs a clear “Process” and “Result” status (success or failure), along with detailed “Comments” explaining the outcome—such as which metric exceeded a threshold, which criterion caused failure, or any error messages encountered during execution.
+See Appendix~A for example test results.
+
+ 
+\textbf{Alpha Practical Value Assessment.} We introduce a new perspective for evaluating LLM agents by incorporating market-driven cost considerations. While technical metrics like ECR and TPR are essential, they overlook cost-effectiveness. High technical performance alone does not guarantee practical utility—an agent is only valuable if it completes tasks more cheaply than human labor, without sacrificing quality. In practice, agents incur tangible operational costs, like API fees for proprietary LLMs or hardware expenses for open-source solutions. 
+%
+We estimate the economic value of agent-completed tasks by quantifying potential cost savings, efficiency gains, and market impact from automation and scalability of these tasks. 
+Accordingly, we propose the \textbf{\(\boldsymbol{\alpha}\)-score}, a value-based metric defined as the average net benefit generated by the agent across tasks:
+
+\begin{equation}
+\alpha=\frac{1}{n} \sum_{i=1}^{n} \left [(T\times MV\times Q)- C \right ] 
+\end{equation}
+where $n$ is the number of tasks in the evaluated area; $T$ is a binary indicator of task success (1 if the agent successfully executes the target code repository, 0 otherwise), consistent with the definition of ECR; $MV$ represents the estimated, prevailing market value of the task if completed by a human; $Q$ is a quality factor (ranging from 0 to 1) that measures how closely the agent’s output approximates the groundtruth produced by a human executing the same code repository; and $C$ denotes the agent’s total operational cost, which is approximated here as the API cost. The resulting \textbf{\(\boldsymbol{\alpha}\)-score} clearly reflects the economic viability and gains of the agent-based automation approach across the evaluated areas.
+
+
+\textbf{Human Check.} 
+% A critical component of quality assurance involves human expert review along the dimension: 
+Experts compare the automatically generated assessment of a repository/task with their own manual execution and evaluation, identifying any discrepancies or inconsistencies. For generating the groundtruth, humans can interpret the task requirements and iteratively adjust repository parameters to obtain the best possible output. 
+
+Because this expert-guided result provides a reliable upper bound on quality, we derive \(Q\) through human assessment. Five raters independently compare each agent output with the groundtruth and assign it to one of five levels—far below human (\texttt{0}), large gap (\texttt{0.25}), moderate gap (\texttt{0.50}), near parity (\texttt{0.75}), or indistinguishable from/better than human (\texttt{1}). The level chosen by the majority is recorded as the final \(Q\) value. 
+\(MV\) is drawn from publicly listed freelance fees on the platforms 
+% (like Upwork, Fiverr, and Freelancer) \footnote{ Upwork: https://www.upwork.com/}\footnote{ Fiverr: https://www.fiverr.com}\footnote{ Freelancer: https://www.freelancer.com}
+\cite{upwork, fiverr, freelancer}
+for similar deliverables—for example, roughly \$10 per restored photo on Fiverr—providing a consistent task-level benchmark for the \(\alpha\)-score. 
+Details on estimated market values for all GitTaskBench tasks, application cases, and analysis are provided in Appendix D.
+
+
+
+\section{Experiments} % results
+
+\subsection{Setup}
+
+\renewcommand{\floatpagefraction}{.15}
+\renewcommand{\textfraction}{.1}
+% \renewcommand{\arraystretch}{1.2}  % 拉高单元格高度
+\begin{table*}[!t]
+\centering
+\small
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Framework} & \textbf{LLM} & 
+\textbf{ECR (\%) $\uparrow$} & 
+\textbf{TPR (\%) $\uparrow$} & 
+\textbf{Input Tokens (k) $\downarrow$} & 
+\textbf{Output Tokens $\downarrow$} & 
+\textbf{Cost (\$) $\downarrow$} \\
+\midrule
+\multirow{4}{*}{Aider}
+& \cellcolor{gray!4}GPT-4o       & \cellcolor{gray!4}5.56         & 
+\cellcolor{gray!4}1.85         & 
+\cellcolor{gray!4}10.67        & \cellcolor{gray!4}\textbf{492.67}     & \cellcolor{gray!4}0.0316            \\
+& \cellcolor{gray!8}GPT-4.1      & \cellcolor{gray!8}11.11        & \cellcolor{gray!8}7.41         & \cellcolor{gray!8}14.83        & \cellcolor{gray!8}734.17             & \cellcolor{gray!8}0.0355           \\
+& \cellcolor{gray!12}Claude 3.5    & \cellcolor{gray!12}\underline{16.67}        & \cellcolor{gray!12}\underline{12.96}        & \cellcolor{gray!12}\textbf{7.48} & \cellcolor{gray!12}\underline{534.00}  & \cellcolor{gray!12}\underline{0.0304} \\
+& \cellcolor{gray!12}DeepSeekV3   & \cellcolor{gray!12}\textbf{20.37}        & \cellcolor{gray!12}\textbf{16.67}        & \cellcolor{gray!12}\underline{7.51} & 
+\cellcolor{gray!12}599.64         & \cellcolor{gray!12}\textbf{0.00269} \\
+
+\midrule
+\multirow{8}{*}{SWE-Agent}
+& \cellcolor{gray!8}GPT-4o       & \cellcolor{gray!8}17.58        & 
+\cellcolor{gray!8}10.19        & \cellcolor{gray!8}275.53       & \cellcolor{gray!8}1282.70            & \cellcolor{gray!8}0.778            
+\\
+& \cellcolor{gray!20}GPT-4.1      
+& \cellcolor{gray!20}38.89        
+& \cellcolor{gray!20}\underline{31.48}        
+& \cellcolor{gray!20}301.11       
+& \cellcolor{gray!20}2098.33            
+& \cellcolor{gray!20}0.661            
+\\
+& \cellcolor{gray!16}o3-mini      & \cellcolor{gray!16}25.93 & \cellcolor{gray!16}20.37 &
+\cellcolor{gray!16}\underline{158.45} &
+\cellcolor{gray!16}\textbf{215.20} & 
+\cellcolor{gray!16}\underline{0.175} 
+\\
+& \cellcolor{gray!16}Claude 3.5    & \cellcolor{gray!16}\underline{41.67} & \cellcolor{gray!16}22.23       & \cellcolor{gray!16}455.34       & \cellcolor{gray!16}943.30             & \cellcolor{gray!16}1.38          
+\\
+& \cellcolor{gray!32}Claude 3.7    & \cellcolor{gray!32}\textbf{64.81} & \cellcolor{gray!32}\textbf{42.59}       & \cellcolor{gray!32}552.79       & \cellcolor{gray!32}807.63             & \cellcolor{gray!32}1.67            
+\\
+& \cellcolor{gray!12}DeepSeekV3   & 
+\cellcolor{gray!12}18.52        & 
+\cellcolor{gray!12}12.04        & 
+\cellcolor{gray!12}412.65       & 
+\cellcolor{gray!12}1649.82            & \cellcolor{gray!12}\textbf{0.113}          
+\\
+& \cellcolor{gray!4}Qwen3-32b$^{*}$        & 
+\cellcolor{gray!4}7.41            & 
+\cellcolor{gray!4}3.70            & 
+\cellcolor{gray!4}1445.97            & 
+\cellcolor{gray!4}2405.00                  & 
+\cellcolor{gray!4}-             
+\\
+& \cellcolor{gray!12}Qwen3-32b$^{*\dagger}$    
+& \cellcolor{gray!12}16.67        
+& \cellcolor{gray!12}11.11        
+& \cellcolor{gray!12}\textbf{124.15}  
+& \cellcolor{gray!12}\underline{559.11}          
+& \cellcolor{gray!12}-                
+\\
+& \cellcolor{gray!12}Llama3.3-70b$^{*}$        & 
+\cellcolor{gray!12}25.83            & 
+\cellcolor{gray!12}18.52            & 
+\cellcolor{gray!12}397.03            & 
+\cellcolor{gray!12}1985.64                  & 
+\cellcolor{gray!12}-              
+\\
+
+\midrule
+\multirow{12}{*}{OpenHands}
+& \cellcolor{gray!12}GPT-4o       & 
+\cellcolor{gray!12}21.30        & 
+\cellcolor{gray!12}14.82        & 
+\cellcolor{gray!12}760.53       & 
+\cellcolor{gray!12}3990.31            & 
+\cellcolor{gray!12}1.94             
+\\
+& \cellcolor{gray!32}GPT-4.1      & \cellcolor{gray!32}\underline{55.56} & \cellcolor{gray!32}\underline{42.59} & \cellcolor{gray!32}465.94   & \cellcolor{gray!32}\underline{1535.47}            & \cellcolor{gray!32}\textbf{0.942} 
+\\
+& \cellcolor{gray!16}o3-mini      & \cellcolor{gray!16}29.63 & \cellcolor{gray!16}22.22 &
+\cellcolor{gray!16}2523.53 &
+\cellcolor{gray!16}183637.53 & 
+\cellcolor{gray!16}3.58 
+\\
+& \cellcolor{gray!32}Claude 3.5    & 
+\cellcolor{gray!32}53.70        & 
+\cellcolor{gray!32}40.74        & 
+\cellcolor{gray!32}2858.00      & 
+\cellcolor{gray!32}24929.47           & 
+\cellcolor{gray!32}8.95            
+\\
+& \cellcolor{gray!36}Claude 3.7    & \cellcolor{gray!36}\textbf{72.22} & \cellcolor{gray!36}\textbf{48.15} & \cellcolor{gray!36}9501.25 & 
+\cellcolor{gray!36}85033.05  & 
+\cellcolor{gray!36}29.8        
+\\
+& \cellcolor{gray!24}Gemini-2.5-pro   & 
+\cellcolor{gray!24}51.85        & 
+\cellcolor{gray!24}35.19        & 
+\cellcolor{gray!24}760.88       & 
+\cellcolor{gray!24}35173.29     & 
+\cellcolor{gray!24}2.18   
+\\
+& \cellcolor{gray!20}DeepSeekV3   & 
+\cellcolor{gray!20}45.37        & 
+\cellcolor{gray!20}26.85        & 
+\cellcolor{gray!20}4717.78      & 
+\cellcolor{gray!20}31957.67           & 
+\cellcolor{gray!20}\underline{1.31}  
+\\
+& \cellcolor{gray!4}Qwen3-8b$^{*}$        & \cellcolor{gray!4}1.85       
+& \cellcolor{gray!4}1.85        
+& \cellcolor{gray!4}846.26    
+& \cellcolor{gray!4}2045.00             
+& \cellcolor{gray!4}-                
+\\
+& \cellcolor{gray!8}Qwen3-14b$^{*}$        
+& \cellcolor{gray!8}11.11        
+& \cellcolor{gray!8}5.56       
+& \cellcolor{gray!8}339.42      
+& \cellcolor{gray!8}2540.17             
+& \cellcolor{gray!8}-                
+\\
+& \cellcolor{gray!20}Qwen3-32b$^{*}$    
+& \cellcolor{gray!20}35.19        
+& \cellcolor{gray!20}25.93        
+& \cellcolor{gray!20}591.02   
+& \cellcolor{gray!20}2097.89         
+& \cellcolor{gray!20}-                
+\\
+& \cellcolor{gray!20}Qwen3-32b$^{*\dagger}$    
+& \cellcolor{gray!20}44.44        
+& \cellcolor{gray!20}29.63        
+& \cellcolor{gray!20}\underline{208.00}     
+& \cellcolor{gray!20}8755.35         
+& \cellcolor{gray!20}-                
+\\
+& \cellcolor{gray!12}Llama3.3-70b$^{*}$    
+& \cellcolor{gray!12}27.78        
+& \cellcolor{gray!12}20.37        
+& \cellcolor{gray!12}\textbf{132.69}      
+& \cellcolor{gray!12}\textbf{872.93}          
+& \cellcolor{gray!12}-            
+\\
+\bottomrule
+\end{tabular}
+\caption{
+Performance Comparison of Different Frameworks and LLMs on GitTaskBench. 
+Bold values indicate the best among all models for each metric; underlined values denote the second-best.
+The best-performing row for each metric is highlighted. 
+All token values are rounded to two decimal places. 
+\texttt{$^*$} means our self-deployed model. 
+\texttt{$^\dagger$}: with think mode.
+% \texttt{$^\ddagger$} denotes the model in think mode.
+}
+\label{tab:git-task-perf}
+\end{table*}
+
+
+
+We evaluate three representative open-source frameworks that are capable of handling our benchmark tasks: \textbf{Aider} \cite{aider2025}, \textbf{OpenHands} \cite{wang2025openhands}, and \textbf{SWE-Agent} \cite{swe-agent}. 
+% To the best of our knowledge, these are the only open-source frameworks capable of tackling the complex, comprehensive tasks in our benchmark. 
+% 这些是经过我们调研唯一能完成我们benchmark这类复杂综合的开源框架。
+% —on several advanced LLMs. 
+% These frameworks are designed to mimic the workflow of human programmers, autonomously analyzing and interacting with code repositories.  
+% Each agent executes Python code and bash commands in a Linux sandbox without pre-configured environments. 
+Execution configurations and framework settings are detailed in Appendix B.
+In terms of \textbf{LLMs,}
+we evaluate multiple advanced models, including the closed-source GPT-4o-2024-08-06 \cite{gpt4o}, GPT-4.1 \cite{gpt41}, and o3-mini (medium reasoning effort) \cite{o3mini}, Claude-3-5-sonnet-20241022 \cite{claude35sonnet} and Claude-3-7-sonnet-20250219 \cite{claude37sonnet}, Gemini-2.5-pro~\cite{gemini25_report}, as well as the open-source DeepSeek-V3-0324 \cite{liu2024deepseekV3}, Qwen3-8b, 14b, 32b \cite{yang2025qwen3} and Llama3.3-70b \cite{llama3.3}. 
+For robustness, all reported results are averaged over two independent runs under identical settings.
+
+
+\subsection{Comparative Analysis}
+
+Different framework–LLM pairings exhibit substantial performance disparities, affecting both effectiveness (ECR, TPR) and efficiency (token usage, cost, API calls).
+
+\textbf{OpenHands achieves the best overall performance across all frameworks.}
+As shown in Table~\ref{tab:git-task-perf}, \textbf{(1)} OpenHands+Claude 3.7 delivers the best results (ECR 72.22\%, TPR 48.15\%) among all evaluated settings. \textbf{(2)} With the same LLM, OpenHands consistently outperforms Aider and SWE-Agent, likely due to its robust code execution capabilities and more proactive and explorative strategies. 
+
+\textbf{OpenHands offers higher success rates, while SWE-Agent balances moderate cost and efficiency as a lower-cost alternative.}
+SWE-Agent consistently uses fewer tokens than OpenHands when paired with top-performing closed-source models, indicating stronger control over context token usage. 
+Meanwhile, Aider+DeepSeek V3 yields the lowest cost ($<$ \$0.003) with reasonable output.
+
+\textbf{GPT-4.1 is more cost-efficient than Claude.}  
+\textbf{(1)} In SWE-Agent, Claude 3.7 leads but costs 2x more than 2nd-place GPT-4.1. 
+\textbf{(2)} Under OpenHands, GPT-4.1  also delivers the 2nd-best ECR/TPR at just 1/10 or 1/30 of Claude's cost. 
+
+
+\textbf{Open-source models generally underperform closed ones.} But Qwen3-32B (with think mode) is impressive---reaching up to 60\% of top closed Claude3.5's performance with far lower token usage. In contrast, Gemini 2.5 Pro underwhelms in think mode, likely due to the added context burden in our long, token-heavy, complex real-world tasks.
+
+
+These findings highlight \textit{trade-offs between performance, cost, and interaction complexity} when choosing agents---framework and model combinations.
+Next, we drill down into domain-specific performance, as visualized in Figure~\ref{fig:ratio-domain}. 
+
+\textbf{Agents perform notably better on purely textual tasks compared to multimodal, model-based tasks.}
+Specifically, \textbf{(1) }most agents process office documents effectively, such as parsing Excel files with \texttt{Eparse} or splitting PDFs using \texttt{PyPDF}. That is because these workflows typically require reading simple wrapper scripts that import the library API. 
+\textbf{(2)} In contrast, multimodal tasks, especially in image or speech processing domains, mainly involve model-based processing and prediction and thus demand much deeper competence. 
+For example, removing image scratches with \texttt{DeScratch} entails installing multiple dependencies, downloading pretrained weights, and configuring runtime arguments---all of which require a nuanced understanding of the repository’s build and execution process. 
+
+Current agents often struggle with such complex workflows, suggesting that \textbf{future work should focus on richer codebase comprehension and automated environment management} beyond what a simple \texttt{README} scan provides.
+
+
+\begin{figure*}
+    \centering   \includegraphics[width=1\linewidth]{images/ratio_domain.pdf} 
+    \caption{Performance Evaluation of GPT-4o, GPT-4.1, Claude 3.5, DeepSeek V3  across Different Task Domains.} 
+    \label{fig:ratio-domain}
+\end{figure*}
+
+\subsection{Sensitivity Analysis to Configuration Changes}
+
+\begin{figure}[t]
+    \centering   \includegraphics[width=1\linewidth]{images/parameter.jpg}
+    \caption{Effect of Timeout (max\_iteration = default) and Max Iteration (timeout = 600s) on OpenHands (GPT-4o).}
+    \label{fig:openhands-gpt4o-hyperparam}
+\end{figure}
+
+
+Since OpenHands consistently outperformed SWE-Agent overall, we examined how its key hyperparameters affect performance. Notably, GPT-4o with OpenHands lagged behind despite strong overall results, with execution traces revealing \textit{frequent failures from environment setup errors and flawed code generation}. To clarify these issues, we tested two critical hyperparameters. \texttt{timeout}: Maximum time per iteration. \texttt{max\_iteration}: Total environment interactions allowed.
+Performance variation is in Table~\ref{fig:openhands-gpt4o-hyperparam}.
+
+Results show that more generous settings significantly boost performance. Increasing the \texttt{timeout} (from 120s to 1800s) raises both ECR and TPR, but also incurs more tokens, indicating that \textbf{environment setup may be the primary time-consuming step in repurposing repositories}. Similarly, increasing \texttt{max\_iteration} (from 30 to 100) consistently improves ECR and TPR, suggesting that \textbf{more interaction rounds could help mitigate errors within reasonable limits}. 
+Overall, these findings underscore the importance of tuning both interaction depth and time budgets to balance effectiveness and computational efficiency. 
+
+
+\subsection{Practical Benefits Analysis}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=1\linewidth]{images/alpha.pdf}
+    \caption{The $\alpha$ per Repository (a) and Pareto Curves (b).}
+    \label{fig:alpha_results}
+\end{figure}
+
+
+Given OpenHands’ strong overall performance, we select it as the evaluation backbone for estimating the practical value of the three most cost-effective models.
+% : DeepSeek V3, GPT-4.1, and Claude 3.5. 
+We treat each repository as a domain, capturing agents’ domain-specific applicability and their ability to leverage the code. 
+For each repository, we computed \(\alpha\)-score by averaging net gains of all \(n\) tasks executed with that repository, as defined in Eq~(1). 
+% ,(e.g., \(n{=}5\) for \texttt{SpeechBrain}), as defined in Eq~(1). 
+
+Figure~\ref{fig:alpha_results} (a) presents the \(\alpha\) score (green revenue minus red cost) of each repository, facilitating a direct cost-benefit comparison across models and repositories. 
+Figure~\ref{fig:alpha_results} (b) displays the Pareto curves, illustrating how each model’s total alpha is distributed across repositories. The dashed 45-degree reference line represents a perfectly even distribution: if the cumulative alpha curve rises steeply and surpasses the diagonal early, it means just a few repositories contribute most of the total benefit (high concentration). In contrast, if a curve close to the diagonal means alpha is more evenly spread across repositories. This directly reveals the difference in benefit concentration for each model. 
+
+\textbf{Expensive tasks are always profitable if completed by the agent, while cheap tasks require careful cost control.}
+Repositories with intrinsically high human market value (\(MV\)), like \texttt{VideoPose3D}, \texttt{FunASR}, and \texttt{NeuroKit}, yield the largest positive \(\alpha\) when agents succeed. Low-\(MV\) image-processing tasks (\(MV\!\approx\$5\text{--}10\)) often produce negative \(\alpha\) once the agent’s average cost exceeds \$1--2. This pattern underscores the importance of controlling operational costs for tasks with limited commercial potential.
+
+DeepSeek V3 delivers the highest overall benefit and best cost–performance for most repositories. 
+GPT-4.1’s performance is more consistent and robust across scenarios, with fewer large losses. 
+Claude 3.5 has the most dispersed returns, excelling at information extraction but being cost-sensitive on compute-intensive vision tasks.
+
+The $\alpha$ score captures meaningful distinctions that technical metrics (ECR/TPR) alone may miss, emphasizing the need to align agent deployment with task-specific economic profiles. Details are provided in Appendix D. 
+
+
+\subsection{Error Analysis}
+
+To better understand the challenges in such repository-centric tasks, we studied execution errors encountered across various agents. We grouped all errors into five types: \textbf{E1, }Environment-Setup; \textbf{E2, }Workflow Planning; \textbf{E3, }Repository Comprehension; \textbf{E4: }Runtime; and \textbf{E5: }Failures to Follow Instructions. Case studies are shown in Appendix F.
+% All success and failure case studies are clearly shown in Appendix F.
+
+\begin{figure}[t]
+    \centering
+\includegraphics[width=1\linewidth]{images/error_analysis_v4.pdf}
+    \caption{Distribution of Errors per Agent (a) and Overall Error Statistics (b).}
+    \label{fig:enter-label}
+\end{figure}
+
+As summarized in Figure~\ref{fig:enter-label} (b), E1 errors were the most common, constituting 65.04\% of all failures. These usually came from dependency conflicts, missing binary wheels, or absent system-level libraries. Notably, env setup doesn’t improve results but causes most failures---showing its unavoidable importance in real-world agent applications. E2 errors mainly reflected agents' inability to orchestrate execution sequences or their stagnation at setup stages. E3 errors occurred when agents misidentified entry-point scripts or misused APIs within repositories. E4 errors involved premature termination due to system freezes, timeouts, or interrupts (\texttt{Ctrl+C}). E5 errors, the least frequent, included things like wrong file naming, incorrect output formats,  missing deliverables, or solving the task without using the repository as required. 
+Check Appendix F for examples of each.
+
+We compared errors across agents/models and found similar weaknesses regardless of architecture (see Figure~\ref{fig:enter-label} (a)). Key improvements could be summarized as: robust dependency management, enhanced execution planning, deeper repo comprehension, smarter resource handling during runtime, and rigorous instruction following---all crucial for more reliable and effective real-world agent performance.
+
+
+
+\section{Conclusion}
+We introduced GitTaskBench, a benchmark for evaluating agents’ ability to leverage repository code for complex task solving. With carefully curated tasks, thoroughly reviewed repositories, and practical automated evaluation, GitTaskBench sets a new standard for assessing real-world agent utility. We hope this benchmark drives greater focus on repository utilization for everyday, non-technical challenges and encourages economic value-driven agent applications.
+
+
+
+\bibliography{aaai2026}
+
+
+\appendix
+\input{Appendices}
+
+\end{document} 
+
+
+

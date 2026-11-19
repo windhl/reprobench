@@ -1,0 +1,23 @@
+Data file: /home/tca/.config/opencode/skills/reprobench-scoring/reprobench/data/evaluation_summary.txt
+Sections dir: /home/tca/.config/opencode/skills/reprobench-scoring/reprobench/sections
+  Parsed simulation count from summary: 316
+
+--- Table 1 (400-experimental-design.tex) ---
+  glm-5.2:
+  mimo-v2.5:
+  claude-sonnet-4-6:
+  gpt-5.5:
+  deepseek-v4-flash:
+
+--- Stage Funnel (502-failure.tex) ---
+Traceback (most recent call last):
+  File "/home/tca/.config/opencode/skills/reprobench-scoring/reprobench/scripts/verify_paper_numbers.py", line 652, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/tca/.config/opencode/skills/reprobench-scoring/reprobench/scripts/verify_paper_numbers.py", line 516, in main
+    tex502 = read_tex('502-failure.tex')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tca/.config/opencode/skills/reprobench-scoring/reprobench/scripts/verify_paper_numbers.py", line 463, in read_tex
+    with open(path) as f:
+         ^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/tca/.config/opencode/skills/reprobench-scoring/reprobench/scripts/../sections/502-failure.tex'

@@ -1,0 +1,326 @@
+%File: anonymous-submission-latex-2026.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage[draft]{aaai2026}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage[table]{xcolor}         % colors
+
+% \usepackage[utf8]{inputenc} 
+% \usepackage[T1]{fontenc}
+\usepackage{url}            
+% \usepackage{booktabs}       
+\usepackage{amsfonts}  
+\usepackage{longtable}
+\usepackage{nicefrac}       
+\usepackage{microtype}      
+\usepackage{appendix}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{pdfpages}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{caption}
+% \usepackage{authblk}
+% \captionsetup[table]{skip=8pt}
+\usepackage[export]{adjustbox}
+
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,calc,fit}
+% \usepackage{lmodern}
+% \usepackage{parskip}
+
+\tikzset{
+  handdrawn-gold/.style={
+    draw=orange!75!brown,
+    line width=0.5pt,
+    decorate,
+    decoration={random steps, segment length=7pt, amplitude=0.5pt}
+  },
+  fuzzyshadow-gold/.style={
+    draw=orange!55!brown,
+    line width=0.3pt,
+    decorate,
+    decoration={random steps, segment length=7pt, amplitude=0.3pt},
+    opacity=0.5
+  },
+  pencilshade-gold/.style={
+    draw=none,
+    fill=orange!20!brown,
+    opacity=0.4
+  }
+}
+
+\tikzset{
+  handdrawn-rose/.style={
+    draw=red!80!violet,
+    line width=0.5pt,
+    decorate,
+    decoration={random steps, segment length=7pt, amplitude=0.5pt}
+  },
+  fuzzyshadow-rose/.style={
+    draw=red!60!violet,
+    line width=0.3pt,
+    decorate,
+    decoration={random steps, segment length=7pt, amplitude=0.3pt},
+    opacity=0.5
+  },
+  pencilshade-rose/.style={
+    draw=none,
+    fill=red!20!violet,
+    opacity=0.4
+  }
+}
+
+\tikzset{
+  handdrawn-green/.style={
+    draw=teal!80!black,
+    line width=0.5pt,
+    decorate,
+    decoration={random steps, segment length=7pt, amplitude=0.5pt}
+  },
+  fuzzyshadow-green/.style={
+    draw=teal!50!black,
+    line width=0.3pt,
+    decorate,
+    decoration={random steps, segment length=7pt, amplitude=0.3pt},
+    opacity=0.5
+  },
+  pencilshade-green/.style={
+    draw=none,
+    fill=cyan!40!teal,
+    opacity=0.4
+  }
+}
+
+
+\usepackage{tabularx}
+\usepackage{pifont} 
+\usepackage{lipsum} 
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{hyphenat}
+\usepackage{fvextra}
+% \usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyvrb}
+
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{2} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai2026.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+
+\ifdefined\hidecomments
+  \newcommand\minghao[1]{}
+  \newcommand\nanda[1]{}
+  \newcommand\haoran[1]{}
+  \newcommand\charan[1]{}
+  \newcommand\kimberly[1]{}
+  \newcommand\meet[1]{}
+  \newcommand\together[1]{}
+\else
+  \newcommand\minghao[1]{{\color{blue}Minghao: #1}}
+  \newcommand\nanda[1]{{\color{green}Nanda: #1}}
+  \newcommand\haoran[1]{{\color{red}Haoran: #1}}
+  \newcommand\kimberly[1]{{\color{teal}Kimberly: #1}}
+  \newcommand\charan[1]{{\color{orange}Charan: #1}}
+  \newcommand\meet[1]{{\color{purple}Meet: #1}}
+  \newcommand\together[1]{{\color{brown}All: #1}}
+\fi
+
+\newcommand{\ftcross}{\textcolor{red}{\ding{55}}}
+\newcommand{\ftcheck}{\textcolor{teal}{\ding{51}}}
+
+\title{Towards Effective Offensive Security LLM Agents:    Hyperparameter Tuning, LLM as a Judge, and a Lightweight CTF Benchmark}
+
+\author{
+Minghao Shao\textsuperscript{\rm 1,2}\thanks{Authors contributed equally to this research.},
+Nanda Rani\textsuperscript{\rm 3*},
+Kimberly Milner\textsuperscript{\rm 1*},
+Haoran Xi\textsuperscript{\rm 1},
+Meet Udeshi\textsuperscript{\rm 1},\\
+Saksham Aggarwal\textsuperscript{\rm 1},
+Venkata Sai Charan Putrevu\textsuperscript{\rm 1},
+Sandeep Kumar Shukla\textsuperscript{\rm 4},\\
+Prashanth Krishnamurthy\textsuperscript{\rm 1},
+Farshad Khorrami\textsuperscript{\rm 1},
+Ramesh Karri\textsuperscript{\rm 1},
+Muhammad Shafique\textsuperscript{\rm 2}
+}
+
+\affiliations{
+\textsuperscript{\rm 1}New York University \quad
+\textsuperscript{\rm 2}New York University Abu Dhabi \\ \quad
+\textsuperscript{\rm 3}Indian Institute of Technology Kanpur \quad
+\textsuperscript{\rm 4}International Institute of Information Technology Hyderabad\\
+\texttt{shao.minghao@nyu.edu, nandarani@cse.iitk.ac.in, km\_4@osiris.cyber.nyu.edu, hx759@nyu.edu, m.udeshi@nyu.edu, sa9447@nyu.edu, v.putrevu@nyu.edu, sandeeps@iiit.ac.in, prashanth.krishnamurthy@nyu.edu, khorrami@nyu.edu,rkarri@nyu.edu, muhammad.shafique@nyu.edu}\\
+}
+
+
+
+%Example, Single Author, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\iffalse
+\title{My Publication Title --- Single Author}
+\author {
+    Author Name
+}
+\affiliations{
+    Affiliation\\
+    Affiliation Line 2\\
+    name@example.com
+}
+\fi
+
+\iffalse
+%Example, Multiple Authors, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\title{My Publication Title --- Multiple Authors}
+\author {
+    % Authors
+    First Author Name\textsuperscript{\rm 1},
+    Second Author Name\textsuperscript{\rm 2},
+    Third Author Name\textsuperscript{\rm 1}
+}
+\affiliations {
+    % Affiliations
+    \textsuperscript{\rm 1}Affiliation 1\\
+    \textsuperscript{\rm 2}Affiliation 2\\
+    firstAuthor@affiliation1.com, secondAuthor@affilation2.com, thirdAuthor@affiliation1.com
+}
+\fi
+
+
+% REMOVE THIS: bibentry
+% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
+\usepackage{bibentry}
+% END REMOVE bibentry
+
+\begin{document}
+
+\maketitle
+
+\input{sections/0-abstract}
+
+\input{sections/1-introduction}
+
+\input{sections/2-background}
+
+\input{sections/3-methods}
+
+\input{sections/4-experiments}
+
+\input{sections/5-results}
+
+\input{sections/6-discussion}
+
+\input{sections/7-conclusion}
+
+\bibliography{ref}
+
+\appendix
+
+\input{supplementary/0-CTFTiny}
+
+\input{supplementary/1-CTFJudge}
+
+\input{supplementary/2-Sweeping}
+
+\input{supplementary/4-Case_studies}
+
+% \input{checklist}
+
+\end{document}

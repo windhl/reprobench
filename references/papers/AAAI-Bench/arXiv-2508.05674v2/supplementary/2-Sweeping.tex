@@ -1,0 +1,89 @@
+\section{Sweeping Analysis by Category}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Temperature-wise Performance Distribution Across Categories (\%)}
+\label{tab:temperature_performance}
+\begin{tabular}{l|c|cccccc}
+\toprule
+\textbf{Model} & \textbf{Temp} & \textbf{cry} & \textbf{for} & \textbf{pwn} & \textbf{rev} & \textbf{web} & \textbf{msc} \\
+\midrule
+\multirow{6}{*}{\rotatebox{90}{\textbf{Claude 4 S}}} 
+& \textbf{1e-7} & \textbf{83.3} & \textbf{100.0} & 36.4 & \textbf{68.8} & \textbf{100.0} & 50.0 \\
+& \textbf{0.2} & 66.7 & 50.0 & 36.4 & 62.5 & \textbf{100.0} & 33.3 \\
+& \textbf{0.4} & 58.3 & \textbf{100.0} & 45.5 & \textbf{68.8} & 66.7 & 50.0 \\
+& \textbf{0.6} & 50.0 & 50.0 & \textbf{63.6} & 56.3 & \textbf{100.0} & 50.0 \\
+& \textbf{0.8} & 58.3 & \textbf{100.0} & 45.5 & 62.5 & \textbf{100.0} & 33.3 \\
+& \textbf{1.0} & 58.3 & 50.0 & \textbf{63.6} & \textbf{68.8} & \textbf{100.0} & \textbf{66.7} \\
+\midrule
+\multirow{6}{*}{\rotatebox{90}{\textbf{GPT 4.1}}} 
+& \textbf{1e-7} & 33.3 & 50.0 & \textbf{36.4} & 25.0 & \textbf{66.7} & 50.0 \\
+& \textbf{0.2} & \textbf{50.0} & 0.0 & \textbf{36.4} & 25.0 & \textbf{66.7} & 50.0 \\
+& \textbf{0.4} & 33.3 & 0.0 & 18.2 & \textbf{43.8} & \textbf{66.7} & 33.3 \\
+& \textbf{0.6} & \textbf{50.0} & 50.0 & \textbf{36.4} & 37.5 & \textbf{66.7} & 33.3 \\
+& \textbf{0.8} & 33.3 & \textbf{100.0} & 27.3 & 31.3 & \textbf{66.7} & 50.0 \\
+& \textbf{1.0} & 33.3 & 0.0 & \textbf{36.4} & 37.5 & \textbf{66.7} & \textbf{66.7} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table ~\ref{tab:temperature_performance} reveals how temperature settings affect challenge-solving patterns across cybersecurity domains. \texttt{Claude 4 Sonnet} shows exceptional performance in web challenges, achieving 100\% success rate across most temperature settings, and demonstrates strong reverse engineering capabilities (56-69\%). \texttt{GPT 4.1} exhibits more modest but consistent performance, with web challenges maintaining stable 67\% success rates across all temperatures. Notably, both models show distinct performance profiles: \texttt{Claude 4 Sonnet} excels particularly in cryptography (50-83\%) and web domains, while \texttt{GPT 4.1} shows more balanced but lower overall performance across categories. The relative stability of performance distributions across temperature values suggests that while absolute solving rates may vary with temperature (as shown in the main paper), the fundamental challenge-solving capabilities and domain preferences remain consistent for each model.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Top-p-wise Performance Distribution Across Categories (\%)}
+\label{tab:topp_performance}
+\begin{tabular}{l|c|*{6}{c}}
+\toprule
+\textbf{Model} & \textbf{Top-p} & \textbf{cry} & \textbf{for} & \textbf{pwn} & \textbf{rev} & \textbf{web} & \textbf{msc} \\
+\midrule
+\multirow{8}{*}{\rotatebox{90}{\textbf{Claude 4 S}}} 
+& \textbf{0.25} & 58.3 & 50.0 & \textbf{63.6} & 68.8 & \textbf{100.0} & 66.7 \\
+& \textbf{0.5} & \textbf{75.0} & \textbf{100.0} & \textbf{63.6} & 62.5 & \textbf{100.0} & 50.0 \\
+& \textbf{0.75} & \textbf{75.0} & 50.0 & 54.5 & 56.3 & 66.7 & 33.3 \\
+& \textbf{0.8} & 50.0 & 50.0 & \textbf{63.6} & \textbf{75.0} & 66.7 & \textbf{83.3} \\
+& \textbf{0.85} & 66.7 & 0.0 & \textbf{63.6} & 68.8 & 66.7 & 66.7 \\
+& \textbf{0.9} & 58.3 & 50.0 & 54.5 & 62.5 & 66.7 & 33.3 \\
+& \textbf{0.95} & 50.0 & 50.0 & 45.5 & 50.0 & 66.7 & 66.7 \\
+& \textbf{1.0} & 58.3 & 50.0 & \textbf{63.6} & 68.8 & \textbf{100.0} & 66.7 \\
+\midrule
+\multirow{8}{*}{\rotatebox{90}{\textbf{GPT 4.1}}} 
+& \textbf{0.25} & 33.3 & 0.0 & 27.3 & 25.0 & \textbf{66.7} & 33.3 \\
+& \textbf{0.5} & 41.7 & 0.0 & \textbf{36.4} & 12.5 & \textbf{66.7} & 66.7 \\
+& \textbf{0.75} & 25.0 & \textbf{100.0} & \textbf{36.4} & 31.3 & 33.3 & 50.0 \\
+& \textbf{0.8} & 41.7 & 0.0 & \textbf{36.4} & 25.0 & \textbf{66.7} & 50.0 \\
+& \textbf{0.85} & 33.3 & 50.0 & 9.1 & 31.3 & 33.3 & 66.7 \\
+& \textbf{0.9} & 41.7 & 0.0 & 18.2 & \textbf{43.8} & \textbf{66.7} & \textbf{83.3} \\
+& \textbf{0.95} & \textbf{50.0} & 50.0 & 18.2 & 25.0 & 33.3 & 50.0 \\
+& \textbf{1.0} & 33.3 & 0.0 & \textbf{36.4} & 37.5 & \textbf{66.7} & 66.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table ~\ref{tab:topp_performance} shows more variation in category distributions compared to temperature effects on Top-p. \texttt{Claude 4 Sonnet} maintains strong reverse engineering performance (50-75\%) across most top-p values, with cryptography consistently representing 50-75\% of solved challenges, demonstrating robust performance across these domains. \texttt{GPT 4.1} shows more dramatic fluctuations, particularly in forensics (0-100\%) and pwn categories (9-36\%), with some top-p values yielding 0\% success in forensics. Notably, \texttt{Claude 4 Sonnet} achieves 100\% success rates in web challenges across multiple top-p settings, while \texttt{GPT 4.1}'s web performance remains more constrained at 33-67\%. This suggests top-p has a more pronounced impact on the types of challenges successfully solved, potentially affecting the models' ability to maintain systematic approaches across different domains compared to temperature adjustments.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Max Token-wise Performance Distribution Across Categories (\%)}
+\label{tab:maxtoken_performance}
+\begin{tabular}{l|c|*{6}{c}}
+\toprule
+\textbf{Model} & \textbf{Token} & \textbf{cry} & \textbf{for} & \textbf{pwn} & \textbf{rev} & \textbf{web} & \textbf{msc} \\
+\midrule
+\multirow{3}{*}{\textbf{Claude 4 S}} 
+& \textbf{2048} & 33.3 & 50.0 & 36.4 & 37.5 & 66.7 & 50.0 \\
+& \textbf{4096} & 66.7 & 50.0 & 54.5 & 62.5 & \textbf{100.0} & 0.0 \\
+& \textbf{8192} & \textbf{75.0} & 50.0 & \textbf{63.6} & \textbf{81.3} & \textbf{100.0} & \textbf{83.3} \\
+\midrule
+\multirow{3}{*}{\textbf{GPT 4.1}} 
+& \textbf{2048} & 33.3 & 0.0 & 18.2 & 6.3 & 66.7 & 16.7 \\
+& \textbf{4096} & 33.3 & 0.0 & \textbf{36.4} & \textbf{37.5} & 66.7 & \textbf{66.7} \\
+& \textbf{8192} & 33.3 & \textbf{50.0} & \textbf{36.4} & 25.0 & 66.7 & 50.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table ~\ref{tab:maxtoken_performance} shows interesting category-specific effects with different setups on max tokens. \texttt{Claude 4 Sonnet} performs dramatically better on reverse engineering tasks with longer contexts (81.3\% at 8192 tokens vs 37.5\% at 2048), while also showing improved cryptography performance with increased tokens (75.0\% vs 33.3\%). \texttt{GPT 4.1} exhibits more erratic patterns, with reverse engineering performance initially increasing then decreasing at higher token limits (6.3\% → 37.5\% → 25.0\%). The complete absence of miscellaneous challenge solutions at 4096 tokens for Claude suggests certain parameter combinations may create unexpected performance gaps, though performance recovers strongly at 8192 tokens (83.3\%), supporting the benefit of longer reasoning contexts for complex cybersecurity challenges.

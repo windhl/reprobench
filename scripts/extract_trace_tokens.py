@@ -20,13 +20,14 @@ The `total` field already equals their sum, so we use it directly.
 Cost and time are taken from the trace files as-is (already correct in prior work).
 
 Outputs:
-  - data/trace_token_extraction.json   : per-run raw numbers (machine-readable)
-  - data/trace_token_summary.md        : per-model aggregate table (human-readable)
+  - <output-dir>/trace_token_extraction.json : per-run raw numbers (machine-readable)
+  - <output-dir>/trace_token_summary.md      : per-model aggregate table (human-readable)
   - stdout                             : the aggregate table for quick inspection
 """
 import json
 import os
 import sys
+import argparse
 from collections import defaultdict, OrderedDict
 
 # ============================================================
@@ -34,10 +35,10 @@ from collections import defaultdict, OrderedDict
 # ============================================================
 TRACE_BASE = os.environ.get(
     "REPRO_TRACE",
-    "/home/tca/reprobench/eval/repro_trace",
+    None,
 )
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(SCRIPT_DIR, "..", "data")
+DATA_DIR = None
 
 # Canonical model order (matches the paper)
 MODELS = [
@@ -187,6 +188,17 @@ def fmt_float(n, d=2):
 # Main
 # ============================================================
 def main():
+    global TRACE_BASE, DATA_DIR
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--trace-root', default=TRACE_BASE,
+                        help='Trace directory; defaults to REPRO_TRACE environment variable')
+    parser.add_argument('--output-dir', required=True,
+                        help='Directory for newly generated JSON and Markdown results')
+    args = parser.parse_args()
+    if not args.trace_root:
+        parser.error('Specify --trace-root or set REPRO_TRACE')
+    TRACE_BASE = os.path.abspath(args.trace_root)
+    DATA_DIR = os.path.abspath(args.output_dir)
     if not os.path.isdir(TRACE_BASE):
         sys.exit(f"ERROR: trace base not found: {TRACE_BASE}")
 

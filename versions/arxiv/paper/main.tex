@@ -1,0 +1,67 @@
+\documentclass[letterpaper]{article}
+\usepackage{aaai2027}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\usepackage{natbib}
+\usepackage{caption}
+\frenchspacing
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{rotating}
+\pdfinfo{/TemplateVersion (2027.1)}
+\setcounter{secnumdepth}{2}
+\nocopyright % Suppress the AAAI copyright notice for the arXiv preprint
+
+\newcommand{\sys}{\textsc{ReproBench}}
+\newcommand{\bof}{\textsc{BOF}}
+\newcommand{\cmdi}{\textsc{CMDI}}
+\newcommand{\auth}{\textsc{AuthBypass}}
+
+\title{ReproBench: Benchmarking LLM Agents on Reproducing Vulnerability \\ From Scratch}
+% NOTE: the \corresponding macro in aaai2027.sty always prints the singular
+% "Corresponding author." even for multiple corresponding authors (the plural
+% flag is set too late in its two-pass rendering). We therefore use a manual
+% \thanks + \footnotemark pair; the [2] must match the \thanks footnote number
+% (equal-contrib is footnote 1, corresponding is footnote 2).
+\author{
+    Liang He\textsuperscript{\rm 1,2}\equalcontrib,
+    Sheng Wu\textsuperscript{\rm 1,2}\equalcontrib\thanks{Corresponding authors.},
+    Haomiao Hao\textsuperscript{\rm 1,2},
+    Hongduo Zhao\textsuperscript{\rm 1,2},
+    Jia Yan\textsuperscript{\rm 1,2}\footnotemark[2],
+    Purui Su\textsuperscript{\rm 1,2,3}
+}
+\affiliations{
+    \textsuperscript{\rm 1}Institute of Software, Chinese Academy of Sciences\\
+    \textsuperscript{\rm 2}University of Chinese Academy of Sciences\\
+    \textsuperscript{\rm 3}Key Laboratory of System Software (Chinese Academy of Sciences)\\
+    \{heliang, wusheng2023, haohaomiao2025, hongduo2021, yanjia, purui\}@iscas.ac.cn
+}
+
+\begin{document}
+\maketitle
+
+
+\input{sections/000-abstract}
+\input{sections/100-introduction}
+\input{sections/200-background-and-related-work}
+\input{sections/300-benchmark-construction}
+\input{sections/400-experimental-design}
+\input{sections/500-evaluation-results}
+%\input{sections/600-failure-modes}
+\input{sections/700-discussion}
+\input{sections/800-conclusion}
+
+\bibliography{aaai2027}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

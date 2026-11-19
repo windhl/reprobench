@@ -1,0 +1,69 @@
+\section{Experiment Setup}
+
+% \subsection{Benchmark}
+% We evaluate our approach using \texttt{CTFTiny}, a carefully curated benchmark derived from the NYU CTF Bench introduced in this work. The dataset includes 50 challenges across six distinct categories, selected and validated through extensive experimentation with multiple model configurations. \texttt{CTFTiny} offers a computationally efficient yet representative testbed, preserving the complexity and diversity required for meaningful evaluation of agentic cybersecurity systems.
+
+\subsection{Metrics}
+Our evaluation framework adopts a multi-dimensional approach to assess agent performance across three key aspects.
+
+\subsubsection{Pass@k} We use the standard pass@1 metric to measure the proportion of challenges successfully solved on the first attempt. We also report the average computational cost across configurations, highlighting the trade-offs between effectiveness and efficiency under different parameter settings.
+\subsubsection{CCI} We fix the weights of six evaluation factors to be equal as competency in each activity is required for flag discovery. \texttt{CTFJudge} is provided with one expert/author write-up for each \texttt{CTFTiny} challenge, sequentially describing how to solve the challenge. The write-ups have insights on the targeted vulnerability, code snippets, tool references, and commentary on strategy and pitfalls. While \texttt{CTFJudge} is tasked to qualitatively compare AI solver trajectories in a solution, the graded performance matrix enables the framework to review the solver's strategy,  performance, and adaptability in navigating the challenge. %In this way the solver can be judged on cyber competencies rather than proximity to the provided write-up.
+
+
+% \begin{table}[ht]
+%   \centering
+%     \caption{Judging factors and weights for the CTF Competency Index, reflecting key cybersecurity skills.}
+%   \begin{tabular}{lr}
+%     \toprule
+%     Judging Factors                        & Weight \\
+%     \midrule
+%     Vulnerability Understanding      & 0.17   \\
+%     Reconnaissance Thoroughness      & 0.17   \\
+%     Exploitation Methodology         & 0.17   \\
+%     Technical Accuracy               & 0.17   \\
+%     Efficiency of Approach           & 0.16   \\
+%     Adaptability                     & 0.16   \\
+%     \bottomrule
+%   \end{tabular}
+%   \label{tab:default_weights}
+% \end{table}
+
+% \subsubsection{Partial Correctness Assessment} To address the limitations of traditional CTF benchmarks that rely solely on binary outcomes, we introduce a novel task planning similarity metric. This metric compares agent-generated solutions against human-authored reference writeups for \texttt{CTFTiny} using a specialized “match-up agent” analyzer. By capturing partial correctness, it enables a more fine-grained evaluation of solution quality and provides deeper insight into agent reasoning capabilities.
+
+% \subsubsection{Behavioral Action Analysis} We analyze agent behavior by categorizing actions into two principal patterns: exploration and exploitation. Exploration encompasses activities aimed at understanding the challenge environment, while exploitation involves executing targeted operations based on prior knowledge. By examining the sequence and distribution of these behaviors, we identify critical success factors and derive actionable insights into effective coordination and decision-making strategies across CTF categories.
+
+\subsection{Model Selection}
+
+We evaluate the offensive security agent on six state-of-the-art language models spanning diverse architectural families and capabilities. This selection ensures broad coverage across reasoning paradigms, parameter scales, and training methodologies. We employ Claude 3.7 Sonnet with a temperature of 0.1 for \texttt{CTFJudge} in grading the  all agent-LLM interactions. We use official APIs from Anthropic, OpenAI, and Google for proprietary models to ensure performance and stability. We use the Together AI platform for open-source models. %The evaluated models include:
+
+\subsubsection{Proprietary models.} \texttt{claude-sonnet-4-20250514}, \texttt{gpt-4.1-2025-04-14}, \texttt{gemini-2.5-pro}, and \texttt{gemini-2.5-flash}. These commercially-deployed models benefit from large-scale training, proprietary optimization, and robust generalization over diverse, multi-step reasoning tasks in real-world scenarios.
+ 
+\subsubsection{Open-source models.} \texttt{Llama-4-Maverick-17B}, \texttt{Qwen3-235B}, and \texttt{DeepSeek-V3-0324}. These community-driven models prioritize transparency, reproducibility, and adaptability, enabling flexible integration and task-specific fine-tuning in constrained settings.
+
+
+% \subsection{Agentic Systems Employed}
+
+% \subsubsection{Baseline Agent.}
+
+% Our evaluation framework is \texttt{D-CIPHER}, chosen for its state-of-art performance and compatibility with the NYU CTF Bench dataset. Its multi-agent architecture serves as a robust platform for systematic hyperparameter analysis in CTF environments. A detailed comparative analysis is provided in the Results section to highlight the broader applicability of our evaluation methodology.
+
+% \subsubsection{CTFJudge Agent.}
+
+% \texttt{CTFJudge} is an agentic framework that comprises of two summarizer agents tasked with parsing the human and AI solver transcripts into a sequence of detailed steps. These summaries  are subsequently fed to the third agent responsible for comparing the AI solver’s inferred reasoning and actions against reference guided ground truth.  
+
+% Through prompting the \textit{trajectory\_summary\_agent} is made cognizant of \texttt{D-CIPHER}'s Planner-Executor interactions, guaranteeing a correct summarization. The \textit{qualitative\_evaluation\_agent} is prompted to return a formatted performance matrix with a pre-defined grading rubric as well as the production of highly relevant  \textit{failure keywords}. To further ensure consistency of the \texttt{CTFJudge} in grading the model Claude 3.7 Sonnet is employed for all agent-LLM interactions with a temperature of 0.1.
+
+% As the LLM is highly capable to return thoughtful output in addition to performing the task of scoring, the return prompt is formatted with relevant fields such as \textit{key\_insights} and \textit{detailed\_comparison} to capture the LLM's reasoning for its score. When provided with strategic summarizations, well-defined performance rating categories, and guided with clear analysis instructions to judge for cyber competencies, \texttt{CTFJudge} is able to produce reference guided qualitative scores that provide insight into the AI generated trajectories.
+
+\subsection{Hyperparameter Selection}
+We evaluate the impact of LLM hyperparameters on \texttt{D-CIPHER}'s performance by varying:
+
+\begin{itemize}
+    \item \textbf{Temperature}: $\{0, 0.2, 0.4, 0.6, 0.8, 1.0\}$
+    \item \textbf{Top-$p$}: $\{0.25, 0.5, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0\}$
+    \item \textbf{Max tokens}: $\{2048, 4096, 8192\}$
+\end{itemize}
+
+For the baseline, we adopt the default configuration from the original \texttt{D-Cipher} implementation:
+temperature as $1.0$, top-$p$ as 1.0 max tokens as $4096$.% matches up with the default setup of most API service platforms. This systematic exploration enables a comprehensive analysis of hyperparameter sensitivity across different CTF challenge categories and model architectures.
+

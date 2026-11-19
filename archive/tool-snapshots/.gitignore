@@ -1,0 +1,12 @@
+*.gz
+*.aux
+*.bbl
+*.blg
+*.log
+*.fdb_latexmk
+*.fls
+.DS_Store
+reprobench.pdf
+ReproducibilityChecklist.pdf
+appendix_standalone.pdf
+**/__pycache__

@@ -1,0 +1,2916 @@
+{
+  "original_backup": "/home/tca/.config/opencode/skills/reprobench-scoring/backups/20261119-173001/reprobench-scoring.tar.gz",
+  "excluded_from_migration_audit": "Git administration files; complete pre-migration copies are in the backup",
+  "original_non_git_files": 397,
+  "all_original_contents_preserved": true,
+  "files": [
+    {
+      "original_path": "AuthorKit27.zip",
+      "sha256": "e28c6ac9bc6eb3b4e2d849547d2cefb5162610ee39d0a12e0dc62d1126b44a7d",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27.zip"
+      ]
+    },
+    {
+      "original_path": "260925-AAAI-review.txt",
+      "sha256": "cf196093a580373fe0d9ca90219bd5b5a89742d730fe36bff6ed1c81f25528bb",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/submission/260925-AAAI-review.txt"
+      ]
+    },
+    {
+      "original_path": "AAAI-submission-instructions.txt",
+      "sha256": "4627352e1cb5ae79a1514cf92ed1059712311abc887486f5efad06de9b6a9c03",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/submission/AAAI-submission-instructions.txt"
+      ]
+    },
+    {
+      "original_path": "SKILL.md",
+      "sha256": "dc92ef4534382334fc7311ca49fad3a555139fde7080fb81cab37f51cf1b78d3",
+      "identical_content_at": [
+        "SKILL.md",
+        "reprobench/skills/reprobench-scoring/SKILL.md",
+        "reprobench/archive/installed-scoring-snapshot/SKILL.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.zip",
+      "sha256": "b8e9b9a0d8411319dafdaad7eaca9054dc05949d59933c15892cfafb9c001b57",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/submission/reprobench_arxiv.zip"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench.blg",
+      "sha256": "de861e77138c9da2fa33211140bb4cf14bc3483badf7d1c66db59811e2942517",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench.blg"
+      ]
+    },
+    {
+      "original_path": "reprobench/aaai2027.sty",
+      "sha256": "391bce82815bf698b8e382dd3ae7e30c75d7ab46df140cb295b1266016bc8623",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/aaai2027.sty",
+        "reprobench/versions/aaai-2027/paper/aaai2027.sty",
+        "reprobench/references/templates/aaai-2027/AuthorKit27/aaai2027.sty"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix_standalone.bbl",
+      "sha256": "079d34e7057069dd2cf4a0b120a132a26ad50627b281f640e343672f8e7c9861",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/appendix_standalone.bbl"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.bbl",
+      "sha256": "4d558cbfd477128fc5155d524e815e153dbfb1cbb28bbd45aa5a93d446feb36e",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench_arxiv.bbl",
+        "reprobench/archive/latex-build/reprobench.bbl"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench.log",
+      "sha256": "971f236106d6d1186f2665f59f17d1673ab2fb75ecbc0dc63dfcbac52d4ff386",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench.aux",
+      "sha256": "838eb932ffef1e181a019c4fa3643156878032bb8ddf3e1cfeee7592173d9e45",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench.aux"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.aux",
+      "sha256": "91b0fa71e06dd3eadeaca65be44546a5b8990f7a48bf7d337f97acc77825ab1f",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench_arxiv.aux"
+      ]
+    },
+    {
+      "original_path": "reprobench/ReproducibilityChecklist.aux",
+      "sha256": "be3d8a27ab932481a725a941648e689be09cacdcfca75e9f47d30bb4c40cc38b",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/ReproducibilityChecklist.aux"
+      ]
+    },
+    {
+      "original_path": "reprobench/ReproducibilityChecklist.tex",
+      "sha256": "eae809cf58de32fcac3fcc2eb6a02548db460ee5bfecad866ec8cb4e15eebf55",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/paper/ReproducibilityChecklist.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/ReproducibilityChecklist.blg",
+      "sha256": "c5cc02d10692991a94f56de9d401be9cee1170e69536a690585866955a21387e",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/ReproducibilityChecklist.blg"
+      ]
+    },
+    {
+      "original_path": "reprobench/ReproducibilityChecklist.pdf",
+      "sha256": "b4394538f997d9425b0b9d00149531686759899af10b6bd15f919cc36d963e13",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/submission/ReproducibilityChecklist.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench.bbl",
+      "sha256": "4d558cbfd477128fc5155d524e815e153dbfb1cbb28bbd45aa5a93d446feb36e",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench_arxiv.bbl",
+        "reprobench/archive/latex-build/reprobench.bbl"
+      ]
+    },
+    {
+      "original_path": "reprobench/ReproducibilityChecklist.bbl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/ReproducibilityChecklist.bbl"
+      ]
+    },
+    {
+      "original_path": "reprobench/.gitignore",
+      "sha256": "fedc4abdb0d44962c5b7e6aa91aaa7b9cae3f7bdbe62321acedd84b954bd9e7f",
+      "identical_content_at": [
+        "reprobench/archive/tool-snapshots/.gitignore"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.log",
+      "sha256": "2fd9db500607b4d202d7cb4b7a0ec23a771e54fcf45b8ddca041e78f744c0718",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench_arxiv.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench.tex",
+      "sha256": "42f69e126568abf107f5af354290bdfa47e27a8da75a5a5890db2253db0633f1",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/paper/main.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/ReproducibilityChecklist.log",
+      "sha256": "b98a0481410d827b8f3d5c6626f21b345ef6795a0243b89f88d61d7bdc0117e2",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/ReproducibilityChecklist.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/aaai2027.bst",
+      "sha256": "5db7765ba99de5c1e4686f9b3940a0add9c5e702f2164514462bec130ccb6e3c",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/aaai2027.bst",
+        "reprobench/versions/aaai-2027/paper/aaai2027.bst",
+        "reprobench/references/templates/aaai-2027/AuthorKit27/aaai2027.bst"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.tex",
+      "sha256": "e513cd464e9146940a24138a78fec895a6cf656688c1638e24669afa888601ad",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/main.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix_standalone.tex",
+      "sha256": "0b2da6dc3629a2977f5f39b125ce3df8e1e07b64f360d3924de3eb57f7d663b4",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/paper/appendix_standalone.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.pdf",
+      "sha256": "fc698a3fcf6a750b8f2fc2bc9f7cb7a410b865bf99cc0b85cd5ff3c9337a6ac4",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/submission/reprobench_arxiv.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench.pdf",
+      "sha256": "9dd79edb5d40f81ea42e26a171477e7cd93ea80b11643b1f835b78b020dd205c",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/submission/reprobench.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/aaai2027.bib",
+      "sha256": "eb2403145c94f37ce29c7cf7923e0683626dd75e531a41d9fd8055a997248d17",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/aaai2027.bib",
+        "reprobench/versions/aaai-2027/paper/aaai2027.bib"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix_standalone.pdf",
+      "sha256": "df9f1bb8a1fa479a51b82441a4ac3b04ffb980a13dafe3d91055fa2952544cb4",
+      "identical_content_at": [
+        "reprobench/versions/aaai-2027/submission/appendix_standalone.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix_standalone.aux",
+      "sha256": "f86836b57b9a5a3462fac8c225fcaa4cb16e491558685b0969e07a031e5056b0",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/appendix_standalone.aux"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix_standalone.log",
+      "sha256": "e32bcaa2d271307f6f7fd4505a1ac9d8a34de65e4652f85c44f04224cfb26d05",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/appendix_standalone.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix_standalone.blg",
+      "sha256": "4f3a4a4138f1441c0645eb201f2a29b1663bb67b16aee8daad0ef986a38176ce",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/appendix_standalone.blg"
+      ]
+    },
+    {
+      "original_path": "reprobench/appendix.log",
+      "sha256": "ddb4609d338e9fa60338c74615656f50500136d12fdf1b9aa4e0df4b34b89ebe",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/appendix.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/compile.sh",
+      "sha256": "9d433e371298cf454416d8a0b8529eebcc86b0765d8a5059b8c2158b5a47ea2c",
+      "identical_content_at": [
+        "reprobench/archive/tool-snapshots/compile.sh"
+      ]
+    },
+    {
+      "original_path": "reprobench/reprobench_arxiv.blg",
+      "sha256": "12cfe134dcaf6fd39466a7a6e7dedb5e6661f1d94fc2423bb6bf4100dda7e2a3",
+      "identical_content_at": [
+        "reprobench/archive/latex-build/reprobench_arxiv.blg"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/800-conclusion.tex",
+      "sha256": "89534796d5a608e2ad4ea14b03e24153f0b23f595580138cd2fc37f18665db0f",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/800-conclusion.tex",
+        "reprobench/versions/aaai-2027/paper/sections/800-conclusion.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/503-vulclass.tex",
+      "sha256": "f1df51b10670b4c65a0ea6cfdef13f8f6151d137300b52d02e12862cbb414d11",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/503-vulclass.tex",
+        "reprobench/versions/aaai-2027/paper/sections/503-vulclass.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/400-experimental-design.tex",
+      "sha256": "6aec53e14d5047883557d8b395176626515ffc05dee76f0f79e6e28044034824",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/400-experimental-design.tex",
+        "reprobench/versions/aaai-2027/paper/sections/400-experimental-design.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/504-failure.tex",
+      "sha256": "c44f3fada2e6a137c3a815f33199a3d7d7ff3c5822ea9c106049d0221c0241b5",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/504-failure.tex",
+        "reprobench/versions/aaai-2027/paper/sections/504-failure.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/501-overall.tex",
+      "sha256": "2cb766b2113d78a1440d968e7a70dd55dfc2272a98fa2af47c4fbb18d3380fab",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/501-overall.tex",
+        "reprobench/versions/aaai-2027/paper/sections/501-overall.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/000-abstract.tex",
+      "sha256": "f110344f68443b4e65b95f03b8e2827ae7231135e5eced871a2f352cdba40c97",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/000-abstract.tex",
+        "reprobench/versions/aaai-2027/paper/sections/000-abstract.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/500-evaluation-results.tex",
+      "sha256": "c5557f363f4588937cdbd9afd20030efdc194979c3c89893668a5b5c5b4558dd",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/500-evaluation-results.tex",
+        "reprobench/versions/aaai-2027/paper/sections/500-evaluation-results.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/700-discussion.tex",
+      "sha256": "f1bebaf15bd5d71898f165055e4da66ef707c332773cde39c4c34eb1ddc56e15",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/700-discussion.tex",
+        "reprobench/versions/aaai-2027/paper/sections/700-discussion.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/100-introduction.tex",
+      "sha256": "1598694cb692dde5d38f4af072ba43e6ffb3d593f04bbc72376570963013f153",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/100-introduction.tex",
+        "reprobench/versions/aaai-2027/paper/sections/100-introduction.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/texput.log",
+      "sha256": "4ac4cfe168d11d89918a1d93d7961f703dcb647a45afd267ece279e255a59ef3",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/texput.log",
+        "reprobench/versions/aaai-2027/paper/sections/texput.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/200-background-and-related-work.tex",
+      "sha256": "e2e5a2738966aa57917a7584958ffe749722c8bc2fd18f431f4d971ffca53847",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/200-background-and-related-work.tex",
+        "reprobench/versions/aaai-2027/paper/sections/200-background-and-related-work.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/appendix.tex",
+      "sha256": "0885842b8d9182f69afc153567e739077daca9d23ae17922ba37e997b5418bac",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/appendix.tex",
+        "reprobench/versions/aaai-2027/paper/sections/appendix.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/502-feature.tex",
+      "sha256": "a749a02f3a78ffac4f44844ccec1fa6a948b8423a9a880c623fa4a04bf970a08",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/502-feature.tex",
+        "reprobench/versions/aaai-2027/paper/sections/502-feature.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/600-failure-modes.tex",
+      "sha256": "87ddaa1103026c6c832eb60d0066ffb292477b614e25c230f0ac59e64dd7ab5d",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/600-failure-modes.tex",
+        "reprobench/versions/aaai-2027/paper/sections/600-failure-modes.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/sections/300-benchmark-construction.tex",
+      "sha256": "495fd460bb0c7aa58026d0547a053f3972bccec46d4639f672a94240313b02e9",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/sections/300-benchmark-construction.tex",
+        "reprobench/versions/aaai-2027/paper/sections/300-benchmark-construction.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-KRepro.md",
+      "sha256": "7c99ff644c13b76303dc57aef4e9be9dc13d5ff87f3259ccacc758e54cf3b362",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-KRepro.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-CyberGym.md",
+      "sha256": "b558493f2dfdd00b8e693d3c03f8c7b46afbe133a8a7123b752f34c9e75b63a4",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-CyberGym.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-BountyBench.md",
+      "sha256": "eb80b77b60a3221e528780527ac0d347a0b515a2aadf645364559e509ed4193e",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-BountyBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-TIMEBench.md",
+      "sha256": "405f8a907773783bd1e76a975d7e5ca3f05f175834946d926f5f739c351c8ffc",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-TIMEBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-SWE-bench.md",
+      "sha256": "8d94ef0c6d173798c26c9ce62e51cab3993b9e81eba5aaa61c3988236468347b",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-SWE-bench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-SEC-Bench.md",
+      "sha256": "f32fb55bf4f3ecc483a6d2e9954b8be3bb85bb7faace43b379ac5290658c74ae",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-SEC-Bench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-CyberGym-E2E.md",
+      "sha256": "f83b2bae31767cd7dc6c9b315d55d55e9d25a1eaf5b39a6a5345d69a0652141a",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-CyberGym-E2E.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-SWE-bench-Live.md",
+      "sha256": "48c71576aa58cae21d9d2a68daee4b72fc0f6f33d34853897d51189136a01835",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-SWE-bench-Live.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-ProgramBench.md",
+      "sha256": "b741b5585b1ea02bff1b1a18404abbc4245a3befdb9837f7ca793177ccedf8b8",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-ProgramBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-ExploitBench.md",
+      "sha256": "45ab8165fca1121b9831bdadb9ae6e4087c2deae98064988b5fef51eb04360c5",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-ExploitBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-LongT2IBench.md",
+      "sha256": "d4d2ee30c0e3c1a7004fad6f5af243e3ab859938446626af5a645c2edbebefa7",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-LongT2IBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-MCPTox.md",
+      "sha256": "319ab45016f35f25185c69c2d5690babe0daf087276849bb919da0b4cc21da96",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-MCPTox.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-EduGuardBench.md",
+      "sha256": "fdbd66264e6fc6f9c44b91bd4782c8c7429abe7978f3695a4bb275d561b01fec",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-EduGuardBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-GitTaskBench.md",
+      "sha256": "c5881f057bbd77936be51660c4ddf23a1e34293241647447e19501a32ba7f492",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-GitTaskBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-MultiMedEdit.md",
+      "sha256": "a319699dcd61fd5e47371e2614afbbe915222c78f44d627a7fdc42d00ca45b86",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-MultiMedEdit.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-VCapsBench.md",
+      "sha256": "2a920403dbaa713f67896a5e791528c5895b8c2eda3872ee966c3e32e79c5f0d",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-VCapsBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-ExploitGym.md",
+      "sha256": "1d10de0f40b87252d39cc0d0bb419fb225d88c134d4774685e02faf5e32742ef",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-ExploitGym.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-CTFTiny.md",
+      "sha256": "c68ff481da56953159abb50d062f586336df3dc20f54469cf0001246735bb05f",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-CTFTiny.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/bench-paper/summary-CVEBench.md",
+      "sha256": "2571e51914b25a42e5f3afafed4cfe060fb782249cea526d0dc7956e7c847763",
+      "identical_content_at": [
+        "reprobench/references/summaries/summary-CVEBench.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/scripts/export_evaluation_to_xlsx.py",
+      "sha256": "ef03975a5b76ea65837902fc7e2947ff320f8b8a4192854b0b7495d7fb7b14cd",
+      "identical_content_at": [
+        "reprobench/archive/tool-snapshots/export_evaluation_to_xlsx.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/scripts/extract_trace_tokens.py",
+      "sha256": "0a5efd695593a7f7db8c176d74255a7c7d66130d4a41f561bf4ac92fbe3a63af",
+      "identical_content_at": [
+        "reprobench/archive/tool-snapshots/extract_trace_tokens.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/scripts/verify_paper_numbers.py",
+      "sha256": "a826c6f49e849ec47d86e987c2a8208891ed717e85b8eb6cf91c11422b3095de",
+      "identical_content_at": [
+        "reprobench/archive/tool-snapshots/verify_paper_numbers.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/scripts/__pycache__/verify_paper_numbers.cpython-312.pyc",
+      "sha256": "a256f8565b53b72753d1dd268034c7a47996c6ff3e8a1773166fcf6663247aac",
+      "identical_content_at": [
+        "reprobench/scripts/__pycache__/verify_paper_numbers.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/SKILL.md",
+      "sha256": "b224da73fcfdbacac8222f6f2a4ed4d8c6d9daa49f3e154a0d38ea1c4e04a230",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/SKILL.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/scripts/collect_cve_groundtruth.py",
+      "sha256": "3202bdbf13b82703560ab5448d73639c692554929908ab41fc6ad386f060671b",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/scripts/collect_cve_groundtruth.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/scripts/clean_cve_raw.py",
+      "sha256": "9f8a20286ae629160e156dbe1ab180d0af7432a8115e259004854db6ab00d96b",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/scripts/clean_cve_raw.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/scripts/audit_poc_repro.py",
+      "sha256": "31449e5cd274cd379a4d3f4139ba4a5b5187ae94e3382c248d12aaee540a4627",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/scripts/audit_poc_repro.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/scripts/__pycache__/clean_cve_raw.cpython-312.pyc",
+      "sha256": "7c4b34e01dbc4d264409df5b866a1f6ddeb036d52d46a30cdff5915620ec1f06",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/scripts/__pycache__/clean_cve_raw.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/scripts/__pycache__/audit_poc_repro.cpython-312.pyc",
+      "sha256": "8e64ae7d3602499c6c426d205b1121fc2501aaa1443addade96968be14e1857d",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/scripts/__pycache__/audit_poc_repro.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/cve-groundtruth-fetch/scripts/__pycache__/collect_cve_groundtruth.cpython-312.pyc",
+      "sha256": "ee404548640756bb0cc3029053a8cfb873610570faf2729c989390b8a9f43fbf",
+      "identical_content_at": [
+        "reprobench/skills/cve-groundtruth-fetch/scripts/__pycache__/collect_cve_groundtruth.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/reprobench-scoring/SKILL.md",
+      "sha256": "dc92ef4534382334fc7311ca49fad3a555139fde7080fb81cab37f51cf1b78d3",
+      "identical_content_at": [
+        "SKILL.md",
+        "reprobench/skills/reprobench-scoring/SKILL.md",
+        "reprobench/archive/installed-scoring-snapshot/SKILL.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/reprobench-scoring/scripts/generate_agent_todo_list.py",
+      "sha256": "e7a12970ca9a92d55815b57c4c12d6693caef86dc077cc43c93d5acc2960e0c6",
+      "identical_content_at": [
+        "reprobench/skills/reprobench-scoring/scripts/generate_agent_todo_list.py",
+        "reprobench/archive/installed-scoring-snapshot/scripts/generate_agent_todo_list.py",
+        "scripts/generate_agent_todo_list.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/reprobench-scoring/scripts/generate_evaluation_summary.py.bak",
+      "sha256": "52b3684fced16c1597f84e8c7c0c86bb39c42fe17efeba882dc4f8c7c3e020f4",
+      "identical_content_at": [
+        "reprobench/skills/reprobench-scoring/scripts/generate_evaluation_summary.py.bak",
+        "reprobench/skills/reprobench-scoring/scripts/generate_evaluation_summary.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/reprobench-scoring/scripts/generate_evaluation_summary.py",
+      "sha256": "52b3684fced16c1597f84e8c7c0c86bb39c42fe17efeba882dc4f8c7c3e020f4",
+      "identical_content_at": [
+        "reprobench/skills/reprobench-scoring/scripts/generate_evaluation_summary.py.bak",
+        "reprobench/skills/reprobench-scoring/scripts/generate_evaluation_summary.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/skills/reprobench-scoring/scripts/__pycache__/generate_evaluation_summary.cpython-312.pyc",
+      "sha256": "5438b21b9e34020295d7f64a13b89693cbb6c9e90cf7be55d407a7f14e98aa53",
+      "identical_content_at": [
+        "reprobench/skills/reprobench-scoring/scripts/__pycache__/generate_evaluation_summary.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/full-run-score.xlsx",
+      "sha256": "f585d121c6ef5b6c3d72562ffb34b308dc460f835a697c5b60f8c56aaa0af58f",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/full-run-score.xlsx",
+        "reprobench/versions/aaai-2027/experiments/results/full-run-score.xlsx"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/failure_analysis.xlsx",
+      "sha256": "f8299d5e52ee4a05286fbe7faa977ef2431a50c7f337cb4cf090c372768150e8",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/failure_analysis.xlsx",
+        "reprobench/versions/aaai-2027/experiments/results/failure_analysis.xlsx"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/statistics_audit.md",
+      "sha256": "ad36339f8c36bda90756a4103cfd60761393b91cf0d2ff241f0df02945cd4231",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/statistics_audit.md",
+        "reprobench/versions/aaai-2027/experiments/results/statistics_audit.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/llm_cost_analysis.md",
+      "sha256": "0bf8ef244e19565ad7d8459033d79d6db5042d8c44ccf22ce356e784c229583b",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/llm_cost_analysis.md",
+        "reprobench/versions/aaai-2027/experiments/results/llm_cost_analysis.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/representative-cve-bugs-validated.md",
+      "sha256": "6313d472d91e702493e62e43ef122544cb94cd1be803102d4ea6baff77dc2de6",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/representative-cve-bugs-validated.md",
+        "reprobench/versions/aaai-2027/experiments/results/representative-cve-bugs-validated.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/successful_reproduction_runs.md",
+      "sha256": "49363a08bfade533c8b7ef136018415fe76bc88779e607bc62853d9e09b06678",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/successful_reproduction_runs.md",
+        "reprobench/versions/aaai-2027/experiments/results/successful_reproduction_runs.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/vulntype_impact_report_v3.md",
+      "sha256": "245baccba98f4c922fc0a0a2c0c08fac28de19b772a846c686f302f93bea456e",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/vulntype_impact_report_v3.md",
+        "reprobench/versions/aaai-2027/experiments/results/vulntype_impact_report_v3.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/anomaly_analysis.md",
+      "sha256": "74a6d69a8ce1b16fc4e76322d0ddc0ea9b0091a9a444e6d5e5a9dd90063189b9",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/anomaly_analysis.md",
+        "reprobench/versions/aaai-2027/experiments/results/anomaly_analysis.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/vulntype_impact_report.md",
+      "sha256": "4243210dcc3f151bfccab5cb1919bd073446620fd6dceb7d0232168ebf37601f",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/vulntype_impact_report.md",
+        "reprobench/versions/aaai-2027/experiments/results/vulntype_impact_report.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/evaluation_summary.txt",
+      "sha256": "a05e7865a8871e7f93240f54a3b879fa2f387d903e2cc4bfe6d13e0c8e54a885",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/evaluation_summary.txt",
+        "reprobench/versions/aaai-2027/experiments/results/evaluation_summary.txt"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/trace_token_extraction.json",
+      "sha256": "4df55b980260275dab7811eadb17a9e54f8817f621d57e9e4f4e8aa089db1f7c",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/trace_token_extraction.json",
+        "reprobench/versions/aaai-2027/experiments/results/trace_token_extraction.json"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/cvedata-httpd-v3.json",
+      "sha256": "b03482ab3d87f55ac2a36bd4294e07e1f1bdf9f41c2377f62a33da0ecd9257d6",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/cvedata-httpd-v3.json",
+        "reprobench/versions/aaai-2027/experiments/results/cvedata-httpd-v3.json"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/trace_token_summary.md",
+      "sha256": "a2012a0dfdc16bbe0911354e4b3f22c7f21fa010284a74083ddb68442ebbd0c5",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/trace_token_summary.md",
+        "reprobench/versions/aaai-2027/experiments/results/trace_token_summary.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v1/interesting_data_points.md",
+      "sha256": "3951353ca3aece0e5e17b4bdeccf67d041e6e7013a7e4c23d12be8ff86da67d6",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v1/interesting_data_points.md",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v1/interesting_data_points.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v1/stats_output.txt",
+      "sha256": "69cfce86a267e7e88c4dfa56bd81bf4241e0427ca4307fb1bb1b1e352fae7c38",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v1/stats_output.txt",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v1/stats_output.txt"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v1/stats.json",
+      "sha256": "133620ef3ac171918c8aaf90ab530597fb9cae274ea062b52a81c91caa3ec44b",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v1/stats.json",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v1/stats.json"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v1/vulntype_impact_report.md",
+      "sha256": "132fea66dd3d3dc14c672a3cfa862b386d50694fedab33329c52195a8f1a1350",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v1/vulntype_impact_report.md",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v1/vulntype_impact_report.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v1/compute_stats.py",
+      "sha256": "3cac290eafb0e6a8ebc46135741af566dcae5bec3a679a29688bdec4ffbfbe88",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v1/compute_stats.py",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v1/compute_stats.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v2/stats_v2_output.txt",
+      "sha256": "aabff7e2f499f59737f733aa4363b5563a22dd625c1bd159ef4468d6aff03573",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v2/stats_v2_output.txt",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v2/stats_v2_output.txt"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v2/compute_stats_v2.py",
+      "sha256": "645edd9a38d63f84bc013aafd75568b64c8ca8444a84a7545c22e72a4c99cdcd",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v2/compute_stats_v2.py",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v2/compute_stats_v2.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v2/vtype_analysis.py",
+      "sha256": "b694543bf62a488f91d6fb30ddba63d79d1d401665f524c940e4bcd5e57d052d",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v2/vtype_analysis.py",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v2/vtype_analysis.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/data/analysis_by_vultype_v2/find_interesting_points.py",
+      "sha256": "1279e913752c2f0b4405316c659061e2bd6178d349497ff42339eb91407e2cd0",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/results/analysis_by_vultype_v2/find_interesting_points.py",
+        "reprobench/versions/aaai-2027/experiments/results/analysis_by_vultype_v2/find_interesting_points.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/usenix_security_2027/USENIX Security '27 Call for Papers _ USENIX.html",
+      "sha256": "8e6c9ed534cc202121ed89bc381d020cf172d5fff9d2fb00772b1e2ab4e69ebe",
+      "identical_content_at": [
+        "reprobench/versions/usenix-security-2027/submission/USENIX Security '27 Call for Papers _ USENIX.html"
+      ]
+    },
+    {
+      "original_path": "reprobench/usenix_security_2027/usenixsecurity2027_latex_templates.zip",
+      "sha256": "7dc55fc858881a7d64a06d7c8277be25c6dcc6070b17f74ef0d8a6bed70aa38e",
+      "identical_content_at": [
+        "reprobench/versions/usenix-security-2027/submission/usenixsecurity2027_latex_templates.zip"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d.pdf",
+      "sha256": "cfa6cb53561465f70b63e91ee6396707dd54c9f29c40590687a062587e7cf769",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/figures/3d.pdf",
+        "reprobench/versions/aaai-2027/paper/figures/3d.pdf",
+        "reprobench/archive/figure-workspace/3d.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/iceberg-v4.drawio",
+      "sha256": "230b7a57c3d4545e9ba570fdc1a36fc1e3ad3f87c70ee84a4ff34772239455d6",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/iceberg-v4.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework0721final.drawio",
+      "sha256": "9e4c1f814e754e8ceacc17badb43d614b12a7b2eec5b5fcf19a39a67777be660",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/framework0721final.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/prompt.pptx",
+      "sha256": "c0ce705587d731ab28ec574e0662f8a06ba397e68f4f65a414e817cb2ea1ec21",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/prompt.pptx"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework_0719.drawio",
+      "sha256": "76c5faca53381635678bab33597b51c138b37db3a973cdcdc8191902d06ff44f",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/framework_0719.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/pipeline.log",
+      "sha256": "99cad96586bf2e7a2e5a9f36f4a6da2c256183d2d9e4267916b3f41ee8226ea8",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/pipeline.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/roadblock_heatmap.log",
+      "sha256": "b527a8c6231669ffbd915e7dac825f9cf076924ae729a66ff96d6484988ff31f",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/roadblock_heatmap.log"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework0722.pdf",
+      "sha256": "ac60f386338963105956af889a2a82cc477e82d8b08d6d1365caf0687c80a3e8",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/framework0722.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/roadblock_heatmap.pdf",
+      "sha256": "591f3833e4337418b1f745aa63b478c00c5dcae8ce63a6a982bffab9b7811c88",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/roadblock_heatmap.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/iceberg-v4.png",
+      "sha256": "f761748e380a4f37b771bb8166101f9b6fe5a9fc499fefef94a9b48df9369e58",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/figures/iceberg-v4.png",
+        "reprobench/versions/aaai-2027/paper/figures/iceberg-v4.png",
+        "reprobench/archive/figure-workspace/iceberg-v4.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework0724.pdf",
+      "sha256": "2c317be2dc6bbdbcb9922c9fa382bcdb3b5cc8c7fa75c2e6e0981be89ac78068",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/figures/framework0724.pdf",
+        "reprobench/versions/aaai-2027/paper/figures/framework0724.pdf",
+        "reprobench/archive/figure-workspace/framework0724.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework_0719.svg",
+      "sha256": "2fe1147385bd797ff282215076896bc2df62f58a3a9156a40d5e4ae7849a5824",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/framework_0719.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/pipeline.aux",
+      "sha256": "fbabe80c887f95a1ede6847f22dd91b380bda9d17ae8bfaa72e1741b16aa41e9",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/pipeline.aux",
+        "reprobench/archive/figure-workspace/roadblock_heatmap.aux"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/case_study.tex",
+      "sha256": "ae7aab02362ceafd4b07d708b2c0e843e1f8b6d66e6f6e7adada8b35483d01ec",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/case_study.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework.pdf",
+      "sha256": "ca9f2f0709cf83af116b6382513c134d413084c738fd7f491666bb9880223858",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/framework.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/prompt.pdf",
+      "sha256": "32db356a8c70710e1567678179dc71401c311b25459e6d99515912d5871fa107",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/figures/prompt.pdf",
+        "reprobench/versions/aaai-2027/paper/figures/prompt.pdf",
+        "reprobench/archive/figure-workspace/prompt.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/pipeline.tex",
+      "sha256": "db2e54f79ddbdd01357adf07eada3d99d0b9f1fb3e20bb9ebabe4c5f2545b092",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/pipeline.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/stage-funnel.pdf",
+      "sha256": "98e83aa4a3adba68d1068406f6c75f7019235749ae69fa438a944db65f3e8342",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/stage-funnel.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/stagefunnel.pptx",
+      "sha256": "7f791184a4fd73223a4bbb99eeb09a6e56c272d17ef42daba35a61c8d7463cfd",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/stagefunnel.pptx"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/roadblock_heatmap.aux",
+      "sha256": "fbabe80c887f95a1ede6847f22dd91b380bda9d17ae8bfaa72e1741b16aa41e9",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/pipeline.aux",
+        "reprobench/archive/figure-workspace/roadblock_heatmap.aux"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/sf.jpeg",
+      "sha256": "ac1c012bce9bad000bfec921b2feb09e222ba3396cd4be7450c5f89da318a022",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/sf.jpeg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/pipeline.pdf",
+      "sha256": "3e19668a47c38701bc178093bca4d1d929662ae6d0612dff2f8e07e32a62f0f4",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/pipeline.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/case_study.pdf",
+      "sha256": "98e16f18ce58f0751413df38254fcdb2ce0384260e2f0dbe6b459569e5c11a5a",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/figures/case_study.pdf",
+        "reprobench/versions/aaai-2027/paper/figures/case_study.pdf",
+        "reprobench/archive/figure-workspace/case_study.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/stagefunnel.pdf",
+      "sha256": "202769d80851fe886fbccc22ba21ce184b5d62de4bd00d7b3bae090d00662a1e",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/figures/stagefunnel.pdf",
+        "reprobench/versions/aaai-2027/paper/figures/stagefunnel.pdf",
+        "reprobench/archive/figure-workspace/stagefunnel.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/stage-funnel.png",
+      "sha256": "235eb1e18469a97bee809716be0f1a40a736412995c2205f746c369c15145c6d",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/stage-funnel.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/four_panel_3d_trajectories.pdf",
+      "sha256": "987ea8b0af7f029b07bd6adf2f7740479e77a59201fbb8c196878064cff80f5c",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/four_panel_3d_trajectories.pdf",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/four_panel_3d_trajectories.pdf",
+        "reprobench/archive/figure-workspace/four_panel_3d_trajectories.pdf",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/four_panel_3d_trajectories.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/framework0721.pdf",
+      "sha256": "e4699b3c5dc8932218263292cc4829d03fae4e6ccc9e85f1f5bd188071c01177",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/framework0721.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/roadblock_heatmap.tex",
+      "sha256": "aab9136c40b463896ada594056a2d57524808b41865c8df73d3482e12d1808fe",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/roadblock_heatmap.tex"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/FIGURE_EXPLANATION.md",
+      "sha256": "937eafdff1797cc161874a89097616fcd32d5cc0e0b88815c1f1d58d7790f817",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/FIGURE_EXPLANATION.md",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/FIGURE_EXPLANATION.md",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/FIGURE_EXPLANATION.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/aggregated_phase_scores.csv",
+      "sha256": "a061d1a1e9a67fe7e633cce06f6cc287fd0c9b81a712318db3406c8a1143b804",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/aggregated_phase_scores.csv",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/aggregated_phase_scores.csv",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/aggregated_phase_scores.csv"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/preview.jpg",
+      "sha256": "5d498d3d7b31a87e38406a563a2b0502cf75ef81c277b6e1f0ac230344a319df",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/preview.jpg",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/preview.jpg",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/preview.jpg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/plot_3d_method_trajectories.py",
+      "sha256": "91e75defe77e5fef849e919aec26279fa0a912f1ed19848afd49a49f476de93c",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/3d_method_trajectories/plot_3d_method_trajectories.py"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/README.md",
+      "sha256": "e234d51733292f2f521ec5f694fa420d1ce7257a71a7ccd80cf23915a3689476",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/README.md",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/README.md",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/README.md"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/data_audit.txt",
+      "sha256": "063f07830bb9284ba21aa6309251f01fea0a5555e141c03c659d05c7845aede2",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/data_audit.txt",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/data_audit.txt",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/data_audit.txt"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/selected_best_task_runs.csv",
+      "sha256": "d4e9992d5454f3dccfc7a7b322611b317a3ce811129eb7e308f95544c4737ff2",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/selected_best_task_runs.csv",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/selected_best_task_runs.csv",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/selected_best_task_runs.csv"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/four_panel_3d_trajectories.png",
+      "sha256": "ee82d4db4d340309a06fe71725c0ada88620dc0d86b0c1d6d08eaaf591b918b9",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/four_panel_3d_trajectories.png",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/four_panel_3d_trajectories.png",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/four_panel_3d_trajectories.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/four_panel_3d_trajectories.svg",
+      "sha256": "ee0649d8eca5aee150ad947eb5c30498966eddbfeecab060ca1a929a922e0ef1",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/four_panel_3d_trajectories.svg",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/four_panel_3d_trajectories.svg",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/four_panel_3d_trajectories.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/3d_method_trajectories/four_panel_3d_trajectories.pdf",
+      "sha256": "987ea8b0af7f029b07bd6adf2f7740479e77a59201fbb8c196878064cff80f5c",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/experiments/phase-trajectories/four_panel_3d_trajectories.pdf",
+        "reprobench/versions/aaai-2027/experiments/phase-trajectories/four_panel_3d_trajectories.pdf",
+        "reprobench/archive/figure-workspace/four_panel_3d_trajectories.pdf",
+        "reprobench/archive/figure-workspace/3d_method_trajectories/four_panel_3d_trajectories.pdf"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-benchmark-scope-preview.png",
+      "sha256": "a22094f0488490da41b02c30621379e681451c568448823a9be0b56e1521b490",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-benchmark-scope-preview.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-benchmark-scope-preview.svg",
+      "sha256": "2a51647ae081ede94f46929f33b3fb6b106fadc2c0b86d0a390461efb84b4f8a",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-benchmark-scope-preview.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg-v1.png",
+      "sha256": "65327fba5f087cfbcc0ec6d778191cf518b0421aedaf30ced616e1f3fb57ed53",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg-v1.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg-v3.drawio",
+      "sha256": "2b35458ef29ebd3c5eb82307014085939807ee2c4c5aa0c18c841f25ee1f86b2",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg-v3.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-concept-v2-preview.svg",
+      "sha256": "0ee58e666f8fcad5f8989d023609433dc58604b29f03fc87b26c8f9f12cf70f3",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-concept-v2-preview.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg.svg",
+      "sha256": "6c067dae37c29eab349bb2f1e8548975578e7342e2c73439066ab90a1699d913",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-concept-v2.drawio",
+      "sha256": "72e9646a2a4ba800dffb9d124d27f64eaaaf36bf638e8d2272b3a69a8f02c196",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-concept-v2.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-benchmark-scope.drawio",
+      "sha256": "874db08074c846264064a9cabcff0560586ff9a18cb7f7c9c7f09be47206c871",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-benchmark-scope.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3.drawio",
+      "sha256": "81b231934b6faf363e60e80fef775c02c13ee9657235d0c1c00db4d6f2a84587",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg-v2.svg",
+      "sha256": "c5845d6c4110d24790ac6a91925ae43ac26f028125a16c3168c499a549f1a56c",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg-v2.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg-v2.drawio",
+      "sha256": "742039c5328a01d0bf26aa3c0f2b20402618055211cc074987ef9e0662bc604a",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg-v2.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg.drawio.backup",
+      "sha256": "bacc0c77dbe6a8ea96ba8ccec0dd4c52f256e5c3ed111b2c727b3de4144d98fa",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg.drawio.backup"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg-v2.png",
+      "sha256": "0ddf22ce5f36e43eef7beda61ac168bd1b531557cf461ac053f368157d85cb8d",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg-v2.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/iceberg-v1.drawio",
+      "sha256": "0eb7f47dd53d42a34ad90d4babc2e1aa26414d0785deb8cd2ccd44ca3520dcb8",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/iceberg-v1.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v4.drawio",
+      "sha256": "492bed1e12768c5c708ad71984e2df8de6e70a9af46908bf7010f95544e98d8b",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v4.drawio"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.svg",
+      "sha256": "7030714b4a46a36c6ab50a85aab8d0c1e1554e509461fbd44da35f2818b6cc48",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.svg"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.png",
+      "sha256": "7482e057439ca1fb952231fcb9fab0d31068ac31c5cfee8df176dd4b24ec1f03",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-iceberg-v3-preview.png"
+      ]
+    },
+    {
+      "original_path": "reprobench/figures/who_builds_the_target_environment_2026-07-19/pre-env-concept-v2-preview.png",
+      "sha256": "974a9c72fde7b4cc43d3bb2857519e70846b31580e19960daab1e196dfc5f46b",
+      "identical_content_at": [
+        "reprobench/archive/figure-workspace/who_builds_the_target_environment_2026-07-19/pre-env-concept-v2-preview.png"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/CameraReady2027.tex",
+      "sha256": "db509cb393dae5c113bf29633e17d31a5fefa610aad09056569034f9bcff5b46",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/CameraReady2027.tex"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/aaai2027.sty",
+      "sha256": "391bce82815bf698b8e382dd3ae7e30c75d7ab46df140cb295b1266016bc8623",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/aaai2027.sty",
+        "reprobench/versions/aaai-2027/paper/aaai2027.sty",
+        "reprobench/references/templates/aaai-2027/AuthorKit27/aaai2027.sty"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/AnonymousSubmission2027.pdf",
+      "sha256": "ad424e5a94ce98da7cb10ed07b12ef20571e72f649b7c2b30e6af0f234a0c96a",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/AnonymousSubmission2027.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/ReproducibilityChecklist.tex",
+      "sha256": "06a3459158089bf1c64b738986118f1d1566e816da4b710c6397561e33c3d5e6",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/ReproducibilityChecklist.tex"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/ReproducibilityChecklist.pdf",
+      "sha256": "7fcc703769036e3566daccd59560aaca9b187f49da79fc9d1e13155b61e7dd9e",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/ReproducibilityChecklist.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/aaai2027.bst",
+      "sha256": "5db7765ba99de5c1e4686f9b3940a0add9c5e702f2164514462bec130ccb6e3c",
+      "identical_content_at": [
+        "reprobench/versions/arxiv/paper/aaai2027.bst",
+        "reprobench/versions/aaai-2027/paper/aaai2027.bst",
+        "reprobench/references/templates/aaai-2027/AuthorKit27/aaai2027.bst"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/CameraReady2027.pdf",
+      "sha256": "cfa0a7e59c31fcb39c2bbd492673eb969afc269fb0e568b5c692ac3a53f1fef5",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/CameraReady2027.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/aaai2027.bib",
+      "sha256": "ff8a860f20602b2645723856b80f0a0ad28ee7ec270158254400fdb80b429e45",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/aaai2027.bib"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/AnonymousSubmission2027.tex",
+      "sha256": "035ebdb17e57885a1fd43a188fd17777bdbf90f1fda1a1e000c49c7f52ce1f9d",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/AnonymousSubmission2027.tex"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Figures/figure2.pdf",
+      "sha256": "8899687a74776c5ba3179f630f14a946c36278560a997fbac0cde58cdca1750f",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Figures/figure2.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Figures/figure1.pdf",
+      "sha256": "29e16580aae21c9c7785b6851d244a9948c6ccf96e308ee366fa651db22c922b",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Figures/figure1.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Word/AnonymousSubmission2027.pdf",
+      "sha256": "44907864ea8ad847a566eab48a488ca7b5c2ca8388cb130eba7aefb476db7e83",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Word/AnonymousSubmission2027.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Word/CameraReady2027.docx",
+      "sha256": "9c7e05fd22998b0fc02a9d4df4846c061d0204c89ef551100873038ca88211e3",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Word/CameraReady2027.docx"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Word/ReproducibilityChecklist.pdf",
+      "sha256": "dc9228c4c3c892be8e9eb813f0fe2c9e2cafd91a0d0efcf972306eda51e3e87b",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Word/ReproducibilityChecklist.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Word/ReproducibilityChecklist.docx",
+      "sha256": "cf04a01ca595b6b4b469d1be53a9e6f4484233fe8ac0fefa4dbfd23e0b3de180",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Word/ReproducibilityChecklist.docx"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Word/CameraReady2027.pdf",
+      "sha256": "ad2973ba70448627a17d145a183c78737f4b999a543b3bcb18c8b17acaabc944",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Word/CameraReady2027.pdf"
+      ]
+    },
+    {
+      "original_path": "AuthorKit27/Word/AnonymousSubmission2027.docx",
+      "sha256": "1caac0d7bb5fdd7e18d05d0b18256ffff2f0be611c2bf99232bb51e21657f341",
+      "identical_content_at": [
+        "reprobench/references/templates/aaai-2027/AuthorKit27/Word/AnonymousSubmission2027.docx"
+      ]
+    },
+    {
+      "original_path": "scripts/generate_agent_todo_list.py",
+      "sha256": "e7a12970ca9a92d55815b57c4c12d6693caef86dc077cc43c93d5acc2960e0c6",
+      "identical_content_at": [
+        "reprobench/skills/reprobench-scoring/scripts/generate_agent_todo_list.py",
+        "reprobench/archive/installed-scoring-snapshot/scripts/generate_agent_todo_list.py",
+        "scripts/generate_agent_todo_list.py"
+      ]
+    },
+    {
+      "original_path": "scripts/generate_evaluation_summary.py",
+      "sha256": "38da92e3521e6f93e6eb8f96284426d8ef1b46c7d1ba111b1bb8aada56776fc4",
+      "identical_content_at": [
+        "reprobench/archive/installed-scoring-snapshot/scripts/generate_evaluation_summary.py",
+        "scripts/generate_evaluation_summary.py"
+      ]
+    },
+    {
+      "original_path": "scripts/__pycache__/generate_evaluation_summary.cpython-312.pyc",
+      "sha256": "7c01a64bb3a7d381a7f7f02f0c9f4d82d9ed74dac3f287921526db654b98602c",
+      "identical_content_at": [
+        "reprobench/archive/installed-scoring-snapshot/scripts/__pycache__/generate_evaluation_summary.cpython-312.pyc",
+        "scripts/__pycache__/generate_evaluation_summary.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "scripts/__pycache__/generate_agent_todo_list.cpython-312.pyc",
+      "sha256": "b2b2e7adbd273aad926efe4546024143b35764d358778b96b27581a334623226",
+      "identical_content_at": [
+        "reprobench/archive/installed-scoring-snapshot/scripts/__pycache__/generate_agent_todo_list.cpython-312.pyc",
+        "scripts/__pycache__/generate_agent_todo_list.cpython-312.pyc"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench.zip",
+      "sha256": "55ae1a5657b1319ba63aecf33806c1f133e15a3c394b092cd55180b8d379a523",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench.zip"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/21501-AAAI26.ZhangS-CV.pdf",
+      "sha256": "d111d9c33298bfb98223638b95c0d8848224313dbc06d1a2de0335ffa9f7e3a4",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/21501-AAAI26.ZhangS-CV.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-2511.06890v1.pdf",
+      "sha256": "8b21217cc71f062b222933f5f359a091e5233cd01fe9f21ddf96f896537f0e5c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-2511.06890v1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2505.23484v1.pdf",
+      "sha256": "9498e9e06214062b35f12dd3f07257b5a9f78d88c612b4aea2a432a759931b65",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2505.23484v1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-2508.14925v1.pdf",
+      "sha256": "a86cc1b47a885651c1babed01c44fff094ac8f0e1f2bb991c21b107b4149ee47",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-2508.14925v1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2508.18993v2.pdf",
+      "sha256": "7bde9b426bd3a1e8c160a0e80f77256420633d0b04c3f901d166cd18c191b74f",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2508.18993v2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2506.23982v3.pdf",
+      "sha256": "4410219abbe6c9fdb132bdfd568eeac7d6cb3856999c58ebc3c6911d30e568ca",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2506.23982v3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-2508.07022v1.pdf",
+      "sha256": "c125ecc8bae015b3c1e5e6431b1fb4672f7b98397ad993f24bf6ee2323502bfd",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-2508.07022v1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/21767-AAAI26.HaoR-CV.pdf",
+      "sha256": "66b7f4799282881cda18dfe1c2bace3918462301f2a2b2a686abbb4bdd5760d3",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/21767-AAAI26.HaoR-CV.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2503.09994v2.pdf",
+      "sha256": "c59fa0f444a4b40cb857b0cf7c8fe57c8ec1945c75f26786d9bfa552fe46352e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2503.09994v2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2508.05674v2.pdf",
+      "sha256": "9cd71535bc5665c979ae81e77d061570f3a0960e0c1f64d40b8f3598c8355f76",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2508.05674v2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/3-2512.09271v1.pdf",
+      "sha256": "8e6465d65f3c5fc89b32a32bb70946a09786de16db07537a02e332bdecce4cb9",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/3-2512.09271v1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bib",
+      "sha256": "2aac0762af5338674339b169feb464f62c56885fe65c3d57c220d483fb095031",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/5-Limitation.tex",
+      "sha256": "3452d3757f2c40de1e459de97d09de5dd43b7d4f122cabb8f3c3da128449f6a6",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/5-Limitation.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/00README.json",
+      "sha256": "3dc4cb4d860f050e742a421bac2dd7109f3225f362105b3ecc022dd89d1a89c1",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/6-Conclusion.tex",
+      "sha256": "23a9fe79c85eb8a115b424c114ff11d4a950beb2d691057f3b67fcdb05f2642e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/6-Conclusion.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bst",
+      "sha256": "ac26e2c66047435c0ed25f21ae36ad42d731cf3d794c4a8b5f05a62141a27294",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bst"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/1-introduction.tex",
+      "sha256": "12c190c73f6cd4aaefce4f6f9abc6a59a7cf24f9f87818173dd7c72ba2a8de09",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/1-introduction.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/anonymous-submission-latex-2026.bbl",
+      "sha256": "f44bd58714947b31ecbcbbc44c9c3cd803763d81a27ce1b72f6d9c6640dcafea",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/anonymous-submission-latex-2026.bbl"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/4-Experiments.tex",
+      "sha256": "48363d07bea913b0f22783f37900510bb6ba91e6e280757dbbde8362258f2742",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/4-Experiments.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/anonymous-submission-latex-2026.tex",
+      "sha256": "c9a777ca912ee20eec2a0a39436e0f5b3fd711b62f92ddba7c3315b54990a342",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/anonymous-submission-latex-2026.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/3-MCPTox.tex",
+      "sha256": "aa7c9454e728ace708185e695b14bd9b829ac119aa29114d7d3ef05f4fa1648f",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/3-MCPTox.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.sty",
+      "sha256": "6f90c4d7a36f4a038daf187fdd6cec9fe578aba819733b49551574a37feecd35",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026_new.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/2-background.tex",
+      "sha256": "5a8a5a70cc3403e2f0c8746de87b5dfe7832dfaaf64b5cf506465114acd907c1",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/2-background.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/figs/mcpbench-2.png.jpg",
+      "sha256": "8872ac5bd45ee3702e8d2c381019e4fae1f301fc553d188245b0a045a944c8f0",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/figs/mcpbench-2.png.jpg"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/figs/mcp-benchmark_07301344-cropped.pdf",
+      "sha256": "466d5a77263854cf1aa6d99bd4bfbf5b319bce84d2041769e99279895043e3df",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/figs/mcp-benchmark_07301344-cropped.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/figs/p-enhance.png",
+      "sha256": "cebf79d75d269c7aa6d2947497e9ea54dba2c499d6a60296725c3828822553da",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/figs/p-enhance.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/figs/model-cha.png",
+      "sha256": "750f9a0b91c5b89a602d24449ea45849748b2260d4c2f7be1116126551cb4051",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/figs/model-cha.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/figs/template.png",
+      "sha256": "14a66ff505f347df5d25d40b329f5652e9529cd64e053f109bb7f322cfe74106",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/figs/template.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/2-arXiv-2508.14925v1/figs/failure.png",
+      "sha256": "c599d596a000cb64ea9963ff73db64105d7244d0e7d702dbd886b5f7d5061919",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/figs/failure.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bib",
+      "sha256": "f0ce7b108c0dc5852e7b67320177556303c681d62a68145b8d09d3600d5c8df5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/main.tex",
+      "sha256": "f57d24afc2d9aea88c6aa6ea5206c5ae6ce8402ef0a7cc23e3f51a4ec1272dd9",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/main.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/00README.json",
+      "sha256": "566e8aea792acf945dc9affabba60152cc06681c805f24e4b420b2d77eb4b5be",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bst",
+      "sha256": "ac26e2c66047435c0ed25f21ae36ad42d731cf3d794c4a8b5f05a62141a27294",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bst"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.sty",
+      "sha256": "a39f1866a04dd1e2603613c876fa446aaea2c2f3e34d02be868fd21520bfade5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/aaai2026.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/adversarial_safety_fixed.pdf",
+      "sha256": "f846079a7b20acd01239de765eef4a0958389050be2f89bbd60854b34a4f67af",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/adversarial_safety_fixed.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure2_correlation_scatter.pdf",
+      "sha256": "8ef63a9c7a09079f8cb5a11f433a803da0062a0b9a184d19ea21c6403d476af5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure2_correlation_scatter.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure4_scenario_analysis.pdf",
+      "sha256": "b2a5bc756a1c0b6091310bf3709687d2dfdb80102eff6b0170a65b08b95dc89b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure4_scenario_analysis.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure3_response_heatmap.pdf",
+      "sha256": "b24cf5eed3bf2307946616b637656b0ef111c64986391fd4496638eb502641ed",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure3_response_heatmap.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure5_model_consistency.pdf",
+      "sha256": "ecf56a34b9c6c5be139a317f79fcaafe99c7469070de80f4ea632ca292806024",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure5_model_consistency.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/teaching_capability_heatmaps.pdf",
+      "sha256": "e9f9c6c1d1c65f43de80dff7784fab4cd285973b3ecdc2cc7e1a0fe36df0fe2e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/teaching_capability_heatmaps.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure1.pdf",
+      "sha256": "51db9608d5788a0aeec7c81cb07b20540f998743b2f30fff3ff823b32c363189",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure1_asr_ranking.pdf",
+      "sha256": "c84bc4941c0ea194491b51b73b692e09a001f7a28f4d6627d038c087ac596759",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure1_asr_ranking.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure6_scale_safety_relationship.pdf",
+      "sha256": "595b7d09fb27143b1ca293c199eb6e1d4a37687bba303186b1f2784dfd0ec1ed",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/figures/figure6_scale_safety_relationship.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bib",
+      "sha256": "913061e0361b5e6f1dc47b8b77677b7f96ee90667b443c92f639f38b94b7a08f",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/00README.json",
+      "sha256": "9b8c0d63963e01d9d53aff874b1410ef3fa3e17ecb009453d1027795704a3b5c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bst",
+      "sha256": "ac26e2c66047435c0ed25f21ae36ad42d731cf3d794c4a8b5f05a62141a27294",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bst"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/anonymous-submission-latex-2026.tex",
+      "sha256": "7ba020a99fcbc44909beb55784fe1b2a96be76a8e8ab4907e391a80fc5a0696b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/anonymous-submission-latex-2026.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/aaai2026.sty",
+      "sha256": "a39f1866a04dd1e2603613c876fa446aaea2c2f3e34d02be868fd21520bfade5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/aaai2026.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/ref.bib",
+      "sha256": "84ab9c529b2f0f127b5a940d0ec3f889c0a556ed03f14349fa4d49cb5a52a586",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/ref.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/5-results.tex",
+      "sha256": "8fa16dee7693fab338f04e1c0140077fe52d1b7bab7c1fbb64c9727bbcf57081",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/5-results.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/6-discussion.tex",
+      "sha256": "ce29a426e8151596f757015b0f501a5a0c08e73c65e0687739dd9449fca5690d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/6-discussion.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/3-methods.tex",
+      "sha256": "c382d2a1ba3ea1ca185f2d80a1ba185ed1737640188d5eae834a33fcf37c7def",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/3-methods.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/1-introduction.tex",
+      "sha256": "9c3a210073f3c50c3ddbf719d80aee7ff8a8388f99aca0fe760657e696a3d420",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/1-introduction.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/0-abstract.tex",
+      "sha256": "b34fc6bd4f83024f4716e2967152354913904435b05295c91e22f9b1bd61937c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/0-abstract.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/4-experiments.tex",
+      "sha256": "2b646746346ed743667d700fef79216673f8b40f701852c94738f6ee8d88ceec",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/4-experiments.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/7-conclusion.tex",
+      "sha256": "446e100805e0afdf4772b5db48beb6a39235d8d0e171cfa51b7a0d47f177c946",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/7-conclusion.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/sections/2-background.tex",
+      "sha256": "bcf637add67670f176e0d9a773a1062fe7a0b16987309c867a045f03415c2f77",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/sections/2-background.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/DIST.pdf",
+      "sha256": "688860d41b452d5e85ec4073eda053c9da8f92d140a8cf83223270149d85debc",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/DIST.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/temperature_sweep.pdf",
+      "sha256": "d156c6489a325f53c92a8656950cf779f54fe6aa2bda2cba198ba13351faf1b9",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/temperature_sweep.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_category_radar.pdf",
+      "sha256": "81fa3b4f5cab31b03511b9ca586255cd4b7398ff2072635b59c66205753318bc",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_category_radar.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/failure_analysis.pdf",
+      "sha256": "a62a1434e0bb4026f0a12fd4410461a3555fcba07ae422a91e60c098e96c20fe",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/failure_analysis.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/topp_sweep.pdf",
+      "sha256": "f19f085efa197938216b5a78fcdbd804db01358c1e2824aafc4b7d9ced1f8676",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/topp_sweep.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/difficulty_solution.pdf",
+      "sha256": "e252a52a5442bb5b01360df54c29df936d8f2089bcb7edfc59eed376798dc369",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/difficulty_solution.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctf_judge.png",
+      "sha256": "88256764ce1f6950845e8d39438757a2980f038893ea1668df1819ef266b452c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctf_judge.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_result.pdf",
+      "sha256": "9f2b6cf76a690ed5252a3022c79a3005b4c53441a22d7921732bbd7b3d8c20c8",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_result.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_failed_result.pdf",
+      "sha256": "c9b3658c4797cc2585eedeaf019ffa3c31297369638651a7ad043ef61d743689",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_failed_result.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/evaluation_framework.png",
+      "sha256": "384993bd14e8a72fb49ff1b4b99d11dfbf4b5fbd3da817d1b0d737343fe438df",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/evaluation_framework.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/max_token_sweep.pdf",
+      "sha256": "528ef9bf05764d650a9a709e177e16e0482c44662a9dd1552e0f168bd64f7456",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/max_token_sweep.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_success_result.pdf",
+      "sha256": "95a69d28e43a3cb0b88f8a97e7571d990476bd634cef114b3d7cd9acdd5e6571",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/diagrams/ctfjudge_success_result.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/supplementary/4-Case_studies.tex",
+      "sha256": "1a2fc4b9beba13a11a14e48a06f1c37f4a4b3635a4dfa1b89d42fd2dccb1226b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/supplementary/4-Case_studies.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/supplementary/1-CTFJudge.tex",
+      "sha256": "c561483321c570e558076933dd6fdb4d16a63401436c59806cbbfa3607114c55",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/supplementary/1-CTFJudge.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/supplementary/2-Sweeping.tex",
+      "sha256": "0f103f137debbf3854298753f4a20c7c94e3fefd7f843f72d3297cfac384c12d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/supplementary/2-Sweeping.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.05674v2/supplementary/0-CTFTiny.tex",
+      "sha256": "d76b0c8633979e5b204e180ece7b2b76fe5c5c71cf7c698850ded2937ef3a1a1",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/supplementary/0-CTFTiny.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bib",
+      "sha256": "bfdf1037d719a009815481e7baf9ae7072c2905147c5881d4254f36f0e177443",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/00README.json",
+      "sha256": "796b7325db435cfde6ce1a6adb2aff3dcb345e31eca4f7f907cbcf97118ea7bd",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bst",
+      "sha256": "ac26e2c66047435c0ed25f21ae36ad42d731cf3d794c4a8b5f05a62141a27294",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bst"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Formatting-Instructions-LaTeX-2026.bbl",
+      "sha256": "27ff4a66626310952efda280d80e267fb56cfe047876c3a6c70bef26fa04d70b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Formatting-Instructions-LaTeX-2026.bbl"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Formatting-Instructions-LaTeX-2026.tex",
+      "sha256": "69e37795f4bf5040a66516bac7a58d9b0e94b8a4804fe1f61d106652bbd6d85f",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Formatting-Instructions-LaTeX-2026.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/aaai2026.sty",
+      "sha256": "6f90c4d7a36f4a038daf187fdd6cec9fe578aba819733b49551574a37feecd35",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026_new.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-1.pdf",
+      "sha256": "b8032cf709e33dc394cd26617b02f15de47cd05a97794ab3eda120807cfd49a7",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig6.pdf",
+      "sha256": "dd9bca513f2b224556b81a815fb2452923f975f12c67f0a7230595dd997bb423",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig6.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig3.pdf",
+      "sha256": "33b5c0e45a55fa8a158b1b121a9079e83c18d101dd37795457cf5934d0087bde",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig1.pdf",
+      "sha256": "b632401af55d28f6063037396e30bb45fb8025f818f6843345862053980cd12a",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig1.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig5.pdf",
+      "sha256": "c5b295e150e500104eabf51cbcae2b45b2a209a61bd1c925728a9770becacdac",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig5.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-3.pdf",
+      "sha256": "7b5217020debdc61c9e05d0bc693528df5ee45a2d215add3af0e856a6eb5d86e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-4.pdf",
+      "sha256": "1a31287c1c4739e1585664acaa0f2c5c9711ead6c9c68adbea07a7fd0f349e5d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-4.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-2.pdf",
+      "sha256": "12329cc90263f17e82d6adfed2cb7b95b6ae5842b25b6efb012e537462895574",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig4-2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig2.pdf",
+      "sha256": "b10277a19524669987d87cedb03168356ea3f436e6f8d3b5b72a3e9ccb25f763",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/Fig/Fig2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.tex",
+      "sha256": "5c82e99a501520ef099719789e966a00a10338a4e4a758267c3192e688f8ab1c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.sty",
+      "sha256": "cfb88b237b2a298150678f421162c1be8b893c1235ef976c2950e427d803d70f",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.bbl",
+      "sha256": "bedcb785591ca61fddc5b482fa513c8ddd5a64049474ef7959d5528a221507a7",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.bbl"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.bib",
+      "sha256": "8a12de5fc36cbb03b5af22b343d1d7edf4641836102945ac8f7646158133b95b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/neurips_2025.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/3_method.tex",
+      "sha256": "5b04ca21c866676fb46e5cd124587967aee1337c35d4be36d0caac9f4d3f5ee9",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/3_method.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/1_intro.tex",
+      "sha256": "4cca4ef3a1c850ba7d9f0ab54e6518b767e78dfcffb159d4f399e765663253e8",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/1_intro.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/appendix.tex",
+      "sha256": "3e51127fa504e162c27205ac42e5691af26731617723906ad03d08ffd6bc3b20",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/appendix.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/4_experiment.tex",
+      "sha256": "9174c4fbb19183cb81941db5540f3f6ecd88e480de35813783ee5279de83c7f8",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/4_experiment.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/0_abstract.tex",
+      "sha256": "f52564f2b0645e6e02765fdb0609c56fd0636ede2445535015c19a7790f7f205",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/0_abstract.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/2_relatedwork.tex",
+      "sha256": "2f444b811ecc81409ea16c4013f9440686ec583aa19f8356ee490804f5950eed",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/2_relatedwork.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/sec/check_list.tex",
+      "sha256": "169fd43e9c1e0169c35ef1edb1104100b4d7daec2568e5fd5e6a27ed3bda903c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/sec/check_list.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/comparison_chart_sorted_NEW11.pdf",
+      "sha256": "36bbfe24f9dac72b957c04264ddfa8c33857dd203ba5b9441b9cde5e246c2065",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/comparison_chart_sorted_NEW11.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/word_length_distribution-all-3.pdf",
+      "sha256": "47088a9848474da5d688c84bd0e5dc801c33b170a90cb67bc3599b83e28a29c8",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/word_length_distribution-all-3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/comparison_chart_sorted_NEW22.pdf",
+      "sha256": "1d8755f15c911a9c624fe97d5ed66088764c29d1d5f65c9cd1dea8ede0d3eee8",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/comparison_chart_sorted_NEW22.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/exp_video3.pdf",
+      "sha256": "4d48001396ff048fe66fc353c88265451bb7c5fef48a03dba09f1c4a222f14d0",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/exp_video3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/qa_distribution-2.pdf",
+      "sha256": "28cc0889e9d4a410e39047ac87d4050f29fdf873c7c1d1d79a10e2eba7c5ad6e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/qa_distribution-2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/intro-2.pdf",
+      "sha256": "cc314805c24b4bb7dd16c8cf6accb9978598270180756a86daa2100cd4853491",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/intro-2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/radar_chart_all-New2.pdf",
+      "sha256": "d163b969c4ced52527e01c409a3d84da8e54ed50b26920e4885f21b6e1409b70",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/radar_chart_all-New2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/method2.pdf",
+      "sha256": "f8b23506174ef6cad433124393042e8d375de956a927482300d5291e724cca35",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/method2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/radar_chart_all-New.pdf",
+      "sha256": "252da6014564d46b6027b8a70609084144553eaba1aff7f499a70255d8b90dc6",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/radar_chart_all-New.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/method1-3.pdf",
+      "sha256": "006a8b09b5f9b559221f937223d796f030fa4617996d87ff4eec11f7177fe353",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/method1-3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2505.23484v1/imgs/method3-3.pdf",
+      "sha256": "9aa90bda08f529df6d18fda1b2dab1d2678423cfa78ba2530dab7eabcc792ea6",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2505.23484v1/imgs/method3-3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/example.pdf",
+      "sha256": "74108e82a4187b6c2016748592dffc7357e0c84a58ca252b2bdb7c14c2b6dd6e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/example.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/ablation_mtp.tex",
+      "sha256": "27d4672aff500bc7e7d8ce491ee363dc8724a45b7a11cffebcbcddfa05c2ca24",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/ablation_mtp.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/main.tex",
+      "sha256": "0a864f04a6058c5d73f768f104cb23a4a18e5baf0ee355d033c78b91e5862c71",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/main.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/2_formatting.tex",
+      "sha256": "5cccdc15c190bd8d740ce0feca57d2d1da58d5ae6ba8c6eae93649b8a1c416ba",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/2_formatting.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/00README.json",
+      "sha256": "c7f46d731dfd3852021f874f92eefe508e21e680fcdf91aaedf328980e676e92",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/performance.tex",
+      "sha256": "13dd8c4a07075f83b12d325ed0b87ccdf6ddf04c284059287183a0598feb3a4d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/performance.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/benchmarks.pdf",
+      "sha256": "46416b71f12354c88c7e9483e10480a862d8d27b35ec53698ad30616eeb9d63e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/benchmarks.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/1_intro.tex",
+      "sha256": "eb5d52d63f1642bdd19c5b48c045cd39fdcbafae720bb3933d73e9a637dce711",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/1_intro.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/ablation_time.tex",
+      "sha256": "b51550c6ff62ed03fc5ebd3103fbeb20dee4479747ec02ec7d4a231a356fc847",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/ablation_time.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/radar.pdf",
+      "sha256": "745aa327c8e6ee130412850ba3872accafbbd95e69ca992db6a08ba3f6c0ed3b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/radar.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/ablation.tex",
+      "sha256": "4e7ced141c671f656cf078e8ca78cfb8d9cf81b46ac5b8bb2d8609d67f38743e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/ablation.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/multi-task.pdf",
+      "sha256": "57b4ebf963ceb718a6c5cf01db0e2c94f29576ca77cb1adf6c92ad3299b9ad8b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/multi-task.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/ablation_two.tex",
+      "sha256": "16d3119807b525a54179da58038485479b437c760ec7959d89e4a83add5ffcf4",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/ablation_two.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/0_abstract.tex",
+      "sha256": "da3be905de850d750074ad704571dc27699271bc12a5907837831ff176b0b3dc",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/0_abstract.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/main.bbl",
+      "sha256": "4f074e475e50921b6a26c8419dbbe4b33ed8d4c9d2518caace062084f903707b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/main.bbl"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/tasks.pdf",
+      "sha256": "e6036cd00742ad37024bbfcd162034acdeaf95aa2b7ca5520dbe36dc79b0dec5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/tasks.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/pipeline.pdf",
+      "sha256": "f2e2c792b0683ffa3c8beb0f3c60b54ece697cedc8d8ce3245b6680411109292",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/pipeline.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2503.09994v2/aaai2026.sty",
+      "sha256": "a39f1866a04dd1e2603613c876fa446aaea2c2f3e34d02be868fd21520bfade5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2503.09994v2/aaai2026.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bib",
+      "sha256": "3749fbe50e17b9c498d3e5968b07b377818f6d710c24d72a83d8c5a1249e08ea",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/00README.json",
+      "sha256": "761bab80d0dccdbde151cb65dac79aa71b750900a819ba8c7be87e362184733d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bst",
+      "sha256": "ac26e2c66047435c0ed25f21ae36ad42d731cf3d794c4a8b5f05a62141a27294",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/1-arXiv-2511.06890v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.05674v2/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.bst",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bst"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.pdf",
+      "sha256": "41766feebfd6c6bd40e505c904a67f2d8324dfa12398dc164fc949c86c0c8b52",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/ReproducibilityChecklist.tex",
+      "sha256": "2c057f1ce1c26747978eb372979c7a820deae069d1e3a10fe33c330230ec1a56",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/ReproducibilityChecklist.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.aux",
+      "sha256": "5356c2e40d3874ce4a15b5956f1f066c3eabca5515cb0e83cbd340cb5023a42a",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.aux"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.tex",
+      "sha256": "2078d78eb7aeec2070ecaee056335553296940d671c336fc161476c525b2e499",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.tex",
+      "sha256": "c52ac2094a233a6e738bd1ba033e42945bff0994c5a49f9d83496c3fe49b5699",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.log",
+      "sha256": "1406b5affc068bca4a2a15b86514ad2a781b549e2d518c1d65cf3c9f637e01dc",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Appendix.log"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bbl",
+      "sha256": "f9d0425a7f49359e455893c297215968d6d720b829c622964ab02ce396eb7a2d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.bbl"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.sty",
+      "sha256": "d56b0305fb4bb4959a2937af2cb52556e68f00e3a269a7258e56eb1494d9ef0f",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026_new.sty",
+      "sha256": "6f90c4d7a36f4a038daf187fdd6cec9fe578aba819733b49551574a37feecd35",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/2-arXiv-2508.14925v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/arXiv-2512.09271v1/aaai2026.sty",
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/aaai2026_new.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory.pdf",
+      "sha256": "4a5394de14ca51795608d991bb234d5b9b063fc374f6239e9a056b0959253cdc",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/Overview2.pdf",
+      "sha256": "45387ed9e38af4568e65cf97e815f5984645141aabcba0454ad6508d1198d3fd",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/Overview2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory3.pdf",
+      "sha256": "564c0f376af8541940a3d40da48bf09e78b1f03a6b2663034aee0bcf18826961",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis.pdf",
+      "sha256": "6cca94245f508881918f4fa81c1d7cda340b01ed9b442c0d06332e70a65ed504",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseData-Reasoning.pdf",
+      "sha256": "7c01a264896340b85a1902ab33a7171ec74b4982f60264953b62ad9a6570cd81",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseData-Reasoning.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/scenarioTypes.pdf",
+      "sha256": "3552d6f7270e1a3ec027eb59d3f643cbdd84b00c45e7144c338bde4c96d3e9bb",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/scenarioTypes.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory4.pdf",
+      "sha256": "df45984c80fe2c9b3729ab235e1c4d4664b0c68ffa48726455fecbceab637287",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory4.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory2.pdf",
+      "sha256": "45ce9ee80386bf12a62bdc3efa1dda9d70f48f9ba082b7cee6f3a0b44292fef0",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-memory2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/LifeLongEditResultFinal.pdf",
+      "sha256": "6988da36b9cac2ea0864c42b7ddde1ca142de59cd8aee807009e7b129b59f833",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/LifeLongEditResultFinal.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/3Questions.pdf",
+      "sha256": "48e6c71cc4dbb6515763c84bb0eba16d2e6c824a322b53aadff10adec416e2fe",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/3Questions.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/PromptRephrase.pdf",
+      "sha256": "50cf28bdbe194ee6affd4e4396020db184526c5850988bbe0a183bcccafdc12e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/PromptRephrase.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis3.pdf",
+      "sha256": "4a3721fdc69028203c9436da116b00ca22c8c95ef963cabae505c85c4ecc5dfb",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis3.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/LifeLong_Huatuo.pdf",
+      "sha256": "0d5115502bec48445e0d33481492bed6056005a1f2e1da5eccbde6d476bb8ecb",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/LifeLong_Huatuo.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseData-Understanding.pdf",
+      "sha256": "fc8ba8caac0cd1780ac75cf284a84c412582e276edf16daf2ee41a7ec24b500b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseData-Understanding.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis4.pdf",
+      "sha256": "3788ec2fc8dc28f26bc023e49906f2f1f209c2f99101a35bc60d14f8ecbfb635",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis4.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-time.pdf",
+      "sha256": "c73e55d9cf81135167b04cc0b91e67a706127bdbe9c2e26a3776af9e29ec48e2",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-time.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-time2.pdf",
+      "sha256": "2eb0eddf8e0d164acba0c6535708aad62da92fb5d64d1c13e6585459c5e5f8fd",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/EfficiencyAnalysis-time2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/scenarioTypes2.pdf",
+      "sha256": "8f451913b73321cbda36aff3f4f8d7cca77bc3fbf16984ebea18ab76adf385db",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/scenarioTypes2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis2.pdf",
+      "sha256": "769811d83d67e000a7c64f474def5ef7c863365e46be95de5a0ab468ede7104d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/0-arXiv-2508.07022v1/Figures/CaseAnalysis2.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/reference.bib",
+      "sha256": "0f2d40ae9aff85bb44866c7b9afd36f0e48c7d6d298d169687c7aff69c419599",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/reference.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/00README.json",
+      "sha256": "c33e6c2d4c63d8a4d387086b041c099ad0968012c845f2dae30358e9768f088d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/neurips_2025.sty",
+      "sha256": "67a960f35da6fecb5a0ce0202fa400459f4c8bb6c294f1a3fdd82fbbd39244c2",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/neurips_2025.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/StyleDrive.tex",
+      "sha256": "616867a3781ceaa6aed483969b0928decd4d294d237e306068a288f2b12fa8d0",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/StyleDrive.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/alter.pdf",
+      "sha256": "2e440aa4348bd4a40f558b940c17b181d9d206404141fb1a19656341e7f85f8e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/alter.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/Policy_Cases.png",
+      "sha256": "c4b1e6331e24a3ae991a347edd9d8a5e417dcc1d5dae8d581d3efb87b4c6bf31",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/Policy_Cases.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/figure_demo.pdf",
+      "sha256": "ff1628ac2d5c74124bd1f6e0b1e985f5e7990bfa1329c69b593c5894df68d0a6",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/figure_demo.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/anno_framework.pdf",
+      "sha256": "9359c111da06b6d8a31b524b18663868c8ee397e0a633a9c0e903d610b63b4d0",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/anno_framework.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/overview.pdf",
+      "sha256": "9d138d01acbf0c3a657d8fe47121148212c548ea2b4f28016a8bd36d8c420e7a",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/overview.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/crosswalk.png",
+      "sha256": "22caebcc9cf0d0c92ae156f0eebfbd61e05cf83f852bd9ea5bd93a363a183a99",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/crosswalk.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/countryside_road_anc_pie.png",
+      "sha256": "e04ed585de84ce2d7d18d13e9a7d74201e43f51f705e6d6b1f7c276840dfd83b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/countryside_road_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/side_ego_to_main_anc_pie.png",
+      "sha256": "2e0831d03badbe94aae4d7323fa8fbc34584e89ce5e0097c4ebb87311cb21763",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/side_ego_to_main_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/roundout_interior_anc_pie.png",
+      "sha256": "1d50af11f27dd0e55a5e7da0f4ae448a24373823f92eec8015f668c99cc91511",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/roundout_interior_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/lane_change_anc_pie.png",
+      "sha256": "d5a57d736db36d4cf3ff184af825df0e7d1159be27a4101763cec9fbddb8dff1",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/lane_change_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/roundout_entrance_anc_pie.png",
+      "sha256": "2ecb5a7eddca3786bf47e97b35d8eacd5cd510594d766fa8d72b8aa2cfa26678",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/roundout_entrance_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/video_demo_2.png",
+      "sha256": "0b0eef6d6aea84ec363d2e95c6d0ae4139fd92c4b3190f9cac28e48d15a3898a",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/video_demo_2.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/protected_intersections_anc_pie.png",
+      "sha256": "e2f730201b3d4b98d5ebb1e4ab35835b7188ea61e7212bb96dfc16b8b3f9bb8c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/protected_intersections_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/special.png",
+      "sha256": "2cf7aca4c2a2c357a66e90a9739337d33fa0c243302d2a32431d87f862df8903",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/special.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/side_to_main_ego_anc_pie.png",
+      "sha256": "50598bf727c6575c8a66b14c0943e97a20f7430216585650e6e3de3575c85ee3",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/side_to_main_ego_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/video_demo_3.png",
+      "sha256": "9736702c4af225bc0c949fe8779ff3d869873705363480dbbf61950ff7f9370d",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/video_demo_3.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/video_demo_1.png",
+      "sha256": "b5b32dd671fe5e3e0be54c0126f27e0524c8393fa0418d3bcbd9fe51cd1ab144",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/video_demo_1.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/lane_following_anc_pie.png",
+      "sha256": "49d4b266b75da35e51439c370473bad205b1bbaf233069ba7262391dc4bf7ebf",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/lane_following_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2506.23982v3/img/supply/unprotected_intersections_anc_pie.png",
+      "sha256": "d9a0b926f304577802d8cec71b97322a5cd4f8ccabdc75d57c2afed07fc7d572",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2506.23982v3/img/supply/unprotected_intersections_anc_pie.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/aaai2026.bib",
+      "sha256": "e1109d1eb9a70ba8783ddeba73dd2508735434f87f12776c0205c9cda0d0c7ce",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/aaai2026.bib"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/up_to_date.bbl",
+      "sha256": "6fc948c15d6bdc76e93b8084326828d55c0708e1760555c2786b2506d867b792",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/up_to_date.bbl"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/00README.json",
+      "sha256": "a038f95a5ee90bccdc74cb215a1feaff8613876aa15aa9ee5b6ee174e1e617df",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/00README.json"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/aaai2026.bst",
+      "sha256": "10258353bca8b92975aae5bc074d6d0f00dfde496cbf2af4c8663bb6071bcb7e",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/aaai2026.bst"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/up_to_date.tex",
+      "sha256": "c92fa934b0f485c3abbf7af0129d3cfaf461f963ddbf1ff00a0df8b3b0ffc874",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/up_to_date.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/Appendices.tex",
+      "sha256": "a0297a4abc767bdd48cf274c4728cad9e7a7a60474267f9bbb50f7c8b7e9b40a",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/Appendices.tex"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/aaai2026.sty",
+      "sha256": "364940579e5054c65b3e899bee96e8d8d719cdd4efb851ef0f14c722db7f1bb4",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/aaai2026.sty"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/leaderboard.png",
+      "sha256": "adb6e51caba0c3e4e9db647c9d27e1907c30117e29679467518872a6aa7096be",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/leaderboard.png"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/token_usage_trend_results.pdf",
+      "sha256": "ea1202c5c5d1e7ecde3c7a1df2464624eab4c9c847647a82733053356285297a",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/token_usage_trend_results.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/parameter.jpg",
+      "sha256": "a06b3f3fa298dfd9968bf6d2658792a8a23d71dda5676bbed70ce3efe9f562e5",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/parameter.jpg"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/Benchmark_Construction.pdf",
+      "sha256": "5c7c1d4bab2c278f1bcad9f72ad928b4a0a95ea09d21c73481fad2eb6ddc5b41",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/Benchmark_Construction.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/overview_v6.pdf",
+      "sha256": "c22065362c83d810762e1046174298c12e845b79a6f5fd2f4b009a88edef402b",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/overview_v6.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/Domain_v4_50.pdf",
+      "sha256": "f77f69b6c2a523d613bddfef23d193fcab37ebfb7abcc534c251c396a9fd2dd9",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/Domain_v4_50.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/ratio_domain.pdf",
+      "sha256": "e1f679bd0f4166e30f421b8abf0fec6884af8156d515ae1896a0fc8945dd199c",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/ratio_domain.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/alpha.pdf",
+      "sha256": "26d4827d8db19dcedd488bdd34c40567861873493967e7cc6c3917bd83c455bb",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/alpha.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/token_usage_trend_process.pdf",
+      "sha256": "35b47b446ba75c514312cb72fa3c8e2fe4241d6c755fa71ab13eee4dd4c9f876",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/token_usage_trend_process.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/AAAI-Bench/arXiv-2508.18993v2/images/error_analysis_v4.pdf",
+      "sha256": "42040f7467b3e4e4cb61535be33315d0306895d53d395cf311832ab571da0499",
+      "identical_content_at": [
+        "reprobench/references/papers/AAAI-Bench/arXiv-2508.18993v2/images/error_analysis_v4.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/2026 ProgramBench Can Language Models Rebuild Programs From Scratch.pdf",
+      "sha256": "f0a170a5b96c02a1d3a113f10ea10c91b46305c3d28b348420676c13d6ffe8f7",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/2026 ProgramBench Can Language Models Rebuild Programs From Scratch.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/NeurIPS-2025-swe-bench-goes-live-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "sha256": "900d3fbbbaa3e4858ad6bc9ea3dabe23ec7d700555dcec69cd2d29fafbb82adb",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/NeurIPS-2025-swe-bench-goes-live-Paper-Datasets_and_Benchmarks_Track.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/cybergym-e2e.pdf",
+      "sha256": "ee7e6dbf7ffc22a3668e145849a5bad3c62b47ce088fae86c5890741aab49ada",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/cybergym-e2e.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/cve-bench.pdf",
+      "sha256": "334417c3bbc4fbaa1777df3a98b5c518e9187cac3b21714879116a0260f26cb1",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/cve-bench.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/k-repro.pdf",
+      "sha256": "230c126fb255cff8f0c6b73537c088158df25c8cc516a4cab2f1f0f129c93d22",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/k-repro.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/NeurIPS-2025-sec-bench-automated-benchmarking-of-llm-agents-on-real-world-software-security-tasks-Paper-Conference.pdf",
+      "sha256": "7c1b7f1b9e5dd305d6a94d7b0a9bb80d40fe18f53f9308a7c64b4f75685e65de",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/NeurIPS-2025-sec-bench-automated-benchmarking-of-llm-agents-on-real-world-software-security-tasks-Paper-Conference.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/exploitgym.pdf",
+      "sha256": "c25dbb381d6385c76f77b2be4b14765a1c58eaf1316b270ffafd68ea25b3582f",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/exploitgym.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/exploitbench.pdf",
+      "sha256": "e3d0f499fe1da1e2dde3226c7b372cb8416643bb6b85de86e5298d4ea7ea5121",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/exploitbench.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/NeurIPS-2025-bountybench-dollar-impact-of-ai-agent-attackers-and-defenders-on-real-world-cybersecurity-systems-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "sha256": "6892dd4bba2378ffa766980851d54e3e152c610251c23867c8419045c2638c33",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/NeurIPS-2025-bountybench-dollar-impact-of-ai-agent-attackers-and-defenders-on-real-world-cybersecurity-systems-Paper-Datasets_and_Benchmarks_Track.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/cybergym.pdf",
+      "sha256": "0392d07ba1f4de4ab935f2305677f1033cc7aef419e0b6208bcf769435a8cff1",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/cybergym.pdf"
+      ]
+    },
+    {
+      "original_path": "ref/bench_papers/ICLR-2024-swe-bench-can-language-models-resolve-real-world-github-issues-Paper-Conference.pdf",
+      "sha256": "9ba69855bdfb8896129c697a66c18564bd996885eb19d155083ab8e387733953",
+      "identical_content_at": [
+        "reprobench/references/papers/bench_papers/ICLR-2024-swe-bench-can-language-models-resolve-real-world-github-issues-Paper-Conference.pdf"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+   "sources" : [
+      {
+         "usage" : "toplevel",
+         "filename" : "aaai2026.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Appendix.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/CaseAnalysis.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/CaseAnalysis2.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/CaseAnalysis3.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/CaseData-Reasoning.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/CaseData-Understanding.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/EfficiencyAnalysis-memory.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/EfficiencyAnalysis-memory2.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/EfficiencyAnalysis-memory3.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/EfficiencyAnalysis-time.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/LifeLong_Huatuo.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/PromptRephrase.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Figures/scenarioTypes.pdf"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "aaai2026.bib"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "aaai2026.bst"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "aaai2026_new.sty"
+      }
+   ],
+   "version" : 2,
+   "texlive_version" : 2023,
+   "process" : {
+      "compiler" : "pdflatex"
+   }
+}

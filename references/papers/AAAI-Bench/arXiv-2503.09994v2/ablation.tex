@@ -1,0 +1,32 @@
+
+
+
+
+
+
+\begin{table*}[t]
+\centering
+
+% \resizebox{\linewidth}{!}{%
+
+\begin{tabular}{ccccccccccccc}
+\toprule
+\multirow{2}{*}{Model} & \multicolumn{6}{c}{TIMEBench} & \multirow{2}{*}{MVB}  & \multirow{2}{*}{TC} & \multirow{2}{*}{AE-V} & \multirow{2}{*}{V-MME} & \multirow{2}{*}{AN-QA} \\
+\cmidrule(lr){2-7}
+ & LO & DU & DY & OR & RE & AVG & & \\
+\midrule
+Baseline  & 32.3 & 30.3 & 22.8 & 28.0 & 24.0 & 27.4 & 45.9 & 44.2 & 11.9 & 41.7 & 44.3 \\
+
++ TIME    & \underline{34.3} & \underline{41.0} & \underline{26.5} & \textbf{34.8} & \underline{26.3} & \underline{32.6} & \underline{47.1} & \underline{57.4} & \underline{14.0} & 41.6 & \underline{44.6} \\ 
+
++ MTP     & \textbf{35.3} & 32.0 & 24.5 & 31.0 & 24.8 & 29.5 & 45.9 & 49.7 & 13.8 & \textbf{41.9} & 44.5 \\
+
++ ALL     & 33.3 & \textbf{43.0} & \textbf{28.0} & \underline{33.0} & \textbf{26.8} & \textbf{32.8} & \textbf{47.2} & \textbf{58.2} & \textbf{14.7} & \underline{41.8} & \textbf{44.7} \\ 
+\bottomrule
+\end{tabular}
+
+% }
+\caption{Ablation study of TIME dataset and MTP method. The best performance is highlighted in \textbf{bold}, and the second-best result is indicated with \underline{underlines}.}
+% \vspace{-0.05in}
+\label{tab:ablation}
+\end{table*}

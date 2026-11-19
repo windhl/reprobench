@@ -1,0 +1,25 @@
+{
+   "sources" : [
+      {
+         "usage" : "toplevel",
+         "filename" : "anonymous-submission-latex-2026.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "aaai2026.bib"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "aaai2026.bst"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "ref.bib"
+      }
+   ],
+   "spec_version" : 1,
+   "texlive_version" : "2025",
+   "process" : {
+      "compiler" : "pdflatex"
+   }
+}

@@ -42,7 +42,7 @@ def extract_run_data(json_path):
 
 def main():
     ap = argparse.ArgumentParser(description="Export evaluation JSONs to XLSX.")
-    ap.add_argument("--eval-root", default="/home/tca/reprobench/eval/evaluation",
+    ap.add_argument("--eval-root", required=True,
                     help="Root directory containing CVE-*/model/run/evaluation-*.json")
     ap.add_argument("--output", default="evaluation_results.xlsx",
                     help="Output XLSX file path")

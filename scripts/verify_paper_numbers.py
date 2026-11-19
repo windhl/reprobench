@@ -4,11 +4,11 @@ verify_paper_numbers.py — Verify every experimental number in the ReproBench p
 against the raw evaluation data.
 
 Usage:
-    python scripts/verify_paper_numbers.py [path/to/evaluation_summary.txt]
+    python scripts/verify_paper_numbers.py --version aaai-2027 [path/to/evaluation_summary.txt]
 
-The script parses data/evaluation_summary.txt (or a path provided as argument),
+The script parses the selected version's results/evaluation_summary.txt (or an explicit path),
 recomputes every statistic cited in the paper, and checks each against the value
-actually written in the .tex files under sections/.
+actually written in the .tex files under that version's paper/sections/.
 
 Methodology (consistent across all sections):
   - Best-of-three: for each CVE-model pair, take max across 3 runs.
@@ -24,13 +24,15 @@ Methodology (consistent across all sections):
 import re
 import sys
 import os
+import argparse
+from pathlib import Path
 from collections import defaultdict
 
 # ============================================================
 # Configuration
 # ============================================================
-DEFAULT_DATA = os.path.join(os.path.dirname(__file__), '..', 'data', 'evaluation_summary.txt')
-SECTIONS_DIR = os.path.join(os.path.dirname(__file__), '..', 'sections')
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+SECTIONS_DIR = None
 
 # CVE → vulnerability type mapping
 BOF_CVES = {
@@ -465,7 +467,15 @@ def read_tex(filename):
 
 
 def main():
-    data_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_DATA
+    global SECTIONS_DIR
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('summary', nargs='?', help='Optional evaluation summary path')
+    parser.add_argument('--version', choices=('aaai-2027', 'arxiv'), default='aaai-2027')
+    parser.add_argument('--sections-dir', type=Path)
+    args = parser.parse_args()
+    version_dir = REPOSITORY_ROOT / 'versions' / args.version
+    SECTIONS_DIR = args.sections_dir or version_dir / 'paper/sections'
+    data_path = args.summary or version_dir / 'experiments/results/evaluation_summary.txt'
     data_path = os.path.abspath(data_path)
 
     print(f"Data file: {data_path}")
@@ -513,7 +523,7 @@ def main():
 
     # ===== STAGE FUNNEL =====
     print("\n--- Stage Funnel (502-failure.tex) ---")
-    tex502 = read_tex('502-failure.tex')
+    tex502 = read_tex('504-failure.tex')
     funnel = compute_funnel(pairs)
     for i, (pname, pscore, pmax, ppct) in enumerate(PAPER_FUNNEL):
         pname_c, avg, mx, pct = funnel[i]
@@ -541,7 +551,7 @@ def main():
 
     # ===== VULTYPE =====
     print("\n--- Vultype (504-vulclass.tex) ---")
-    tex504 = read_tex('504-vulclass.tex')
+    tex504 = read_tex('503-vulclass.tex')
     vt = compute_vultype(runs, pairs)
     for vt_name in ['BOF', 'CMDI', 'AUTH']:
         pv = PAPER_VULTYPE[vt_name]
@@ -605,7 +615,7 @@ def main():
     # ===== ADDITIONAL CHECKS =====
     print("\n--- Additional checks (501, 503, 504, 300, 700) ---")
     tex300 = read_tex('300-benchmark-construction.tex')
-    tex503 = read_tex('503-feature.tex')
+    tex503 = read_tex('502-feature.tex')
     addl = compute_additional(runs, pairs)
 
     # #61: best single run in 501

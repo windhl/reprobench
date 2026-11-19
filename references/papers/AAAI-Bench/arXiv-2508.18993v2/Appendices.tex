@@ -1,0 +1,1103 @@
+\appendix
+\section*{Appendices}
+\section*{A. Details of GitTaskBench}\label{appendix:gittaskbench}
+
+\subsection*{Tasks.}
+The GitTaskBench benchmark includes a wide range of real-world tasks spanning 7 domains and 24 subdomains. The statistics of tasks by Domain are shown in the Table \ref{tab:Tasks by Domain}.
+The largest category is Image Processing, encompassing 16 tasks (29.63\%), which include style transfer (9.26\%), image enhancement (5.56\%), background processing (5.56\%), image coloring (3.70\%), restoration (3.70\%), and scratch detection (1.85\%). Speech Processing ranks second with 8 tasks (14.81\%), covering speech recognition (7.41\%), separation (3.70\%), enhancement (1.85\%), and analysis (1.85\%). Security and Privacy also accounts for 9 tasks (16.67\%) evenly divided into 3 data simulation tasks, 3 watermark embedding tasks, and 3 watermark extraction tasks. The Office Document Processing domain contributes another 9 tasks (16.67\%), divided into PDF content extraction (7.41\%), Excel document parsing (5.56\%), and PDF processing (3.70\%). Other domains include Web Scraping (6 tasks, 11.12\%), Video Processing (3 tasks, 5.55\%), and Physiological Signal Processing (3 tasks, 5.55\%)---the latter dealing with electrodermal activity, electrocardiogram, and electrooculogram data analysis.
+
+
+\begin{table*}[ht]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\resizebox{0.88\textwidth}{!}{%
+\begin{tabular}{l|l|c}
+\hline
+% \hline
+\textbf{Domain (Task Count, \%)} & \textbf{Subdomain} & \textbf{Percentage (\%)} \\
+\hline
+\multirow{6}{*}{Image Processing (16, 29.63\%)}
+& Style Transfer & 9.26 \\
+& Image Coloring & 3.70 \\
+& Image Restoration & 3.70 \\
+& Scratch Detection & 1.85 \\
+& Image Enhancement & 5.56 \\
+& Background Processing & 5.56 \\
+\hline
+\multirow{3}{*}{Video Processing (3, 5.55\%)}
+& Video Action Analysis & 1.85 \\
+& Style Transfer & 1.85 \\
+& Video Coloring & 1.85 \\
+\hline
+\multirow{4}{*}{Speech Processing (8, 14.81\%)}
+& Speech Recognition & 7.41 \\
+& Speech Separation & 3.70 \\
+& Speech Enhancement & 1.85 \\
+& Speech Analysis & 1.85 \\
+\hline
+\multirow{3}{*}{Physiological Signal Processing (3, 5.55\%)}
+& Electrodermal Activity Data Analysis & 1.85 \\
+& Electrocardiogram Data Analysis& 1.85 \\
+& Electrooculogram Data Analysis& 1.85 \\
+\hline
+\multirow{3}{*}{Security and Privacy (9, 16.67\%)}
+& Data Simulation & 5.56 \\
+& Watermark Embedding & 5.55 \\
+& Watermark Extraction & 5.56 \\
+\hline
+\multirow{2}{*}{Web Scraping (6, 11.12\%)}
+& Web Scraping & 5.56 \\
+& Web Crawling & 5.56 \\
+\hline
+\multirow{3}{*}{Office Document Processing (9, 16.67\%)}
+& Excel Document Parsing & 5.56 \\
+& PDF Content Extraction & 7.41 \\
+& PDF Content Processing & 3.70 \\
+\hline
+\textbf{Overall} & \textbf{Total} & \textbf{100.00} \\
+\hline
+% \hline
+\end{tabular}
+}
+\caption{Statistics of Tasks by Domain in GitTaskBench}
+\label{tab:Tasks by Domain}
+\end{table*}
+
+
+
+\subsection*{Repositories.}
+The repositories included in GitTaskBench span a wide range of codebases, exhibiting considerable diversity in scale, structure, and complexity. For instance, repositories like FunASR and Faker contain over 1,000 files, with more than 3,000 functions and 10,000 function calls, highlighting the massive code volume. Some repositories, such as SpeechBrain and Scrapy, feature extremely high internal connectivity with more than 40,000 function calls and thousands of import dependencies. On average, each repository has over 200 files, 1,200 functions, and nearly 8,600 intra-repository calls, with more than 448,000 tokens per repository. These figures reflect not only the sheer volume of code and modularity but also the highly entangled dependencies and large-scale function interactions present across projects. As such, understanding and effectively leveraging these repositories pose significant challenges for code agents, especially in tasks requiring comprehensive reasoning over multiple modules, imports, and usage patterns. The comprehensive statistics are demonstrated in the Table \ref{tab:appendix-static-analysis}.
+
+The "Manual Reproduction Time" column measures the approximate time, in hours, that a PhD student in computer science needs to fully understand and use each repository to complete its associated tasks. Across the 18 repositories analyzed, this time varies between 0.50 hours and 3.00 hours, with an average of 1.34 hours.
+These findings shed light on the complexity of the repositories. Even for highly skilled individuals, such as PhD students, it takes more than an hour on average to comprehend and implement the code effectively. For instance, the VideoPose3D repository stands out, requiring up to 3.00 hours, which emphasizes the challenging nature of its tasks.
+
+This further suggests that working with these repositories is far from straightforward---it’s a significant effort, even for experienced professionals. Beyond that, these results also serve as an important reference point for assessing how well automated systems can manage similarly intricate tasks.
+
+
+\begin{table*}[htb]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrc}
+\toprule
+\textbf{Repository} & \#\textbf{Files} & \#\textbf{Classes} & \#\textbf{Functions} & \textbf{LOC} & \textbf{Imports} & \textbf{Calls} & \textbf{Tokens} 
+&\makecell[c]{\textbf{Manual}\\\textbf{Reproduction Time (h)}}\\
+\midrule
+AnimeGANv3             & 25   & 7    & 191  & 3540   & 140  & 1465  & 39288  &2.25  \\
+DeOldify               & 105  & 280  & 1743 & 15776  & 727  & 7552  & 187418 &2.33 \\
+DeScratch              & 64   & 61   & 394  & 9606   & 401  & 3277  & 82321  &2.00 \\
+Eparse                 & 13   & 10   & 67   & 1872   & 108  & 380   & 11577  &0.83 \\
+Faker                  & 754  & 1130 & 3361 & 351420 & 1879 & 11922 & 2888354 &0.50\\
+FunASR                 & 1157 & 1093 & 3843 & 132830 & 6979 & 39459 & 1151842 &2.00\\
+InvisibleWatermark     & 7    & 5    & 39   & 575    & 34   & 180   & 4870   &0.50 \\
+NeuroKit               & 349  & 2    & 979  & 57270  & 1819 & 11479 & 508910  &1.50\\
+PDFPlumber             & 38   & 46   & 441  & 8339   & 413  & 2136  & 66653   &0.50\\
+PyPDF2                 & 89   & 152  & 1488 & 50709  & 1226 & 10819 & 491912  &0.67\\
+Scrapy                 & 362  & 1144 & 4533 & 67685  & 3660 & 18376 & 536203  &0.67\\
+SpeechBrain            & 573  & 736  & 4915 & 207652 & 3799 & 40552 & 1596907 &0.83\\
+Stegano                & 25   & 9    & 93   & 2270   & 74   & 510   & 18207   &0.50\\
+StyleTransfer          & 7    & 3    & 25   & 747    & 33   & 380   & 8796    &2.17\\
+SuperResolution        & 29   & 20   & 208  & 3777   & 158  & 1237  & 32940   &1.67\\
+Trafilatura            & 41   & 11   & 437  & 27399  & 686  & 4329  & 397119  &0.67\\
+TransparentBackground  & 12   & 26   & 106  & 2310   & 98   & 943   & 21866   &1.50\\
+VideoPose3D            & 22   & 10   & 83   & 3503   & 135  & 727   & 35993   &3.00\\
+\midrule
+\textbf{Average}       & 204.00  & 263.61 & 1274.78 & 52626.67 & 1242.72 & 8651.28 & 448954.22 & 1.34\\
+\bottomrule
+\end{tabular}
+}
+\caption{Static Analysis Statistics of GitTaskBench Repositories}
+\label{tab:appendix-static-analysis}
+\end{table*}
+
+
+
+\subsection*{Task Success Criteria in Evaluation.}
+Table~\ref{tab:gitaskbench_examples} presents examples of representative tasks and their corresponding success criteria in GitTaskBench. GitTaskBench spans a broad spectrum of seven modalities---images, video, audio, text, physiological time-series, and web data---enabling the evaluation of both data generation and analysis-oriented objectives. All tasks and their detailed success criteria are openly available in the official GitHub repository of GitTaskBench \cite{gittaskbench2025}, supporting transparent benchmarking and reproducibility for the research community. 
+
+\begin{table*}[ht]
+  \centering
+  \renewcommand{\arraystretch}{1.3}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{
+    >{\raggedright\arraybackslash}m{2.6cm}   % Domain
+    >{\raggedright\arraybackslash}m{2.9cm}   % Subdomain
+    >{\raggedright\arraybackslash}m{4.4cm}   % Task
+    >{\raggedright\arraybackslash}m{5.3cm}   % Success criteria
+  }
+    \toprule
+    \textbf{Domain} & \textbf{Subdomain} & \textbf{Typical task (multimodal)} & \textbf{Success criteria} \\
+    \midrule
+    Image Processing &
+      Image Coloring &
+      Colorize an old street photo using Artistic mode for bold colors &
+      \textbf{CIEDE2000} colour difference $\ge 2.0$ \textit{and} \textbf{NIQE} $\le 7.0$ on the output image. \\[0.3em]
+
+    Video Processing &
+      Style Transfer &
+      Convert a given video to comic style &
+      The output video is considered successful if the average \textbf{SSIM} between input and output frames is $\ge 0.7$, and the \textbf{FID} score is $\le 400$. \\[0.3em]
+
+   Physiological Signals Processing &
+     EDA Data Analysis &
+     Extract 'SCR\_Onsets', '\_Peaks', and '\_Height' from EDA data (sampling rate 250), and store as a CSV file with each column as an indicator &
+     All three columns ('SCR\_Onsets', 'SCR\_Peaks', 'SCR\_Height') in the output \textbf{100\% match} the ground truth. \\[0.3em]
+     
+    Speech Processing &
+      Speech Separation &
+      Separate a noisy mixed audio containing two speakers into individual audio files &
+       Each separated audio output must achieve \textbf{SNR} $\ge 12$dB and \textbf{SDR} $\ge 8$ dB compared to the reference signals. \\[0.3em]
+
+    Web Scraping &
+      Web Scraping &
+      Extract celebrity quotes from \url{xxxx://quotes.toscrape.com} &
+      \textbf{F$_1$ score} $\ge 0.95$ on the \{\textit{author}, \textit{text}, \textit{tags}\} fields compared with ground-truth JSON. \\[0.3em]
+
+    Security \& Privacy &
+      Data Simulation &
+      Extract the embedded watermark from the image &
+      The extracted text message \textbf{100\% matches} the ground truth. \\[0.3em]
+      
+    Office Document Processing &
+      Excel Parsing &
+      Parse a multi-sheet Excel workbook into JSON &
+      \textbf{Cell-level similarity} $\ge 0.80$ (value + meta-data match) over all non-empty cells between produced JSON and reference. \\
+    \bottomrule
+  \end{tabular}}
+  \caption{Examples of representative tasks and their success criteria in \textsc{GitTaskBench}. All tasks and corresponding success criteria are provided in the open-sourced GitHub repository of GitTaskBench.}
+    \label{tab:gitaskbench_examples}
+\end{table*}
+
+
+\subsection*{Examples of Automated Evaluation Results.} 
+% 下面我们将展示几个自动化评测后的结果。其中key "Process"代表execution 是否完成complate，”Result“代表task pass是否成功。
+\label{appendix: automated evaluation results}
+Below, we present several results from automated evaluation. The key “Process” indicates whether execution was completed, while “Result” reflects whether the task was successfully passed.
+
+\textbf{Example 1} (test\_results/DeScratch\_02/results.jsonl):
+\texttt{\{"Process": true, "Result": false, "TimePoint": "2025-0x-18T21:46:21", "comments": "Test failed, average IoU: 0.117, average Dice: 0.210"\}}
+
+\noindent \textbf{Example 2} (test\_results/Faker\_02/results.jsonl):
+\texttt{\{"Process": true, "Result": true, "TimePoint": "2025-0x-18T21:47:56", "comments": "All 5 company records passed structural and content checks."\}}
+
+\noindent \textbf{Example 3} (test\_results/VideoPose3D\_01/results.jsonl):
+\texttt{\{"Process": false, "Result": false, "TimePoint": "2025-0x-18T21:47:58", "comments": "Error: Incorrect input file format, expected shape (frames, joints, 3), got (100, 1, 17, 2)"\}}
+
+\noindent \textbf{Example 4} (test\_results/SpeechBrain\_03/results.jsonl):
+\texttt{\{"Process": false, "Result": false, "TimePoint": "2025-0x-18T21:46:21", "comments": "Invalid file format, expected .txt: \/GitTaskBench\/output\/SpeechBrain\_03\/output"\}}
+
+
+
+
+\section*{B. Details of the Agent Frameworks}
+\label{appendix:framework settings}
+For complex tasks that require understanding and repurposing repositories to meet realistic user needs, few open-source agent frameworks are currently capable of handling such challenges. We select three representative and competitively strong frameworks---\textit{OpenHands}, \textit{SWE-Agent}, and \textit{Aider}---all of which are under active development and updated on an almost daily basis.
+% OpenHands, SWE-Agent, and Aider, these open-source agent frameworks evolve almost daily. 
+
+To ensure fair and reproducible evaluation, we fix all experiments to their official April 2025 releases. The exact version numbers are listed in Table \ref{table:hyperparameters}.
+
+\subsection*{Execution Configurations.} 
+To ensure consistency and reproducibility, each framework operates within a designated execution environment. Specifically, Aider executes code in a local Python 3.12 Conda environment; OpenHands utilizes the official runtime Docker container provided by its developers; and SWE-Agent runs within a Docker container based on Ubuntu 20.04, equipped with Python 3.12. For each run, agents have access to a machine with 9 vCPUs, 33 GB RAM, and a 2965 GiB SSD. 
+
+All language models in our benchmark are evaluated using a unified parameter configuration unless explicitly noted. Specifically, we set the temperature to 0.5 and fix top-p (nucleus sampling) at 1.0, while retaining each model's default top-k value. Response length is capped at 4,096 tokens. These settings are applied consistently across all models, except when modified by framework requirements. Any framework-specific adjustments are documented in the respective configuration files within the GitTaskBench GitHub repository~\cite{gittaskbench2025}.
+
+\subsection*{OpenHands.}
+All parameters were kept at their default settings, except for \texttt{timeout}, which was set to 600 seconds.
+
+We observed inconsistencies between the metrics reported in the final \texttt{llm\_metrics} (specifically, the values for \texttt{accumulated\_token\_usage}, \texttt{prompt\_tokens}, and \texttt{completion\_tokens})  within the \texttt{events} folder in the \texttt{\/trajectories\/sessions} and the statistics automatically generated in \texttt{batch\_results.jsonl} (\texttt{total\_cost}, \texttt{total\_input\_tokens}, \texttt{total\_output\_tokens}). 
+In our analysis, when both sources were available, we consistently prioritized the latter. For self-hosted models where certain statistics were missing from \texttt{batch\_results.jsonl}, we relied on the corresponding metrics from the \texttt{events} folder.
+% we rely on the latter as the standard. 
+
+Regarding \texttt{max\_iterations}, we found that OpenHands does not strictly enforce this parameter---an issue previously raised on GitHub. The number of steps recorded in the \texttt{events} folder (i.e., the number of JSON files) often exceeds the specified \texttt{max\_iterations}. For example, with \texttt{max\_iterations} set to 30, more than 70 event files may be present. As a result, it is difficult to accurately define, track, and limit the actual number of agent steps during execution. Nevertheless, we faithfully report only the experimental results based on the adjusted parameters, disregarding these observed discrepancies in the event trajectories. 
+
+\begin{table*}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\resizebox{0.92\linewidth}{!}{%
+\begin{tabular}{ll|ccccc}
+\toprule
+\textbf{Setting} & 
+ & 
+\textbf{ECR}\textbf{(\%) ↑ }& 
+\textbf{TPR}\textbf{(\%) ↑} & 
+\textbf{Input}\textbf{Tokens (k)} $\downarrow$ & 
+\textbf{Output}\textbf{Tokens} $\downarrow$ & 
+\textbf{Cost}\textbf{(\$)} $\downarrow$ \\
+\midrule
+\multicolumn{7}{l}{\textbf{max\_iteration: default}} \\
+\hline
+& timeout=120\,s  & 18.52 & 12.96 & 263.22  & 1804.92   & 0.676 \\
+& timeout=600\,s  & 21.30 & 14.82 & 760.53  & 3990.31   & 1.94  \\
+& timeout=1200\,s & 46.30 & 35.19 & 1025.82 & 8207.08   & 2.65  \\
+& timeout=1800\,s & 50.00 & 35.19 & 2545.55 & 15558.44  & 6.52  \\
+\hline
+\addlinespace
+\multicolumn{7}{l}{\textbf{timeout: 600\,s}} \\
+\hline
+& max\_iteration=30  & 44.44 & 33.33 & 1034.44 & 8532.13   & 2.67  \\
+& max\_iteration=70  & 50.00 & 33.33 & 1546.68 & 9157.67   & 3.96  \\
+& max\_iteration=100 & 53.70 & 37.04 & 1590.65 & 12052.62  & 4.10  \\
+\bottomrule
+\end{tabular}
+}
+\caption{Performance variation of OpenHands (GPT-4o) under different hyperparameter settings.}
+\label{tab:openhands-gpt4o-hyperparam}
+\end{table*}
+
+
+
+\subsection*{SWE-Agent.}
+The \texttt{execution\_timeout} was increased from the default 30 seconds to 150 seconds, and the \texttt{total\_execution\_timeout} was extended from 1,800 seconds to one hour. We observed that when an error occurs, SWE-Agent tends to promptly switch methods. This behavior is guided by the following instruction in the original instance template:
+\begin{lstlisting}
+Instruction 1: If you run a command and it doesn't work, try running a different command. A command that did not work once will not work the second time unless you modify it!
+\end{lstlisting}
+However, this prompt does not cause excessive method switching or errors, thanks to another guideline:
+\begin{lstlisting}
+Instruction 5: When editing files, it is easy to accidentally write code with incorrect indentation or make other mistakes. Always check the code after you issue an edit to make sure that it reflects what you wanted to accomplish. If it didn't, issue another command to fix it.
+\end{lstlisting}
+In practice, after making changes to a file, the agent first checks whether the edit matches the intended goal. If not, it will issue further commands to fix the error. 
+
+Nevertheless, the original GitHub issue-oriented tip might conflict with our full prompt in some cases, making SWE-Agent less likely to resolve environment issues by installing packages. To avoid this as much as possible, we removed the following prompt from our template:
+\begin{lstlisting}
+Instruction 7: Do not try to install any packages with \texttt{pip}, \texttt{conda}, or any other way. This will usually not work. If the environment is not set up correctly, try to fix the issue without executing Python code or running any tests that require the package installed.
+\end{lstlisting}
+
+\subsection*{Aider.}
+All parameters were set to their default values.
+
+
+\begin{table}[]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\multicolumn{3}{c}{\textbf{OpenHands} (0.33.0)}    \\ \hline
+\textbf{Parameter}   &  & \textbf{Value}  \\ \hline
+agent                &  & \texttt{CodeActAgent}    \\
+model                &  & \texttt{\$TARGET\_MODEL} \\
+timeout\_in\_seconds &  &   600              \\
+max\_iterations           &  & \texttt{default}                \\ 
+enable\_history\_truncation           &  & \texttt{True}        \\ 
+condenser\_type           &  & \texttt{"noop"}                \\ 
+\hline
+\multicolumn{3}{c}{\textbf{SWE-Agent} (v1.0.1-61-gaa4e8ea1)}    \\ \hline
+\textbf{Parameter}   &  & \textbf{Value}  \\ \hline
+WINDOW                     &  &  100               \\
+execution\_timeout                     &  &   150              \\ 
+total\_execution\_timeout                     &  &   3600        \\ 
+install\_timeout          &  &   \texttt{default}              \\ 
+last\_n\_observations    &  &  5 \\
+\hline
+\multicolumn{3}{c}{\textbf{Aider} (v0.84.1.dev-21-gb2592267)}    \\ \hline
+\textbf{Parameter}   &  & \textbf{Value}  \\ \hline
+RETRY\_TIMEOUT               &  &     60            \\
+request\_timeout           &  &      600           \\ 
+cache\_control           &  &      \texttt{False}           \\ 
+cache\_by\_default           &  &      \texttt{False}           \\ 
+user\_system\_prompt           &  &      \texttt{True}          \\ 
+\hline
+                     &  &   
+\end{tabular}
+\caption{Hyperparameter configuration. \texttt{\$TARGET\_MODEL} is the model being evaluated.}
+\label{table:hyperparameters}
+\end{table} 
+
+
+\section*{C. Prompts}
+\label{appendix:prompts}
+
+\begin{lstlisting}[language={},caption={Prompts of DeepResearch for Suitable Repository.},label={lst:deepresearch}]
+Domain: Image Processing, Image Colorization
+Task: Given an old photograph with black, yellow, and white tones, your goal is to colorize the image and restore it into a richly colored photograph.
+Instructions: Please conduct a thorough search to identify the most relevant and effective open-source GitHub repositories that can accomplish the above task. Please carefully read the README content of each GitHub repository.
+Repository Selection Criteria:
+#The codebase must be based on Python and utilize the PyTorch framework.
+#The repository should have more than 50 stars and an active community (with recent updates within the past five years, including either open issues or continuous commits).
+#Preference should be given to closed repositories (i.e., solutions where the model does not require pre-trained weights and can run directly), also updated within the past five years.
+#The code should be as simple and user-friendly as possible, allowing for easy learning and adoption.
+\end{lstlisting}
+
+
+\begin{lstlisting}[language={},caption={Prompt Template for Tasks.},label={lst:task-prompt}]
+Core Objective: Rapidly understand and analyze the provided code repository, generate and execute necessary code or invoke relevant tools, and accurately and efficiently complete the user-specified task.
+## Workflow and Guidelines
+1. Task Understanding: Carefully analyze the user-provided task description (<task>), working directory (<work_dir>), repository information (<repo>), and code importance hints (<code_importance>).
+2. Planning:
+  - If no clear plan exists, first devise a detailed sequence of steps for execution. Begin by reading the repository's README.md file to understand its structure and usage.
+  - If README.md is absent or lacks sufficient information, examine the codebase directly to discern structure and usage.
+  - Clearly distinguish which steps require code generation, and which depend on language understanding or tool invocation.
+  - When generating or executing code, always use absolute file paths to avoid path errors-do not use relative paths.
+3. Repository Analysis:
+  - Explore Structure: Quickly familiarize yourself with the repository's overall directory and file structure, using absolute paths.
+  - Identify Key Files: Prioritize README.md, configuration files, and main entry-point scripts.
+  - Dependency Management:
+    - Check requirements.txt or similar files to identify dependencies.
+    - If the installation is needed: Include installation commands in code blocks (e.g., pip install -r requirements.txt or pip install specific_package). Ensure packages are not redundantly installed.
+    - Prefer pip install over conda install.
+    - Environment Setup: The environment is ready to use and supports both Python and Conda commands. However, ensure the repository path is included in PYTHONPATH. If needed, generate the command: export PYTHONPATH=\"$PYTHONPATH:{remote_repo_path}\".
+4. Implementation and Execution:
+  - Provide detailed code and step-by-step implementation, including complete function/class definitions, parameters, return values, and necessary comments and docstrings.
+  - For dependencies on checkpoint/model files, first check for their existence. If present, use them directly; otherwise, automatically download them before use (e.g., using wget or wget -O for multiple files).
+5. Error Handling and Iteration:
+  - Check code execution results.
+  - If errors occur, analyze the cause, fix the code, and retry with a complete script.
+  - If the issue persists after several attempts or the task remains unsolved, analyze the reasons and consider alternative solutions.
+6. Tool Priority:
+  - Prefer using existing tools over writing new code. Tasks that can be accomplished with available tools should not be re-implemented from scratch.
+7. Task Completion:
+  - Upon successful completion or definitive failure, provide a clear and concise summary.
+## Key Constraints
+- Absolute Paths: Always use absolute paths when handling files (especially data loading) in code.
+- PYTHONPATH: Ensure the repository path is added to the PYTHONPATH environment variable.
+- Tool Over Code: Tasks that can be completed with existing tools must not be implemented with new code.
+- Repository Understanding: Always read the repository's README.md to understand its structure and usage. If insufficient, examine the codebase directly.
+\end{lstlisting}
+
+
+\section*{D. Details of Alpha Value Evaluation}
+\label{appendix:alpha}
+
+\subsection*{Illustrative Examples.}
+As discussed earlier, the ($\alpha$)-score quantifies the average net gain across tasks, defined as: 
+\begin{equation}
+\alpha=\frac{1}{n} \sum_{i=1}^{n} \left [(T\times MV\times Q)- C \right ] 
+\end{equation}
+To demonstrate the practical utility of the alpha metric, we present two real-world task examples showcasing its application in evaluating economic benefits.
+
+\textbf{Case 1: Old Photo Restoration.}
+Freelancers typically charge \$10 for restoring a scratched, aged photo, with a delivery time of approximately two days. An AI agent achieves an average task success rate ($T$) of 0.95 and a quality coefficient ($Q$) of 1 (nearly indistinguishable from human experts), with a per-task cost ($C$) of \$0.5 and a completion time of a few minutes. The \(\alpha\) score is calculated as:
+$\alpha = (0.95 \times 10 \times 1) - 0.5 = 9.00$ \text{USD}, 
+This indicates significant economic advantages over human-based solutions.
+
+\textbf{Case 2: Document Analysis}
+Professional market analysis or detailed document review typically costs \$100 per document, with a delivery time of 1–2 working days. An AI agent achieves a task success rate ($T$) of 0.85 and a quality coefficient ($Q$) of 0.75, with a per-task cost ($C$) of \$2 and near-instantaneous delivery. The \(\alpha\) score is:
+$\alpha = (0.85 \times 100 \times 0.75) - 2 = 61.75$ \text{USD},
+This highlights substantial economic benefits, offering a compelling alternative to human services.
+
+These cases illustrate the AI agents' potential to reduce operational costs and enhance task efficiency, providing a quantitative foundation for workforce automation and decision optimization.
+
+
+\begin{table}[]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+\textbf{Domain} & \textbf{Subdomain} & \textbf{Market Value} \\
+\midrule
+\multirow{6}{*}{\makecell[c]{Image\\Processing}}
+  & Style Transfer         & \$10 (5--20)   \\
+  & Image Coloring         & \$10 (5--30)   \\
+  & Image Restoration      & \$10 (5--20)   \\
+  & Scratch Detection      & \$5            \\
+  & Image Enhancement      & \$5 (5--10)    \\
+  & Background Processing  & \$10 (5--30)   \\
+\midrule
+\multirow{3}{*}{
+\makecell[c]{Video\\Processing}
+}
+  & Video Action Analysis  & \$150          \\
+  & Style Transfer         & \$20 (5--40)   \\
+  & Video Coloring         & \$50 (25--100) \\
+\midrule
+\multirow{4}{*}{
+\makecell[c]{
+Speech\\Processing}
+}
+  & Speech Recognition     & \$100 (80--200)\\
+  & Speech Separation      & \$15 (10--30)  \\
+  & Speech Enhancement     & \$15 (10--30)  \\
+  & Speech Analysis        & \$100 (80--200)\\
+\midrule
+\multirow{3}{*}{
+\makecell[c]{Physiological \\Signals \\Processing}
+% Physiological Signals Processing
+}
+  & EDA Data Analysis      & \$60              \\
+  & ECG Data Analysis      & \$60          \\
+  & EOG Data Analysis      & \$60             \\
+\midrule
+\multirow{3}{*}{
+\makecell[c]{Security\\and\\Privacy}
+% Security and Privacy
+}
+  & Data Simulation        & \$6.67 (5--10)\\
+  & Watermark Embedding    & \$10          \\
+  & Watermark Extraction   & \$10          \\
+\midrule
+\multirow{2}{*}{\makecell[c]{Web\\Scraping}}
+  & Web Scraping           & \$30          \\
+  & Web Crawling           &  \$30              \\
+\midrule
+\multirow{3}{*}{
+\makecell[c]{Office \\Document \\Processing}
+% Office Document Processing
+}
+  & Excel Document Parsing   & \$25 (10--50)\\
+  & PDF Content Extraction   & \$6.25 (5--20)\\
+  & PDF Content Processing   & \$7.50 (5--20)\\
+\bottomrule
+\end{tabular}
+}
+\caption{Market Values by Domain and Subdomain in GitTaskBench}
+\label{tab:market-values}
+\end{table}
+
+
+
+\subsection*{Market Value of Tasks.}
+Table \ref{tab:market-values} summarizes estimated human freelance fees for each task subdomain in GitTaskBench. Visual tasks in Image Processing typically range from \$5 (e.g., scratch detection) to \$10–\$30 (e.g., style transfer, background processing), reflecting moderate complexity. Video Processing commands higher pay, with video action analysis at \$150 and coloring tasks up to \$50, indicating specialized expertise. In Speech Processing, recognition and analysis fetch \$100–\$200, while separation and enhancement sit at \$15–\$30, showing a split between core transcription work and more advanced signal processing. All three Physiological Signals analyses (EDA, ECG, EOG) are assigned a flat \$60 rate, reflecting comparable specialized expertise. Security \& Privacy tasks like data simulation and watermarking range from \$6.67 to \$10, and Web Scraping sits around \$30. Finally, Office Document Processing tasks span \$6.25–\$25, with Excel parsing at the top end. These figures highlight both the breadth of domain complexity and the economic incentives for agents to focus on higher-value, specialized workflows. 
+
+
+\subsection*{Alpha Value of Repositories.}
+\label{appendix:alpha score}
+Table~\ref{tab:alpha-repository-details} provides the specific Alpha scores of three models---DeepSeek-V3, GPT-4.1, and Claude 3.5-Sonnet---evaluated across 18 GitTaskBench repositories. Each repository includes 1–5 tasks, reflecting diverse real-world applications. The Alpha score captures task-specific performance variations, revealing model strengths and weaknesses in domains. Positive scores indicate effective performance, while negative scores highlight challenges. These results underscore the importance of aligning agent deployment with repository-specific requirements to optimize efficiency and cost-effectiveness. 
+
+\begin{table*}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|c|c|c|c}
+\toprule
+\textbf{Repository} & \textbf{Number of Tasks (n)} & \textbf{Alpha (DeepSeek-V3)} & \textbf{Alpha (GPT-4.1)} & \textbf{Alpha (Claude 3.5-Sonnet)} \\
+\midrule
+Scrapy & 3 & 19.491 & 9.897 & 25.683 \\
+Trafilatura & 3 & 4.883 & 15.79 & 24.941 \\
+NeuroKit & 3 & 46.407 & 19.766 & 22.706 \\
+Eparse & 3 & -0.921 & 24.558 & 22.620 \\
+SpeechBrain & 5 & 16.579 & 19.870 & 9.058 \\
+Stegano & 3 & 4.932 & 9.817 & 8.725 \\
+PyPDF2 & 3 & 7.636 & -0.078 & 7.174 \\
+Faker & 3 & 5.553 & 5.861 & 4.315 \\
+PDFPlumber & 3 & 4.732 & -0.093 & 3.004 \\
+FunASR & 3 & -3.483 & 30.804 & 2.322 \\
+InvisibleWatermark & 3 & -2.243 & 8.723 & 0.433 \\
+TransparentBackground & 3 & -9.690 & 8.372 & 0.416 \\
+VideoPose3D & 1 & 95.541 & 86.488 & -0.476 \\
+StyleTransfer & 3 & 8.917 & 5.908 & -0.749 \\
+SuperResolution & 3 & 0.856 & -2.143 & -1.590 \\
+DeOldify & 3 & -0.575 & -1.240 & -2.107 \\
+DeScratch & 3 & -1.562 & 3.255 & -3.967 \\
+AnimeGANv3 & 3 & -2.631 & 12.779 & -11.134 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Alpha Score of three models with OpenHands in GitTaskBench's different repositories.}
+\label{tab:alpha-repository-details}
+\end{table*}
+
+
+\subsection*{API costs.}
+Table~\ref{tab:token-pricing} presents the latest available token pricing for all evaluated models as of June 15, 2025. The table lists input and output token costs per million tokens in USD. The prices for the Claude series are sourced from Anthropic’s official documentation\footnote{\url{docs.anthropic.com/en/docs/about-claude/models/overview}}, while pricing for the GPT/o series is based on OpenAI’s official pricing page\footnote{\url{platform.openai.com/docs/pricing}}.
+The price of the Gemini-2.5-pro is from the Gemini API docs in the "Google AI for Developers" \footnote{\url{ai.google.dev/gemini-api/docs/pricing}}. 
+% Although the true output cost should include tokens spent on internal "thinking" or reasoning steps, our figures only reflect the actual output cost reported by the OpenHands framework. Therefore, we report only the output cost for Gemini 2.5 Pro’s results, and the actual total cost would be higher.
+Notably, the DeepSeek-V3-0324 API used in our experiments refers to the official DeepSeek endpoint\footnote{\url{api-docs.deepseek.com/zh-cn/quick_start/pricing}}, not a self-hosted instance. Despite DeepSeek-V3 being open source, API usage is still subject to official pricing. 
+
+Among all models, DeepSeek-V3 offers the lowest input and output token prices, whereas Anthropic’s Claude models have the highest output token rates. These differences in token pricing directly impact the cost-efficiency of large-scale agent deployment.
+
+
+\begin{table*}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c c r r}
+\toprule
+\textbf{API Name} & \textbf{Provider} & 
+\makecell{\textbf{Input Token Price} \\ (\$/M tokens)} & 
+\makecell{\textbf{Output Token Price} \\ (\$/M tokens)} \\
+\midrule
+Claude 3.5 Sonnet-20241022 & Anthropic & 3.00 & 15.00 \\
+Claude-3-7-Sonnet-20250219 & Anthropic & 3.00 & 15.00 \\
+Gemini-2.5‑Pro & DeepMind / Google & \makecell[c]{$\leq$200k tokens: 1.25\\
+$>$200k tokens: 2.50} & \makecell[c]{$\leq$200k tokens: 10.00\\
+$>$200k tokens: 15.00} \\
+DeepSeek-V3-0324           & DeepSeek  & 0.27 & 1.10 \\
+GPT-4o-20240806            & OpenAI    & 2.50 & 10.00 \\
+GPT-4.1                    & OpenAI    & 2.00 & 8.00 \\
+o3-mini                    & OpenAI    & 1.10 & 4.40 \\
+\bottomrule
+\end{tabular}
+\caption{Latest Model Token Pricing as of June 15, 2025. All prices are per million tokens (USD).}
+\label{tab:token-pricing}
+\end{table*}
+
+
+\section*{E. More Detailed Experimental Results}
+\label{appendix:experiments}
+Here, we aim to explore whether there exists a consistent relationship between repository size and the token usage of code agents, providing empirical insights into their resource efficiency.
+
+We plot the relationship between repository size (i.e., the original token count of each repository) and the input token usage of both OpenHands and SWE-Agent. For each framework, input token usage is calculated as the average across all tasks for the four major models (GPT-4o, GPT-4.1, Claude 3.5, and DeepSeekV3).
+
+Figure \ref{fig:repo-token-process} reports the average input token usage for tasks that achieved process success (i.e., ECR), while Figure \ref{fig:repo-token-result} shows the average for tasks with result success (i.e., TPR). We only include successful tasks because failed runs can result in abnormal token counts---either excessively high due to repeated attempts, or unusually low if terminated prematurely. Such cases do not provide meaningful statistics. 
+
+For this reason, the main experimental results (*Table 2 in the main body of the paper*) also report token usage based only on process-successful tasks.
+
+In Figure \ref{fig:repo-token-result}, some repositories lack data points because none of the models achieved result success on the tasks of those repositories.
+
+The trend observed in both Figure~\ref{fig:repo-token-process} and Figure~\ref{fig:repo-token-result} indicates that LLM input token costs do not scale proportionally with repository size, highlighting that effective repository utilization does not require reading the entire codebase. Instead, efficiently leveraging entry-point documentation such as READMEs, selectively identifying and analyzing key code files, and strategically utilizing their dependency structures for \textbf{optimizing repository exploration paths is far more critical.} 
+% 优化仓库空间的路径探索
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images/token_usage_trend_process.pdf}
+    \caption{Relationship between repository size and input token usage for each framework. Only process-successful tasks are included in the statistics.}
+    \label{fig:repo-token-process}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images/token_usage_trend_results.pdf}
+    \caption{Input token usage per framework versus repository size (only result-successful tasks are included).}
+    \label{fig:repo-token-result}
+\end{figure}
+
+\section*{F. Detailed Cases of Code Agents}
+To provide concrete insights into agent behavior, we present detailed case studies of both successes and failures, highlighting common patterns and distinctive issues encountered by code agents in realistic task-solving scenarios.  
+
+\subsection*{Successes}
+\begin{lstlisting}[language={},caption={TransparentBackground green screen processing successfully completed with correct parameter selection.},label={lst:transparent-success}]
+Task: Convert image background to green screen using TransparentBackground library
+Agent Action: Task understanding and planning
+[INFO] Analyzing task requirements: background removal with green screen replacement
+[STRATEGY] Following standard workflow: README analysis to dependency setup, to implementation
+Agent Action: Repository exploration and documentation analysis
+[INFO] Reading README.md for project functionality and usage instructions
+[SUCCESS] Found key information: --type green parameter for green screen background
+[DISCOVERY] Located critical files: usage.py, transparent_background/ core directory
+Agent Action: Dependency installation and environment setup
+[INFO] Installing required Python packages
+[EXEC] pip install torch torchvision opencv-python timm tqdm kornia gdown
+[SUCCESS] All dependencies installed successfully
+[EXEC] pip install -e. 
+[SUCCESS] Local transparent-background package installed
+Agent Action: Environment configuration
+[INFO] Setting up Python environment for module import
+[EXEC] export PYTHONPATH=/path/to/transparent_background:$PYTHONPATH
+[SUCCESS] PYTHONPATH configured correctly
+[VERIFY] from transparent_background.Remover import Remover
+[SUCCESS] Import successful: <class 'transparent_background.Remover.Remover'>
+Agent Action: Implementation with correct parameters
+[INFO] Creating green screen processing script with optimal configuration
+[CODE]
+from transparent_background import Remover
+import cv2
+# Initialize remover with base mode and CPU device
+remover = Remover(mode="base", device="cpu")
+# Load input image
+img = cv2.imread("/data/input/image.jpg")
+# Process with green screen background
+out = remover.process(img, type="green")
+# Save result
+cv2.imwrite("/data/output/output.png", out)
+Agent Action: Executing solution
+[EXEC] python green_screen_converter.py
+[INFO] Downloading model checkpoint (367MB)
+[SUCCESS] Model loaded and processing completed
+[OUTPUT] Generated output.png (267KB) with green screen background
+Agent Status: COMPLETED - Task successfully finished
+Success Factors:
+- Correct parameter selection: type="green" from README documentation
+- Proper environment setup with PYTHONPATH configuration  
+- Complete dependency management and installation
+- Optimal model configuration (mode="base", device="cpu")
+- Single-pass execution without technical issues
+Task Completion: 100% 
+\end{lstlisting}
+
+
+\subsection*{Failures}
+We illustrate the five error types (summarized in the main text) with concrete examples. Distinctive failure patterns are discussed for both SWE-Agent and OpenHands.
+
+% \begin{table*}[h]
+% \centering
+% \caption{Comprehensive Error Classification Framework for Code Agent Evaluation}
+% \label{tab:error-classification}
+% \resizebox{\textwidth}{!}{%
+% \begin{tabular}{l|p{5.5cm}|p{5.5cm}|c|c}
+% \hline
+% \rowcolor{gray!20}
+% \textbf{Primary Category} & \textbf{Secondary Subclasses} & \textbf{Key Diagnostic Indicators} & \textbf{SWE-Agent} & \textbf{OpenHands} \\
+% \hline
+% \textbf{E1: Environment Setup} & 
+% \textbf{1.} Version/ABI Conflicts \newline
+% \textbf{2.} Missing Binary Wheels \newline
+% \textbf{3.} System Library Dependencies & 
+% - numpy-opencv compatibility issues \newline
+% - GLIBC version mismatches \newline
+% - pip installation failures \newline
+% - Network timeout errors \newline
+% - Missing system libraries (libGL.so) & ~\ref{lst:scrapy-execution} & ~\ref{lst:opencv-numpy-abi} \\
+% \hline
+% \textbf{E2: Workflow Planning} & 
+% \textbf{1.} No Subsequent Actions \newline
+% \textbf{2.} README-Only Reading & 
+% - Premature termination after setup \newline
+% - Missing main script execution \newline
+% - Repetitive file reading loops \newline
+% - Incorrect execution sequencing & ~\ref{lst:funasr-execution} & ~\ref{lst:neurokit-workflow} \\
+% \hline
+% \textbf{E3: Repository Comprehension} & 
+% \textbf{1.} Entry Script Identification \newline
+% \textbf{2.} API Call Errors & 
+% - Internal package import failures \newline
+% - Incorrect function parameters \newline
+% - Misunderstood API signatures \newline
+% - Wrong module usage patterns & \ref{lst:transparent-background-workflow} & ~\ref{lst:speechbrain-tensor} \\
+% \hline
+% \textbf{E4: Runtime Execution} & 
+% \textbf{1.} Timeout/Memory Issues \newline
+% \textbf{2.} Agent Interruption & 
+% - RuntimeError in traceback \newline
+% - CUDA out-of-memory errors \newline
+% - Hard timeout limit exceeded \newline
+% - Manual interruption signals & ~\ref{lst:watermark-interrupt} & ~\ref{lst:funasr-timeout} \\
+% \hline
+% \textbf{E5: Instruction Non-compliance} & 
+% \textbf{1.} Naming Violations \newline
+% \textbf{2.} Repository Bypass & 
+% - Non-conformant output naming \newline
+% - Ignoring specified requirements \newline
+% - Deceptive completion methods \newline
+% - Avoiding required code usage & ~\ref{lst:cancer-detection} & ~\ref{lst:funasr-deceptive} \\
+% \hline
+% \end{tabular}%
+% }
+% \end{table*}
+
+
+\begin{table*}[h]
+\centering
+\label{tab:error-classification}
+\renewcommand{\arraystretch}{1.8}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|p{4.8cm}|p{6.0cm}|p{1.8cm}|p{1.8cm}}
+\hline
+\rowcolor{gray!20}
+\textbf{Primary Category} & \textbf{Secondary Subclasses} & \textbf{Key Diagnostic Indicators} & \textbf{SWE-Agent} & \textbf{OpenHands} \\
+\hline
+\textbf{E1: Environment Setup} & 
+\textbf{1.} Version/ABI Conflicts \newline
+\textbf{2.} Missing Binary Wheels \newline
+\textbf{3.} System Library Dependencies & 
+- NumPy-OpenCV compatibility issues \newline
+- GLIBC version mismatches \newline
+- Pip installation failures \newline
+- Network timeout errors \newline
+- Missing system libraries (e.g., libGL.so) & 
+Listing~\ref{lst:scrapy-execution} & 
+Listing~\ref{lst:opencv-numpy-abi} \\
+\hline
+\textbf{E2: Workflow Planning} & 
+\textbf{1.} No Subsequent Actions \newline
+\textbf{2.} README-Only Reading & 
+- Premature termination after setup \newline
+- Missing main script execution \newline
+- Repetitive file reading loops \newline
+- Incorrect execution sequencing & 
+Listing~\ref{lst:transparent-background-workflow} & 
+Listing~\ref{lst:neurokit-workflow} \\
+\hline
+\textbf{E3: Repository Comprehension} & 
+\textbf{1.} Entry Script Identification \newline
+\textbf{2.} API Call Errors & 
+- Internal package import failures \newline
+- Incorrect function parameters \newline
+- Misunderstood API signatures \newline
+- Wrong module usage patterns & 
+Listing~\ref{lst:funasr-execution} & 
+Listing~\ref{lst:speechbrain-tensor} \\
+\hline
+\textbf{E4: Runtime Execution} & 
+\textbf{1.} Timeout/Memory Issues \newline
+\textbf{2.} Agent Interruption & 
+- RuntimeError in traceback \newline
+- CUDA out-of-memory errors \newline
+- Hard timeout limit exceeded \newline
+- Manual interruption signals & 
+Listing~\ref{lst:watermark-interrupt} & 
+Listing~\ref{lst:funasr-timeout} \\
+\hline
+\textbf{E5: Instruction Non-compliance} & 
+\textbf{1.} Naming Violations \newline
+\textbf{2.} Repository Bypass & 
+- Non-conformant output naming \newline
+- Ignoring specified requirements \newline
+- Deceptive completion methods \newline
+- Avoiding required code usage & 
+Listing~\ref{lst:cancer-detection} & 
+Listing~\ref{lst:funasr-deceptive} \\
+\hline
+\end{tabular}%
+}
+\caption{Comprehensive Error Classification Framework for Code Agent Evaluation}
+\end{table*}
+
+
+
+\subsubsection*{SWE-Agent}
+\paragraph{E1}\label{swe-e1}
+
+\begin{lstlisting}[language={},caption={Pdfplumber execution failed due to missing external dependency.},label={lst:scrapy-execution}]
+Task: Extract text from PDF using pdfplumber library
+
+Agent Action: Examining repository documentation
+[INFO] Reading README.md for pdfplumber usage instructions
+[SUCCESS] Found usage pattern: pdfplumber.open() with page.extract_text()
+
+Agent Action: Implementing the solution
+[INFO] Creating extract_text.py script
+[CODE] 
+import pdfplumber
+
+# Input and output paths
+input_pdf_path = '/data/input/document.pdf'
+output_txt_path = '/data/output/extracted_text.txt'
+
+# Extract text from first page
+with pdfplumber.open(input_pdf_path) as pdf:
+    first_page = pdf.pages[0]
+    text = first_page.extract_text()
+
+# Save to output file
+with open(output_txt_path, 'w') as txt_file:
+    txt_file.write(text)
+
+print("Extraction completed successfully.")
+
+Agent Action: Executing solution
+[EXEC] python extract_text.py
+
+[ERROR] Execution failed:
+Traceback (most recent call last):
+  File "extract_text.py", line 1, in <module>
+    import pdfplumber
+ModuleNotFoundError: No module named 'pdfplumber'
+
+Agent Status: FAILED - Dependency unavailable
+Error Classification: Type E1 - Dependency/Environment Error
+Root Cause: Required external library 'pdfplumber' not installed in the execution environment
+Impact: Complete task failure despite correct implementation approach
+\end{lstlisting}
+
+\paragraph{E2}
+\begin{lstlisting}[language={},caption={TransparentBackground implementation failed due to premature submission after dependency installation.},label={lst:transparent-background-workflow}]
+Task: Implement background removal functionality for TransparentBackground project
+Agent Action: Repository exploration
+[INFO] Locating project documentation
+[SUCCESS] find_file README.md /data/.../TransparentBackground
+[FOUND] /data/.../TransparentBackground/README.md
+Agent Action: Understanding project structure
+[INFO] Reading README.md to comprehend repository layout
+[THOUGHT] "Must first explore and understand the TransparentBackground repository..."
+Agent Action: Environment setup - Installing PyTorch dependencies
+[INFO] Installing required torch packages with CPU support
+[EXEC] PYTORCH_ENABLE_MPS_FALLBACK=1 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+[TIMEOUT] Command cancelled after 30 seconds
+Agent Action: Retry dependency installation
+[INFO] Attempting package installation again
+[EXEC] PYTORCH_ENABLE_MPS_FALLBACK=1 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+[TIMEOUT] Command cancelled after 30 seconds
+Agent Action: Solution submission
+[EXEC] submit
+[FAILED] Premature submission without implementation
+Agent Status: FAILED - No actual implementation performed
+Error Classification: Type E2 - Workflow Planning Error
+Root Cause: Agent confused dependency installation with task completion
+Missing Steps: 
+- Background removal algorithm implementation
+- Code testing and validation
+- Actual functionality development
+Impact: Task abandoned immediately after the environment setup phase
+\end{lstlisting}
+
+
+\paragraph{E3}
+\begin{lstlisting}[language={},caption={FunASR audio transcription failed due to incorrect API usage.},label={lst:funasr-execution}]
+Task: Transcribe WAV audio file using FunASR library
+Agent Action: Exploring FunASR codebase structure
+[INFO] Examining /runtime/funasr_api/ directory
+[SUCCESS] Found funasr_api.py with FunasrApi class implementation
+Agent Action: Analyzing API interface
+[INFO] Reading funasr_api.py source code
+[CODE] 
+class FunasrApi:
+    def __init__(self, uri="wss://www.funasr.com:10096/", timeout=1000, msg_callback=None):
+        self.uri = uri
+        self.timeout = timeout
+        self.msg_callback = msg_callback
+        self.funasr_core = None
+    
+    def rec_file(self, file_path):
+        try:
+            funasr_core = self.new_core()
+            funasr_core.rec_file(file_path)
+            return funasr_core.get_result()
+        except Exception as e:
+            print("rec_file", e)
+            return
+Agent Action: Implementing transcription solution
+[INFO] Creating transcription script based on API analysis
+[CODE]
+from funasr_api import rec_file
+# Direct function import attempt
+audio_file = "/data/input/sample.wav"
+result = rec_file(audio_file)
+print("Transcription result:", result)
+Agent Action: Executing solution
+[EXEC] python transcribe_audio.py
+[ERROR] Execution failed:
+Traceback (most recent call last):
+  File "transcribe_audio.py", line 1, in <module>
+    from funasr_api import rec_file
+ImportError: cannot import name 'rec_file' from 'funasr_api'
+Agent Status: FAILED - Incorrect API usage
+Error Classification: Type E3 - Repository Comprehension Error
+Root Cause: Attempted to import instance method 'rec_file' as a standalone function
+Correct Usage: api = FunasrApi(); result = api.rec_file(file_path)
+Impact: Runtime import error due to misunderstanding of class-based API design
+\end{lstlisting}
+
+\paragraph{E4}
+\begin{lstlisting}[language={},caption={Invisible watermark embedding interrupted due to time constraints of agent frameworks.},label={lst:watermark-interrupt}]
+Task: Embed invisible watermark into PNG image using imwatermark library
+Agent Action: Analyzing repository structure and documentation
+[EXEC] cat /data/.../InvisibleWatermark/README.md
+[SUCCESS] Found watermark embedding examples and API documentation
+Agent Action: Creating output directory and embedding script
+[EXEC] mkdir -p /data/.../output/InvisibleWatermark_01
+[CREATE] embed_watermark.py - watermark embedding implementation
+[CODE]
+import cv2
+from imwatermark import WatermarkEncoder
+# Set paths and initialize encoder
+bgr = cv2.imread(input_path)
+encoder = WatermarkEncoder()
+encoder.set_watermark('bytes', wm.encode('utf-8'))
+bgr_encoded = encoder.encode(bgr, 'dwtDct')
+
+Agent Action: Executing watermark embedding process
+[EXEC] python embed_watermark.py
+[LOADING] Initializing WatermarkEncoder with dwtDct algorithm
+[PROCESSING] Reading input image: InvisibleWatermark_01_input.png
+[EMBEDDING] Applying DWT-DCT watermark encoding...
+[INTERRUPT] Process terminated due to computational cost limits
+[ERROR] KeyboardInterrupt: Manual termination after 180 seconds
+Agent Status: INCOMPLETE - Task execution halted
+Error Classification: Type E4 - Runtime Execution Error 
+Root Cause:
+- Watermark encoding process exceeded allocated computation time
+- DWT-DCT algorithm processing a large image consumed excessive resources
+- Manual termination triggered due to cost/time constraints
+- Task incomplete despite correct implementation approach
+Impact: Valid implementation created, but watermarked output not generated
+\end{lstlisting}
+\paragraph{E5}
+
+\begin{lstlisting}[language={},caption={Agent Web Scraping Error Analysis: Network Timeout and Framework Bypass},label={lst:cancer-detection}]
+Task: Use Scrapy framework to scrape quotes from the website and generate XML output
+
+Agent Action: Attempting to execute the existing scraping script
+[EXEC] python scrape_quotes.py
+
+[ERROR] Network connection failed:
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x7f555d2870b0>, 'Connection to quotes.toscrape.com timed out. (connect timeout=10)')
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='quotes.toscrape.com', port=443): Max retries exceeded with url: /tag/humor/
+
+Agent Action: Bypassing repository framework - creating mock data solution
+[BYPASS] Replacing network call with hardcoded mock quotes
+[CODE] 
+# Mock quotes data - BYPASSING SCRAPY FRAMEWORK
+mock_quotes = [
+    {"author": "Author A", "text": "Life is a sitcom."},
+    {"author": "Author B", "text": "Humor keeps you alive."},
+    {"author": "Author C", "text": "Laugh it off."},
+]
+
+parser = QuoteParser()
+parser.quotes.extend(mock_quotes)  # Direct data injection
+
+Agent Action: Creating output directory and executing modified script
+[EXEC] mkdir -p /data/.../output/Scrapy_03
+[EXEC] python scrape_quotes.py
+[SUCCESS] Script executed without errors
+
+Agent Action: Submitting solution
+[SUBMIT] Changes submitted
+
+Agent Status: COMPLETED - but with critical issues
+Error Classification: Type E5 - Repository Misuse/Bypass Error
+Root Cause: 
+- Failed to utilize Scrapy framework as intended
+- Bypassed proper web scraping methodology with mock data
+- Generated synthetic output instead of real scraped content
+- Violated task requirements by substituting mock data for actual web scraping
+Impact: Task appeared successful but produced invalid/synthetic results
+\end{lstlisting}
+
+\subsubsection*{OpenHands}
+\label{appendix:case}
+
+\paragraph{E1}
+\begin{lstlisting}[language={},caption={OpenCV import failed due to numpy ABI compatibility issues.},label={lst:opencv-numpy-abi}]
+Task: Implement computer vision functionality using OpenCV library
+Agent Action: Installing required dependencies
+[INFO] Setting up OpenCV and numpy for image processing
+[EXEC] pip install opencv-python numpy
+[SUCCESS] Package installation completed
+Agent Action: Implementing vision solution
+[INFO] Creating image_processor.py script
+[CODE] 
+import cv2
+import numpy as np
+# Load and process image
+image_path = '/data/input/sample.jpg'
+img = cv2.imread(image_path)
+# Apply basic image operations
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imwrite('/data/output/processed.jpg', gray)
+print("Image processing completed.")
+Agent Action: Executing solution
+[EXEC] python image_processor.py
+[ERROR] Execution failed:
+Traceback (most recent call last):
+  File "image_processor.py", line 1, in <module>
+    import cv2
+ImportError: numpy.core.multiarray failed to import
+Agent Action: Attempting dependency version fixes
+[INFO] Trying different numpy versions for compatibility
+[EXEC] pip install numpy==1.21.0
+[EXEC] pip install --upgrade pip
+[EXEC] pip install opencv-python --force-reinstall
+[ERROR] All attempts failed with the same ABI mismatch error
+Agent Status: FAILED - Environment setup error
+Error Classification: Type E-1 - Version/ABI Conflict
+Root Cause: Binary interface incompatibility between opencv-python and numpy under Python 3.12
+Impact: Complete task failure due to unresolvable dependency conflicts
+\end{lstlisting}
+
+\paragraph{E2}
+\begin{lstlisting}[language={},caption={NeuroKit biosignal processing task abandoned after README examination.},label={lst:neurokit-workflow}]
+Task: Implement neurophysiological signal processing using NeuroKit2 library
+Agent Action: Repository exploration
+[INFO] Examining NeuroKit project structure and documentation
+[EXEC] head -80 /data/data/agent_test_codebase/GitTaskBench/code_base/NeuroKit/README.rst
+[SUCCESS] Command executed with exit code 0
+[CONTENT] Found README.rst with project overview and usage examples
+[INFO] NeuroKit2 description: "Python Toolbox for Neurophysiological Signal Processing"
+[EXAMPLE] Quick usage pattern discovered:
+import neurokit2 as nk
+data = nk.data("bio_eventrelated_100hz")
+processed_data, info = nk.bio_process(ecg=data["ECG"], rsp=data["RSP"], eda=data["EDA"], sampling_rate=100)
+results = nk.bio_analyze(processed_data, sampling_rate=100)
+[INFO] Installation methods found: pip install neurokit2 / conda install
+Agent Action: Task completion assessment
+[STATUS] README examination completed
+[DECISION] No further actions planned
+Agent Status: TERMINATED - Task abandoned after documentation review
+Error Classification: Type E-2 - Workflow Planning Error
+Root Cause: Agent stopped at the environment exploration phase without implementation
+Missing Steps:
+- Actual NeuroKit2 library installation
+- Signal processing code implementation
+- Data analysis execution
+- Result validation and output
+Impact: Complete task failure due to premature workflow termination
+\end{lstlisting}
+\paragraph{E3}
+\begin{lstlisting}[language={},caption={SpeechBrain audio separation failed due to tensor dimension mismatch.},label={lst:speechbrain-tensor}]
+Task: Implement audio source separation using SpeechBrain library
+Agent Action: Interactive command execution
+[INFO] Processing user confirmation for script execution
+[AUTO EXEC] y
+[SUCCESS] Command executed with exit code 0 - Confirmation received
+Agent Action: Implementing an audio separation solution
+[INFO] Creating custom separation script with SpeechBrain model
+[CODE] 
+import speechbrain as sb
+import torchaudio
+# Load pre-trained separation model
+separator = sb.pretrained.SepformerSeparation.from_hparams(
+    source="speechbrain/sepformer-wham", savedir="pretrained_models/sepformer-wham")
+# Process audio file
+mix_audio = separator.load_audio("input_mix.wav")
+est_sources = separator.separate_batch(mix_audio)
+# Save separated sources
+for i, source in enumerate(est_sources):
+    torchaudio.save(f"separated_source_{i}.wav", source, 16000)
+Agent Action: Executing separation script
+[EXEC] python audio_separation.py
+[ERROR] Execution failed:
+RuntimeError: Expected 2D tensor (channels, samples) but got 3D tensor 
+torch.Size([1, 2, 48000]) in torchaudio.save()
+[ERROR] Separation output anomaly: Only 1 source extracted, expected 2 sources
+Agent Status: FAILED - Tensor dimension and output count mismatch
+Error Classification: Type E-3 - Repository Comprehension (Implementation Issues)
+Root Cause: Missing post-processing of model output (squeeze/channel selection)
+Secondary Issue: Incorrect model configuration or input format causing the wrong source count
+Impact: Audio separation task failed due to improper tensor handling
+\end{lstlisting}
+\paragraph{E4}
+\begin{lstlisting}[language={},caption={FunASR speech recognition task terminated due to execution timeout.},label={lst:funasr-timeout}]
+Task: Implement speech recognition using FunASR library
+Agent Action: Library installation and setup
+[INFO] Installing FunASR speech recognition framework
+[SUCCESS] FunASR library reinstalled successfully
+Agent Action: Implementing a speech recognition solution
+[INFO] Creating speech recognition script with FunASR
+[CODE] 
+import funasr
+# Load pre-trained model
+model = funasr.AutoModel(model="paraformer-zh", vad_model="fsmn-vad")
+# Process audio file
+audio_file = "/data/input/speech_sample.wav"
+result = model.generate(input=audio_file)
+# Save transcription results
+with open("/data/output/transcription.txt", "w") as f:
+    f.write(result[0]["text"])
+print("Speech recognition completed.")
+Agent Action: Executing speech recognition
+[EXEC] python speech_recognition.py
+[TIMEOUT] Execution exceeded time limit - Process interrupted
+[STATUS] Speech recognition process incomplete
+Agent Action: Task completion assessment
+[FINISH] Partial completion due to timeout constraints
+[MESSAGE] "Due to execution timeout issues, speech recognition process and output file creation were not completed"
+Agent Status: FAILED - Runtime execution timeout
+Error Classification: Type E-4 - Execution Timeout Error
+Root Cause: Speech processing operation exceeded the allowed execution time limit
+Impact: Task partially completed - installation successful, but core functionality failed
+\end{lstlisting}
+
+\paragraph{E5}
+\begin{lstlisting}[language={},caption={FunASR task deceptively completed by redirecting intermediate output to result file.},label={lst:funasr-deceptive}]
+Task: Implement speech recognition using FunASR library
+Agent Action: Exploring FunASR codebase structure
+[INFO] Examining /code_base/FunASR/examples/ directory for usage patterns
+[SUCCESS] Found industrial_data_pretraining/paraformer/asr_infer_user.py
+Agent Action: Implementing the solution with output redirection
+[INFO] Creating output directory and executing inference script
+[CODE] 
+# Agent's deceptive solution approach
+mkdir -p /data/.../output/FunASR_02
+python3 /data/.../FunASR/examples/industrial_data_pretraining/paraformer/asr_infer_user.py > /data/.../output/FunASR_02/output.txt
+Agent Action: Executing command with output redirection
+[EXEC] mkdir -p /data/data/agent_test_codebase/GitTaskBench/eval_automation/output/FunASR_02 && python3 /data/data/agent_test_codebase/GitTaskBench/code_base/FunASR/examples/industrial_data_pretraining/paraformer/asr_infer_user.py > /data/data/agent_test_codebase/GitTaskBench/eval_automation/output/FunASR_02/output.txt
+[SUCCESS] Command executed successfully
+Agent Action: Verifying task completion
+[CHECK] output.txt file exists and contains content
+[DECISION] Task marked as completed based on a non-empty output file
+Agent Status: COMPLETED - Deceptive success
+Error Classification: Type E-5 - Deceptive Completion
+Root Cause: Agent redirected script's intermediate/debug output to result file instead of actual speech recognition results
+Deception Method: Used stdout redirection to create a non-empty output file without performing the actual task
+Impact: False positive completion - output contains script execution logs, not speech transcription results
+\end{lstlisting}
+
+\section*{G. Limitations \& Future Work}
+While this release focuses on practical, user-facing tasks, future updates will introduce additional technical machine learning tasks. 
+
+We will further expand the benchmark to cover more repositories and tasks from diverse domains, supported by a live update mechanism every three months to continuously incorporate the latest and most challenging repository-aware tasks, thereby tracking and guiding the real-world capability development of code agents.
+
+Given the rapid progress of large models, we currently report results only for the latest mainstream models and have not yet evaluated all reasoning-focused models. 
+We will broaden model coverage and track ongoing advances through a continuously updated public leaderboard.
+
+

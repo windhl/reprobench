@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage{natbib}
+\setcitestyle{numbers,square,comma}
+\usepackage{multirow}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+
+
+% ready for submission
+% \usepackage{neurips_2024}
+% \usepackage{etoolbox}
+% \newtoggle{isSubmission}
+% \toggletrue{isSubmission}
+
+% camera ready for arxiv
+\usepackage[preprint]{neurips_2025}
+\usepackage{etoolbox}
+\newtoggle{isSubmission}
+\togglefalse{isSubmission}
+
+% camera ready for submission
+% \usepackage[final]{neurips_2024}
+% \usepackage{etoolbox}
+% \newtoggle{isSubmission}
+% \toggletrue{isSubmission}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+    % \usepackage[preprint]{neurips_2024}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+% \usepackage{subfigure}
+\usepackage{booktabs} 
+\usepackage{diagbox}
+\usepackage{multirow}
+\usepackage{ifthen}
+\usepackage{lineno}
+\usepackage{ifthen}
+\usepackage{cases}
+\usepackage{footnote}
+\usepackage{lipsum}
+\makesavenoteenv{table}
+\usepackage{array}
+\usepackage{makecell} % 用于在单元格中换行
+\usepackage{tabularx} % 用于自动调整列宽
+% \usepackage{pifont}       % \ding{xx}
+\usepackage{bbding}       % \Checkmark,\XSolid,... (需要和pifont宏包共同使用)
+\usepackage{fontawesome}  % \faCheck,\faTimes
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2025}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2025}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2025}
+\usepackage{hyperref}       % hyperlinks
+\hypersetup{
+    colorlinks,
+    linkcolor={red!85!black},
+    citecolor={blue!70!cyan},
+    urlcolor={blue!90!black}
+}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\usepackage{xspace}
+\newcommand{\ie}{\textit{i.e.}\xspace}
+\newcommand{\eg}{\textit{e.g.}\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+
+\newcommand*{\affaddr}[1]{#1} 
+\newcommand*{\affmark}[1][*]{\textsuperscript{#1}}
+\newcommand{\authormark}[2][]{%
+  \begingroup
+  \def\@thefnmark{#1}%
+  \footnote{#2}%
+  \endgroup
+}
+
+
+\title{VCapsBench: A Large-scale Fine-grained Benchmark for Video Caption Quality Evaluation}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+% Shi-Xue Zhang
+% ~Shi-Xue_Zhang1
+% , Hongfa Wang, Duojun Huang, Xin Li, Xiaobin Zhu, Xu-Cheng Yin
+\author{%
+\bf
+Shi-Xue Zhang \affmark[1,2]\thanks{Equal contribution}~~
+Hongfa Wang\affmark[2,3]\textsuperscript{*}~~
+Duojun Huang\affmark[2]\textsuperscript{*}~~ 
+Xin Li\affmark[2]\textsuperscript{*}\\
+\bf
+Xiaobin Zhu\affmark[1]\textsuperscript{$^\dagger$}~~ 
+Xu-Cheng Yin\affmark[1]\thanks{Corresponding author}~~~ \\
+\affaddr{\affmark[1]University of Science and Technology Beijing}
+\affaddr{\affmark[2]Tencent} \\
+\affaddr{\affmark[3]Tsinghua Shenzhen
+International Graduate School}
+}
+
+% customized packages and commands
+\bibliographystyle{unsrt}
+\usepackage{graphics}
+\usepackage[table]{xcolor}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{wrapfig}
+\usepackage{longtable}
+\usepackage{fancyvrb}
+\usepackage{empheq}
+\definecolor{metacolor}{HTML}{0064E0}
+\hypersetup{
+  colorlinks,
+  linkcolor=metacolor,
+  citecolor=metacolor,
+  urlcolor=metacolor
+}
+\usepackage{adjustbox}
+\usepackage{makecell} 
+\definecolor{color_blue}{HTML}{E7EFFA}
+\definecolor{color_green}{HTML}{E6F8E0}
+\definecolor{color_gray}{HTML}{ECECEC}
+\definecolor{pearDark}{HTML}{2980B9}
+
+
+
+\begin{document}
+
+
+\maketitle
+\input{sec/0_abstract}    
+\input{sec/1_intro}
+\input{sec/2_relatedwork}
+\input{sec/3_method}
+\input{sec/4_experiment}
+
+\clearpage
+\bibliography{
+neurips_2025
+}
+
+\clearpage
+\appendix
+\input{sec/appendix}
+
+\iftoggle{isSubmission}{
+  \input{sec/check_list}
+}
+
+\end{document}

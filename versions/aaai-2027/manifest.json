@@ -1,0 +1,13 @@
+{
+  "version": "aaai-2027",
+  "source_commit_before_reorganization": "dc709b29be79ead6448e0aa83a1f337d4b138a94",
+  "source_state": "working tree with uncommitted changes; not an authenticated submission revision",
+  "original_backup": "/home/tca/.config/opencode/skills/reprobench-scoring/backups/20261119-173001/reprobench-scoring.tar.gz",
+  "paper_state": "independent copy of pre-reorganization working tree",
+  "results_state": "copy of the same pre-reorganization data/ snapshot; association with the actual submission is unverified",
+  "external_run_artifacts": "not included in this repository; historical scripts reference /home/tca/reprobench/eval",
+  "scoring_tool_provenance": "unverified; installed and repository summary generators differ; both preserved",
+  "backup_sha256": "b5ae29a2f7ac3e0fd496320878954ef1c2380c40756797d321b4e9d8274e1183",
+  "source_manifest": "../../docs/migration-inventory.json",
+  "evaluation_summary_sha256": "a05e7865a8871e7f93240f54a3b879fa2f387d903e2cc4bfe6d13e0c8e54a885"
+}

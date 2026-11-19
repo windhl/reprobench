@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+
+% \vspace{-2ex}
+% \resizebox{\columnwidth}{!}{%
+\begin{tabular}{ccccccc}
+\toprule
+Method  & LO & DU & DY & OR & RE & AVG \\
+\midrule
+Baseline & 32.3 & 30.3 & 22.8 & 28.0 & 24.0 & 27.4 \\
+Mixing  & \textbf{34.3} & \textbf{41.0} & \textbf{26.5} & \textbf{34.8} & \textbf{26.3} & \textbf{32.6} \\
+After   & 31.3 & 30.3 & 23.0 & 25.3 & \underline{25.3} & 26.6 \\
+Before  & \underline{34.2} & \underline{35.3} & \underline{23.3} & \underline{29.8} & 24.0 & \underline{28.7} \\
+\bottomrule
+\end{tabular}
+
+% }
+\caption{Ablation study on the strategy for incorporating the TIME dataset. The best performance is highlighted in \textbf{bold}, and the second-best result is indicated with \underline{underlines}.}
+% \vspace{-0.05in}
+\label{tab:time}
+\end{table}

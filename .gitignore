@@ -6,7 +6,9 @@
 *.fdb_latexmk
 *.fls
 .DS_Store
-reprobench.pdf
-ReproducibilityChecklist.pdf
-appendix_standalone.pdf
-**/__pycache__
+/reprobench.pdf
+/ReproducibilityChecklist.pdf
+/appendix_standalone.pdf
+**/__pycache__/
+*.pyc
+/build/

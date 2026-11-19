@@ -1,0 +1,43 @@
+Data file: /home/tca/.config/opencode/skills/reprobench-scoring/reprobench/versions/aaai-2027/experiments/results/evaluation_summary.txt
+Sections dir: /home/tca/.config/opencode/skills/reprobench-scoring/reprobench/versions/aaai-2027/paper/sections
+  Parsed simulation count from summary: 316
+
+--- Table 1 (400-experimental-design.tex) ---
+  glm-5.2:
+  mimo-v2.5:
+  claude-sonnet-4-6:
+  gpt-5.5:
+  deepseek-v4-flash:
+
+--- Stage Funnel (502-failure.tex) ---
+
+--- Failure Attribution (502-failure.tex) ---
+
+--- Vultype (504-vulclass.tex) ---
+
+--- Model Behavior (501-overall.tex) ---
+
+--- CVE-level (501/504) ---
+
+--- Cross-file numbers (abstract, intro, conclusion, discussion) ---
+
+--- Additional checks (501, 503, 504, 300, 700) ---
+
+======================================================================
+VERIFICATION COMPLETE: 136 checks, 13 errors
+======================================================================
+
+ERRORS:
+  FAIL: 502 contains '9.0/15': '9.0/15' not found in tex file
+  FAIL: BOF overall: expected=58.5, actual=60.4
+  FAIL: CMDI overall: expected=48.9, actual=48.6
+  FAIL: AUTH overall: expected=46.0, actual=44.4
+  FAIL: 501 contains '99.0': '99.0' not found in tex file
+  FAIL: 501 contains 'five CVEs': 'five CVEs' not found in tex file
+  FAIL: 501 contains '20 runs': '20 runs' not found in tex file
+  FAIL: 501 contains '32.2/100': '32.2/100' not found in tex file
+  FAIL: 501 contains '15.0--28.6': '15.0--28.6' not found in tex file
+  FAIL: 501 contains '99.0/100': '99.0/100' not found in tex file
+  FAIL: 503 divergent CVEs: expected=19, actual=20
+  FAIL: 503 CVE-2020-14140 pass: expected=1, actual=2
+  FAIL: 503 CVE-2024-6045 pass: expected=4, actual=8

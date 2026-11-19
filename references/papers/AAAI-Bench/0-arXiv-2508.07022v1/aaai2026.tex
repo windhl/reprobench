@@ -1,0 +1,574 @@
+%File: anonymous-submission-latex-2026.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage[draft]{aaai2026}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath} % 自己加的包  用于在数学模式中插入普通文本
+\usepackage{amssymb} % 自己加的包  用于打出“黑板粗体”
+\usepackage{subcaption}
+
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai2026.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+\title{MultiMedEdit: A Scenario-Aware Benchmark for Evaluating Knowledge \\ Editing in Medical VQA}
+
+\author{
+    %Authors
+    % All authors must be in the same font size and format.
+    Shengtao Wen\textsuperscript{\rm 1}\equalcontrib,
+    Haodong Chen\textsuperscript{\rm 1}\equalcontrib, 
+     Yadong Wang\textsuperscript{\rm 1}, 
+    Zhongying Pan\textsuperscript{\rm 2},\\ 
+    Xiang Chen\textsuperscript{\rm 1}\thanks{Corresponding author.}, 
+    Yu Tian\textsuperscript{\rm 3}, 
+    Bo Qian\textsuperscript{\rm 1},
+    Dong Liang\textsuperscript{\rm 1}, 
+    Sheng-Jun Huang\textsuperscript{\rm 1},  
+}
+\affiliations{
+    %Afiliations
+    \textsuperscript{\rm 1}
+MIIT Key Laboratory of Pattern Analysis and Machine Intelligence,\\
+College of Computer Science and Technology,\\
+Nanjing University of Aeronautics and Astronautics \\
+\textsuperscript{\rm 2}
+Huaneng Information Technology Co., Ltd. 
+\textsuperscript{\rm 3}
+Tsinghua University \\
+   
+
+  \{xiang\_chen\}@nuaa.edu.cn 
+%
+% See more examples next
+}
+
+
+% REMOVE THIS: bibentry
+% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
+\usepackage{bibentry}
+% END REMOVE bibentry
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+Knowledge editing (KE) provides a scalable approach for updating factual knowledge in large language models without full retraining. While previous studies have demonstrated effectiveness in general domains and medical QA tasks, little attention has been paid to KE in multimodal medical scenarios. Unlike text-only settings, medical KE demands integrating updated knowledge with visual reasoning to support safe and interpretable clinical decisions. To address this gap, we propose \textbf{MultiMedEdit}, the first benchmark tailored to evaluating KE in clinical multimodal tasks. Our framework spans both \textit{understanding} and \textit{reasoning} task types, defines a three-dimensional metric suite (reliability, generality, and locality), and supports cross-paradigm comparisons across general and domain-specific models. We conduct extensive experiments under single-editing and lifelong-editing settings. Results suggest that current methods struggle with generalization and long-tail reasoning, particularly in complex clinical workflows. We further present an efficiency analysis (e.g., edit latency, memory footprint), revealing practical trade-offs in real-world deployment across KE paradigms. Overall, MultiMedEdit not only reveals the limitations of current approaches but also provides a solid foundation for developing clinically robust knowledge editing techniques in the future.
+\end{abstract}
+
+\section{Introduction}
+
+
+
+% 当前LMM在医疗场景应用遇到的问题
+Multimodal Large Language Models (MLLMs) have witnessed rapid advancements, with breakthroughs in visual-language alignment and scalable model architectures enabling strong performance across a range of general tasks. However, applying these models effectively in high-stakes domains such as medicine remains an open challenge. Despite initial success in tasks like medical image interpretation, clinical question answering, and decision support, solely relying on model scaling or domain adaptation remains far from sufficient. As illustrated in Figure~\ref{fig:3Questions}, general-purpose MLLMs still face structural limitations in clinical settings—including outdated knowledge~\citep{wu2025driftmedqa,kim2025medicalhallucination}, high heterogeneity across modalities~\citep{unihd,dai2025climb}, and strict demands for safety, interpretability, and  compliance~\citep{wang2024safetyChallenges,han2024medSafetyBench,workum2025safeLLM}.
+
+
+
+
+\begin{figure}[t]
+
+    \centering
+   \includegraphics[width=\linewidth]{Figures/3Questions.pdf}
+    \caption{Key challenges faced by general-purpose MLLMs in clinical applications: (1) outdated medical knowledge can lead to inaccurate or unsafe outputs; (2) high diversity in data modalities and task types demands robust multimodal understanding; (3) safety-critical requirements necessitate traceable and reliable model behavior.}
+    \label{fig:3Questions}
+\end{figure}
+
+
+% 知识动态性 vs 静态预训练的鸿沟，更自然地引出 KE
+Real-world medical practice evolves continuously with the approval of new therapies, revisions of treatment guidelines, and discoveries from ongoing clinical trials. In such a dynamic and rapidly changing landscape, deploying frozen MLLMs trained on static corpora creates a widening gap between model behavior and clinical reality. This highlights a crucial but underexplored challenge: how can we efficiently and safely inject new medical knowledge into existing MLLMs without compromising prior capabilities? Traditional fine-tuning offers limited solutions to these challenges~\citep{luo2023empiricalCF}. It typically requires full-network optimization, incurs high computational costs, and involves long iteration cycles. Furthermore, it is prone to catastrophic forgetting, where new knowledge overwrites existing competencies and severely degrades performance on previously learned tasks~\citep{kalajdzievski2024scalingCF,li2024revisitingCF}.
+
+% 目前对LMM的微调等技术的不足  Knowledge Editing怎么就适用于医疗影像方面的研究了
+
+Knowledge Editing (KE) has emerged as a more surgical and efficient alternative to traditional fine-tuning. Instead of retraining the entire model, KE introduces localized updates—via selective parameter modification or external memory injection—allowing models to incorporate new facts rapidly while preserving global behavior~\cite{mitchell2021fastedit,yao2025cake}. Its efficiency, low interference, and auditability make it especially suited for safety-critical domains like healthcare~\cite{youssef2025tracing}.
+
+
+
+
+
+
+% 目前没有针对KE的VQA benchmark
+Despite recent advances in KE for general-purpose language models, its applicability to clinical domains remains largely underexplored. Existing benchmarks, such as MedEditBench~\citep{xu2024medkebench}, focus primarily on textual edits and often overlook challenges fundamental to real-world healthcare, including multimodal fusion, clinical reasoning, among others. To truly assess and enhance the potential of models in real-world healthcare settings, the field urgently requires a new, multimodally-centered benchmark. 
+
+
+
+
+
+% 我们的benchmark怎么构造的
+To address this need, we present MultiMedEdit, a benchmark specifically designed for evaluating knowledge editing in clinical multimodal contexts. Unlike existing knowledge-editing benchmarks such as MedEditBench, which are limited to textual QA and static fact correction. MultiMedEdit is the first to support \textit{multimodal} and \textit{VQA-based} evaluation in medical settings. This introduces unique challenges: models must not only incorporate new knowledge, but also interpret complex image-text inputs, localize lesions, reason across time, and adapt to diverse clinical modalities. These requirements significantly raise the bar for reliable and safe knowledge editing in real-world clinical scenarios.
+The benchmark encompasses the following components:
+(1) \textbf{Dual-Axis Task Design}: Tasks are structured along two dimensions, including task type (\textit{understanding} vs. \textit{reasoning}) and input modality (text plus single-frame or multi-frame images), covering the full spectrum from visual recognition to multimodal diagnostic inference.
+(2) \textbf{Three-Dimensional Evaluation Metrics}: We propose a comprehensive framework consisting of reliability (accuracy on edited targets), generality (robustness to semantic variations), and locality (preservation of unrelated outputs), enabling systematic analysis of both effectiveness and side effects.
+(3) \textbf{Cross-Paradigm Method Comparison}: We evaluate four representative KE paradigms, namely Prompt, LoRA~\citep{zhang2023adalora}, GRACE \citep{wang2024grace}, and WISE~\cite{wang2024wise}, under both single and lifelong editing settings across general-purpose MLLMs and domain-specific medical models.
+
+% 概述实验结论
+Extensive experiments yield three key findings. First, existing KE methods underperform on complex long-tail reasoning tasks in medical contexts. Second, lifelong editing introduces order dependence and catastrophic forgetting, reducing model stability. Third, most methods are limited to short-text or atomic fact edits and cannot support the depth and contextual richness required in realistic clinical scenarios. In general, our contributions are threefold:
+% 总结contributions
+\begin{itemize}
+    % \item A medical knowledge editing benchmark is introduced with comprehensive multimodal task coverage, targeting critical challenges in clinical AI evaluation.
+    \item We propose the first comprehensive benchmark specifically designed for multimodal medical knowledge editing, targeting critical challenges in clinical AI evaluation.
+    \item A unified three-dimensional evaluation framework is established to quantify editing effectiveness, generalization, and unintended side effects in medical settings.
+    \item Extensive empirical analysis highlights the critical limitations of current KE methods in handling complex clinical reasoning, thereby offering a foundation for future research and method development.
+\end{itemize}
+
+
+% 展望
+We envision MultiMedEdit as a crucial stepping stone toward clinically reliable knowledge updating protocols in future medical foundation models.
+
+\section{Related Work}
+
+\subsection{Knowledge Editing for LLMs}
+
+Knowledge Editing seeks to enable accurate and semantically coherent responses from large language models (LLMs) by selectively updating internal knowledge representations without resorting to full model retraining \citep{yao2023editing}. As LLMs scale and are increasingly deployed in real-world applications, ensuring the timeliness and factual consistency of their embedded knowledge becomes essential, particularly in high-stakes fields like healthcare.
+
+Previous studies have shown that most LLMs struggle to adapt to time-sensitive updates unless explicitly augmented or edited \citep{li2024kne,wu2024updating,dhingra2022timeaware}. To address this, research has proposed various knowledge editing paradigms \citep{comprehensive}, broadly categorized as: (1) \textbf{External Retrieval-Based Approaches}, which avoid modifying model weights by retrieving relevant facts from external memory or tools \citep{ike,serac,li2025mindbridge,lte}; (2) \textbf{Latent State Injection}, which integrates new knowledge by altering internal representations \citep{grace,melo,lora,qlora,adalora}; and (3) \textbf{Internal Structure Editing}, which directly edits model parameters to encode persistent knowledge updates \citep{rome,memit,mend,alphaedit,o-edit,feng2025geoedit}.
+
+\subsection{Toward Knowledge-Adaptive MLLMs in Medicine}
+
+Multimodal large language models (MLLMs) such as Flamingo \citep{alayrac2022flamingo}, PaLI \citep{chen2022pali}, and GPT-4V \citep{yang2023dawn} have significantly advanced vision-language tasks, including VQA, image captioning, and multimodal instruction following. Extending this progress to the medical domain, models like HuatuoGPT-Vision \citep{chen2024huatuogpt}, LLaVA-Med \citep{li2023llavamed}, and Med-Flamingo \citep{boger2023medflamingo} demonstrate that domain-specific fine-tuning on radiological images and clinical reports improves grounding and interpretability. XrayGPT \citep{zhang2023xraygpt} and ChatRad \citep{huang2024chatrad} further explore diagnostic reasoning and radiology-focused VQA, indicating early promise in real-world clinical tasks.
+
+However, deploying MLLMs in clinical settings remains challenging. Medical applications require models to maintain up-to-date medical knowledge, yet most existing systems are trained statically and lack mechanisms for post-deployment updates. This can lead to hallucinations and outdated recommendations \citep{yan2024probmed,sepehri2024mediconfusion}. Knowledge editing offers a solution by enabling targeted model updates without full retraining. Early efforts like MedLaSA \citep{xu2024editingmedicalllms} adopt adapter-based strategies to improve factual accuracy in medical LLMs. Nonetheless, most prior work remains unimodal and lacks support for editing visual knowledge. Furthermore, current benchmarks primarily evaluate general-domain or text-only edits \citep{he2024mmllms,hu2024omnimedvqa}, leaving an important gap in evaluating multimodal, domain-specific model adaptation. To bridge this gap, we introduce the first benchmark dataset for multimodal knowledge editing in medical MLLMs.
+
+\section{Benchmark Construction}
+Inspired by recent knowledge editing applications in unimodal settings, the constructed MultiMedEdit dataset is composed entirely of visual question answering data. The construction process is illustrated in Figure \ref{fig:Overview}.
+
+
+
+\subsection{Preliminaries}
+
+% 简要说一下什么是KE
+Knowledge editing aims to adjust the behavior of a base model $f_\theta$ (where $\theta$ denotes the model parameters) with respect to a edit descriptor $(x_e, y_e)$, while preserving the model’s performance on other samples. The ultimate goal is to obtain an edited model, denoted as $f_{\theta_e}$~\cite{yao2023editing}.
+
+The base model $f_\theta$ is defined as a function $f: X \to Y$ that maps an input $x$ to a predicted output $y$. Given an edit input $x_e$ and target label $y_e$ such that $f_\theta(x_e) = y_e$, the edited model is expected to satisfy $f_{\theta_e}(x_e) = y_e$.
+
+Knowledge editing typically affects a set of inputs closely associated with the edit example, referred to as the \textit{editing scope}. A successful edit should modify the model’s behavior within the scope, while keeping predictions unchanged for out-of-scope inputs. Formally:
+\begin{equation}
+f_{\theta_e}(x) = 
+\left\{
+\begin{array}{ll}
+y_e, & \text{if } x \in I(x_e, y_e) \\
+f_\theta(x), & \text{if } x \in O(x_e, y_e)
+\end{array}
+\right.
+\end{equation}
+
+
+Here, $I(x_e, y_e)$ denotes in-scope inputs, typically including $x_e$ and its equivalence neighborhood $N(x_e, y_e)$; whereas $O(x_e, y_e)$ refers to inputs unrelated to the edit descriptor.
+
+
+
+
+% 我们的Bench的scenario
+\begin{figure}[htp]
+
+    \centering
+   \includegraphics[scale=0.25]{Figures/scenarioTypes2.pdf}
+    \caption{The statistics of scenario types for MultiMedEdit, encompassing two principal categories of clinical tasks: \textit{understanding} and \textit{reasoning}.}
+    \label{fig:scenarioTypes}
+\end{figure}
+
+
+\begin{figure*}[t]
+
+    \centering
+   \includegraphics[scale=0.53]{Figures/Overview2.pdf}
+    \caption{Overview of the MultiMedEdit pipeline. Evaluation subsets (reliability, generality, locality) are built via zero-shot filtering and external sources (DeepSeek-V3, VQAv2, NQ). Four editing methods (Prompt, LoRA, GRACE, WISE) are tested on two general MLLMs—LLaVA-OneVision and Qwen2-VL—and one medical MLLM, HuatuoGPT, across multiple criteria.}
+    \label{fig:Overview}
+\end{figure*}
+
+
+\subsection{Design Principle}
+To systematically evaluate medical multimodal knowledge-editing methods, we adopt a two-tier experimental taxonomy: the \textit{Understanding} tier requires models to integrate medical images with clinical narratives to deliver a coherent explanation of the patient’s condition, whereas the \textit{Reasoning} tier demands cross-view and temporal inference over multi-frame studies to support complex clinical decisions. This hierarchical design assesses model competence from basic visual recognition to full multimodal diagnostic reasoning. The benchmark encompasses two input modalities: \textit{single-frame} images and \textit{multi-frame} images. Multiple metrics are designed to evaluate knowledge editing methods, such as reliability, generality and locality.
+
+
+
+\paragraph{Scenario Type.}
+The \textit{Understanding} scenario requires models to fuse one or a few medical images with accompanying clinical narratives—such as chief complaints, radiological findings, and medical history—to produce a semantically consistent explanation covers lesion location, characteristics, staging, and potential management strategies. 
+The \textit{Reasoning} scenario represents a more demanding tier: models perform cross-view and temporal inference over multi-frame or multi-view studies, tracking lesion dynamics and jointly leveraging imaging, textual, and temporal cues to support disease-course analysis, treatment-response evaluation, and prognostic prediction. 
+Relative to the \textit{Understanding} tier, the \textit{Reasoning} tier places greater emphasis on temporal modelling, cross-view alignment, and causal reasoning. Statistics for each data type are summarised in Table~\ref{tab:table1}. The distribution of scenario types is provided in Figure~\ref{fig:scenarioTypes}.
+
+
+
+\paragraph{Data Type.}
+The \textit{Single-frame} modality comprises a single static CT or MRI slice, or an ultrasound frame, accompanied by a concise clinical narrative.  It targets foundational visual perception and local diagnostic tasks, such as lesion localisation and morphological assessment.  
+The \textit{Multi-frame} modality consists of time-series or multi-view images acquired from the same anatomical region, together with aligned textual descriptions, and specifically is intended to probe a model’s ability in temporal modelling, cross-view fusion, and dynamic lesion analysis.  
+
+
+
+\paragraph{Metrics.}
+
+\textit{Reliability} denotes the post-editing hit rate on the target samples, reflecting whether the intended knowledge has been correctly injected. \textit{Generality} measures the proportion of correct responses under semantically equivalent paraphrases, gauging the transferability of the edit. \textit{Locality} quantifies the extent to which predictions on unrelated tasks or samples remain unchanged after editing, thereby assessing the edit’s side-effect footprint.
+
+\subsection{Data Collection}
+To construct a representative, challenging, and evaluation–friendly benchmark for multimodal medical knowledge editing, we perform a systematic filtering and hierarchical restructuring of publicly available resources. The resulting dataset comprises multiple high-quality subsets tailored to two core tasks: \textit{Understanding} and \textit{Reasoning}.
+
+
+
+\paragraph{Data Sources.}
+We construct our comprehensive medical multimodal knowledge editing benchmark based on three high-quality public datasets: MedFrameVQA~\citep{liu2024medframeqa} for reasoning-oriented tasks, PMC-VQA~\citep{he2023pmcvqa} for understanding-oriented tasks, and selected samples from both MedXpertQA~\citep{cheng2024medxpertqa} and OmniMedVQA~\citep{huang2024omnimedvqa} to enhance task diversity and overall knowledge coverage.
+
+
+To ensure the benchmark’s difficulty and diagnostic value, we employ a \textit{zero-shot filtering} strategy. We use medical MLLM \texttt{Radiology-Infer-Mini} to perform inference over all raw samples and retain only those for which the model fails to produce correct answers. This results in two challenging subsets, \textit{MultiMedEdit\textsubscript{U}} and \textit{MultiMedEdit\textsubscript{R}}, designed to focus evaluation on model deficiencies and increase the signal-to-noise ratio.
+
+
+\paragraph{Construction of the Reliability Subset.}
+The filtered samples from \textit{MultiMedEdit\textsubscript{U}} and \textit{MultiMedEdit\textsubscript{R}} together constitute the Reliability subset, which is specifically used to assess whether injected knowledge is correctly reflected in the model’s updated responses.
+
+
+\begin{table}[ht]
+
+    \centering    
+
+    \begin{tabular}{lccc}
+        \toprule[1.5pt]
+        \multicolumn{1}{c}{\textbf{Subset}} & 
+        \multicolumn{1}{c}{\textbf{Understanding}} & 
+        \multicolumn{1}{c}{\textbf{Reasoning}} & 
+        \multicolumn{1}{c}{\textbf{Total}} \\
+        \midrule
+        \multicolumn{1}{c}{\textbf{\textit{Training}}} & 
+        \multicolumn{1}{c}{3161} & 
+        \multicolumn{1}{c}{3257} & 
+        \multicolumn{1}{c}{6418} \\
+        \multicolumn{1}{c}{\textbf{\textit{Testing}}} & 
+        \multicolumn{1}{c}{1355} & 
+        \multicolumn{1}{c}{1396} & 
+        \multicolumn{1}{c}{2751} \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{Number of samples by task type and modality in MultiMedEdit}
+    \label{tab:table1}
+\end{table}
+
+
+\paragraph{Construction of the Generality Subset.}
+To evaluate a model’s generalization ability under linguistic variation, we construct the Generality-Text subset. Using the DeepSeek-v3 model, we generate modified versions of the original questions that preserve semantic meaning and ground-truth answers, resulting in semantically equivalent question pairs with various surface forms. Details on prompt templates and rewriting heuristics are provided in the Appendix D.
+
+
+
+
+
+
+
+\paragraph{Construction of the Locality Subset.}
+To assess the potential side effects of knowledge editing on seemingly unrelated tasks, we construct two locality-focused evaluation subsets. The first, Locality-Text, is randomly sampled from the Natural Questions dataset~\citep{kwiatkowski2019natural} to quantify whether the edited model still maintains its performance on general-domain language understanding tasks. The second, Locality-Modality, is based on VQAv2~\citep{antol2015vqa} and includes open-domain natural image question-answer pairs to measure whether the model successfully retains general visual reasoning capabilities in non-medical contexts after medical knowledge editing.
+
+
+
+
+
+
+
+
+\paragraph{Quality Control.} 
+To enhance the dataset's validity and robustness, we have implemented a multi-stage quality control pipeline. For consistency and ambiguity, three graduate-level annotators have reviewed a random 20\% sample of paraphrased and generalized question-answer pairs to assess semantic equivalence and clarity, and have resolved disagreements by majority vote. To validate this review process, we have measured inter-annotator consistency across 200 random samples, which has revealed a disagreement rate of less than 7\%. These discrepancies have been settled through majority voting and adjudicated revision.
+
+
+
+
+
+
+% 重跑后
+\begin{table*}[ht]
+
+    \begin{center}
+        \centering
+        \small
+        \setlength{\tabcolsep}{0.8mm}
+        \begin{tabular}{cc *{12}{l}}
+            \toprule[1.5pt]
+            \multirow{2}{*}{\textbf{Methods}} & \multirow{2}{*}{\textbf{Task Type}} 
+            & \multicolumn{4}{c}{\textbf{LLaVA-Onevision}} 
+            & \multicolumn{4}{c}{\textbf{QWen2-VL}} 
+            & \multicolumn{4}{c}{\textbf{HuaTuoGPT-7B}} \\
+            \cmidrule(lr){3-6}
+            \cmidrule(lr){7-10}
+            \cmidrule(lr){11-14}
+            & & Rel. & Gen. & T-Loc. & M-Loc. 
+              & Rel. & Gen. & T-Loc. & M-Loc. 
+              & Rel. & Gen. & T-Loc. & M-Loc. \\
+            \midrule[0.5pt]
+
+            \multirow{2}{*}{Prompt}
+            & \textit{Understanding} & 0.9749* & 0.9565* & 0.7729 & 0.7986 & 0.8871* & 0.5380* & 0.7874 & 0.7367 & 0.0170 & 0.0236 & 0.8151 & 0.8099 \\
+            & \textit{Reasoning}     & 0.9413† & 0.9234† & 0.8055 & 0.8440 & 0.3897 & 0.4936† & 0.7865 & 0.7522 & 0.0953 & 0.2693† & 0.8076 & 0.8040 \\
+            \midrule[0.5pt]
+
+            \multirow{2}{*}{WISE}
+            & \textit{Understanding} & 0.5058 & 0.5122 & 1.0000* & 1.0000* & 0.5262 & 0.4593 & 1.0000* & 1.0000* & 0.8915* & 0.8155* & 1.0000* & 1.0000* \\
+            & \textit{Reasoning}     & 0.3997 & 0.3818 & 1.0000† & 1.0000† & 0.4599 & 0.4248 & 1.0000† & 1.0000† & 0.7550† & 0.6956† & 1.0000† & 1.0000† \\
+            \midrule[0.5pt]
+
+            \multirow{2}{*}{LoRA}
+            & \textit{Understanding} & 0.4546 & 0.4458 & 0.9987 & 0.9989 & 0.1852 & 0.1756 & 0.9990 & 0.9980 & 0.9033* & 0.8871* & 0.9748 & 0.9531 \\
+            & \textit{Reasoning}     & 0.3102 & 0.3209 & 0.9993 & 0.9981 & 0.0874 & 0.0788 & 0.9995 & 0.9951 & 0.8152† & 0.7787† & 0.9792† & 0.9669 \\
+            \midrule[0.5pt]
+
+            \multirow{2}{*}{GRACE}
+            & \textit{Understanding} & 0.9173 & 0.4295 & 1.0000* & 1.0000* & 0.8827 & 0.1616 & 1.0000* & 1.0000* & 0.5417 & 0.0007 & 1.0000* & 1.0000* \\
+            & \textit{Reasoning}     & 0.2872 & 0.2973 & 1.0000† & 1.0000† & 0.9964† & 0.0695 & 1.0000† & 1.0000† & 0.5294 & 0.0215 & 1.0000† & 1.0000† \\
+            \bottomrule[1.5pt]
+        \end{tabular}
+        
+    \end{center}
+    \caption{
+    Evaluation results of four editing methods under single edit. Asterisks (*) indicate the highest value per column in the \textit{Understanding} scenario, and daggers (†) mark the highest in \textit{Reasoning}.
+    }
+    \label{tab:table2}
+
+\end{table*}
+
+% \begin{table*}[ht]
+%     \centering
+%     \label{tab:table2_transposed}
+%     \begin{tabular}{ll *{8}{c}}
+%         \toprule[1.5pt]
+%         \multirow{2}{*}{\textbf{Model}} & \multirow{2}{*}{\textbf{Metric}} & \multicolumn{2}{c}{\textbf{Prompt}} & \multicolumn{2}{c}{\textbf{WISE}} & \multicolumn{2}{c}{\textbf{LoRA}} & \multicolumn{2}{c}{\textbf{GRACE}} \\
+%         \cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
+%         & & \textit{Und.} & \textit{Rea.} & \textit{Und.} & \textit{Rea.} & \textit{Und.} & \textit{Rea.} & \textit{Und.} & \textit{Rea.} \\
+%         \midrule[0.5pt]
+
+%         \multirow{4}{*}{\textbf{LLaVA-Onevision}} 
+%         & Rel.   & 0.9749* & 0.9413† & 0.5058 & 0.3997 & 0.4546 & 0.3102 & 0.9173 & 0.2872 \\
+%         & Gen.   & 0.9565* & 0.9234† & 0.5122 & 0.3818 & 0.4458 & 0.3209 & 0.4295 & 0.2973 \\
+%         & T-Loc. & 0.7729  & 0.8055  & 1.0000*& 1.0000†& 0.9987 & 0.9993 & 1.0000*& 1.0000†\\
+%         & M-Loc. & 0.7986  & 0.8440  & 1.0000*& 1.0000†& 0.9989 & 0.9981 & 1.0000*& 1.0000†\\
+%         \midrule[0.5pt]
+
+%         \multirow{4}{*}{\textbf{QWen2-VL}}
+%         & Rel.   & 0.8871* & 0.3897  & 0.5262 & 0.4599 & 0.1852 & 0.0874 & 0.8827 & 0.9964†\\
+%         & Gen.   & 0.5380* & 0.4936† & 0.4593 & 0.4248 & 0.1756 & 0.0788 & 0.1616 & 0.0695 \\
+%         & T-Loc. & 0.7874  & 0.7865  & 1.0000*& 1.0000†& 0.9990 & 0.9995 & 1.0000*& 1.0000†\\
+%         & M-Loc. & 0.7367  & 0.7522  & 1.0000*& 1.0000†& 0.9980 & 0.9951 & 1.0000*& 1.0000†\\
+%         \midrule[0.5pt]
+
+%         \multirow{4}{*}{\textbf{HuaTuoGPT-7B}}
+%         & Rel.   & 0.0170  & 0.0953  & 0.8915*& 0.7550†& 0.9033*& 0.8152†& 0.5417 & 0.5294 \\
+%         & Gen.   & 0.0236  & 0.2693† & 0.8155*& 0.6956†& 0.8871*& 0.7787†& 0.0007 & 0.0215 \\
+%         & T-Loc. & 0.8151  & 0.8076  & 1.0000*& 1.0000†& 0.9748 & 0.9792†& 1.0000*& 1.0000†\\
+%         & M-Loc. & 0.8099  & 0.8040  & 1.0000*& 1.0000†& 0.9531 & 0.9669 & 1.0000*& 1.0000†\\
+%         \bottomrule[1.5pt]
+%     \end{tabular}
+%     \caption{
+%     Evaluation results of four editing methods under a single edit. For each model and metric, asterisks (*) indicate the highest value among methods in the \textit{Understanding} (Und.) scenario, and daggers (†) mark the highest in the \textit{Reasoning} (Rea.).
+%     }
+% \end{table*}
+
+
+
+\subsection{Editing Method Selection}
+To broadly compare intrinsic knowledge editing paradigms, we select representative methods from three major categories. LoRA represents the fine-tuning paradigm, using low-rank adapters to efficiently update a subset of weights. WISE exemplifies memory-enhanced editing via addressable external memory to overwrite outdated knowledge. GRACE represents parameter-injection approaches by introducing new parameter matrices to encode knowledge with minimal disruption to original weights. We also include a lightweight prompt-based method that edits via input prompt without altering model parameters. Retrieval-augmented methods are excluded, as they rely on external sources rather than modifying internal representations, and thus fall outside the scope of intrinsic editing~\citep{song2024blackbox,shi2024retrieval,chen2024lifelong,zheng2023incontext}.
+
+
+
+
+\section{Experiments}
+\subsection{Experimental settings}
+We conduct experiments using two state-of-the-art open-source MLLMs: \texttt{LLaVA-OneVision} and \texttt{Qwen2-VL}. Both models share the Qwen2-7B language backbone but differ significantly in their visual encoding architectures and multimodal alignment strategies. Building upon these models, we evaluate four representative knowledge editing paradigms: Prompt, LoRA, GRACE and WISE. To eliminate the confounding effects introduced by visual modality variations, all editing methods are applied exclusively to the language components, with the visual encoders kept frozen throughout the experiments. Additionally, to enhance the clinical relevance of our findings, we conduct experiments on a state-of-the-art medical-domain MLLM, \texttt{HuatuoGPT}, to validate the generalizability and robustness of editing methods under realistic medical scenarios.
+\\To systematically assess the performance of knowledge editing methods under different levels of knowledge injection, we adopt two complementary evaluation settings. \textbf{Single Editing} focuses on the precise injection of an individual medical fact and evaluates the model's immediate response accuracy on associated queries immediately after the update, effectively reflecting the model’s responsiveness to targeted knowledge modifications. \textbf{Lifelong Editing}, on the other hand, simulates continuous and incremental knowledge evolution in real-world applications by sequentially injecting 50, 250, 500, 750, and 1000 knowledge entries. This setup is used to examine the model’s ability to retain newly added knowledge, mitigate cumulative interference, and robustly resist catastrophic forgetting during long-term editing.
+
+
+
+
+
+% 图 LifeLong编辑的结果 
+\begin{figure*}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/LifeLongEditResultFinal.pdf}
+    \caption{
+        Lifelong editing results of Qwen2vl-7B using four methods: Promp, WISE, GRACE, and LoRA. Left two subplots correspond to \textit{understanding} tasks, and right two subplots correspond to \textit{reasoning} tasks.
+    }
+    \label{fig:LifeLongEditResult2.jpg}
+\end{figure*}
+
+
+
+\subsection{Main Results}
+
+\subsubsection{For Q1: How do current knowledge-editing methods perform overall in multimodal medical scenarios?}
+Experimental results in multimodal medical scenarios (Table~\ref{tab:table2}) reveal significant disparities in performance across knowledge-editing methods, driven by inherent trade-offs rooted in their design principles. Broadly, methods fall into two categories: external guidance approaches like Prompt, which injects knowledge via in-context learning without altering model parameters, and internal parametric methods such as WISE, LoRA, and GRACE. Prompt effectively leverages the model’s language priors to achieve high Reliability and Generality, but their lack of structural constraint leads to poor Locality, causing interference with unrelated tasks. In contrast, parametric methods introduce targeted structural updates that ensure near-perfect Locality by isolating the edit’s impact. However, their efficacy is inconsistent and generalization is limited. LoRA, which uses low-rank adapters, performs well on some models (e.g., 0.9033 on \texttt{HuaTuoGPT-7B}) but collapses on others (e.g., 0.1852 on \texttt{QWen2-VL}), exposing its dependency on model architecture. WISE relies on external memory, and its performance is tightly coupled with how well the memory module integrates into the model’s reasoning pathways. GRACE, which injects new parameters, achieves strong reliability but suffers from poor generality (e.g., 0.4295), indicating brittle, over-localized edits that resemble memorization rather than knowledge integration. In essence, current methods face a structural dilemma: they either promote generalizable knowledge at the expense of control, or enforce localized precision while failing to support transferable reasoning.
+
+
+
+
+\subsubsection{For Q2: How does editing effectiveness differ between the Understanding and Reasoning tasks?}
+A comparison between \textit{Understanding} and \textit{Reasoning} tasks (Table~\ref{tab:table2}) reveals not a simple complexity gap, but fundamentally a mechanism-driven interaction between editing methods and task types. Methods like WISE and LoRA, which rely on internal parameter updates (e.g., memory injection or low-rank tuning), are effective for localized factual edits but struggle to generalize across temporally and multimodally complex reasoning inputs due to their scoped, non-generative nature. However, this is not universally true. GRACE, for instance, achieves near-perfect Reliability on Reasoning in \texttt{QWen2-VL} but underperforms on Understanding. Its injected parameters may act as shortcuts in the inference chain, enabling multi-step reasoning but failing to generalize due to low semantic abstraction. Similarly, Prompt performs better on Reasoning in \texttt{HuaTuoGPT-7B}, consistent with their design:Pprompt operates at the input level, and when the base model has strong inferential capabilities, context injection can more effectively propagate through reasoning paths than in factual recall. Ultimately, editing success hinges less on task difficulty and more on alignment between editing scope, cognitive demands, and model architecture. \textit{Understanding} tasks require stable factual rewrites across variants, while Reasoning tasks demand edits that integrate effectively into dynamic inference mechanisms.
+
+
+
+
+
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}      
+        \centering
+        \includegraphics[scale=0.28]{Figures/EfficiencyAnalysis-time2.pdf}
+        \caption{Average time (s) per sample for different editing methods on \textit{Understanding} and \textit{Reasoning} tasks.}
+        \label{fig:EfficiencyAnalysis-time}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[scale=0.34]{Figures/EfficiencyAnalysis-memory4.pdf}
+        \caption{Peak GPU memory (GB) per sample for different editing methods on \textit{Understanding} and \textit{Reasoning} tasks.}
+        \label{fig:EfficiencyAnalysis-memory}
+    \end{subfigure}
+    \caption{Efficiency comparison of different editing methods using LLaVA-OneVision and HuaTuoGPT-7B.}
+    \label{fig:EfficiencyAnalysis}
+\end{figure}
+
+
+\begin{figure*}[!htp]
+    \centering
+   \includegraphics[scale=0.25]{Figures/CaseAnalysis4.pdf}
+    \caption{Case analysis of editing LLaVA-OneVision with WISE.}
+    \label{fig:CaseAnalysis}
+\end{figure*}
+
+
+
+\subsubsection{For Q3: How does edit scale (Single Knowledge Editing vs. Lifelong Knowledge Editing) affect model performance and stability?}
+Our investigation into continuous knowledge editing reveals that the primary challenge is not systematic performance degradation, but significant performance volatility and method-dependent stability as the number of edits increases, as shown in Figure~\ref{fig:LifeLongEditResult2.jpg}. Regarding Locality, weight-modifying methods like WISE, GRACE, and LoRA consistently achieve near-perfect T-Locality and M-Locality scores (1.0), demonstrating a strong and consistent ability to prevent interference with unrelated knowledge, which is why these metrics were omitted from the visual plots for clarity. In sharp contrast, the prompt-based method shows persistently lower locality scores (around 0.75-0.80), indicating chronic and compounding side effects. However, a critical trade-off emerges in Reliability and Generality. The prompt-based method offers remarkable stability with constant, predictable performance. Conversely, WISE, GRACE, and LoRA suffer from extreme instability, with erratic performance featuring unpredictable peaks and troughs. This is starkly exemplified by GRACE's Reliability score, which spiked at 750 edits before collapsing. This highlights a fundamental dilemma: prompt-based methods provide stable but leaky edits with poor locality, whereas current weight-space methods offer well-contained but volatile edits whose success becomes chaotic and unreliable over time.
+
+
+% 我们的研究表明，在持续知识编辑中，主要挑战并非性能的系统性下降，而是随着编辑次数的增加，性能表现出现显著的波动性以及依赖于方法本身的稳定性问题。一个关键的初步观察是关于局部性（Locality）：如数据所示，诸如 WISE、GRACE 和 LoRA 等权重修改类方法始终保持出色的 T-Locality 和 M-Locality，得分几乎总是接近 1.0。这表明它们在连续编辑中具有强大的能力，能够防止对无关知识的干扰，因此我们在可视化图中省略了这两个指标以保持清晰。
+
+% 与之形成鲜明对比的是，基于提示的 IKE 方法在局部性上的得分始终较低（约为 0.75-0.80），表明无论编辑规模如何，其副作用始终存在。然而，当我们结合图表观察可靠性（Reliability）和泛化性（Generality）时，一个关键的权衡凸显出来：IKE（洋红色曲线）表现出显著的稳定性，其性能在整个编辑过程中保持相对恒定和可预测，避免了其他方法所遭遇的混乱波动。相反，WISE（绿色）、GRACE（橙色）和 LoRA（紫色）则表现出极端的不稳定性，它们在可靠性和泛化性方面的表现极其不稳定，随着知识注入次数的增加呈现出不可预测的峰值和低谷——这一现象在 GRACE 在推理任务中的可靠性上尤为明显，其在 750 次编辑时出现意外峰值，随后急剧下降。
+
+% 这些现象表明了当前模型在终身学习（lifelong learning）中的一个根本困境：基于提示的方法能够提供稳定但“泄漏性”的编辑，持续影响无关知识；而当前的权重空间方法虽然能实现封闭性较好的编辑，却随着时间推移表现出混乱且不可依赖的成功率。
+
+
+
+
+
+
+
+
+
+
+\subsection{Efficiency Comparison}
+\paragraph{Time Consumption Analysis.}
+As shown in Figure~\ref{fig:EfficiencyAnalysis-time}, the variation in editing time directly reflects the structural complexity and computational overhead of different methods. The high latency observed in LoRA and WISE stems from their deep interventions in model parameters—LoRA introduces low-rank adapters, while WISE invokes external memory and re-encodes semantics. These intrusive operations significantly extend the computational path, especially in multimodal reasoning tasks. In contrast, Prompt performs localized and lightweight edits, relying solely on direct manipulation within the activation space, without reconstructing full computational graphs, thereby achieving faster response. GRACE, as a parameter-injection method, adopts a more modular structural design, resulting in intermediate latency. Overall, the more intrusive the editing mechanism, the harder it becomes to support low-latency updates required in time-sensitive scenarios such as clinical applications.
+
+
+
+\paragraph{Memory Consumption Analysis.}
+As illustrated in Figure~\ref{fig:EfficiencyAnalysis-memory}, memory usage intuitively reflects differences in intermediate state storage and structural overhead. Although LoRA is considered parameter-efficient, in practice it incurs the highest memory footprint due to the need to maintain adapter weights and gradient caches, especially when handling complex, high-dimensional inputs. WISE and GRACE also show significant increases in memory consumption in multi-frame reasoning tasks, largely attributed to the inclusion of external modules or additional computational paths. In contrast, Prompt demonstrates the most stable memory profile, benefiting from its local editing strategy that avoids loading additional structures or states, thus exhibiting stronger resource adaptability. This makes Prompt more suitable for deployment in highly resource-constrained edge devices or real-world medical systems. In general, memory efficiency not only affects scalability but also reflects the overall resource-friendliness of the method’s architectural design. Ultimately, these findings position the Prompt method as the most practical choice for scalable deployment.
+
+
+
+
+
+
+
+\subsection{Case Analysis}
+As illustrated in Figure~\ref{fig:CaseAnalysis}, applying the WISE method to \texttt{LLaVA-OneVision} successfully injects the missing association between homogeneous hepatic radiodensity and metabolic syndrome. Prior to editing, the model incorrectly selects a macrovascular diagnosis (Option A), clearly reflecting a failure to distinguish vascular calcifications from hepatic findings. After the targeted edit, the model correctly selects Option C, demonstrating an understanding that hepatomegaly with homogeneous radiodensity is indicative of fatty liver disease—a manifestation commonly linked to various metabolic disorders. This shift clearly reflects precise localization of the injected knowledge and improved multimodal reasoning, despite the edit being applied only to the language module. The overall outcome highlights the cross-modal coupling in vision-language models: linguistic edits can effectively propagate to correct grounded diagnostic reasoning without fine-tuning the vision backbone.
+
+
+
+
+
+
+
+
+
+\section{Conclusion and Future Outlook}
+In this paper, we present \textbf{MultiMedEdit}, the first comprehensive benchmark for evaluating knowledge editing in multimodal medical scenarios. Through systematic evaluations, we reveal that current editing methods exhibit significant limitations in accuracy, order sensitivity, and catastrophic forgetting, particularly in complex tasks requiring deep semantic understanding and robust clinical reasoning. While our benchmark provides a solid foundation, it is currently limited by a primary focus on question-answering tasks and lacks deeper insights into the interpretability of editing mechanisms. Future work will further expand task diversity and complexity, thoroughly analyze model-internal representations to enhance interpretability, and develop novel domain-specific, minimally invasive editing methods for the sustainable long-term evolution of medical knowledge.
+
+
+
+
+\bibliography{aaai2026}
+
+\input{ReproducibilityChecklist}
+
+\end{document}

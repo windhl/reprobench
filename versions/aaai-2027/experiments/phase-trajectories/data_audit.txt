@@ -1,0 +1,21 @@
+REPROBENCH 3D PHASE-TRAJECTORY DATA AUDIT
+
+Scoring specification: reprobench/skills/reprobench-scoring/SKILL.md
+Source summary: D:\documents\isa\reprobench\reprobench\data\evaluation_summary.txt
+Evaluation JSON root: not supplied (published summary is the score source)
+Ground-truth root: D:\documents\isa\reprobench\data\reprobench\eval\repro_groundtruth
+
+Selection policy: maximize skill-consistent Task = R1+...+R6; ties use smallest run id.
+Score-table rows parsed: 450
+Evaluation JSON cross-check: skipped (no matching inner-repository JSON set)
+Selected CVE/model rows: 150
+Ground-truth class labels verified: 30/30
+Class counts: Authentication Bypass=10, Buffer Overflow=10, Command Injection=10
+Rows whose reported Task differs from R1+...+R6: 1
+  CVE-2025-60690 / deepseek-v4-flash / run 1: reported=21.2, recomputed=21.3
+
+Skill consistency warnings: 0
+
+Plotting correction policy:
+  Run selection uses the recomputed six-phase sum required by the scoring skill.
+  Plotted phase values always come from the six phase objects, not the reported Task field.
