@@ -1,0 +1,79 @@
+\section{Threats to Validity}
+\label{sec:validity}
+
+\paragraph{Construct validity.}
+The main construct is reproduction of a specified vulnerability in an
+affected original target. Product names, versions, component boundaries,
+entry points, and effects can each be misidentified. Reference profiles
+assembled from public information can propagate incorrect assumptions.
+An original component tested through a bypassed frontend can also be
+mistaken for reproduction of the complete documented attack. The proposed
+evidence dimensions make these assumptions explicit, but the per-case
+audit and replay remain unfinished. \todo{VAL-01}{Report the actual number
+of independently checked targets, replayed outcomes, available controls,
+and unresolved disagreements; align the claims with that coverage.}
+
+Behavior labels introduce another construct risk. Describing a saved
+script as a simulation is often possible from source; identifying the
+reason the agent chose it usually needs a trajectory. A visible error
+does not directly reveal the model's reasoning, and labels such as
+``ignored feedback'' require observable opportunities to respond.
+LLM-assisted retrieval can aid inspection but does not make a second
+agent's judgment independent ground truth. Human coding procedures and
+ambiguous cases must therefore be reported as actually performed.
+
+\paragraph{Internal validity.}
+Observed performance combines the model route, harness, tools, task
+wording, host, budget, and external services. The single ARM64 host can
+favor native execution of some targets, while other cases require
+cross-architecture emulation. Independent containers were intended to
+limit carryover, but shared network state, caches, package sources, and
+provider availability may remain. Model snapshots and serving behavior
+may change during a collection period. The unfinished configuration audit
+limits attribution of observed differences.
+
+Missing traces are particularly consequential for process claims.
+Excluding them could bias response distributions if missingness is
+associated with a configuration or difficult case. Including a historical
+label without its primary evidence would conceal that uncertainty. We
+will report coverage by analysis and distinguish recording loss from
+known execution failures where possible. Unknown reasons will remain
+unknown. No causal claim about the benefit of an observed repair or the
+effect of an obstacle follows from the natural choice of actions.
+
+\paragraph{External validity.}
+The 30 cases were selected for public documentation, apparent firmware
+accessibility, and three vulnerability classes. This favors cases that
+can be investigated from public sources and excludes much of IoT's
+hardware, protocol, and vulnerability diversity. Equal class sizes do
+not represent the natural prevalence of weaknesses. Multiple CVEs may
+share a vendor, component, image, or dependency, further reducing effective
+diversity. Findings should be framed around the studied situations,
+not the overall rate at which arbitrary IoT CVEs can be reproduced.
+
+Public CVE descriptions and PoCs may also have appeared in model training
+or accessible retrieval sources. The study evaluates execution with
+public information available; it does not isolate reasoning about unseen
+vulnerability mechanisms. Results from one harness and budget do not
+establish performance under another agent architecture or later model
+snapshot. \todo{EXP-03}{Optional, if a principal finding is claimed to
+generalize across harnesses: replicate a preselected, diverse subset under
+a second harness with the same model route and comparable resources.}
+
+\paragraph{Conclusion validity.}
+The 450 positions are repeated observations on 30 cases, not 450
+independent vulnerabilities. Three trials offer limited resolution for
+consistency, and small class or ISA subgroups cannot support broad
+comparative claims. Paired case comparisons and uncertainty should reflect
+clustering and the specific estimand. Exploratory subgroup analyses and
+multiple patterns should be presented as exploratory, including null or
+contradictory observations.
+
+The inspected examples were chosen because they illuminate different
+evidence boundaries. They do not establish how often those patterns
+occur. Cross-case coding, transparent case-selection criteria, and
+negative examples are needed to support stronger findings.
+\todo{VAL-02}{Report final coverage, sampling, counterexamples, missing-data
+sensitivity, and any exploratory comparisons omitted for insufficient
+evidence. Remove or narrow interpretations that do not survive these
+checks.}

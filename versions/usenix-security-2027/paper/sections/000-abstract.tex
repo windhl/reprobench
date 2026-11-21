@@ -1,0 +1,20 @@
+\begin{abstract}
+Reproducing a known IoT vulnerability requires more than generating an
+exploit: an analyst must obtain the affected firmware, establish a usable
+execution environment, and connect the observed behavior to the specified
+target. We investigate how LLM agents perform and behave across this
+workflow. Our study uses an archive of 450 runs spanning 30 CVEs, five
+model configurations, and three repetitions. We organize the analysis
+around reproduction outcomes, execution obstacles, and agents' subsequent
+responses, using target provenance, execution artifacts, and trajectories
+rather than an aggregate capability score. Initial archive inspection
+identifies candidate real-component executions alongside demonstrations
+against reimplemented services, illustrating why executable output alone
+does not establish reproduction. \todo{ABS-01}{Insert the audited outcome
+distribution and two principal cross-case findings after evidence review.}
+We distinguish component-level triggering from reproduction through the
+documented entry point, and separate declared simulation from unsupported
+success claims. The study aims to clarify which parts of autonomous
+reproduction are observed, which remain untested after early failures,
+and what evidence is needed to interpret an agent's report.
+\end{abstract}

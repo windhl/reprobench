@@ -1,0 +1,60 @@
+\begin{table*}[p]
+\begin{minipage}{\textwidth}
+\section{Historical Case Descriptions}
+\label{app:case-inventory}
+
+Table~\ref{tab:case-details} adapts the original case inventory. Its
+identifiers match the archived run keys. Vendor, product, device class,
+and CWE fields preserve historical descriptions and remain subject to
+TODO DES-01; they are not independently verified reference results.
+
+\centering
+\begin{tabular}{p{1.18in}p{0.72in}p{2.35in}p{0.98in}p{0.85in}}
+\toprule
+CVE & Vendor & Device / product & Device class & CWE \\
+\midrule
+\multicolumn{5}{l}{\textit{Buffer overflow}} \\
+CVE-2020-13389 & Tenda & AC6/\allowbreak AC9/\allowbreak AC15/\allowbreak AC18 & Router & CWE-120 \\
+CVE-2020-15416 & NETGEAR & R6700 & Router & CWE-121 \\
+CVE-2021-44158 & ASUS & RT-AX56U & Router & CWE-121 \\
+CVE-2022-0650 & TP-Link & TL-WR940N & Router & CWE-121 \\
+CVE-2023-41229 & D-Link & DIR-3040 & Router & CWE-122 \\
+CVE-2023-44418 & D-Link & DIR-X3260 & Router & CWE-122 \\
+CVE-2024-5293 & D-Link & DIR-2640 & Router & CWE-121 \\
+CVE-2025-60690 & Linksys & E1200 v2 & Router & CWE-121 \\
+CVE-2025-23123 & Ubiquiti & UniFi Protect Cameras & IP Camera & CWE-122 \\
+CVE-2026-7273 & Zyxel & GS1900 Series & Switch & CWE-121 \\
+\midrule
+\multicolumn{5}{l}{\textit{Command injection}} \\
+CVE-2020-5760 & Grandstream & HT800 & VoIP Adapter & CWE-78 \\
+CVE-2021-27252 & NETGEAR & R7800 & Router & CWE-78 \\
+CVE-2022-30525 & Zyxel & USG FLEX/\allowbreak ATP/\allowbreak VPN & Firewall & CWE-78 \\
+CVE-2023-1389 & TP-Link & Archer AX21 & Router & CWE-77 \\
+CVE-2023-36103 & Tenda & AC15 & Router & CWE-77 \\
+CVE-2023-26315 & Xiaomi & AX9000 & Router & CWE-78 \\
+CVE-2024-23624 & D-Link & DAP-1650 & Range Extender & CWE-77 \\
+CVE-2025-34037 & Linksys & E-Series & Router & CWE-78 \\
+CVE-2025-55637 & Reolink & Wi-Fi Video Doorbell & Smart Doorbell & CWE-77 \\
+CVE-2026-31195 & ALTICE/\allowbreak SFR & GR140DG & Router & CWE-78 \\
+\midrule
+\multicolumn{5}{l}{\textit{Authentication / access control}} \\
+CVE-2020-27866 & NETGEAR & Multiple Routers & Router & CWE-288 \\
+CVE-2020-14140 & Xiaomi & Multiple Devices & Router & CWE-306 \\
+CVE-2021-32030 & ASUS & GT-AC2900/\allowbreak Lyra Mini & Router & CWE-287 \\
+CVE-2021-33044 & Dahua & IP Camera/\allowbreak Video Intercom/\allowbreak PTZ/\allowbreak Thermal & IP Camera/\allowbreak NVR & CWE-287 \\
+CVE-2022-35572 & Linksys & E5350 & Router & CWE-306 \\
+CVE-2023-50199 & D-Link & G416 & Router & CWE-306 \\
+CVE-2024-6045 & D-Link & G403/\allowbreak G415/\allowbreak G416/\allowbreak R03/\allowbreak R12/\allowbreak E15/\allowbreak E30/\allowbreak M30/\allowbreak M32/\allowbreak M60 & Router & CWE-912, CWE-798 \\
+CVE-2025-14738 & TP-Link & WA850RE & Range Extender & CWE-287 \\
+CVE-2025-6443 & MikroTik & RouterOS & Router & CWE-284 \\
+CVE-2026-0405 & NETGEAR & Orbi (RBE/\allowbreak CBR/\allowbreak NBR Series) & Router & CWE-287 \\
+\bottomrule
+\end{tabular}
+\caption{Historical descriptions of the 30 selected cases, adapted from
+the original appendix. The broader access-control heading avoids treating
+all third-stratum cases as authentication bypass. Affected versions, ISA,
+shared-image relationships, and reference validation are pending.}
+\label{tab:case-details}
+\end{minipage}
+\end{table*}
+\clearpage

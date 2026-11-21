@@ -1,0 +1,91 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A vulnerability identifier is a starting point for investigation, not an
+executable experiment. To confirm a reported IoT vulnerability, an analyst
+may have to locate an old firmware release, unpack a vendor-specific
+image, identify the affected service, and reconstruct enough of the
+device environment to deliver a meaningful test input. A working exploit
+script is useful only when its behavior is connected to the intended
+target. This distinction matters for validating vulnerability reports,
+building regression tests, and deciding when automated security analysis
+has produced actionable evidence.
+
+LLM agents can search documentation, write programs, and invoke analysis
+tools within one interactive workflow. Research has demonstrated their
+potential in exploitation, penetration testing, and vulnerability
+repair~\cite{fang2024oneday,happe2026enterprisenetworks,zhang2026ossfuzzrepair}.
+However, the meaning of a reported success depends on what the experiment
+provides. Testing an already running vulnerable application, constructing
+a PoC from a patch, and locating and executing an affected firmware
+component expose different combinations of information and execution
+requirements. Their success rates answer different questions.
+
+Existing work covers important parts of this space. CVE-Bench provides
+real-world Web application targets and attack objectives; CyberGym
+evaluates reproduction with prepared software environments; and
+Patch-to-PoC studies kernel reproduction with patch input and dedicated
+execution support~\cite{cvebench,cybergym,krepro}. Environment construction
+is itself addressed by systems such as
+CVE-GENIE~\cite{cvegenie}. Firmware analysis systems separately establish
+that obtaining a binary does not remove its operating-system, peripheral,
+and configuration dependencies~\cite{challenges,greenhouse,pandawan}.
+These contributions motivate a closer empirical account of what general
+coding agents do when they must navigate the IoT reproduction workflow
+from a CVE identifier.
+
+We study three connected questions. First, what can these agents actually
+complete under the observed conditions? Second, where do their attempts
+break down, and which unmet prerequisites are visible in the evidence?
+Third, what do agents do after encountering an obstacle, and how do their
+subsequent actions and reports relate to their actual progress? The third
+question includes repairing a real execution environment, repeating an
+unsuccessful strategy, changing the tested entry point, implementing a
+simulated service, and stopping. Examining these responses can explain
+differences between superficially similar final artifacts.
+
+Consider two records from our archive. One agent extracts Xiaomi firmware
+and sends a test input to an original service running in a chroot. Another
+implements a Python server for a NETGEAR authentication-bypass pattern and
+successfully tests that server. Both records contain executable scripts
+and positive demonstration output. They nevertheless support different
+claims about the specified firmware targets. Even the first record needs
+a further distinction: reaching an internal component directly does not
+establish that the documented external entry point and its authentication
+conditions were reproduced. We use such distinctions to connect final
+outcomes to the process that produced them.
+
+Our material consists of 450 historical runs: 30 selected CVEs, five model
+configurations, and three repetitions per combination. The experiments
+used a shared OpenCode harness on an ARM64 host. Each agent received a
+CVE identifier within a common task prompt and could obtain additional
+public information and tools. We use six reproduction activities to
+locate progress, while allowing iteration and alternative paths. Target
+identity, observed execution, vulnerability-specific effects, and agent
+reports are recorded separately. No weighted plan, task, or overall score
+is used to answer the research questions.
+
+\paragraph{Draft status.}
+This manuscript is an internal working draft. Archive counts and explicitly
+described artifact inspections are available; comprehensive outcome
+validation and trajectory coding remain incomplete. Visible TODOs identify
+unfinished analyses and experiments. Historical evaluator labels are
+identified as such and are not presented as independently verified
+reproduction results. \todo{INTRO-01}{Replace this draft-status paragraph
+with a concise summary of the audited principal findings before submission.}
+
+\paragraph{Contributions.}
+The intended contributions are an empirical account of CVE-initiated IoT
+reproduction under a documented agent setup; an evidence-based analysis
+connecting outcomes, obstacles, and responses; and a research resource,
+\sys{}, supporting inspection and reanalysis. The knowledge contribution
+will be stated as concrete findings once the audits are complete.
+\todo{INTRO-02}{Replace the intended-contribution wording with final,
+specific findings and the actual scope of the released resource.}
+
+Our conclusions concern the studied cases and agent configurations.
+They do not estimate the prevalence of reproducible vulnerabilities in
+all IoT products, isolate an intrinsic property of a model, or establish
+the effect of removing an obstacle without an intervention. These
+boundaries guide both the analysis and the practical implications.
+

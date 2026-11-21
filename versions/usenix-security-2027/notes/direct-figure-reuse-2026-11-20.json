@@ -1,0 +1,7 @@
+{
+  "source": "../../arxiv/paper/figures/prompt.pdf",
+  "destination": "../paper/figures/historical-prompt.pdf",
+  "source_sha256": "32db356a8c70710e1567678179dc71401c311b25459e6d99515912d5871fa107",
+  "destination_sha256": "32db356a8c70710e1567678179dc71401c311b25459e6d99515912d5871fa107",
+  "operation": "byte-for-byte copy; historical manuscript prompt figure, not verified against every executed run"
+}

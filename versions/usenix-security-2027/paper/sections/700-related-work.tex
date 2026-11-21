@@ -1,0 +1,124 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Vulnerability Reproducibility and PoC Generation}
+
+Mu et al. study the reproducibility of crowd-reported vulnerabilities
+through structured analyst experiments and a separate practitioner
+survey~\cite{mu2018crowdrepro}. Their analysis connects reproduction
+outcomes to available information, information recovery, and debugging.
+It establishes a useful precedent for studying the workflow around a
+vulnerability report, including the distinction between frequently
+missing information and information consequential to reproduction. Our
+setting replaces the analyst workflow with general LLM agents and focuses
+on binary firmware, execution evidence, and subsequent agent behavior.
+
+Fang et al. investigate exploitation of one-day vulnerabilities with
+different information conditions~\cite{fang2024oneday}. Zhao et al. study
+Web PoC generation, decompose failures, and compare code context and
+feedback strategies~\cite{zhao2025webpocstudy}. Patch-to-PoC examines
+agentic reproduction of Linux kernel vulnerabilities using patch input
+and dedicated execution support~\cite{krepro}. These studies show how
+provided information and tool conditions affect the task being evaluated.
+Their prepared environments and success definitions differ from the
+CVE-initiated firmware workflow here, so their rates are not direct
+performance baselines for our agents.
+
+CVE-GENIE automatically gathers CVE resources, reconstructs vulnerable
+software environments, and develops verifiable exploits~\cite{cvegenie}.
+SEC-bench likewise uses automated construction and validation for software
+security tasks~\cite{secbench}. These systems explicitly address
+environment preparation; we do not claim that prior research uniformly
+hands agents a ready target. Our contribution is intended to be a
+process-level empirical account of general coding agents on selected IoT
+firmware cases, including the relationship between target preparation,
+target changes, and outcome reporting.
+
+Firmware rehosting research studies the conditions required to execute
+embedded software away from its device. Firmadyne and FirmAE develop
+automated approaches; Greenhouse focuses on single-service rehosting;
+Pandawan examines progress in Linux-based firmware
+rehosting~\cite{firmadyne,firmae,greenhouse,pandawan}. The challenges
+survey systematizes hardware and software dependencies~\cite{challenges}.
+FirmAgent combines fuzzing and LLM analysis for IoT vulnerability
+discovery~\cite{firmagent}. These works provide technical context for our
+obstacle analysis. Evaluating general agents' handling of those conditions
+is distinct from comparing the underlying rehosting tools themselves.
+
+\subsection{Empirical Studies of Security Agents}
+
+Happe and Cito combine quantitative evaluation and expert analysis of
+agent trajectories in an enterprise network~\cite{happe2026enterprisenetworks}.
+Shao et al. investigate offensive-security challenge solving across
+interactive and automated workflows~\cite{shao2024offensivestudy}.
+Their evidence motivates studying commands, feedback, and recovery
+alongside completion, while their environments and degrees of human
+participation differ from our task.
+
+Huang et al. relate functional properties of agent architectures to
+penetration-testing performance, failure modes, and architectural
+interventions~\cite{huang2025capabilitiesperformance}. Probst et al.
+derive candidate enhancements from observed privilege-escalation failures
+and test their combinations~\cite{probst2026localprivesc}. Incalmo uses
+failure analysis to motivate a new multi-host red-teaming
+system~\cite{singer2026incalmo}. These papers illustrate an observation-to-
+intervention or observation-to-system structure. Our present analysis
+does not claim equivalent intervention evidence or a new agent architecture.
+
+Yu et al. decouple reconnaissance and exploitation by supplying missing
+context~\cite{yu2026decoupling}. Erdem examines repeated attack runs on
+a fixed target and discusses service errors and other execution
+confounds~\cite{erdem2026consistency}. Garc\'{i}a-Carrasco et al. study
+local model configurations on a small CyberGym subset using repeated runs
+and trajectory examples~\cite{garcia2026local}. Together, these studies
+inform our treatment of prerequisite failures, repeated trials, and
+configuration-dependent performance. Each provides evidence within its
+own case and tool conditions rather than a universal ordering of models.
+
+The compared studies assign different target-preparation responsibilities.
+A prepared runtime can still expose a difficult exploitation problem,
+while a CVE-only task can be easier when a reusable public recipe exists.
+Initial information and execution responsibilities must be considered
+together; their success rates are not interchangeable.
+
+
+The comparison also identifies the specific gap our process analysis is
+intended to address. Human reproduction studies explain difficulties of
+recovering missing information. Prepared-target studies can investigate
+payload construction and interaction after initialization. Specialized
+construction systems can demonstrate that their pipeline prepares
+particular software environments. Our observations concern how general
+agents navigate the combined firmware workflow and what happens when
+their tested object or entry path changes during that attempt. These are
+complementary questions, and a difference in starting condition alone is
+not evidence of a stronger or weaker agent.
+
+Measurement validity is also central in adjacent tasks. SecLLMHolmes
+studies stability and reasoning-related outputs in vulnerability
+identification~\cite{ullah2024secllmholmes}; Risse and B\"ohme examine
+whether vulnerability detectors remain reliable under targeted
+evaluation changes~\cite{risse2024limits}. CodeRover-S distinguishes
+plausible patches from manually assessed correct patches and practical
+integration~\cite{zhang2026ossfuzzrepair}. Our distinction between a
+working demonstration and evidence on a specified original target shares
+this concern with what a reported outcome actually measures.
+
+\subsection{Evaluation Resources for Security Agents}
+
+CVE-Bench supplies real-world Web targets and explicit attack
+objectives~\cite{cvebench}. CyberGym provides prepared reproduction
+environments for real software vulnerabilities~\cite{cybergym}.
+BountyBench organizes detection, exploitation, and patching around
+real-world systems and vulnerability instances~\cite{bountybench}.
+These resources enable controlled comparisons, but differ in initial
+information, environment preparation, intended outcome, and verification.
+The survey of offensive-agent evaluation practices highlights such design
+choices and the difficulty of reducing long workflows to linear
+progress~\cite{happe2025offensivepractices}.
+
+\sys{} serves as the resource behind the present study. Its relevance
+rests on traceable observations of the selected workflow. We make neither
+a largest-dataset claim nor a claim that external benchmarks cannot
+validate original targets. The empirical comparison concerns what is
+observed when agents themselves confront the particular target-preparation
+requirements and evidence boundaries described in this paper.

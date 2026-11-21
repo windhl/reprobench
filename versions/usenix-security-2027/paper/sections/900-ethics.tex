@@ -1,0 +1,49 @@
+\section{Ethical Considerations}
+\label{app:ethics}
+
+\paragraph{Research purpose and scope.}
+The study examines reproduction of publicly documented IoT vulnerabilities
+and the reliability of the resulting evidence. Its intended uses include
+validation of vulnerability reports, regression testing, and assessment
+of autonomous security-analysis workflows. The study does not require
+testing unrelated Internet hosts or collecting data from device users.
+Public disclosure of a vulnerability does not itself authorize testing
+systems operated by third parties.
+
+\paragraph{Execution boundaries.}
+The historical setup describes separate Docker containers and locally
+rehosted targets. Container use alone does not establish a complete
+security boundary: firmware and agent-written code can be untrusted,
+tools can require privileges, and outbound network access can contact
+external services. \todo{ETH-01}{Verify the actual container privileges,
+mounts, device exposure, network controls, download destinations, and
+human oversight. State the measures actually used and investigate any
+unexpected external activity before making a containment claim.}
+
+Any follow-up replay should use authorized local targets and bounded
+effects. A harmless marker or controlled fault is generally sufficient to
+test the relevant behavior. The inspected archive includes test output
+that displays credential-file content from a rehosted filesystem; that
+content is unnecessary in the manuscript and should not be redistributed
+without review. \todo{ETH-02}{Inspect artifacts for credentials, API
+tokens, proprietary content, personal data, and identifying metadata;
+redact unnecessary values while retaining a documented basis for checking
+the reported effect.}
+
+\paragraph{Dual use and publication.}
+Reproduction methods and traces may lower the effort required to exercise
+known vulnerabilities. The research benefit is a more accurate account of
+what agents have and have not demonstrated. The release should focus on
+evidence, protocols, and analysis needed to verify that account, with
+appropriate attention to exploit material and firmware redistribution
+terms. We do not claim to disclose new vulnerabilities in this draft.
+\todo{ETH-03}{Confirm whether reanalysis uncovered any previously
+unreported issue and document any necessary coordinated disclosure;
+record the actual sharing decisions and reasons for restricted items.}
+
+\paragraph{Interpretation and attribution.}
+We avoid describing explicitly declared simulations as deception, inferring
+agent intent from a final artifact, or treating infrastructure faults as
+model refusals. These distinctions reduce misleading claims about both
+capability and behavior. They also keep the scientific interpretation
+aligned with what can be checked in the archived evidence.

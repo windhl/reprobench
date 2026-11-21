@@ -1,0 +1,27 @@
+% Adapt the original case-study's action/evidence columns to a named archive run.
+% No RRS, seven-stage labels, weights, or unverified Tenda chronology is retained.
+\begin{tikzpicture}[>=Latex,
+  cell/.style={draw,rounded corners,align=left,inner sep=6pt,
+    text width=3.05in,minimum height=0.67in},
+  act/.style={cell,fill=black!3},
+  ev/.style={cell,fill=white}]
+\node[anchor=west] at (0,0.28in) {\textbf{Agent action}};
+\node[anchor=west] at (3.75in,0.28in) {\textbf{Retained evidence and scope}};
+\node[act,anchor=north west] (a1) at (0,0) {
+  Obtain and extract Xiaomi firmware; start original services in a chroot.};
+\node[ev,anchor=north west] (e1) at (3.75in,0) {
+  Report and extracted components; \texttt{datacenter} log records a refused connection.};
+\node[act,anchor=north west] (a2) at (0,-0.87in) {
+  Use a direct Thrift client to reach \texttt{plugincenter} on port 9091.};
+\node[ev,anchor=north west] (e2) at (3.75in,-0.87in) {
+  Report identifies the changed path; the Web/authentication chain is not demonstrated.};
+\node[act,anchor=north west] (a3) at (0,-1.74in) {
+  Send an injection test and check the saved proof-file result.};
+\node[ev,anchor=north west] (e3) at (3.75in,-1.74in) {
+  Saved before/after output; target identity, causation, and replay remain TODO CASE-01.};
+\draw[->] (a1.east)--(e1.west);
+\draw[->] (a2.east)--(e2.west);
+\draw[->] (a3.east)--(e3.west);
+\draw[->] (a1.south)--(a2.north);
+\draw[->] (a2.south)--(a3.north);
+\end{tikzpicture}

@@ -1,0 +1,32 @@
+[
+  {
+    "source": "reprobench/versions/arxiv/paper/figures/3d.pdf",
+    "sha256": "cfa6cb53561465f70b63e91ee6396707dd54c9f29c40590687a062587e7cf769",
+    "same_as_aaai": true
+  },
+  {
+    "source": "reprobench/versions/arxiv/paper/figures/case_study.pdf",
+    "sha256": "98e16f18ce58f0751413df38254fcdb2ce0384260e2f0dbe6b459569e5c11a5a",
+    "same_as_aaai": true
+  },
+  {
+    "source": "reprobench/versions/arxiv/paper/figures/framework0724.pdf",
+    "sha256": "2c317be2dc6bbdbcb9922c9fa382bcdb3b5cc8c7fa75c2e6e0981be89ac78068",
+    "same_as_aaai": true
+  },
+  {
+    "source": "reprobench/versions/arxiv/paper/figures/iceberg-v4.png",
+    "sha256": "f761748e380a4f37b771bb8166101f9b6fe5a9fc499fefef94a9b48df9369e58",
+    "same_as_aaai": true
+  },
+  {
+    "source": "reprobench/versions/arxiv/paper/figures/prompt.pdf",
+    "sha256": "32db356a8c70710e1567678179dc71401c311b25459e6d99515912d5871fa107",
+    "same_as_aaai": true
+  },
+  {
+    "source": "reprobench/versions/arxiv/paper/figures/stagefunnel.pdf",
+    "sha256": "202769d80851fe886fbccc22ba21ce184b5d62de4bd00d7b3bae090d00662a1e",
+    "same_as_aaai": true
+  }
+]

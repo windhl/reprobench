@@ -1,0 +1,267 @@
+\section{Study Design}
+\label{sec:design}
+
+\subsection{Research Questions and Analysis Overview}
+
+We organize the study around the following research questions:
+\begin{description}
+\item[RQ1: Outcomes.] To what extent do LLM agents reproduce known IoT
+vulnerabilities under the studied conditions?
+\item[RQ2: Breakdowns.] Where does reproduction break down, and what
+observable conditions are associated with these breakdowns?
+\item[RQ3: Responses.] How do agents respond to reproduction obstacles,
+and how do their subsequent actions and reports relate to observed progress?
+\end{description}
+
+The analysis is exploratory: this framework was formulated while
+reexamining completed experiments and preliminary records. It is not a
+preregistered set of hypotheses. Figure~\ref{fig:study} separates execution
+from the subsequent evidence analysis. RQ1 establishes what was observed;
+RQ2 examines unmet conditions in those attempts; RQ3 studies subsequent
+actions and their connection to artifacts and reports. None requires
+access to a model's hidden internal reasoning.
+
+\begin{figure*}[t]
+\centering
+\input{figures/study-overview}
+\caption{Study organization, adapted from the original pipeline figure.
+Case construction and agent execution are retained; the former weighted
+scoring panel is replaced by outcome assessment and trajectory analysis.
+Reference profiles inform analysis, not the agent's instance-specific input.
+The lower row is not an execution sequence or a causal model.}
+\label{fig:study}
+\end{figure*}
+
+\subsection{Case Selection and Reference Validation}
+
+The historical study selected 30 cases from a collection of 696 candidate
+IoT CVEs. The selection notes describe three criteria: firmware
+accessibility, sufficient public documentation, and membership in one of
+three classes. The intended balance is ten buffer overflows, ten command
+injections, and ten authentication-bypass or access-control cases. The
+case identifiers span 2020--2026. This is a purposive sample for studying
+documented reproduction tasks, not a probability sample of IoT
+vulnerabilities.
+
+The identifiers match the historical appendix and current archive.
+The original case descriptions are retained in
+Appendix~\ref{app:case-inventory}, including vendor, product, device class,
+and CWE. These are historical metadata awaiting TODO DES-01, not
+independently verified facts. The third stratum includes access-control
+cases beyond authentication bypass.
+
+Selection-time accessibility and observed acquisition differ: endpoints
+change, mirrors contain different versions, and agents must discover URLs.
+An acquisition failure does not establish that no affected image exists.
+
+For each CVE, the archive includes a reference profile containing product,
+version, vulnerability description, public sources, acquisition hints,
+and expected evidence. These profiles were assembled with automated
+assistance. They are documentary references, not proof that the authors
+have independently replayed every target. A profile may omit a component
+or disagree with a later artifact. We retain source provenance and resolve
+such disagreements explicitly.
+
+\todo{DES-01}{Reconcile the actual 30 run identifiers with all selection
+lists; recover the 696-to-30 exclusion counts and selection dates. Audit
+product, affected version, class, ISA, and reference status for every case.}
+The completed case table will separate publicly described facts, facts
+verified from an acquired image, and independently replayed behavior.
+Unknown firmware sizes, dependency requirements, or architectures will
+remain unknown rather than being inferred from product names.
+
+\subsection{Agent Configurations and Execution Protocol}
+
+The archive contains five model labels: \texttt{claude-sonnet-4-6},
+\texttt{deepseek-v4-flash-free}, \texttt{glm-5.2}, \texttt{gpt-5.5}, and
+\texttt{mimo-v2.5-free}. We retain these labels as recorded. In particular,
+a route containing \texttt{free} is not assumed to be identical to another
+deployment with a similar model name. Each configuration has 90 run
+positions, covering 30 CVEs and three repetitions. A shared OpenCode
+harness provides the interaction and tool-execution loop~\cite{opencode}.
+
+The historical setup describes an ARM64 host with an NVIDIA GB10 processor
+and 128 GB unified memory, and one Ubuntu 24.04 Docker container per run.
+Artifacts and traces were collected through separate output volumes.
+Independent containers were intended to limit state carryover. The
+available setup description identifies the operating system and tool
+families but does not fully pin every image, package, and harness version.
+\todo{DES-02}{Recover host and container configuration, image digests,
+OpenCode commit, tool versions, isolation flags, model providers/snapshots,
+sampling parameters, and run dates from original records.}
+
+The common task required an initial plan, execution of the reproduction,
+and a final report. It asked agents to record roadblocks, keep outputs in
+the designated directory, and stay within a stated \$5 cost and 24-hour
+time budget. Agents could install tools and consult public resources.
+The six analytical activities were not supplied as a scored checklist.
+Removing plan scoring in this study does not remove the planning
+instruction from the historical experiments. The unchanged prompt figure
+is retained in Appendix~\ref{app:historical-prompt}; its wording does not
+explicitly exclude simulation, which matters when interpreting RQ3.
+
+The prompt's stated limits and the orchestrator's enforced limits must be
+distinguished. An agent's assertion that a task used only local tools does
+not measure model inference cost. Likewise, a timestamp in an agent-written
+report need not be an execution timestamp. We use harness metadata where
+available and reconcile it with provider and container records.
+\todo{DES-03}{Recover the exact executable prompt and control loop;
+verify budget enforcement, retry and stop rules, tool permissions,
+cross-run reset behavior, and whether any operator interventions occurred.}
+
+\subsection{Evidence Collection and Outcome Assessment}
+
+We index each run by CVE, recorded model label, and repetition. An initial
+inventory finds 450 evaluator JSON files, 395 nonempty trace directories,
+and 427 nonempty workspace directories. The 55 empty trace directories and
+23 empty workspaces are availability observations, not assigned failure
+causes. A nonempty directory can still omit the log needed for a specific
+judgment. Table~\ref{tab:inventory} records this initial coverage.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Archive object & Present/nonempty & Empty \\
+\midrule
+Evaluator JSON files & 450 & --- \\
+Trace directories & 395 & 55 \\
+Workspace directories & 427 & 23 \\
+Reference profiles & 30 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Initial file inventory. Nonempty is not a completeness or
+correctness judgment. The two directory rows overlap at the run level.}
+\label{tab:inventory}
+\end{table}
+
+We treat historical evaluator fields as leads for inspection. They do not
+replace independent outcome assessment. Positive values on two legacy
+triggering items identify 16 candidate runs for review, but the numerical
+values are not used as a reproduction threshold. Nor does absence from
+that candidate set establish that a run failed: a scorer can omit or
+misinterpret evidence. \todo{AUD-01}{Build a run-level evidence manifest,
+classify missingness, inspect all claimed successes, and sample other
+strata to detect omitted successes and incorrect negative labels.}
+
+Outcome assessment separates three questions. Is the tested artifact an
+affected original target? Did the observed input reach it? Does the
+observed effect establish the selected vulnerability under the stated
+preconditions? A firmware filename alone does not establish the first;
+a service banner alone does not establish the second; a script's success
+message alone does not establish the third. Evidence should connect
+acquisition, target identity, the running process, test input, and effect
+within the same run.
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{p{1.40in}p{2.40in}p{2.50in}}
+\toprule
+Activity & Retained checks from the original checklist & Evidence-state interpretation \\
+\midrule
+Information gathering & Product, version, endpoint, vulnerability class,
+public sources & Record checked facts and source disagreement, not plan coverage. \\
+Firmware acquisition & Image bytes, version metadata, acquisition source
+& Distinguish a matching image, a wrong artifact, a failed request, and unknown provenance. \\
+Firmware extraction & Container/compression format, extraction output,
+usable contents & An extraction command or empty directory does not establish a usable filesystem. \\
+Component analysis & ISA/ABI, target binary, vulnerable behavior,
+runtime dependencies & Record what was actually identified and the evidence linking it to the CVE. \\
+Service rehosting & Runtime, original process, dependencies,
+request delivery & Installation or a listening port alone does not prove original-target execution. \\
+Vulnerability triggering & Test input, delivery to original target,
+specific effect, reusable logs & Apply class-specific checks in
+Table~\ref{tab:trigger-evidence}; retain entry-path scope. \\
+\bottomrule
+\end{tabular}
+\caption{Six activities and evidence checks adapted from the original
+phase and item tables. Point values, weights, ordered completion, and
+attempt bonuses are removed. Each check records supported, contradicted,
+unknown, or inapplicable evidence rather than a numerical grade.}
+\label{tab:evidence}
+\end{table*}
+
+Table~\ref{tab:evidence} retains the original checklist's artifact
+questions without its point allocations. Table~\ref{tab:trigger-evidence}
+adapts the original trigger-evidence table to the three sampled classes,
+adding specificity checks. These are proposed assessment rules; their
+comprehensive application and available controls remain pending.
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{p{1.10in}p{2.45in}p{2.75in}}
+\toprule
+Selected class & Candidate signal retained from the original table &
+Required interpretation check \\
+\midrule
+Buffer overflow & Fault, core dump, sanitizer report, emulator fault &
+Connect the fault to the affected input path; exclude loader or startup
+failure. A generic segmentation fault is insufficient. \\
+Command injection & Command output or a controlled file side effect &
+Attribute the effect to input handled by the original target, excluding
+direct creation by the client or setup code. \\
+Authentication / access control & Protected operation succeeds under
+unauthorized conditions; comparison request & Verify the protected operation,
+session or network prerequisites, and a meaningful authorized/denied comparison. \\
+\bottomrule
+\end{tabular}
+\caption{Trigger-evidence criteria adapted from the original appendix,
+limited to the studied classes. Benign-input and patched-target controls
+can strengthen attribution where feasible; completed controls must be
+reported rather than assumed.}
+\label{tab:trigger-evidence}
+\end{table*}
+
+\todo{AUD-02}{Freeze and apply the per-class rules, revalidate original
+target identity and effects, and adjudicate component-level versus
+documented-entry reproduction. Report control availability and unresolved
+cases. Do not claim that all controls have already been run.}
+The final labels will distinguish verified triggering, observed
+noncompletion, and insufficient evidence, with scope attached to positive
+results. Evidence of simulation and real execution is recorded separately.
+No outcome combines different repetitions into a fictitious complete run.
+
+\subsection{Trace Coding and Analysis Strategy}
+
+For RQ2 and RQ3, the intended coding unit is an episode comprising an
+action, observable feedback, and subsequent action. A run can contain
+several episodes and several obstacle types. We distinguish a visible
+obstacle from an analyst's inferred explanation and from an agent's own
+statement. For example, a missing-library error is direct execution
+feedback; a claim that firmware is unavailable without a recorded search
+is an agent assertion with a different evidential status.
+
+An initial codebook uses the six activities and the historical failure
+notes as sensitizing concepts. Reviewers will refine the categories on a
+pilot sample, preserve ambiguous cases, and record changes before applying
+the codebook more broadly. Responses are coded separately from obstacles:
+repair, new information gathering, unchanged repetition, target-preserving
+alternative, simulation, return to the original target, and stopping.
+\todo{COD-01}{Conduct pilot coding; specify analysts, sampling, independent
+overlap, agreement measures, codebook revisions, and disagreement
+resolution. This draft does not claim completed multi-analyst validation.}
+
+We report both event-level counts and the number of distinct runs
+containing each pattern. For a conditional response proportion, the
+denominator comprises observable obstacle episodes in the relevant
+category; for prevalence across runs, it comprises runs with adequate
+evidence for that judgment. This prevents repeated retries in one long
+trajectory from being interpreted as many independent affected cases.
+
+RQ1 will report per-run outcomes and the number of CVE--configuration
+groups with at least one verified result across three trials. Repetition
+is a limited consistency check, not a precise estimate of a case's success
+probability. Comparisons should preserve the pairing of configurations
+within CVEs; uncertainty estimates must respect CVE clustering.
+\todo{ANA-01}{Generate outcome and activity-state tables from adjudicated
+records, document the chosen paired/clustered uncertainty procedure, and
+report sensitivity to unknown outcomes and incomplete traces.}
+
+For later activities, we will explicitly state which runs reached the
+relevant prerequisite. Their conditional results describe that observed
+subset. Since different agents can reach different cases, this subset
+cannot isolate downstream capability or the causal effect of environment
+readiness. Cost and duration likewise require coverage and route-specific
+accounting before comparison. \todo{ANA-02}{Audit token, billing, timing,
+and termination records; distinguish zero-priced routes from zero
+inference use and missing logs from infrastructure failures.}

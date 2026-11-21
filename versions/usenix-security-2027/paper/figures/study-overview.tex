@@ -1,0 +1,36 @@
+% Adapted from the data / agent / evaluation organization of framework0724.pdf.
+% The historical scoring panel is replaced by the current three analyses.
+\begin{tikzpicture}[>=Latex,
+  panel/.style={draw,rounded corners,align=left,inner sep=7pt,
+    text width=1.93in,minimum height=1.05in,fill=black!3},
+  analysis/.style={draw,rounded corners,align=center,inner sep=6pt,
+    text width=1.93in,minimum height=0.65in}]
+\node[panel,anchor=north west] (cases) at (0,0) {
+  \textbf{Case construction}\\
+  Public CVE sources\\
+  30 selected cases\\
+  Reference profiles};
+\node[panel,anchor=north west] (agent) at (2.35in,0) {
+  \textbf{Agent reproduction}\\
+  CVE + common prompt\\
+  Plan, execute, report\\
+  Five configurations; three trials};
+\node[panel,anchor=north west] (records) at (4.70in,0) {
+  \textbf{Retained run evidence}\\
+  Plans and reports\\
+  Firmware and test artifacts\\
+  Trajectories and service logs};
+\draw[->] (cases.east)--(agent.west);
+\draw[->] (agent.east)--(records.west);
+\node[analysis,anchor=north west] (rq1) at (0,-1.56in) {
+  \textbf{RQ1: Outcomes}\\Target identity, execution, effect};
+\node[analysis,anchor=north west] (rq2) at (2.35in,-1.56in) {
+  \textbf{RQ2: Breakdowns}\\Activities and unmet conditions};
+\node[analysis,anchor=north west] (rq3) at (4.70in,-1.56in) {
+  \textbf{RQ3: Responses}\\Actions, progress, and reports};
+\draw[->] (records.south)--(rq3.north);
+\draw[->] (records.south) -- ++(0,-0.20in) -| (rq1.north);
+\coordinate (bus) at ([yshift=-0.20in]records.south);
+\draw[->] (rq2.north |- bus)--(rq2.north);
+\draw[->] (cases.south)--(rq1.north);
+\end{tikzpicture}

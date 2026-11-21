@@ -1,0 +1,65 @@
+\section{Background and Task Definition}
+\label{sec:background}
+
+\subsection{IoT Vulnerability Reproduction}
+
+We study reproduction of a specified, publicly documented vulnerability in
+an affected IoT firmware target. The initial instance-specific input is a
+CVE identifier. The common prompt supplies the task and operating
+constraints, and the agent can search public sources during execution.
+This setting differs from discovering an unknown vulnerability and from
+generating a patch. It also differs from proving arbitrary compromise of
+an application when exploiting another vulnerability would satisfy the
+objective.
+
+Firmware reproduction commonly involves identifying the affected product
+and version; obtaining the corresponding image; extracting its contents;
+locating and analyzing a relevant component; establishing an executable
+service; and delivering an input that produces a vulnerability-specific
+effect. These are six analytical activities, not a required linear
+program. An agent may revisit acquisition after discovering a version
+mismatch, inspect a PoC before extracting firmware, or test a component
+without booting the complete device. We record the prerequisites and
+evidence of the path actually taken.
+
+The selected vulnerability classes require different observations. An
+overflow test must connect a fault to the affected input-handling behavior.
+Command injection requires an effect attributable to unintended command
+execution. An authentication or access-control test must establish the
+protected operation and the relevant authorization state. A printed
+success string, an open port, or an unrelated crash does not independently
+meet these requirements.
+
+\subsection{Target Execution and Reproduction Evidence}
+
+An \emph{original target} is an affected firmware binary or original
+component whose provenance and version can be connected to the selected
+CVE. Rehosting may use native execution, chroot, QEMU, configuration
+reconstruction, and dependency stubs. Such techniques can preserve the
+behavior under study; the presence of emulation or a stub is not by itself
+evidence of invalid reproduction~\cite{challenges,greenhouse}. The relevant
+question is whether the tested code and assumptions still support the
+vulnerability claim.
+
+A \emph{simulation} reimplements the service or vulnerable logic instead
+of exercising the specified original target. It may be a useful
+explanation or a correct model of a programming error. Its successful
+execution establishes behavior of that implementation, which must be
+distinguished from behavior of the firmware instance. A single run can
+contain both original-target attempts and simulation; these activities
+are not mutually exclusive final outcomes.
+
+We further distinguish \emph{component-level triggering} from
+\emph{documented-entry reproduction}. A direct call into an affected
+component can provide genuine dynamic evidence while bypassing a frontend,
+authentication layer, or protocol translation used by the public attack.
+It therefore supports a narrower claim unless those preconditions are
+also established. We record this distinction rather than discarding all
+component-level work or crediting it as a complete external attack.
+
+Finally, an agent's narrative and our outcome assessment are separate
+objects. An explicit simulation disclaimer can coexist with a successful
+demonstration on a substitute service. Conversely, a report can overstate
+what the available artifacts establish. This separation permits analysis
+of reporting without inferring intent or treating every incomplete run
+as deceptive.

@@ -1,0 +1,80 @@
+\section{Supplementary Evidence and Analysis Protocol}
+\label{app:supplement}
+
+\subsection{Traceable Examples in the Draft}
+
+The main-text examples refer to the following archived run keys. Paths
+below are relative to each run's workspace or trace root, not to an
+author-specific machine. No firmware or exploit is executed by the file
+inventory. The examples establish which retained artifacts motivated the
+analysis; they do not replace complete outcome adjudication.
+
+\paragraph{CVE-2023-26315 / claude-sonnet-4-6 / 1.}
+The workspace includes \casefile{report.md},
+\casefile{poc/final_exploit_run.txt}, extracted firmware contents, and
+service logs including \casefile{logs/datacenter.log}. The trace directory
+contains \casefile{metadata.json}, \casefile{session_messages.json}, and
+container output. The report and demonstration identify a direct test of
+the internal \texttt{plugincenter} component. The exact process/input/effect
+chain and documented-entry scope require the checks in TODO CASE-01 and
+RQ1-02. Values resembling credentials are not reproduced here.
+
+\paragraph{CVE-2024-23624 / glm-5.2 / 2.}
+The workspace includes \casefile{DAP-1650_v1.04B01.zip}, disassembly files,
+and \casefile{ghidra_scripts/decompile.py}. The retained script contains
+the misspelled \texttt{depiledFunction()} call. The corresponding trace
+directory is empty. These observations do not establish the actual
+exception sequence or stopping decision; see TODO CASE-02.
+
+\paragraph{CVE-2020-27866 / claude-sonnet-4-6 / 1.}
+The workspace includes \casefile{plan.md},
+\casefile{vulnerable_server.py}, \casefile{exploit.py},
+\casefile{server.log}, and \casefile{exploit_output.txt}. The plan and
+server identify the simulation explicitly. The saved output reports nine
+passing checks against the implemented server. The trace directory is
+empty; consequently, the artifact set is not used to prove an exhaustive
+search history or a transition after a timed rehosting failure.
+
+\subsection{Initial Coding Fields}
+
+The following fields define an initial analysis record. The codebook must
+be refined and frozen through the pilot described in TODO COD-01.
+An absent value is not silently mapped to a negative finding.
+
+\begin{description}
+\item[Run identity.] CVE, exact model route, trial, collection metadata,
+and evidence availability.
+\item[Activity.] Information gathering, acquisition, extraction,
+component analysis, rehosting, or triggering; allow revisits and overlap.
+\item[Action and feedback.] Observed command/tool call, relevant output,
+timestamps or order, and references to the underlying evidence.
+\item[Obstacle.] Unmet condition, direct evidence versus assertion,
+whether repaired, and relation to termination if known.
+\item[Response.] Repair, further search, repetition, target-preserving
+alternative, simulation, return to original target, or stop; retain
+multiple responses within a run.
+\item[Outcome and scope.] Identity, execution and effect decisions;
+documented entry versus internal component; unresolved prerequisites.
+\item[Report.] Claimed result, disclosed limitations, simulation
+disclaimer, and agreement with the observed execution scope.
+\item[Adjudication.] Analyst decisions, independent overlap where
+performed, disagreement, resolution, and remaining uncertainty.
+\end{description}
+
+\subsection{Sensitivity and Follow-Up Analyses}
+
+The final reanalysis should report how findings change when restricted to
+complete trajectories, when unresolved outcomes are retained explicitly,
+and when related CVEs sharing an image or service are grouped. It should
+also compare per-run results with three-trial group summaries. These
+checks are pending rather than completed robustness results.
+\todo{SUP-01}{Audit and complete the retained case/reference table,
+recover the executed prompt, and publish coding rules, coverage strata,
+and completed sensitivity results;
+keep decisive methods and findings in the main body.}
+
+Follow-up experiments are conditional on the final scientific claims.
+Providing a ready original target addresses a different question from
+asking for a clearer failure report. A second harness examines another
+configuration. Any such experiment should retain matched cases, document
+changed conditions, and report both positive and negative outcomes.

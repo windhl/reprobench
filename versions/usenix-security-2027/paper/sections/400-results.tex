@@ -1,0 +1,422 @@
+\section{Empirical Results}
+\label{sec:results}
+
+Tables describe archive availability and historical annotations; cases
+describe inspected artifacts. Final outcome rates, behavioral prevalence,
+and independent replay remain TODOs throughout this section.
+
+\subsection{RQ1: Reproduction Outcomes and Progress}
+\label{sec:rq1}
+
+\subsubsection{Candidate Outcomes and Evidence Coverage}
+
+An archive query identifies 16 runs with positive historical annotations
+for both real-target PoC execution and vulnerability-specific evidence.
+These span five CVEs and eight CVE--configuration groups. Each of the five
+configurations has 90 archived positions, making it possible to identify
+which records require review without reconstructing a combined score.
+Table~\ref{tab:candidates} shows the candidate counts. They are a review
+queue, not a ranking by independently verified success.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Recorded configuration & Runs & Candidates \\
+\midrule
+\texttt{claude-sonnet-4-6} & 90 & 2 \\
+\texttt{deepseek-v4-flash-free} & 90 & 1 \\
+\texttt{glm-5.2} & 90 & 10 \\
+\texttt{gpt-5.5} & 90 & 3 \\
+\texttt{mimo-v2.5-free} & 90 & 0 \\
+\midrule
+Total & 450 & 16 \\
+\bottomrule
+\end{tabular}
+\caption{Historical trigger-candidate labels, extracted from two legacy
+item annotations. These counts are not validated success rates. Final
+outcomes, scope distinctions, and uncertainty are \pending.}
+\label{tab:candidates}
+\end{table}
+
+The remaining 434 records cannot simply be classified as failed
+reproductions from this query. Some may contain overlooked evidence;
+others lack the trace or artifact required for a determination. Conversely,
+candidate records can have ambiguous target provenance or a narrower
+execution scope than the report claims. The audit must examine both
+directions. A configuration with no historical candidate labels is not
+thereby shown to be universally incapable of the task.
+
+\todo{RQ1-01}{Replace the candidate table with adjudicated per-run
+outcomes, component/documented-entry scope, unknown counts, and
+CVE-clustered uncertainty; retain candidate counts only if useful for
+explaining the audit. Examine noncandidate records for false negatives.}
+For unknown outcomes, the final table will state both the total number of
+scheduled positions and the number evaluable for the particular claim.
+Sensitivity analysis will show how unresolved cases affect the conclusion
+rather than silently excluding them.
+
+\subsubsection{Original Component Execution: A Scoped Positive Case}
+\label{sec:xiaomi}
+
+The CVE-2023-26315, \texttt{claude-sonnet-4-6}, repetition 1 workspace
+contains downloaded Xiaomi AX9000 firmware, an extracted filesystem,
+service logs, an exploit client, and a demonstration log. The report
+identifies firmware version 1.0.168 and the AArch64
+\texttt{plugincenter} component. It describes starting original firmware
+services in a chroot on the ARM64 host. The test client addresses
+\texttt{plugincenter} on a local service port and sends a command-injection
+test through its request protocol.
+
+The saved demonstration records an initially absent proof file and its
+presence after the request, followed by command-output evidence. This is
+more informative than a PoC source file alone: it connects a request,
+an executing service, and an observed side effect. Nevertheless, all
+three must be tied to the original target and to commands actually issued
+during that run. The client printing that it succeeded is not an
+independent check. \todo{CASE-01}{Verify image/component hashes and
+process identity against the trace; replay a benign and triggering input,
+and exclude direct proof-file creation by setup or client code.}
+
+Figure~\ref{fig:component-case} connects the actions and retained
+records for this named run. Its two-column organization adapts the
+original case-study figure; the case facts now have an explicit archive
+key and do not carry the original RRS or stage-credit labels.
+
+\begin{figure*}[t]
+\centering
+\input{figures/component-case}
+\caption{Action and evidence in CVE-2023-26315 / claude-sonnet-4-6 / trial 1.
+The saved report and logs describe a direct-component workaround.
+The figure illustrates execution scope; it is not a completed independent
+replay, a model comparison, or a measure of behavioral prevalence.}
+\label{fig:component-case}
+\end{figure*}
+
+The scope of this record is equally important. Its documented attack path
+includes a Web frontend and other firmware services. The run instead
+communicates directly with the internal component after encountering
+problems in the surrounding service chain. Direct component execution
+can support a vulnerability-mechanism result while leaving the external
+authentication and routing prerequisites untested. It cannot by itself
+show unauthenticated exposure, a complete Web attack, or device-level
+compromise under the documented network conditions.
+
+\todo{RQ1-02}{Apply the component-versus-entry distinction to all 16
+candidates, including the RouterOS cases; state which result satisfies
+the final primary outcome and report the narrower results separately.}
+The decision should be based on a task definition applied consistently
+across configurations. It should not be chosen after seeing which model
+benefits from counting a direct component call.
+
+\subsubsection{Progress Beyond a Binary Success Label}
+
+Noncompletion can coexist with useful progress: an acquired image, an
+identified executable, or a running component without a successful test.
+A substitute-server demonstration leaves different work unresolved.
+We retain these distinctions.
+
+The intended progress view therefore records a vector of evidence states:
+correct target identified, matching firmware obtained, relevant contents
+extracted, original component located, component executed, intended entry
+reached, and vulnerability-specific effect observed. Each state has a
+supporting artifact, a contradictory observation, an unknown value, or a
+reason for being inapplicable. It is not a numerical measure of effort.
+An unsuccessful attempt to start a service is distinct from verified
+service execution and from no observable startup attempt.
+
+\todo{RQ1-03}{Produce the activity-state matrix and coverage by case and
+configuration from reviewed artifacts. Identify paths that revisit earlier
+activities and ensure that progress comes from the same run.}
+The matrix will permit comparisons such as whether reported differences
+in final outcomes coincide with differences in target acquisition or
+execution. It will not attribute those differences to model reasoning
+without examining the relevant conditions and trajectories.
+
+\subsubsection{Variation Across Repetitions}
+
+The three trials per CVE--configuration group allow an initial examination
+of consistency. The historical candidates are concentrated: some groups
+have candidate labels in all three trials, while others have only one.
+Once adjudicated, we will distinguish consistently observed success,
+intermittent success, repeated noncompletion, and groups whose evidence
+is too incomplete to compare.
+
+A best-of-three result describes at least one observed success, not a
+typical attempt or a stable per-target probability. It never combines
+acquisition and execution evidence from different trials. \todo{RQ1-04}{Compute paired
+repetition patterns, identify same-case contrasts, and report both
+per-run and at-least-one results with their denominators.}
+
+\rqanswer{The archive contains candidate original-component executions
+and heterogeneous partial progress, but a defensible end-to-end success
+rate requires the outstanding evidence audit. The scoped Xiaomi record
+illustrates why component triggering and reproduction of the documented
+entry path must be reported separately. \todo{RQ1-ANS}{Replace this
+provisional answer with the audited outcome distribution and repetition
+findings.}}
+
+\subsection{RQ2: Where Reproduction Breaks Down}
+\label{sec:rq2}
+
+\subsubsection{Acquiring and Identifying the Intended Target}
+
+The first practical boundary is between knowing a CVE's description and
+having the correct executable material. Historical notes mention
+unreachable downloads, wrong versions, and confusion between firmware
+images and source-code packages. These are candidate categories for
+review, not yet a validated ordering of failure frequency. A downloaded
+HTML error page and a complete update image should not both be treated
+as acquired firmware merely because they share a filename extension.
+
+Acquisition analysis links requests, responses, saved bytes, and target
+versions. An HTTP error does not establish global unavailability, and a
+GPL source archive may omit runtime binaries and libraries. Target
+identity must be rechecked when the source changes.
+
+\todo{RQ2-01}{Validate acquisition and version-mismatch episodes, including
+whether alternative sources were tried. Separate unavailable material,
+temporary access errors, incorrect artifacts, unverified assertions, and
+missing records; report the cases and runs underlying each count.}
+Cross-case comparisons should account for shared vendor endpoints and
+images: failures involving related CVEs may arise from one common download
+condition rather than independent model mistakes.
+
+\subsubsection{From Extracted Firmware to an Executable Service}
+
+Extraction exposes a filesystem, not a working device. An executable can
+depend on its original loader and libc, startup order, configuration
+files, message buses, NVRAM, device interfaces, and network state. These
+requirements are well established in firmware
+rehosting~\cite{challenges,firmadyne,firmae,greenhouse,pandawan}. The
+empirical question here is which requirements are visible in our runs,
+how agents identify them, and what happens next.
+
+The Xiaomi record provides one concrete example. Although host and target
+share AArch64, the saved \texttt{datacenter} log records a connection refusal
+when contacting \texttt{plugincenter}. The report then describes a direct
+client to the latter component. Native ISA compatibility therefore does
+not remove all service-chain prerequisites. It permits a different
+execution route, whose implications depend on the required reproduction
+scope. A narrower successful route and an unresolved frontend can coexist.
+
+Historical annotations also mention missing loaders, NVRAM requirements,
+and difficulties launching MIPS targets. These observations should be
+verified against actual commands and outputs before labeling them
+systematic barriers. An ISA mismatch can interact with available QEMU
+tools, the libc ABI, packaging, and agent actions. The present host does
+not let us attribute all differences between ARM64 and MIPS cases to an
+intrinsic model capability or to architecture alone.
+
+\todo{RQ2-02}{Code verified startup episodes and their exact error
+messages, dependency changes, and outcomes. Report ISA and execution-mode
+coverage where known; examine same-case successes as counterexamples to
+claims of unavoidable environmental failure.}
+Where an agent uses a stub, the audit must inspect what it substitutes.
+Replacing an unrelated peripheral response differs from replacing an
+authentication check or the vulnerable handler. The latter can change
+the behavior whose reproduction is being claimed.
+
+\subsubsection{Tool Use and Missing Process Evidence}
+
+A second inspected case shows why visible artifacts and inferred causes
+must remain distinct. For CVE-2024-23624, \texttt{glm-5.2}, repetition 2,
+the workspace contains a D-Link firmware archive, disassembly output,
+and a Ghidra script. The script calls the correctly named decompilation
+method, then invokes the nonexistent predicate
+\texttt{depiledFunction()} before attempting to print the recovered code.
+This is a concrete defect in a generated analysis artifact.
+
+However, the corresponding trace directory is empty. The retained script
+does not establish that this version was executed, that its exception was
+observed, or that the exception caused the run to stop. The workspace also
+does not contain evidence of a completed dynamic reproduction. Thus the
+case supports a tool-script defect and incomplete retained results; a
+precise stopping explanation requires more evidence.
+
+\todo{CASE-02}{Recover the Ghidra invocation, tool output, and termination
+record if available. Otherwise retain the stopping reason as unknown and
+exclude this run from claims about responses to observed tool errors.}
+This example is particularly relevant to RQ2 because a plausible recovery
+suggestion is not evidence that its absence explains the final outcome.
+An analyst can identify a bug in a saved script without reconstructing
+the chronology of the entire attempt.
+
+\subsubsection{From a Running Service to a Specified Vulnerability}
+
+Later obstacles concern whether the intended input reaches the vulnerable
+behavior. A listening service can still require a session token, a
+particular configuration, a specific request encoding, or coordination
+with another process. Replacing the frontend with a direct call may
+isolate the affected behavior, but it also changes which prerequisites
+have been tested. We therefore record both service reachability and the
+entry point used by the test.
+
+For a crash, the analysis must distinguish an input-induced memory error
+from initialization failure. For a command effect, it must distinguish
+execution by the target from a local command issued during setup. For
+access control, a response generated by a substitute server cannot resolve
+the original firmware's authentication behavior. These checks locate the
+boundary between an executable demonstration and evidence for the selected
+vulnerability instance.
+
+\todo{RQ2-03}{Identify post-startup obstacles among runs with verified
+original-target execution. Report the eligible subset and analyze protocol,
+authentication, configuration, and trigger-evidence problems without
+treating unattempted later activities as observed failures.}
+If few runs qualify, this analysis should remain descriptive and emphasize
+the evidence available for individual cases rather than estimate a precise
+downstream success probability.
+
+\subsubsection{Cross-Case Patterns and Competing Explanations}
+
+The planned aggregate analysis distinguishes an obstacle encountered
+anywhere, the earliest unmet prerequisite, and the condition still
+unresolved at termination. Multiple obstacles can occur in one run; one
+can be repaired before another stops progress. Treating these categories
+as interchangeable would distort both prevalence and the explanation of
+noncompletion.
+
+\todo{RQ2-04}{Produce the reviewed obstacle distribution, denominators,
+and paired case comparisons. Replace historical failure-family totals
+with the frozen codebook results; report unresolved and multiply coded
+episodes.}
+We will compare cases with similar obstacles but different subsequent
+progress. Such contrasts can suggest explanations---for example, whether
+an agent used a documented dependency error to change its environment---
+while remaining observational. Cases differ in public information,
+firmware complexity, and achievable isolation.
+
+\rqanswer{The inspected material exposes distinct target-acquisition,
+execution-environment, tool-artifact, and entry-path questions. A shared
+ISA does not by itself make a service chain ready, and an empty trajectory
+prevents confident attribution of a stopping cause. \todo{RQ2-ANS}{Insert
+the cross-case patterns, their counts, counterexamples, and uncertainty;
+do not identify a dominant bottleneck from old phase scores.}}
+
+\subsection{RQ3: Agent Responses and Outcome Reporting}
+\label{sec:rq3}
+
+\subsubsection{Continuing on the Original Target}
+
+Responses to an obstacle can preserve the target while changing the
+execution strategy. Examples to code include obtaining a different image,
+repairing the loader path, starting a dependency, modifying a configuration,
+and using a different client protocol. The important process evidence is
+the connection between feedback and a subsequent change, followed by an
+observable outcome. Reissuing a command after an unchanged error and
+testing a specific repair are analytically different responses.
+
+The Xiaomi record illustrates a target-preserving alternative: the agent
+uses a direct client to the affected firmware component when the
+surrounding service path is problematic. This keeps the original component
+in the experiment while narrowing the demonstrated entry path. It should
+be distinguished both from a fully repaired service chain and from
+reimplementing the vulnerable code. Progress and task-scope changes can
+occur in the same response.
+
+\todo{RQ3-01}{Code response episodes after verified feedback, identify
+which changes led to new observed states, and compare repair, repetition,
+alternative execution, and stopping across adequately observed runs.}
+Associations between response types and later progress will not be
+interpreted as treatment effects: agents choose their responses under
+different conditions, and easier cases may permit more kinds of repair.
+
+\subsubsection{Simulation as a Change of Tested Object}
+\label{sec:simulation}
+
+The historical annotations flag simulation somewhere in 316 of 450 runs.
+An independent query of the current files finds 209 runs with at least one
+simulation entry marked terminal. Eleven runs contain more than one
+terminal entry of any type. These facts concern the annotation structure,
+not verified behavioral prevalence. A terminal marker attached to an entry
+also need not establish the final executable artifact or its timing.
+
+Earlier summaries report 204 terminal-simulation runs. The difference must
+be reconciled against source versions and aggregation rules before any
+such percentage is used as a finding. More fundamentally, a run that
+briefly constructs a simulator and returns to the original target differs
+from one that ends with only the simulator. \todo{RQ3-02}{Reconcile
+204 versus 209 terminal-label counts, then recode any simulation, first
+simulation, return to target, and final tested object from primary evidence.
+Report trace coverage separately for temporal claims.}
+
+A retained artifact set for CVE-2020-27866,
+\texttt{claude-sonnet-4-6}, repetition 1 makes the tested-object distinction
+concrete. Its plan declares that actual router hardware and vulnerable
+firmware are unavailable and proposes a simulated HTTP server. The
+workspace contains \casefile{vulnerable_server.py}, a client, and a saved
+test output. The Python server implements its own authentication logic
+and page responses, explicitly describing itself as a simulation.
+
+The test output records nine passing checks, including a denied ordinary
+request and an accepted request carrying the simulated bypass condition.
+These checks show behavior of the implemented server. The server also
+generates product-like page content and messages saying that the
+vulnerability was reproduced. Their specificity cannot establish execution
+of a NETGEAR firmware component because the response generation is in the
+new Python code.
+
+This is not evidence that the agent concealed the simulation: the plan and
+server header declare it. The missing trace also prevents a strong claim
+that no firmware search occurred outside the retained workspace. The
+observable conclusion is narrower: the retained demonstration tests the
+substitute implementation, while the plan's availability assertion is not
+corroborated by a retained acquisition record.
+
+\todo{CASE-03}{Adjudicate the simulation case from source, saved output,
+and any recoverable trace. Preserve the explicit disclaimer in report
+coding; do not infer an actual download history from its absence.}
+This case motivates analyzing what an artifact demonstrates and how its
+scope is communicated as separate dimensions.
+
+\subsubsection{Temporal Relationships Between Obstacles and Simulation}
+
+Simulation may appear in an initial plan, after an unsuccessful original
+execution, or after a partial success. Those sequences are different.
+The NETGEAR plan places simulation at the proposed starting strategy;
+it cannot illustrate a demonstrated transition after a recorded rehosting
+failure. Other cases may provide that chronology, but their logs must be
+read before they are used to support it.
+
+For adequately observed trajectories, we will identify the first action
+that constructs a substitute target and the feedback immediately preceding
+it. We will also record original-target actions after that point. A single
+final label would lose a return from simulation to a valid target, or a
+late simulation appended to otherwise useful dynamic analysis.
+\todo{RQ3-03}{Select matched same-CVE trajectories with verified time
+order, including a return-to-target or other counterexample if observed.
+Plot actual event sequences; do not fabricate a paired contrast from
+unrelated cases.}
+
+Temporal adjacency can establish that one event followed another; it does
+not show that removing the obstacle would prevent simulation. The prompt,
+remaining budget, available tools, and agent's interpretation of
+``reproduce'' may also affect that choice. Without feedback about a
+numerical reward during these runs, the archive does not justify calling
+the behavior reward hacking.
+
+\subsubsection{Reports, Stopping, and Evidential Scope}
+
+We compare the agent's final statement with the evidence it retained.
+The coding distinguishes a scoped positive report, an explicit simulation
+demonstration, acknowledged noncompletion, an unsupported success claim,
+and an unclear or absent report. A program that prints a success message
+is recorded as program output; it is not automatically equivalent to a
+qualified final report. Contradictions between these sources should be
+preserved rather than collapsed into one label.
+
+Stopping receives its own analysis. Budget exhaustion, orchestrator
+termination, an API fault, a safety refusal, and an agent choosing to stop
+are different observations. Empty logs establish none of them on their
+own. The study of fixed-target attack consistency provides a relevant
+warning: service overload errors can be mistaken for agent
+refusal~\cite{erdem2026consistency}. \todo{RQ3-04}{Cross-tabulate report
+claims against adjudicated outcomes and target types; audit stop reasons
+from control-loop records, keeping absent or ambiguous evidence explicit.}
+
+\rqanswer{The inspected artifacts demonstrate both a target-preserving
+change of execution path and an explicitly declared substitute target.
+Their positive outputs support different scopes of claim. \todo{RQ3-ANS}{
+Replace these case-level observations with validated response patterns,
+report-alignment counts, temporal evidence, and bounded interpretations.}}

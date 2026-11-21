@@ -12,3 +12,9 @@
 **/__pycache__/
 *.pyc
 /build/
+
+# Downloaded PDFs and generated full text from the November literature studies.
+/references/positioning-study-2026-11-19/papers/
+/references/positioning-study-2026-11-19/texts/
+/references/empirical-related-work-2026-11-19/papers/
+/references/empirical-related-work-2026-11-19/texts/
