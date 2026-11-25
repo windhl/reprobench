@@ -1,32 +1,37 @@
-% The unmodified example remains in submission/usenixsecurity2027_latex_templates.zip.
+% USENIX layout; manuscript content adapted locally from the arXiv source.
 \documentclass[letterpaper,twocolumn,10pt]{article}
+\pdfminorversion=7
 \usepackage{usenix}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{rotating}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
-\newcommand{\sys}{ReproBench}
-% All unfinished work stays visible. Never hide TODOs to submit.
+\frenchspacing
+\newcommand{\sys}{\textsc{ReproBench}}
+\newcommand{\bof}{\textsc{BOF}}
+\newcommand{\cmdi}{\textsc{CMDI}}
+\newcommand{\auth}{\textsc{Auth/AC}}
 \newcommand{\todo}[2]{\textbf{[TODO #1: #2]}}
 \newcommand{\pending}{\textbf{TODO}}
-\newcommand{\rqanswer}[1]{\paragraph{Answer to the research question.} #1}
 \newcommand{\casefile}[1]{\texttt{\detokenize{#1}}}
-\hypersetup{pdftitle={Understanding LLM Agents in IoT Vulnerability Reproduction: An Empirical Study},pdfauthor={},pdfsubject={Internal draft with explicit TODOs}}
+\hypersetup{pdftitle={Can LLM Agents Reproduce Vulnerabilities from Scratch? An Empirical Study on IoT Firmware},pdfauthor={},pdfsubject={Internal review draft; legacy metrics retained with explicit qualifications}}
 \begin{document}
 \date{}
-\title{\Large\bf Understanding LLM Agents in IoT Vulnerability Reproduction:\\An Empirical Study}
+\title{\Large\bf Can LLM Agents Reproduce Vulnerabilities from Scratch?\\An Empirical Study on IoT Firmware}
 \author{{\rm Anonymous Author(s)}\\Anonymous Institution(s)}
 \maketitle
 \input{sections/000-abstract}
 \input{sections/100-introduction}
 \input{sections/200-background}
 \input{sections/300-study-design}
+\input{sections/400-experimental-design}
 \input{sections/400-results}
 \input{sections/500-discussion}
-\input{sections/600-validity}
-\input{sections/700-related-work}
 \input{sections/800-conclusion}
 \label{main-text-end}
 \clearpage
@@ -38,8 +43,8 @@
 \clearpage
 \input{sections/910-open-science}
 \clearpage
-\input{sections/920-supplement}
+\input{sections/940-case-inventory}
+\input{sections/appendix-scoring}
 \clearpage
 \input{sections/930-historical-prompt}
-\input{sections/940-case-inventory}
 \end{document}

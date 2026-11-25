@@ -3,23 +3,24 @@
   "source_commit_before_reorganization": "dc709b29be79ead6448e0aa83a1f337d4b138a94",
   "source_state": "working tree with uncommitted changes; not an authenticated submission revision",
   "original_backup": "/home/tca/.config/opencode/skills/reprobench-scoring/backups/20261119-173001/reprobench-scoring.tar.gz",
-  "paper_state": "empirical-study English working draft with visible TODOs and reused/adapted visual material; official style preserved; 13 body pages, 20 total pages",
-  "results_state": "historical archive inventory only; no new agent experiments; comprehensive outcome audit and trajectory recoding pending",
+  "paper_state": "2026-11-23 local revision from arXiv manuscript: original scoring, experiments, figures and analysis retained; empirical-study framing; USENIX style unchanged",
+  "results_state": "Legacy rubric outputs retained; no new experiments or rescoring; candidate outcomes, terminal simulation counts and cost coverage explicitly qualified",
   "external_run_artifacts": "historical originals remain outside repository; new inventory stores annotation hashes and directory availability, not raw firmware or traces",
   "scoring_tool_provenance": "unverified; installed and repository summary generators differ; both preserved",
   "backup_sha256": "b5ae29a2f7ac3e0fd496320878954ef1c2380c40756797d321b4e9d8274e1183",
   "source_manifest": "../../docs/migration-inventory.json",
-  "draft_pdf": "submission/drafts/reprobench-usenix27-with-figures-2026-11-20.pdf",
-  "draft_sha256": "1f4b6648f48fb092620d90739c8fbb3c652220e8a816b9b60dacca87a5072d2a",
-  "todo_count": 43,
-  "previous_draft_pdf": "submission/drafts/reprobench-usenix27-draft-2026-11-19.pdf",
-  "previous_draft_sha256": "d9eba1e8d5125d95e2d032c9999b605b4b86d678b4579a660a6849b35f08e68a",
+  "draft_pdf": "../../build/usenix-security-2027/usenixsecurity2027.pdf",
+  "draft_sha256": "b0a7abb603067b143d2c6adfd4e7509dd647fb9c349969a2e4f2171eb206046b",
+  "todo_count": 9,
+  "previous_draft_pdf": "submission/drafts/reprobench-usenix27-with-figures-2026-11-20.pdf",
+  "previous_draft_sha256": "1f4b6648f48fb092620d90739c8fbb3c652220e8a816b9b60dacca87a5072d2a",
   "visuals": {
-    "figures": 3,
-    "tables": 5,
-    "directly_reused_figures": 1,
-    "adapted_figures": 2,
-    "adapted_tables": 3,
-    "audit": "notes/visual-reuse-2026-11-20.md"
-  }
+    "figures": 5,
+    "tables": 11,
+    "source": "arXiv framework, phase curves, funnel, prompt and scoring tables; local task-starts diagram; readable historical CVE table"
+  },
+  "draft_total_pages": 21,
+  "revision_date": "2026-11-23",
+  "revision_base": "versions/arxiv/paper at cf5abf1 (AAAI and arXiv source files unchanged)",
+  "draft_body_pages": 9
 }

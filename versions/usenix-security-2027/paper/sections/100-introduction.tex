@@ -1,91 +1,84 @@
 \section{Introduction}
-\label{sec:introduction}
 
-A vulnerability identifier is a starting point for investigation, not an
-executable experiment. To confirm a reported IoT vulnerability, an analyst
-may have to locate an old firmware release, unpack a vendor-specific
-image, identify the affected service, and reconstruct enough of the
-device environment to deliver a meaningful test input. A working exploit
-script is useful only when its behavior is connected to the intended
-target. This distinction matters for validating vulnerability reports,
-building regression tests, and deciding when automated security analysis
-has produced actionable evidence.
+%% 现有benchmark假设目标环境已准备好，真实漏洞复现从CVE起步更困难
+%
+LLM agents now plan, call tools, write code, and operate inside software repositories with growing autonomy~\cite{swebench,programbench}.
+%
+This shift has prompted a wave of benchmarks measuring agentic performance on software engineering and cybersecurity tasks, from issue resolution~\cite{swebench} and program rewriting~\cite{programbench} to vulnerability reproduction~\cite{cybergym,krepro}, exploitation~\cite{cvebench,exploitgym,exploitbench}, and offense--defense exercises~\cite{bountybench,secbench}.
+%
+Many existing evaluations provide agents with source code, executable targets, or prepared runtime environments. Specialized environment-construction systems also address target preparation; the combined firmware workflow remains the focus of our study~\cite{cvegenie}.
 
-LLM agents can search documentation, write programs, and invoke analysis
-tools within one interactive workflow. Research has demonstrated their
-potential in exploitation, penetration testing, and vulnerability
-repair~\cite{fang2024oneday,happe2026enterprisenetworks,zhang2026ossfuzzrepair}.
-However, the meaning of a reported success depends on what the experiment
-provides. Testing an already running vulnerable application, constructing
-a PoC from a patch, and locating and executing an affected firmware
-component expose different combinations of information and execution
-requirements. Their success rates answer different questions.
+%
+Specifically, the agent receives a repository, a patch, a sanitizer-instrumented binary, a running Docker, and then is scored on what it does \emph{after} that starting line.
+%
+In real-world vulnerability analysis, however, a typical investigation usually begins with a bare identifier---a CVE number---which is followed by identifying the affected product, locating the correct artifact, recovering a runnable environment, and validating the vulnerability by producing a proof-of-concept (PoC).
+%
+We call the prepared setting \emph{post-environment} evaluation and the from-scratch setting \emph{pre-environment} evaluation.
+%
+%%The gap between them is not cosmetic: it is %%the gap between grading an exploit and %%grading the ability to reach a target worth %%exploiting.
+The gap between them should be considered when benchmarking existing LLM agents.
 
-Existing work covers important parts of this space. CVE-Bench provides
-real-world Web application targets and attack objectives; CyberGym
-evaluates reproduction with prepared software environments; and
-Patch-to-PoC studies kernel reproduction with patch input and dedicated
-execution support~\cite{cvebench,cybergym,krepro}. Environment construction
-is itself addressed by systems such as
-CVE-GENIE~\cite{cvegenie}. Firmware analysis systems separately establish
-that obtaining a binary does not remove its operating-system, peripheral,
-and configuration dependencies~\cite{challenges,greenhouse,pandawan}.
-These contributions motivate a closer empirical account of what general
-coding agents do when they must navigate the IoT reproduction workflow
-from a CVE identifier.
+In this work, we focus on a domain where this gap is especially sharp: IoT firmware vulnerability reproduction.
+%
+Firmware images often contain architecture-specific binaries, including MIPS and ARM targets, whose execution may require \textit{rehosting}, native isolation, or emulation~\cite{challenges,firmadyne,firmae}.
+%
+Unlike source-level targets, the analyst must obtain the exact image, extract it from a vendor archive, identify the vulnerable binary among dozens of blobs, and rehost the service on a synthetic environment before any exploit can be triggered.
+%
+This makes firmware reproduction an end-to-end artifact reconstruction and validation task.
+%, where failure can occur at every step and where a polished-looking PoC may never touch the real target.
+%
+%The security stakes are concrete: IoT devices are deployed at billions of units %across homes, factories, and edge infrastructure, and the same opacity that %makes firmware hard to rehost also makes it a persistent reservoir of unpatched, %remotely exploitable bugs.
 
-We study three connected questions. First, what can these agents actually
-complete under the observed conditions? Second, where do their attempts
-break down, and which unmet prerequisites are visible in the evidence?
-Third, what do agents do after encountering an obstacle, and how do their
-subsequent actions and reports relate to their actual progress? The third
-question includes repairing a real execution environment, repeating an
-unsuccessful strategy, changing the tested entry point, implementing a
-simulated service, and stopping. Examining these responses can explain
-differences between superficially similar final artifacts.
+%% 引入ReproBench：从CVE ID出发评估完整artifact-to-execution pipeline
+In this work, we investigate whether LLM agents can move from a CVE identifier to auditable evidence of IoT firmware vulnerability reproduction. We study 450 runs across 30 CVEs and five model configurations, examining overall outcomes, phase-level progress, and recurring failure behaviors. Our analysis combines evidence-grounded scores with inspection of the artifacts and trajectories produced during execution.
 
-Consider two records from our archive. One agent extracts Xiaomi firmware
-and sends a test input to an original service running in a chroot. Another
-implements a Python server for a NETGEAR authentication-bypass pattern and
-successfully tests that server. Both records contain executable scripts
-and positive demonstration output. They nevertheless support different
-claims about the specified firmware targets. Even the first record needs
-a further distinction: reaching an internal component directly does not
-establish that the documented external entry point and its authentication
-conditions were reproduced. We use such distinctions to connect final
-outcomes to the process that produced them.
+We use ``from scratch'' to mean that the agent receives a CVE identifier as the instance-specific input and must obtain and prepare the affected target using the provided tools and publicly available information. The host, container, common prompt, and tool interfaces are part of the supplied execution setup.
 
-Our material consists of 450 historical runs: 30 selected CVEs, five model
-configurations, and three repetitions per combination. The experiments
-used a shared OpenCode harness on an ARM64 host. Each agent received a
-CVE identifier within a common task prompt and could obtain additional
-public information and tools. We use six reproduction activities to
-locate progress, while allowing iteration and alternative paths. Target
-identity, observed execution, vulnerability-specific effects, and agent
-reports are recorded separately. No weighted plan, task, or overall score
-is used to answer the research questions.
+We organize the existing analyses around three research questions:
+\begin{description}
+\item[RQ1: Overall outcomes.] What reproduction outcomes and levels of progress do LLM agents achieve when starting from a CVE identifier?
+\item[RQ2: Phase and case differences.] How does observed progress vary across reproduction phases and vulnerability classes?
+\item[RQ3: Failure behaviors.] What recurring failure modes and simulation-substitution behaviors appear in the studied runs?
+\end{description}
 
-\paragraph{Draft status.}
-This manuscript is an internal working draft. Archive counts and explicitly
-described artifact inspections are available; comprehensive outcome
-validation and trajectory coding remain incomplete. Visible TODOs identify
-unfinished analyses and experiments. Historical evaluator labels are
-identified as such and are not presented as independently verified
-reproduction results. \todo{INTRO-01}{Replace this draft-status paragraph
-with a concise summary of the audited principal findings before submission.}
+%%
+%%\begin{table*}[t]
+%%    \centering
+%%    \caption{Comparison with representative benchmarks. \sys{} is the only benchmark where environment construction is the scored task itself (pre-environment).}
+%%   \label{tab:compare}
+%%   \small
+%%   \begin{tabular}{lclll}
+%%   \toprule
+%%   \textbf{Benchmark} & \textbf{From Scratch} & \textbf{Input} & \textbf{Task Type} & \textbf{Pre/Post-Env.} \\
+%%   \midrule
+%%   SWE-bench~\cite{swebench} & \textcolor{red}{\ding{55}} & Source Code & Issue Resolution & Post \\
+%%   CyberGym~\cite{cybergym} & \textcolor{red}{\ding{55}}  & Source Code & Vulnerability Reproduction & Post \\
+%%   CVE-Bench~\cite{cvebench} & \textcolor{red}{\ding{55}}  & Source Code & Vulnerability Exploitation & Post \\
+%%   K-Repro~\cite{krepro} & \textcolor{red}{\ding{55}}  & Source Code & Vulnerability Reproduction & Post \\
+%%   BountyBench~\cite{bountybench} & \textcolor{red}{\ding{55}}  & Source Code & Offense \& Defense & Post \\
+%%   SEC-Bench~\cite{secbench} & \textcolor{red}{\ding{55}}  & Source Code & PoC gen.\ \& Patching & Post \\ \hline
+%%   ProgramBench~\cite{programbench} & \textcolor{green}{\ding{51}} & Binary Program & Program Rewrite & Post \\
+%%   ExploitBench~\cite{exploitbench} & \textcolor{red}{\ding{55}}  & Binary Program & Vulnerability Exploitation & Post \\
+%%    ExploitGym~\cite{exploitgym} & \textcolor{red}{\ding{55}}  & Binary Program & %%Vulnerability Exploitation & Post \\ \hline
+%%    \textbf{\sys{} (Ours)} & \textcolor{green}{\textbf{\ding{51}}} & \textbf{CVE %%Identifier} & \textbf{Vulnerability Reproduction} & \textbf{Pre} \\
+%%    \bottomrule
+%%    \end{tabular}
+%%\end{table*}
 
-\paragraph{Contributions.}
-The intended contributions are an empirical account of CVE-initiated IoT
-reproduction under a documented agent setup; an evidence-based analysis
-connecting outcomes, obstacles, and responses; and a research resource,
-\sys{}, supporting inspection and reanalysis. The knowledge contribution
-will be stated as concrete findings once the audits are complete.
-\todo{INTRO-02}{Replace the intended-contribution wording with final,
-specific findings and the actual scope of the released resource.}
+Our analysis examines \emph{simulation substitution}: demonstrations against reimplemented services or vulnerability patterns rather than the specified firmware target. Some retained plans explicitly declare simulation; a substitute artifact alone does not establish concealment or a transition caused by a rehosting failure.
+%
+%%They produce Python mock servers or synthetic C harnesses that crash in the expected way, and wrap them in coherent reports with valid exploit syntax and convincing crash traces.
+%
+The demonstrated implementation and the original firmware can therefore support different claims.
+%
+\sys{} addresses this with non-binary, evidence-grounded scoring that decomposes reproduction into six phases and applies explicit real-target gating at the rehosting and triggering phases, so that a simulated reproduction can be detected.
+%
+%Across 450 runs, 69.8\% exhibit simulation substitution, while only 4.7\% of %CVE--model pairs achieve real-target vulnerability triggering---a distinction %that binary, post-environment scoring would erase entirely.
 
-Our conclusions concern the studied cases and agent configurations.
-They do not estimate the prevalence of reproducible vulnerabilities in
-all IoT products, isolate an intrinsic property of a model, or establish
-the effect of removing an obstacle without an intervention. These
-boundaries guide both the analysis and the practical implications.
 
+Our contributions are as follows:
+\begin{itemize}
+\item We present an empirical study of CVE-initiated IoT vulnerability reproduction across 30 cases, five model configurations, and 450 runs, characterizing overall outcomes and phase-level progress.
+\item We analyze artifacts and trajectories to characterize recurring failure modes, simulation substitution, and differences across phases and vulnerability classes.
+\item We organize the case specifications, public-source reference profiles, scoring tools, and analysis materials as \sys{} to support replication and further investigation. The release scope and access status are specified in Appendix~\ref{app:open-science}.
+\end{itemize}

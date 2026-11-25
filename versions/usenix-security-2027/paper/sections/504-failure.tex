@@ -1,0 +1,56 @@
+\subsection{Failure Analysis (RQ3)}
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/stagefunnel.pdf}
+    \caption{Stage-level averages under best-of-three scoring.}
+    \label{fig:stage-funnel}
+\end{figure}
+
+
+% RQ2: 阶段漏斗——P1-R4合理，R5骤降，terminal blocker主要在Phase 5
+Figure~\ref{fig:stage-funnel} shows the stage funnel from P1 to P6. P1 (Information Gathering) is the strongest phase at 13.9/15, indicating high credit on the rubric's information-gathering items, without independently establishing fact correctness. P2--P4 show moderate scores, reflecting partial success in firmware acquisition, extraction, and binary identification. The sharp collapse occurs at P5 (Service Rehosting), which averages only 3.7/20. P6 averages 2.8/20, with most points coming from PoC construction rather than real-target triggering.
+
+%%\begin{table}[t]
+%%\setlength{\tabcolsep}{3.8pt}
+%%\centering
+%%\caption{Stage-level averages under %%best-of-three scoring. The pipeline %%collapses at P5.}
+%%\label{tab:stage-funnel}
+%%\renewcommand{\arraystretch}{1.15}
+%%\begin{tabular}{c l r r r}
+%%\toprule
+%%\textbf{Phase} & \textbf%%{Description} & \textbf{Score} & %%\textbf{Max} & \textbf{\%} \\
+%%\midrule
+%%P1 & Information gathering   & 13.%%9 & 15 & 92.8\% \\
+%%P2 & Firmware acquisition    &  9.%%0 & 15 & 59.9\% \\
+%%P3 & Firmware extraction     &  8.%%1 & 15 & 53.8\% \\
+%%P4 & Binary identification   &  7.%%6 & 15 & 50.8\% \\
+%%\midrule
+%%P5 & Service rehosting       &  3.%%7 & 20 & 18.6\% \\
+%%P6 & Vulnerability triggering&  2.%%8 & 20 & 13.9\% \\
+%%\bottomrule
+%%\end{tabular}
+%%\end{table}
+
+
+
+% Failure attribution: per-run counts (terminal failure mode, each run counted once).
+% P2/P5 blockers are terminal phase counts (TermPhase column).
+Based on the sharp collapse and across all 450 runs,
+%terminal blockers concentrate at two phases---P2 (211/450, firmware acquisition) and P5 (173/450, service rehosting)---consistent with the funnel above.
+we analyze the dominant failure modes that drive these blockers:
+
+\noindent{\textbf{Simulation substitution (legacy summary: 204/450, 45.3\%).}} The largest category in the legacy summary: agents produce mock servers, C harnesses, or host-native programs that demonstrate the vulnerability \emph{pattern} but not the target \emph{instance}. The output is often coherent and reproducible---valid crash signals, correct exploit syntax, convincing reports---yet never exercises the real firmware binary, so substitute-only demonstrations are ineligible for real-target execution credit. Explicitly declared simulation is distinguished from an unsupported success claim.
+
+\noindent{\textbf{Rehosting gap (93/450, 20.7\%).}} Agents identify the target binary but cannot properly configure dynamic loaders, NVRAM values and abandon after one or two errors. Same-architecture (ARM64) devices bypass this gap, leaving cross-architecture (MIPS) targets that require QEMU emulation as the bulk of these blockers.
+
+\noindent{\textbf{Firmware acquisition failures (75/450, 16.7\%).}} Agents fail to obtain the correct firmware image---downloading incorrect versions, stopping after 403 errors, or conflating firmware binaries with GPL source packages that lack runtime shared libraries.
+
+\noindent{\textbf{Extraction failures (36/450, 8.0\%).}} Agents acquire firmware but misuse extraction tools---e.g., applying standard \texttt{binwalk} to vendor-encrypted images---or analyze binaries pulled from PoC repositories rather than from the target firmware.
+
+\noindent{\textbf{Infrastructure failures (15/450, 3.3\%).}} The residual blockers stem from execution-environment setup rather than reproduction logic, and are scattered across phases rather than concentrated at any single stage.
+
+
+\paragraph{Counting scope and reconciliation.}
+The percentages above reproduce the legacy summary's terminal categories. An independent inventory of the current evaluator records finds 316 runs with any simulation label and 209 with at least one terminal simulation label; 11 runs have multiple terminal entries. These are different queries, not alternative validated prevalence estimates. \todo{NUM-01}{Reconcile 204 versus 209 terminal-simulation counts, source versions, and aggregation rules. Check category overlap and coverage before publishing a final failure distribution.} Neither a missing trace nor an evaluator's terminal label alone establishes the actual stopping cause.

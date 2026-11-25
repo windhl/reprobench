@@ -23,6 +23,8 @@ Please see the Weaknesses section.
 
 Rating: 4: Ok but not good enough - rejection
 Confidence: 4: The reviewer is confident but not absolutely certain that the evaluation is correct
+
+======================================================================================================
 ReproBench: Benchmarking LLM Agents on Reproducing Vulnerability From Scratch
 Official Reviewby Program Committee cT2128 Aug 2026, 17:45 (modified: 25 Sept 2026, 05:24)Program Chairs, Area Chairs, Senior Program Committee, Program Committee cT21, Authors, Program Committee SubmittedRevisions
 Paper Summary:

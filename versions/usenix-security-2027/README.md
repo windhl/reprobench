@@ -1,28 +1,36 @@
 # USENIX Security 2027
 
-此目录是新投稿版本的独立工作区。现已基于大纲 v2 和历史素材写成英文实证研究草稿，并核读、迁入适合复用的旧图表，保留官方 `usenix.sty` 的格式设置。
+当前标题：**Can LLM Agents Reproduce Vulnerabilities from Scratch? An Empirical Study on IoT Firmware**。
 
-## 当前草稿
+2026-11-23 按作者审阅意见，以 arXiv 旧稿为底稿恢复方法、实验和主要分析，局部调整为实证研究叙事。AAAI 和 arXiv 版本保持原样；官方 `usenix.sty` 未修改。
 
-- [当前完整 PDF：20 页](submission/drafts/reprobench-usenix27-with-figures-2026-11-20.pdf)：正文 13 页、参考文献 2 页、附录 5 页；含 3 图、5 表。
-- [当前仅正文 PDF：13 页](submission/drafts/reprobench-usenix27-main-13pages-2026-11-20.pdf)：供逐页审阅；引用、原始提示词图和完整案例表见完整版本。
-- [LaTeX 主文件](paper/usenixsecurity2027.tex)，章节源文件位于 `paper/sections/`。
-- [43 项 TODO 清单](notes/draft-todos-2026-11-20.md)：区分研究必需工作、条件性补实验及成稿/投稿事项。
-- [旧图表核读、复用与论述作用](notes/visual-reuse-2026-11-20.md)：含六张旧图和全部旧表的处理理由。
-- [11/19 首稿说明](notes/draft-status-2026-11-19.md)及[当时完整 PDF](submission/drafts/reprobench-usenix27-draft-2026-11-19.pdf)：保留作对照。
+## 当前审阅稿
 
-草稿采用结果、障碍、应对行为三个递进 RQ，不使用加权评分。当前包含历史注释统计和已核读的案例产物；完整结果核验、轨迹编码和最终科学发现仍以 TODO 标明，没有新增 agent 实验。它是供作者审阅的工作稿，尚非投稿定稿。
+- [完整 PDF](../../build/usenix-security-2027/usenixsecurity2027.pdf)：本地构建产物，Git 忽略。
+- [LaTeX 入口](paper/usenixsecurity2027.tex)：以入口中的 `input` 列表为当前有效正文；未被引用的前版章节保留作历史参考。
+- [原底稿](../arxiv/paper/main.tex)：保留选例、reference profile、Plan/Task/Overall 公式、模型汇总、PSC 案例、漏洞类别分析、失败统计及评分附录。
+- [11/20 的前版完整 PDF](submission/drafts/reprobench-usenix27-with-figures-2026-11-20.pdf)：属于较大幅度重写的历史快照，不再代表当前稿。
 
-本次直接复用原始提示词 PDF，改绘旧框架与案例图，改写六类活动/证据检查表、触发证据表及完整案例元数据表。未把旧阶段评分曲线、漏斗或分数排名转写成新结果。
+当前正文依次为 Introduction、Background and Related Work、Study Design and Methodology、Experimental Setup、Empirical Results、Discussion、Conclusion。三个 RQ 分别对应总体结果、阶段与类别差异、失败行为；ReproBench 是计划公开的研究材料与工具资源。实际公开范围见 Open Science 附录。
+
+六阶段评分、原始模型汇总表、框架图、阶段得分曲线和漏斗继续使用。旧 iceberg 图局部改为任务起点示意，避免概括全部既有工作。提示词原图在附录保留；旧评分 checklist、attempt、trigger、failure taxonomy、三个案例分数及成本表恢复为附录，已修正错误 CVE 图注和 taxonomy 实际列出的 12 种模式数量。
+
+## 尚需核验的信息
+
+当前没有新增 agent 运行，也没有重新评分。保留数字是旧 rubric 下的历史测量，不等同于独立验证的端到端成功率。
+
+- AUD-01：16 个触发候选的目标身份、效果归因和组件／公开入口范围。
+- NUM-01：旧稿 204 次 terminal simulation 与当前清单 209 次的口径差异；316 次是 any-simulation 查询。
+- NUM-02：369 条成本记录与 395 个非空 trace 目录的覆盖差异，以及计费、时间和超预算记录。
+- CONFIG-01：历史工具版本、model route、实际输入和预算执行方式。
+- Ethics / Open Science 附录保留实际安全措施和共享材料的待核查事项。
+
+[11/20 的 43 项 TODO](notes/draft-todos-2026-11-20.md)及[当时的图表迁移说明](notes/visual-reuse-2026-11-20.md)只对应历史重写稿。
 
 ## 构建
 
-从仓库根目录运行：
-
 ```sh
-bash compile.sh usenix-security-2027
+python scripts/build_paper.py usenix-security-2027
 ```
 
-构建输出位于 `build/usenix-security-2027/usenixsecurity2027.pdf`。当前采用本机可用的 `plain.bst` 并在引用字段中保留来源链接，解决原示例依赖 `plainurl.bst` 缺失的问题；未修改官方页面尺寸、字体、行距、页边距或标题/作者块。原始官方示例完整保存在 `submission/usenixsecurity2027_latex_templates.zip`。
-
-正文放 `paper/`，历史材料清单与后续分析放 `experiments/`，讨论与待办放 `notes/`，审阅快照放 `submission/drafts/`。
+输出位于 `build/usenix-security-2027/usenixsecurity2027.pdf`，构建日志保存在同目录下的 `sources-*`。11/23 修改前的论文源文件另备份在 `build/usenix-security-2027/before-local-revision-2026-11-23.zip`。构建不会覆盖各版 `submission/` 中的历史 PDF。

@@ -1,0 +1,5 @@
+\begin{tikzpicture}[>=Latex,
+ box/.style={draw,rounded corners,align=left,text width=2.85in,inner sep=5pt,font=\small}]
+\node[box,fill=black!3] (prepared) {\textbf{Prepared-target setting}\\Source, binary, or running service supplied\\Agent analyzes and tests the supplied target};
+\node[box,below=0.20in of prepared,fill=blue!4] (cve) {\textbf{Studied CVE-only setting}\\CVE identifier + common execution setup\\Agent identifies, acquires, prepares, and tests the target};
+\end{tikzpicture}

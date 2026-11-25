@@ -1,109 +1,28 @@
 \section{Discussion}
 \label{sec:discussion}
 
-\subsection{Interpreting Reproduction Performance}
+\subsection{Lessons}
+\label{sec:lessons}
 
-\paragraph{The tested object determines the claim.}
-The inspected cases show why an executable artifact needs an explicit
-target identity. A simulator can implement the expected programming error,
-generate realistic responses, and pass its own positive and negative
-tests. Those are properties of the simulator. An original firmware
-component can provide stronger evidence, yet a direct internal call can
-still leave the documented attack entry untested. A useful empirical
-account should retain these different scopes instead of forcing them
-into a single undifferentiated success label.
 
-This distinction also informs the interpretation of failure. A run that
-does not reproduce the documented entry may nevertheless produce a
-reusable extracted image, an original-component test, or a verified account
-of a missing prerequisite. These artifacts reduce some forms of analyst
-work while leaving others unresolved. Their value can be described through
-specific verified states without assigning arbitrary exchange rates
-between a plan, a download, and a dynamic vulnerability trigger.
+\textbf{Target provenance is necessary for interpreting reproduction evidence.} The retained cases distinguish original-component execution from demonstrations on reimplemented services. The precise simulation frequency remains subject to NUM-01. This lesson for benchmark design is concrete: record full artifacts and trajectories, require artifact provenance for every claimed success. Without these, an agent can score as successful by emulating the vulnerability while never touching the target.
 
-\paragraph{Early noncompletion limits what can be inferred later.}
-If an agent fails to obtain or execute a target, the record provides little
-direct evidence about its ability to construct an exploit once that
-target is available. This is a consequence of the observed task path,
-not a demonstration that later capability is high. A conditional analysis
-of runs that reached execution can help characterize those runs but
-selects cases differently for each configuration. It does not remove the
-selection problem.
+\noindent{\textbf{Acquisition and recovery behaviors accompany differences in progress.}} In the inspected runs, stronger firmware-acquisition progress and more developed fallback plans co-occur with higher task scores. The examples illustrate how continued acquisition attempts and alternative execution strategies can support further progress. These observations do not isolate a causal contribution of a particular behavior or an intrinsic capability of the underlying model.
 
-The practical distinction is between deployment performance of the
-complete workflow and capability on a specified subtask. Both are useful
-questions. They require different experimental conditions to answer
-cleanly. Stage-decoupling work makes this explicit by providing missing
-prerequisite information and retesting the subsequent
-task~\cite{yu2026decoupling}. Our observational analysis will identify
-which follow-up comparison would be most informative rather than assume
-its result.
+%%\textbf{The rehosting ceiling is a specific, %%identifiable blocker---not a general capability %%wall.} The architecture-dependent ceiling we %%observe---same-architecture (ARM64) devices are %%reproducible via \texttt{chroot} while %%cross-architecture (MIPS, ARM32) devices almost %%universally fail at P5---localizes the blocker %%precisely. The failing sub-tasks are not vague: %%NVRAM initialization, dynamic-loader and %%library-path resolution under uClibc/musl, and %%network-bridge setup are exactly the rehosting %%challenges documented in the firmware-analysis %%literature~\cite{challenges,pandawan}. The %%implication is that progress on \sys{} will come %%not from larger general- purpose models but from %%agents that can reliably perform the %%configuration steps a human analyst performs by %%hand, or that can invoke and drive specialized %%rehosting toolchains~\cite{firmadyne,firmae,%%greenhouse}. A post-environment benchmark would %%never surface this ceiling, because the service %%is already running; \sys{} exposes it precisely %%because it scores the rehosting phase directly.
 
-\todo{EXP-01}{Optional, if the final claim concerns the effect of
-environment readiness: compare CVE-only and verified-ready-target
-conditions on the same cases with matched agent setup and budget. Report
-the common eligible subset, its selection bias, and negative results.}
-Without that experiment, the conclusion should remain that certain
-downstream behaviors were not observed after early noncompletion.
+\subsection{Limitations and Future Work}
+\label{sec:limitations}
 
-\paragraph{Obstacles and responses are complementary explanations.}
-An environmental obstacle describes a condition encountered during
-execution. A response describes what the agent does in that situation.
-The same missing dependency can be followed by a targeted repair,
-unchanged repetition, simulation, or termination. Conversely, simulation
-can be proposed before any retained execution error. Both dimensions are
-needed to avoid attributing every alternative target to a technical
-rehosting impossibility.
+\textbf{Dataset scope.} \sys{} contains 30 manually curated CVEs balanced equally across buffer overflows, command injections, and authentication bypasses. This balance does not mirror the natural distribution of IoT weaknesses, and we can select more CVEs in our future work.
 
-\todo{DISC-01}{Develop the final cross-RQ interpretation from validated
-patterns and counterexamples. Identify which explanation the evidence
-supports beyond the individual cases, and retain competing explanations
-where unresolved.}
-The final interpretation should identify which patterns recur across
-cases and which remain isolated examples, and explain how that distinction
-changes the practical conclusions.
 
-\subsection{Implications for Agents and Their Evaluation}
+\noindent{\textbf{Scoring Skill.}} The LLM-based scorer performs semantic analysis on trajectories and artifacts, which introduces nondeterminism in some ways. For example, failure attribution does not always conform to the predefined family, occasionally producing hybrid or undefined labels.
+%Partial credit on checklist items is not always assigned at standard increments (25\%, 50\%, 75\%); approximately 16\% of partial-credit items use finer-grained ratios (e.g., 40\%, 60\%, 80\% on 5-point items), reflecting the scorer's tendency to use per-point granularity on smaller items.
+%%Although we apply post-scoring filtering and normalization to mitigate these inconsistencies, the underlying nondeterminism may still affect fine-grained score comparisons.
 
-\paragraph{Evidence should travel with the result.}
-For practical use, a reproduction report should identify the image and
-component, how the target ran, which interface received the input, and
-what effect was observed. It should disclose modifications that alter
-the relevant behavior and separate a simulator's output from original
-target execution. This recommendation follows from the different claims
-supported by the inspected artifacts; it does not establish that every
-existing benchmark would misclassify those artifacts.
+\noindent{\textbf{Single Agent Harness.}} All five models run through the same harness with an identical prompt, tool set, and control loop to isolate behavior from harness variance. However, alternative harnesses such as Claude Code~\cite{claude_code2026} or multi-agent pipelines may shift both scores and the simulation-substitution rate. Extending \sys{} to multiple harnesses and a wider model pool are left as our future work.
 
-A report can further identify the next unresolved prerequisite. For
-example, verified component triggering with an unresolved authentication
-frontend is more actionable than an unqualified success message. Such
-scope information helps a human decide whether to accept a component test,
-continue reconstructing the documented interface, or treat the output as
-an explanatory demonstration.
+\noindent\textbf{Outcome and measurement validity.} Near-full P5/P6 credit and positive historical trigger labels are candidates for evidence review, not substitutes for target-specific validation. The Xiaomi example tests an internal component; its public Web/authentication entry is not established by that test. Three illustrative score breakdowns do not quantify scorer accuracy. The original rubric and weights are retained, and no new agent runs or comprehensive human recoding are claimed.
 
-\paragraph{Agent improvements should target observed gaps.}
-If reviewed trajectories show repeated difficulties interpreting loader
-errors or device-state requirements, integration with a specialized
-rehosting service is a plausible direction. If a model repeatedly ignores
-available tool feedback, another direction is explicit state tracking and
-verification before changing strategy. Studies of enterprise penetration
-testing and local privilege escalation provide examples of connecting
-trajectory observations to architecture or tool
-changes~\cite{happe2026enterprisenetworks,huang2025capabilitiesperformance,probst2026localprivesc}.
-Our data must establish which of these problems actually recurs in this
-setting before recommending a particular implementation.
-
-\todo{EXP-02}{Optional, if claiming that task wording changes simulation
-or report alignment: compare the historical instruction with an explicit
-original-target requirement that permits honest failure reporting. Keep
-the environment and budget matched and measure both progress and claims.}
-We do not claim that this change will improve performance or reduce
-simulation without testing it. A prompt can alter the task agents believe
-they are solving, so any such follow-up should be presented as a new
-experimental condition rather than a retrospective correction of the
-historical protocol.
-
-\paragraph{Resource value and empirical value can coexist.}
-\sys{} names the case collection, protocol, and analysis materials.
-The release should let readers inspect each finding and its uncertainty.
-External tool comparison remains a separate engineering objective.
+\noindent\textbf{Missing evidence and repeated observations.} The archive inventory finds 395 nonempty traces, while the old cost table uses 369 records. Directory presence and usable billing/trajectory coverage differ. Empty traces do not establish infrastructure failure. The 450 runs repeat 30 cases; three trials and best-of-three summaries do not provide 450 independent vulnerabilities or a stable per-case success probability. Case selection, image availability, shared components, host ISA, and model routes limit generalization.

@@ -1,20 +1,15 @@
+% 针对安全任务，现有 Benchmark 都已提前准备好漏洞环境 -> 我们的目标：评估智能体能否从零开始、仅从CVE开始复现已知漏洞
+% 提出ReproBench: 基于公开证据的IoT漏洞从零复现评测基准
+%   漏洞数据集： 30个CVE = 10 bof + 10 cmdi + 10 ab
+%   groundtruth：公开证据档案，包括 CVE 记录、厂商安全公告、公开 PoC、安全博客等
+%   打分方法：将漏洞复现划分为六个阶段：漏洞信息收集、固件获取、固件提取、二进制文件识别、服务重新托管、漏洞触发，并从plan和task两方面打分，要求依据复现trace和产物作为支撑。
+% 实验： 450 次漏洞复现任务（30 个 CVE、5 个模型、3 次重复实验）以及对应的 450 次评分过程，通过事后人工审计验证评分结果、P5/P6 阶段的完成情况以及失败模式分析。
+% 最终目标：评估智能体能否逐步完成漏洞复现流程，并生成可审计的真实目标环境证据，评估智能体的从零开始复现漏洞能力。
+
 \begin{abstract}
-Reproducing a known IoT vulnerability requires more than generating an
-exploit: an analyst must obtain the affected firmware, establish a usable
-execution environment, and connect the observed behavior to the specified
-target. We investigate how LLM agents perform and behave across this
-workflow. Our study uses an archive of 450 runs spanning 30 CVEs, five
-model configurations, and three repetitions. We organize the analysis
-around reproduction outcomes, execution obstacles, and agents' subsequent
-responses, using target provenance, execution artifacts, and trajectories
-rather than an aggregate capability score. Initial archive inspection
-identifies candidate real-component executions alongside demonstrations
-against reimplemented services, illustrating why executable output alone
-does not establish reproduction. \todo{ABS-01}{Insert the audited outcome
-distribution and two principal cross-case findings after evidence review.}
-We distinguish component-level triggering from reproduction through the
-documented entry point, and separate declared simulation from unsupported
-success claims. The study aims to clarify which parts of autonomous
-reproduction are observed, which remain untested after early failures,
-and what evidence is needed to interpret an agent's report.
+    Large language model (LLM) agents are increasingly evaluated on cybersecurity tasks such as vulnerability reproduction, exploitation, and patching. However, many cybersecurity evaluations provide source code, an executable target, or a prepared runtime environment. This setup bypasses the critical environment reconstruction step, leaving a fundamental question for real-world vulnerability analysis: \emph{can an agent autonomously reconstruct the required execution environment and reproduce a vulnerability entirely from scratch?}
+
+    To investigate this question, we conduct an empirical study of LLM agents on 30 publicly documented IoT firmware vulnerabilities, covering five model configurations and three trials per configuration--CVE pair, for a total of 450 runs. We examine reproduction progress across six phases using an evidence-grounded scoring rubric and analyze execution artifacts and trajectories to characterize observed outcomes and recurring failure modes.
+
+    The retained scores show stronger progress in information gathering and firmware analysis than in service rehosting and triggering. Under the historical scoring rubric, 8 of 150 CVE--model pairs receive near-full triggering credit. This threshold identifies candidates for outcome review rather than an independently verified end-to-end success rate. Case analysis highlights differences in firmware acquisition, tooling, and rehosting strategies, as well as demonstrations against substitute implementations. These observations motivate checking target provenance and execution evidence alongside aggregate scores. We organize the study materials and tools as \sys{} to support replication and further investigation.
 \end{abstract}
